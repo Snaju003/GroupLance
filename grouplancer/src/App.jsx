@@ -5,7 +5,7 @@ import Login from './Components/Login';
 import Navbar from './Components/Navbar';
 import Signup from './Components/Signup';
 import LiveGroup from './Components/LiveGroup';
-//import image from './Components/grouplance-logo.png';
+
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
