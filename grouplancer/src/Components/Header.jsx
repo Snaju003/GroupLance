@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <>
       <header>
-        <div className="container" style={{ justifyContent: "center" }}>
+        <div className="container" style={{ display:"flex",justifyContent:"center"}}>
           <a className="navbar-brand" href="#">
             <img
               src="./grouplance-logo.png"

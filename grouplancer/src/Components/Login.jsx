@@ -15,8 +15,6 @@ const validate = (values) => {
 
 const Login = () => {
 
-  const [submit,setSubmit] = useState("");
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -27,18 +25,10 @@ const Login = () => {
     },
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  }
-
-  const onchange = (e) => {
-    setSubmit([e.target.name] : e.target.value);
-  }
-
   return (
     <>
       <div className="container">
-        <form onSubmit={handleSubmit}>
+        <form>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
@@ -50,9 +40,6 @@ const Login = () => {
               aria-describedby="emailHelp"
               onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email}
             />
-            {formik.touched.email && formik.errors.email ? (
-              <span>{formik.errors.email}</span>
-            ) : null}
             <div id="emailHelp" className="form-text">
               We'll never share your email with anyone else.
             </div>
@@ -65,7 +52,6 @@ const Login = () => {
               type="password"
               className="form-control"
               id="exampleInputPassword1"
-              onChange={onchange}
             />
           </div>
           <div className="mb-3 form-check">
@@ -79,7 +65,7 @@ const Login = () => {
             </label>
           </div>
           <button type="submit" className="btn btn-primary">
-            Submit
+            Login
           </button>
         </form>
       </div>
