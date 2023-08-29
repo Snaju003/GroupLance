@@ -1,10 +1,16 @@
 import React from "react";
 
+
 const Header = () => {
   return (
     <>
       <header>
-        <div className="container" style={{ display:"flex",justifyContent:"center"}}>
+        <div className="container" style={{ display:"flex",justifyContent:"center",
+        backgroundImage: "./frontpage_image.jpg", 
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        zIndex: '3'
+      }}>
           <a className="navbar-brand" href="#">
             <img
               src="./grouplance-logo.png"
