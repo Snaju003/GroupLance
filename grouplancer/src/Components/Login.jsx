@@ -3,7 +3,7 @@ import React from "react";
 const Login = () => {
   return (
     <>
-      <div className="container">
+      <div className="container my-3">
         <form>
 
           <div className="mb-3">
@@ -16,7 +16,7 @@ const Login = () => {
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
             />
-            
+
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputPassword1" className="form-label">
@@ -27,16 +27,6 @@ const Login = () => {
               className="form-control"
               id="exampleInputPassword1"
             />
-          </div>
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            />
-            <label className="form-check-label" htmlFor="exampleCheck1">
-              Check me out
-            </label>
           </div>
           <button type="submit" className="btn btn-primary">
             Login

@@ -3,7 +3,7 @@ import React from "react";
 const Signup = () => {
   return (
     <>
-      <div className="container">
+      <div className="container my-3">
         <form>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
@@ -15,14 +15,14 @@ const Signup = () => {
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
             />
-            <br />
-            <label htmlFor="exampleInputEmail1" className="form-label">
+            <hr />
+            <label htmlFor="email" className="form-label">
               Email address
             </label>
             <input
               type="email"
               className="form-control"
-              id="exampleInputEmail1"
+              id="email"
               aria-describedby="emailHelp"
             />
             <div id="emailHelp" className="form-text">
@@ -30,24 +30,26 @@ const Signup = () => {
             </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="exampleInputPassword1" className="form-label">
+            <label htmlFor="password" className="form-label">
               Password
             </label>
             <input
               type="password"
               className="form-control"
-              id="exampleInputPassword1"
+              id="password"
+              required
             />
           </div>
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            />
-            <label className="form-check-label" htmlFor="exampleCheck1">
-              Check me out
+          <div className="mb-3">
+            <label htmlFor="cpassword" className="form-label">
+              Confirm Password
             </label>
+            <input
+              type="password"
+              className="form-control"
+              id="cpassword"
+              required
+            />
           </div>
           <button type="submit" className="btn btn-primary">
             Sign in
