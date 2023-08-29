@@ -1,10 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import { useFormik } from "formik";
+
+const validate = (values) => {
+  const errors = {}
+
+  if (!values.email) {
+    errors.email = 'Required'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address'
+  }
+  
+  return errors
+}
 
 const Login = () => {
+
+  const [submit,setSubmit] = useState("");
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+    },
+    validate,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2))
+    },
+  })
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
+  const onchange = (e) => {
+    setSubmit([e.target.name] : e.target.value);
+  }
+
   return (
     <>
       <div className="container">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
@@ -14,7 +48,11 @@ const Login = () => {
               className="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
+              onChange={formik.handleChange} onBlur={formik.handleBlur} value={formik.values.email}
             />
+            {formik.touched.email && formik.errors.email ? (
+              <span>{formik.errors.email}</span>
+            ) : null}
             <div id="emailHelp" className="form-text">
               We'll never share your email with anyone else.
             </div>
@@ -27,6 +65,7 @@ const Login = () => {
               type="password"
               className="form-control"
               id="exampleInputPassword1"
+              onChange={onchange}
             />
           </div>
           <div className="mb-3 form-check">
