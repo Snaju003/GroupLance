@@ -1,5 +1,6 @@
 import './App.css';
 import CreateGroup from './Components/CreateGroup';
+import Footer from './Components/Footer';
 import Header from './Components/Header';
 import Home from './Components/Home';
 import LiveGroups from './Components/LiveGroups';
@@ -23,6 +24,7 @@ function App() {
           <Route exact path='/livegroups' element={<LiveGroups />} />
           <Route exact path='/creategroup' element={<CreateGroup />} />
         </Routes>
+        <Footer />
       </Router>
     </>
   );
