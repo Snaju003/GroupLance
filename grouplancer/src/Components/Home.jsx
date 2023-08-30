@@ -4,7 +4,7 @@ import About from './About';
 const Home = () => {
   const cardcolor = "#dfdffb";
   return (
-    <div style={{ backgroundColor: "#353595" }}>
+    <div style={{ backgroundColor: "#0f054c" }}>
       <div id="frontimage">
         <button type='submit' id='community'>Join the community</button>
       </div>

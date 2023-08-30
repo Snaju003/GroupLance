@@ -18,7 +18,7 @@ const About = (props) => {
                     </article>
                 </section>
             </div>
-            <hr />
+
             <div className="container">
                 <h1 id='heading'>How to use Grouplancer?</h1>
                 <section>
