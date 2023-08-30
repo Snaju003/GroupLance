@@ -85,18 +85,14 @@ section {
   display: flex;
 }
 
-article {
-  flex: 1 auto;
-  justify-content: center;
-}
 
-#head1 {
+#heading {
   padding: 10px;
   padding-bottom: 20px;
   color: white;
 }
 
-#card1 {
+#aboutcard {
   box-shadow: 0 4px 8px 0 black;
   transition: 0.5s;
   margin-left: 2rem;
@@ -104,95 +100,12 @@ article {
   border-radius: 10px;
   text-align: justify;
   padding: 15px;
-  width: 1000px;
+  width: fit-content;
+  cursor: pointer;
 }
 
-#card1:hover {
-  box-shadow: 0 16px 25px 0 black;
+#aboutcard:hover {
+  box-shadow: 10px 16px 25px 0 black;
   background-color: rgb(235, 234, 234);
 }
 
-#card2 {
-  box-shadow: 0 4px 8px 0 black;
-  transition: 0.5s;
-  margin-left: 2rem;
-  margin-right: 1rem;
-  border-radius: 10px;
-  height: 200px;
-  text-align: justify;
-  width: 1000px;
-  padding: 15px;
-}
-
-#card2:hover {
-  box-shadow: 0 16px 25px 0 black;
-  background-color: rgb(235, 234, 234);
-}
-
-#card3 {
-  box-shadow: 0 4px 8px 0 black;
-  transition: 0.5s;
-  margin-left: 2rem;
-  margin-right: 1rem;
-  border-radius: 10px;
-  text-align: justify;
-  padding: 15px;
-  width: 1000px;
-}
-
-#card3:hover {
-  box-shadow: 0 16px 25px 0 black;
-  background-color: rgb(235, 234, 234);
-}
-
-#head2 {
-  padding: 10px;
-  padding-bottom: 20px;
-  color: white;
-}
-
-#card4 {
-  box-shadow: 0 4px 8px 0 black;
-  transition: 0.5s;
-  margin-left: 2rem;
-  margin-right: 1rem;
-  border-radius: 10px;
-  text-align: justify;
-  padding: 15px;
-}
-
-#card4:hover {
-  box-shadow: 0 16px 25px 0 black;
-  background-color: rgb(235, 234, 234);
-}
-
-#card5 {
-  box-shadow: 0 4px 8px 0 black;
-  transition: 0.5s;
-  margin-left: 2rem;
-  margin-right: 1rem;
-  border-radius: 10px;
-  height: 200px;
-  text-align: justify;
-  padding: 15px;
-}
-
-#card5:hover {
-  box-shadow: 0 16px 25px 0 black;
-  background-color: rgb(235, 234, 234);
-}
-
-#card6 {
-  box-shadow: 0 4px 8px 0 black;
-  transition: 0.5s;
-  margin-left: 2rem;
-  margin-right: 1rem;
-  border-radius: 10px;
-  text-align: justify;
-  padding: 15px;
-}
-
-#card6:hover {
-  box-shadow: 0 16px 25px 0 black;
-  background-color: rgb(235, 234, 234);
-}
