@@ -85,6 +85,11 @@ section {
   display: flex;
 }
 
+#cards {
+  background-image: url("../public/frontpage_image2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
 #heading {
   padding: 10px;

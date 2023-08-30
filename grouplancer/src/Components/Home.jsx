@@ -8,7 +8,10 @@ const Home = () => {
       <div id="frontimage">
         <button type='submit' id='community'>Join the community</button>
       </div>
-      <About cardcolor={cardcolor} />
+      <div id='cards'>
+        <br></br>
+        <About cardcolor={cardcolor} />
+      </div>
     </div>
 
   )
