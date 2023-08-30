@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="container my-3">
+      <div className="container my-3" style={{ width: "800px" }}>
         <form onSubmit={handlesubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
