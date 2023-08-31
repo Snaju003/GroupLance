@@ -3,11 +3,11 @@ import CreateGroup from './Components/CreateGroup';
 import Footer from './Components/Footer';
 import Header from './Components/Header';
 import Home from './Components/Home';
+import JoinedGroups from './Components/JoinedGroups';
 import LiveGroups from './Components/LiveGroups';
 import Login from './Components/Login';
 import Navbar from './Components/Navbar';
 import Signup from './Components/Signup';
-import JoinedGroup from './Components/JoinedGroup';
 
 
 
@@ -25,7 +25,7 @@ function App() {
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/livegroups' element={<LiveGroups />} />
           <Route exact path='/creategroup' element={<CreateGroup />} />
-          <Route exact path='/joinedgroup' element={<JoinedGroup />} />
+          <Route exact path='/joinedgroups' element={<JoinedGroups />} />
         </Routes>
         <Footer />
       </Router>

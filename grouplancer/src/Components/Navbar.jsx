@@ -27,7 +27,7 @@ const Navbar = () => {
                                         <Link className="dropdown-item" to="/creategroup">Create Group</Link>
                                     </li>
                                     <li>
-                                        <Link className="dropdown-item" to="/joinedgroup">Joined Groups</Link>
+                                        <Link className="dropdown-item" to="/joinedgroups">Joined Groups</Link>
                                     </li>
                                 </ul>
                             </li>
@@ -52,7 +52,7 @@ const Navbar = () => {
                         </form>
                         <Link to="/signup"><button className="btn btn-outline-success mx-2" type="submit">Signup</button></Link>
                         <Link to="/login"><button className="btn btn-outline-success mx-2" type="submit">Login</button></Link>
-                        <button className="btn btn-outline-success mx-2 disabled" type="submit">Logout</button>
+                        {/* <button className="btn btn-outline-success mx-2 disabled" type="submit">Logout</button> */}
                     </div>
                 </div>
             </nav>

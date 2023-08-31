@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const JoinedGroup = (props) => {
     let { title, description } = props;
