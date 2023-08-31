@@ -4,7 +4,7 @@ const CreateGroup = () => {
 
   return (
     <>
-      <div className="container mt-3" style={{ width: "800px" }}>
+      <div className="container mt-3" style={{ width: "800px", color: "white" }}>
         <form>
           <div className="mb-3">
             <label htmlFor="gname" className="form-label">

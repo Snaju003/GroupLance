@@ -3,7 +3,7 @@ import React from "react";
 const Signup = () => {
   return (
     <>
-      <div className="container my-3" style={{ width: "800px" }}>
+      <div className="container my-3" style={{ width: "800px", color: "white" }}>
         <form>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
