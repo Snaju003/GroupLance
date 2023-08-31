@@ -25,7 +25,7 @@ function App() {
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/livegroups' element={<LiveGroups />} />
           <Route exact path='/creategroup' element={<CreateGroup />} />
-          <Route exact path='/JoinedGroup' element={<JoinedGroup />} />
+          <Route exact path='/joinedgroup' element={<JoinedGroup />} />
         </Routes>
         <Footer />
       </Router>
