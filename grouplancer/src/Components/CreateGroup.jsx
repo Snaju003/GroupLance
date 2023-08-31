@@ -4,6 +4,7 @@ const CreateGroup = () => {
 
   return (
     <>
+      <h1 className='text-center my-4' style={{ color: '#ffff' }}>Create Group</h1>
       <div className="container mt-3" style={{ width: "800px", color: "white" }}>
         <form>
           <div className="mb-3">

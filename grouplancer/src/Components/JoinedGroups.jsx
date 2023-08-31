@@ -1,31 +1,31 @@
 import React from 'react'
-import LiveGroup from './LiveGroup';
+import JoinedGroup from './JoinedGroup';
 
-const LiveGroups = () => {
+const JoinedGroups = () => {
     const title = "hello";
     const description = "world";
     return (
         <>
-            <h1 className='text-center my-4' style={{ color: '#ffff' }}>Live Groups</h1>
+            <h1 className='text-center my-4' style={{ color: '#ffff' }}>Joined Groups</h1>
             <div className="container">
                 <div className="container row">
                     <div class="col-md-3 mb-3">
-                        <LiveGroup title={title} description={description} />
+                        <JoinedGroup title={title} description={description} />
                     </div>
                     <div class="col-md-3 mb-3">
-                        <LiveGroup title={title} description={description} />
+                        <JoinedGroup title={title} description={description} />
                     </div>
                     <div class="col-md-3 mb-3">
-                        <LiveGroup title={title} description={description} />
+                        <JoinedGroup title={title} description={description} />
                     </div>
                     <div class="col-md-3 mb-3">
-                        <LiveGroup title={title} description={description} />
+                        <JoinedGroup title={title} description={description} />
                     </div>
                     <div class="col-md-3 mb-3">
-                        <LiveGroup title={title} description={description} />
+                        <JoinedGroup title={title} description={description} />
                     </div>
                     <div class="col-md-3 mb-3">
-                        <LiveGroup title={title} description={description} />
+                        <JoinedGroup title={title} description={description} />
                     </div>
                 </div>
             </div>
@@ -33,4 +33,4 @@ const LiveGroups = () => {
     )
 }
 
-export default LiveGroups;
+export default JoinedGroups;
