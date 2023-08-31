@@ -26,6 +26,9 @@ const Navbar = () => {
                                     <li>
                                         <Link className="dropdown-item" to="/creategroup">Create Group</Link>
                                     </li>
+                                    <li>
+                                        <Link className="dropdown-item" to="/JoinedGroup">Joined Groups</Link>
+                                    </li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown mx-2">

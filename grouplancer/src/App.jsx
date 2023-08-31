@@ -7,6 +7,8 @@ import LiveGroups from './Components/LiveGroups';
 import Login from './Components/Login';
 import Navbar from './Components/Navbar';
 import Signup from './Components/Signup';
+import JoinedGroup from './Components/JoinedGroup';
+
 
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -23,6 +25,7 @@ function App() {
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/livegroups' element={<LiveGroups />} />
           <Route exact path='/creategroup' element={<CreateGroup />} />
+          <Route exact path='/JoinedGroup' element={<JoinedGroup />} />
         </Routes>
         <Footer />
       </Router>
