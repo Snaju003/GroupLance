@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="container my-3" style={{ width: "800px" }}>
+      <div className="container my-3" style={{ width: "800px", color: "white" }}>
         <form onSubmit={handlesubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
@@ -52,7 +52,7 @@ const Login = () => {
               onChange={onchange}
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-3" >
             <label htmlFor="password" className="form-label">
               Password
             </label>
