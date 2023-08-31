@@ -1,4 +1,5 @@
 import './App.css';
+import AboutUs from './Components/AboutUs';
 import CreateGroup from './Components/CreateGroup';
 import Footer from './Components/Footer';
 import Header from './Components/Header';
@@ -14,13 +15,15 @@ import Signup from './Components/Signup';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
+  const bgcolor = "#0f054c";
   return (
     <>
       <Router>
         <Header />
         <Navbar />
         <Routes>
-          <Route exact path='/' element={<Home />} />
+          <Route exact path='/' element={<Home bgcolor={bgcolor}/>} />
+          <Route exact path='/aboutus' element={<AboutUs bgcolor={bgcolor}/>} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/livegroups' element={<LiveGroups />} />
