@@ -9,9 +9,10 @@ const Header = (props) => {
             src="./grouplan.png"
             alt="Logo"
             height="50"
+            style={{width: "300px", height: "200px", justifyContent: "space-between", marginBottom: "-50px", marginTop: "-50px"}}
           />
-          <p style={{ fontSize: "40px", color: "white", textAlign: "center", verticalAlign: "middle", display: "table-cell", fontFamily: "engravers mt", padding: "10px" }}>GROUPLANCE</p>
-          <p style={{ color: "white" }}>hello</p>
+          {/* <p style={{ fontSize: "40px", color: "white", textAlign: "center", verticalAlign: "middle", display: "table-cell", fontFamily: "engravers mt", padding: "10px" }}>GROUPLANCE</p> */}
+          {/* <p style={{ color: "white", alignItems: "right" }}>hello</p> */}
         </div>
       </header>
     </>
