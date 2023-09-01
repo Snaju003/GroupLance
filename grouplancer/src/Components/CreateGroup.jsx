@@ -64,15 +64,15 @@ const CreateGroup = () => {
             <label htmlFor="text" className="form-label">
               Group Members
             </label>
-            <label for="customRange2" class="form-label">Example range</label>
-            <input type="text" class="form-range" max="5" value ="sliderValueSpan.textContent"></input>
-            <input type="range" class="form-range" min="0" max="5" id="customRange2"></input>
-            <p>Slider Value: <span id="sliderValue">0</span></p>
             <script>
               const slider = document.querySelector('#slider');
               const sliderValueSpan = document.querySelector('#sliderValue');              
               sliderValueSpan.textContent = slider.value;
             </script>
+            <label for="customRange2" class="form-label">Example range</label>
+            <input type="text" class="form-range" max="5" value = {sliderValueSpan}></input>
+            <input type="range" class="form-range" min="0" max="5" id="customRange2"></input>
+            <p>Slider Value: <span id="sliderValue">0</span></p>
           </div>
           <br />
           <div class="input-group mb-3">
