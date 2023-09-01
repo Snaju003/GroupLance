@@ -10,7 +10,7 @@ import Login from './Components/Login';
 import Navbar from './Components/Navbar';
 import Signup from './Components/Signup';
 import Jobs from './Components/Jobs';
-import Recruit from './Components/Recruit';
+import Recruits from './Components/Recruits';
 
 
 
@@ -32,7 +32,7 @@ function App() {
           <Route exact path='/creategroup' element={<CreateGroup />} />
           <Route exact path='/joinedgroups' element={<JoinedGroups />} />
           <Route exact path='/findjob' element={<Jobs />} />
-          <Route exact path='/recruit' element={<Recruit />} />
+          <Route exact path='/recruits' element={<Recruits />} />
         </Routes>
         <Footer />
       </Router>
