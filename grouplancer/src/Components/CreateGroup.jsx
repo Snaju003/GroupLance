@@ -64,9 +64,6 @@ const CreateGroup = () => {
             <label htmlFor="text" className="form-label">
               Group Members
             </label>
-            <label for="customRange2" class="form-label">Example range</label>
-            <input type="text" class="form-range" max="5"></input>
-            <label htmlFor="customRange2" className="form-label">Example range</label>
             <input type="range" className="form-range" min="1" max="4" id="customRange2" value={data} onChange={(e) => setData(e.target.value)} />
             <h1 style={{ color: "white" }}>{data}</h1>
             <p><span id="demo"></span></p>
