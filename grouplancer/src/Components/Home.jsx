@@ -7,6 +7,7 @@ const Home = (props) => {
   return (
     <div style={{ backgroundColor: bgcolor }}>
       <div id="frontimage">
+        <p style={{color: "white", width: "400px", marginLeft: "100px", paddingTop: "400px", textAlign: "justify"}}>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat autem accusamus doloribus beatae accusantium. Ea molestias doloremque aspernatur numquam explicabo ipsa excepturi accusantium. Sapiente fuga doloremque sit totam architecto incidunt!</p>
         <button type='submit' id='community'>Join the community</button>
       </div>
       <div id='cards'>
