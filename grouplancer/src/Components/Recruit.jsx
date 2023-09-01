@@ -4,7 +4,7 @@ const Recruit = () => {
     return (
         <>
             <p style={{ color: '#ffff' }}>
-                Hello here recruiting is on process....
+                
             </p>
         </>
     )
