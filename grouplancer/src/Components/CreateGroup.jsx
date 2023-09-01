@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const CreateGroup = () => {
-  const [data,setData] = useState(0);
+  const [data,setData] = useState(1);
 
   return (
     <>
