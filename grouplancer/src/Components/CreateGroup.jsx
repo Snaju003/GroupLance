@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 const CreateGroup = () => {
-
+  const [data,setData] = useState(0);
 
   return (
     <>
@@ -66,7 +66,8 @@ const CreateGroup = () => {
               Group Members
             </label>
             <label htmlFor="customRange2" className="form-label">Example range</label>
-            <input type="range" className="form-range" min="1" max="5" id="customRange2"></input>
+            <input type="range" className="form-range" min="1" max="4" id="customRange2" value={data} onChange={(e)=>setData(e.target.value)} />
+            <h1 style={{color: "white"}}>{data}</h1>
             <p><span id="demo"></span></p>
           </div>
           <br />
