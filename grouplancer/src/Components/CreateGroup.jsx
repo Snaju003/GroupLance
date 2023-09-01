@@ -1,7 +1,7 @@
 import React from "react";
 
 const CreateGroup = () => {
-
+  const {data,usedata}=usestate(0);
   return (
     <>
       <h1 className='text-center my-4' style={{ color: '#ffff' }}>Create Group</h1>
@@ -65,14 +65,9 @@ const CreateGroup = () => {
               Group Members
             </label>
             <label for="customRange2" class="form-label">Example range</label>
-            <input type="text" class="form-range" max="5" value = {document.querySelector("input[type='range']")}></input>
-            <input type="range" class="form-range" min="0" max="5" id="customRange2"></input>
-            <p>Slider Value: <span id="sliderValue">0</span></p>
-            <script>
-              const slider = document.querySelector('#slider');
-              const sliderValueSpan = document.querySelector('#sliderValue');              
-              sliderValueSpan.textContent = slider.value;
-            </script>
+            <input type="text" class="form-range" max="5"></input>
+            <input type="range" class="form-range" min="0" max="5" value = {data} onChange={(e)=>usedata(e.target.value)} id="customRange2"/>
+            <h2>{data}</h2>  
           </div>
           <br />
           <div class="input-group mb-3">
