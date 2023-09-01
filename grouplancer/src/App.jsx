@@ -15,6 +15,7 @@ import Recruit from './Components/Recruit';
 
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ChatBox from './Components/ChatBox/ChatBox';
 
 function App() {
   const bgcolor = "#0f054c";
