@@ -53,7 +53,6 @@ body {
   -webkit-user-select: none;
   touch-action: manipulation;
   /* will-change: transform,opacity; */
-  z-index: 0;
 }
 
 #community:hover {
