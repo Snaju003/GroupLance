@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Navbar = () => {
     return (
         <>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary mx-2" data-bs-theme="dark" style={{borderRadius: "20px"}}>
+            <nav className="navbar navbar-expand-lg bg-body-tertiary mx-2" data-bs-theme="dark" style={{ borderRadius: "20px" }}>
                 <div className="container-fluid">
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,10 +24,11 @@ const Navbar = () => {
                                         <Link className="dropdown-item" to="/livegroups">Live Groups</Link>
                                     </li>
                                     <li>
-                                        <Link className="dropdown-item" to="/creategroup">Create Group</Link>
-                                    </li>
-                                    <li>
                                         <Link className="dropdown-item" to="/joinedgroups">Joined Groups</Link>
+                                    </li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li>
+                                        <Link className="dropdown-item" to="/creategroup">Create Group</Link>
                                     </li>
                                 </ul>
                             </li>
@@ -36,8 +37,8 @@ const Navbar = () => {
                                     Catagories
                                 </Link>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/">Action</Link></li>
-                                    <li><Link className="dropdown-item" to="/">Another action</Link></li>
+                                    <li><Link className="dropdown-item" to="/findjob">Find a Job</Link></li>
+                                    <li><Link className="dropdown-item" to="/recruit">Recruit grouplancer</Link></li>
                                     <li><hr className="dropdown-divider" /></li>
                                     <li><Link className="dropdown-item" to="/">Something else here</Link></li>
                                 </ul>
