@@ -14,6 +14,7 @@ const Home = (props) => {
       <div id='cards'>
         <br></br>
         <About cardcolor={cardcolor} />
+        <br></br>
       </div>
     </div>
 
