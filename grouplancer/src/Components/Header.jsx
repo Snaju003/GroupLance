@@ -11,8 +11,9 @@ const Header = (props) => {
             height="50"
             style={{width: "300px", height: "200px", justifyContent: "space-between", marginBottom: "-50px", marginTop: "-50px"}}
           />
-          {/* <p style={{ fontSize: "40px", color: "white", textAlign: "center", verticalAlign: "middle", display: "table-cell", fontFamily: "engravers mt", padding: "10px" }}>GROUPLANCE</p> */}
-          {/* <p style={{ color: "white", textAlign: "right"}}>hello</p> */}
+          <button style={{marginLeft: "1100px", height: "50px", marginTop: "30px", borderRadius: "10px", maxWidth: "1000px", textAlign: "center", paddingLeft: "20px", paddingRight: "20px"}}>
+            Profile
+          </button>
         </div>
       </header>
     </>
