@@ -37,10 +37,10 @@ const Navbar = () => {
                                     Catagories
                                 </Link>
                                 <ul className="dropdown-menu">
-                                    <li><Link className="dropdown-item" to="/findjob">Find a Job</Link></li>
-                                    <li><Link className="dropdown-item" to="/recruit">Recruit grouplancer</Link></li>
-                                    <li><hr className="dropdown-divider" /></li>
-                                    <li><Link className="dropdown-item" to="/">Something else here</Link></li>
+                                    <li><Link className="dropdown-item" to="/findjob">Browse Domains</Link></li>
+                                    <li><Link className="dropdown-item" to="/recruit">Invite a Grouplancer</Link></li>
+                                    
+                                    
                                 </ul>
                             </li>
                             <li className="nav-item mx-2">
