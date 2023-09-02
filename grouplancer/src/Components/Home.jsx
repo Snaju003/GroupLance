@@ -16,7 +16,6 @@ const Home = (props) => {
             paddingTop: "120px",
             marginBottom: "-180px",
             fontWeight: "bold",
-            fontallign: "center",
           }}
         >
           Find and Connect with like-minded individuals and create or join groups effortlessly, online.
@@ -30,10 +29,13 @@ const Home = (props) => {
             textAlign: "justify",
           }}
         >
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat
-          autem accusamus doloribus beatae accusantium. Ea molestias doloremque
-          aspernatur numquam explicabo ipsa excepturi accusantium. Sapiente fuga
-          doloremque sit totam architecto incidunt!
+          <ul>
+            <li>Endless Group Possibilities, One Click Away</li>
+            <li>Free Sign-Up, No Hidden Costs</li>
+            <li>Pay For Premium Features </li>
+            <li>Secure, Global Community Connections</li>
+            <li>Chat And Connect With Others</li>
+          </ul>
         </p>
         <button type="submit" id="community">
           Join the community
