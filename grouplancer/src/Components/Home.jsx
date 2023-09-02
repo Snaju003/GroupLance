@@ -34,6 +34,7 @@ const Home = (props) => {
             <li>Free Sign-Up, No Hidden Costs</li>
             <li>Pay For Premium Features </li>
             <li>Secure, Global Community Connections</li>
+            <li>Chat And Connect With Others</li>
           </ul>
         </p>
         <button type="submit" id="community">
