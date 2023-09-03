@@ -17,6 +17,7 @@ import Signup from './Components/Signup';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChatBox from './Components/ChatBox/ChatBox';
 import Recruits from './Components/Recruits';
+import UserAccounts from './Components/UserAccounts';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -36,6 +37,7 @@ function App() {
           {/* <Route exact path='/findjob' element={<Jobs />} /> */}
           <Route exact path='/recruit' element={<Recruits />} />
           <Route exact path='/chatbox' element={<ChatBox />} />
+          <Route exact path='/userAccount' element={<UserAccounts />} />
         </Routes>
         <Footer />
       </Router>

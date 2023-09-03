@@ -24,7 +24,7 @@ const About = (props) => {
           </article>
         </section>
       </div>
-
+      <br/>
       <div className="container">
         <h1 id="heading">How to use Grouplancer?</h1>
         <section style={{display: "flex"}}>
