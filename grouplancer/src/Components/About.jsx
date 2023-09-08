@@ -6,7 +6,7 @@ const About = (props) => {
     <>
       <div className="container">
         <h1 id="heading">Why to use Grouplancer?</h1>
-        <section>
+        <section style={{display: "flex"}}>
           <article id="aboutcard" style={{ backgroundColor: cardcolor }}>
             <p>
             Find or create groups tailored to your interests, passions, and needs.
@@ -24,10 +24,10 @@ const About = (props) => {
           </article>
         </section>
       </div>
-
+      <br/>
       <div className="container">
         <h1 id="heading">How to use Grouplancer?</h1>
-        <section>
+        <section style={{display: "flex"}}>
           <article id="aboutcard" style={{ backgroundColor: cardcolor }}>
             <p>
             Sign up or log in, create a group with details and customization, and invite others to join your community.
