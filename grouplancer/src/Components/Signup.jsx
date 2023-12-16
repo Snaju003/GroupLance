@@ -1,19 +1,50 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+
+  const [credentials, setCredentials] = useState({ username: "", email: "", password: "", cpassword: "" });
+  let navigate = useNavigate();
+
+  const handlesubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:8080/api/auth/login", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username: credentials.username, email: credentials.email, password: credentials.password, cpassword: credentials.cpassword })
+      });
+      const json = await response.json();
+      console.log(json);
+      localStorage.setItem('token', json.authtoken);
+      navigate('/');
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+  
+  const onchange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value })
+  }
+
   return (
     <>
       <div className="container my-3" style={{ width: "800px", color: "white" }}>
-        <form>
+        <form onSubmit={handlesubmit}>
           <div className="mb-3">
-            <label htmlFor="exampleInputEmail1" className="form-label">
+            <label htmlFor="username" className="form-label">
               UserName
             </label>
             <input
               type="text"
               className="form-control"
-              id="exampleInputEmail1"
+              id="username"
               aria-describedby="emailHelp"
+              onChange={onchange}
               required
             />
             <hr />
@@ -25,6 +56,7 @@ const Signup = () => {
               className="form-control"
               id="email"
               aria-describedby="emailHelp"
+              onChange={onchange}
             />
           </div>
           <div className="mb-3">
@@ -35,6 +67,7 @@ const Signup = () => {
               type="password"
               className="form-control"
               id="password"
+              onChange={onchange}
               required
             />
           </div>
@@ -46,6 +79,7 @@ const Signup = () => {
               type="password"
               className="form-control"
               id="cpassword"
+              onChange={onchange}
               required
             />
           </div>
