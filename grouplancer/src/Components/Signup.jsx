@@ -35,10 +35,19 @@ const Signup = () => {
     }
 
     try {
-      // Add logic to handle signup
-      // ...
-
-      // For demonstration, let's assume the signup was successful
+      const response = await fetch("http://localhost:8080/api/auth/signup", {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: credentials.username,
+          email: credentials.email,
+          password: credentials.password,
+        }),
+      });
+      const json = await response.json();
+      localStorage.setItem("token", json.authtoken);
       navigate("/");
     } catch (error) {
       console.log(error);
