@@ -13,7 +13,7 @@ const Jobs = () => {
           Browse by Category
         </h1>
         <input type="search" className="category_search" placeholder="Search for a category" color="white" style={{ border: "none", width: "80%", height: "2.5rem", borderRadius: "4px" }} />
-        <button class="btn btn-outline-success" type="submit" color='white'>Search</button>
+        <button class="btn btn-outline-success" type="submit" color='white' style={{height:"2.7rem"}}>Search</button>
       </div>
       <div className="box" style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-evenly", marginLeft: "2rem", marginRight: "2rem", marginTop: "4rem", color: "white" }}>
         <div className="box1" style={{ color: "white", width: "30%", height: "6.5rem", display: "flex", flexDirection: "row" }}>
