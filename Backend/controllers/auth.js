@@ -9,7 +9,8 @@ const signup = async (req, res) => {
     try {
         const result = validationResult(req);//Checking if all inputs are valid or not
         if (result.isEmpty()) {
-            const user = await UserModel.findOne({ email: req.body.email });//Checking if a user with this email exists or not
+            const { name, email, password } = req.body;
+            const user = await UserModel.findOne({ email: email });//Checking if a user with this email exists or not
             if (user) {
                 return res.status(401).json({ error: 'The user with this email already exists..' });
             }
@@ -17,12 +18,11 @@ const signup = async (req, res) => {
 
                 //Securing password
                 const salt = await bcrypt.genSalt(10);
-                const securedPassword = await bcrypt.hash(req.body.password, salt);
-
+                const securedPassword = await bcrypt.hash(password, salt);
                 //Creating user if the user with this email id doesn't exists
                 const user = await UserModel.create({
-                    name: req.body.name,
-                    email: req.body.email,
+                    name: name,
+                    email: email,
                     password: securedPassword
                 });
 

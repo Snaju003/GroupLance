@@ -9,7 +9,7 @@ const groupRouter = require('./routes/group');
 
 const port = process.env.PORT;
 
-app.use(cors());
+app.use(cors({ origin: ['http://localhost:3000'] }));
 app.use(express.json());
 
 //Available Routes
@@ -18,7 +18,7 @@ connectdb();
 //     .catch((err) => console.log(err));
 
 app.use('/api/auth', authRouter);
-app.use('/api/group',groupRouter);
+app.use('/api/group', groupRouter);
 
 
 app.listen(port, () => {

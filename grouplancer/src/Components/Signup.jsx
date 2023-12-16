@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -8,17 +8,18 @@ const Signup = () => {
 
   const handlesubmit = async (e) => {
     e.preventDefault();
-
+    if (credentials.password !== credentials.cpassword) {
+      return;
+    }
     try {
-      const response = await fetch("http://localhost:8080/api/auth/login", {
+      const response = await fetch("http://localhost:8080/api/auth/signup", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username: credentials.username, email: credentials.email, password: credentials.password, cpassword: credentials.cpassword })
+        body: JSON.stringify({ name: credentials.username, email: credentials.email, password: credentials.password })
       });
       const json = await response.json();
-      console.log(json);
       localStorage.setItem('token', json.authtoken);
       navigate('/');
     }
@@ -26,7 +27,7 @@ const Signup = () => {
       console.log(error)
     }
   }
-  
+
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
@@ -45,6 +46,7 @@ const Signup = () => {
               id="username"
               aria-describedby="emailHelp"
               onChange={onchange}
+              name="username"
               required
             />
             <hr />
@@ -57,6 +59,7 @@ const Signup = () => {
               id="email"
               aria-describedby="emailHelp"
               onChange={onchange}
+              name="email"
             />
           </div>
           <div className="mb-3">
@@ -69,6 +72,7 @@ const Signup = () => {
               id="password"
               onChange={onchange}
               required
+              name="password"
             />
           </div>
           <div className="mb-3">
@@ -81,6 +85,7 @@ const Signup = () => {
               id="cpassword"
               onChange={onchange}
               required
+              name="cpassword"
             />
           </div>
           <button type="submit" className="btn btn-primary">
