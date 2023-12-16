@@ -2,40 +2,61 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    email: "",
+    password: "",
+    cpassword: "",
+  });
 
-  const [credentials, setCredentials] = useState({ username: "", email: "", password: "", cpassword: "" });
+  const [otpState, setOtpState] = useState({
+    sent: false,
+    otp: "",
+  });
+
+  const [buttonText, setButtonText] = useState("Send OTP");
+
   let navigate = useNavigate();
+
+  const handleOtpSubmit = async (e) => {
+    e.preventDefault();
+    // Add logic to send OTP and handle verification
+    // ...
+
+    // For demonstration, let's assume the OTP was successfully sent
+    setOtpState({ ...otpState, sent: true });
+    setButtonText("Verify OTP");
+  };
 
   const handlesubmit = async (e) => {
     e.preventDefault();
     if (credentials.password !== credentials.cpassword) {
       return;
     }
+
     try {
-      const response = await fetch("http://localhost:8080/api/auth/signup", {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name: credentials.username, email: credentials.email, password: credentials.password })
-      });
-      const json = await response.json();
-      localStorage.setItem('token', json.authtoken);
-      navigate('/');
+      // Add logic to handle signup
+      // ...
+
+      // For demonstration, let's assume the signup was successful
+      navigate("/");
+    } catch (error) {
+      console.log(error);
     }
-    catch (error) {
-      console.log(error)
-    }
-  }
+  };
 
   const onchange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value })
-  }
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
+  const onOtpChange = (e) => {
+    setOtpState({ ...otpState, otp: e.target.value });
+  };
 
   return (
     <>
       <div className="container my-3" style={{ width: "800px", color: "white" }}>
-        <form onSubmit={handlesubmit}>
+        <form onSubmit={otpState.sent ? handlesubmit : handleOtpSubmit}>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
               UserName
@@ -88,9 +109,33 @@ const Signup = () => {
               name="cpassword"
             />
           </div>
-          <button type="submit" className="btn btn-primary">
-            Sign in
-          </button>
+          {otpState.sent ? (
+            <div className="mb-3">
+              <label htmlFor="otp" className="form-label">
+                Verify OTP
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="otp"
+                onChange={onOtpChange}
+                required
+                name="otp"
+              />
+            </div>
+          ) : null}
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button type="submit" className="btn btn-primary">
+              {buttonText}
+            </button>
+          </div>
         </form>
       </div>
     </>
