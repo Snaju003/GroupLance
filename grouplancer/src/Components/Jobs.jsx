@@ -21,7 +21,7 @@ const Jobs = () => {
 
           <div className="box-container" style={{ display: "flex", flexDirection: "column", marginLeft: "1.5rem" }}>
             <h5 style={{ marginLeft: "1rem", display: "inline", marginLeft: "0px" }}> General</h5>
-            <a href="">Create a group for genera purpose...</a>
+            <a href="">Create a group for general purpose...</a>
           </div>
         </div>
         <div className="box2" style={{ color: "white", width: "30%", height: "6.5rem", display: "flex", flexDirection: "row", marginLeft: "1rem" }}>
