@@ -2,8 +2,10 @@ const connectdb = require('./database/db');
 const express = require("express");
 const cors = require('cors')
 const app = express();
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
+const authRouter = require('./routes/auth');
+const groupRouter = require('./routes/group');
+
 
 const port = process.env.PORT;
 
@@ -15,7 +17,8 @@ connectdb();
 //     .then((success) => { app.use('/api/auth', require('./routes/Auth')); app.use('/api/auth', require("./routes/Notes")) })
 //     .catch((err) => console.log(err));
 
-app.use('/api/auth', require('./routes/Auth'));
+app.use('/api/auth', authRouter);
+app.use('/api/group',groupRouter);
 
 
 app.listen(port, () => {
