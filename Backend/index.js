@@ -14,8 +14,6 @@ app.use(express.json());
 
 //Available Routes
 connectdb();
-//     .then((success) => { app.use('/api/auth', require('./routes/Auth')); app.use('/api/auth', require("./routes/Notes")) })
-//     .catch((err) => console.log(err));
 
 app.use('/api/auth', authRouter);
 app.use('/api/group', groupRouter);

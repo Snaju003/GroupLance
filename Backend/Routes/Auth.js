@@ -22,6 +22,6 @@ authRouter.post('/login', [//using validation through express-validator
 ], login)
 
 //ROUTE 3: Authenticate a User using: POST "/api/auth/getuser". Login required
-authRouter.post('/getuser', fetchUser,getUser);
+authRouter.get('/getuser/:id', fetchUser,getUser);
 
 module.exports = authRouter;
