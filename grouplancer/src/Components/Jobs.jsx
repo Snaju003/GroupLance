@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 const Jobs = () => {
     return (
         <>
@@ -11,6 +12,17 @@ const Jobs = () => {
     </form>
   </div>
 </nav>
+      <div style={{display:"flex", flex:"1", marginLeft:"20vh"}} >
+      <div><p style={{color:"white"}}>Freelancer Jobs
+        </p>
+        </div>
+        <h1 style={{color:"white"}}>
+          Browse by category
+        </h1>
+        <input type="search" className="category_search" placeholder="Search for a category" color="white" style={{border : "none"}}/>
+     
+      </div>
+        
         </>
     )
 }
