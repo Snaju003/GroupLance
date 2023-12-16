@@ -51,7 +51,7 @@ const createGroup = async (req, res) => {
             whoCanJoin: whoCanJoin,
             gMembers: groupMembers,
         };
-        const newGroup = GroupModel.create(data);
+        const newGroup = await GroupModel.create(data);
         if (newGroup) {
             return res.status(200).json({
                 success: true,
@@ -79,7 +79,7 @@ const inviteMember = async (req, res) => {
             });
         }
 
-        const existUser = UserModel.findOne({ email: userMail });
+        const existUser = await UserModel.findOne({ email: userMail });
         if (existUser) {
             return res.status(400).json({
                 success: false,
@@ -87,7 +87,7 @@ const inviteMember = async (req, res) => {
             });
         }
 
-        
+
 
     } catch (error) {
         res.status(500).json({
