@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 
-
 const CreateGroup = () => {
   const [data, setData] = useState(2);
-  
-  
- 
   return (
     <>
       <h1 className='text-center my-4' style={{ color: '#ffff' }}>Create Group</h1>
@@ -45,19 +41,15 @@ const CreateGroup = () => {
             />
           </div>
           <div className="input-group mb-3">
-           <label>
-            Select Domain
-         
-            <select  style={{ width:"779px", height:"40px", borderRadius:"7px"}} onChange={(e) => setData(e.target.value)}>
-              <option> </option>
-              <option >General</option>
-              <option >Web Developement</option>
-              <option >App Developement</option>
-              <option >CyberSecurity</option>
-              <option >IOT</option>
-            </select>
-            </label> 
-            
+            <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Select Domain</button>
+            <ul className="dropdown-menu">
+              <option className="dropdown-item" value="general">General</option>
+              <option className="dropdown-item" value="webdev">Web Developement</option>
+              <option className="dropdown-item" value="appdev">App Developement</option>
+              <option className="dropdown-item" value="cybersec">CyberSecurity</option>
+              <option className="dropdown-item" value="iot">IOT</option>
+            </ul>
+            <input type="text" className="form-control" aria-label="Text input with dropdown button" />
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">
@@ -72,28 +64,26 @@ const CreateGroup = () => {
             <label htmlFor="text" className="form-label">
               Group Members
             </label>
-            <input type="range" className="form-range" min="2" max="6" id="customRange2"value={data} onChange={(e) => setData(e.target.value)} />
+            <input type="range" className="form-range" min="2" max="6" id="customRange2" value={data} onChange={(e) => setData(e.target.value)} />
             <h1 style={{ color: "white" }}>{data}</h1>
             <p><span id="demo"></span></p>
           </div>
           <br />
           <div className="input-group mb-3">
-          <label> Group Type
-           <select  style={{ width:"779px", height:"40px", borderRadius:"7px"}}  onChange={(e) => setData(e.target.value)}>
-              <option> </option>
-              <option >Public</option>
-              <option >Private</option>
-            </select>
-            </label> 
+            <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Group Type</button>
+            <ul className="dropdown-menu">
+              <option className="dropdown-item" value="public">Public</option>
+              <option className="dropdown-item" value="private">Private</option>
+            </ul>
+            <input type="text" className="form-control" aria-label="Text input with dropdown button" />
           </div>
           <div className="input-group mb-3">
-          <label> Who can join
-           <select style={{ width:"779px", height:"40px", borderRadius:"7px"}} onChange={(e) => setData(e.target.value)}>
-              <option> </option>
-              <option>Anyone can join</option>
-              <option>Join with invite</option>
-            </select>
-            </label> 
+            <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Who can join</button>
+            <ul className="dropdown-menu">
+              <option className="dropdown-item" value="all">Anyone can join</option>
+              <option className="dropdown-item" value="invited">Join with invite</option>
+            </ul>
+            <input type="text" className="form-control" aria-label="Text input with dropdown button" />
           </div>
           <button type="submit" className="btn btn-primary">
             Create Group
