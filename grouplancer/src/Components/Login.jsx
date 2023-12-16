@@ -19,15 +19,14 @@ const Login = () => {
       body: JSON.stringify({ email: credentials.email, password: credentials.password }), // body data type must match "Content-Type" header
     });
     const json = await response.json();
-    console.log(json);
 
-    if (json.authtoken) {
-      localStorage.setItem('token', json.authtoken);
-      navigate('/');
-    }
-    else {
-      // alert("Invalid Credentials!!");
-    }
+    // if (json.authtoken) {
+    localStorage.setItem('token', json.authtoken);
+    navigate('/');
+    // }
+    // else {
+    // alert("Invalid Credentials!!");
+    // }
   }
 
   //On change function
@@ -50,6 +49,7 @@ const Login = () => {
               aria-describedby="emailHelp"
               required
               onChange={onchange}
+              name="email"
             />
           </div>
           <div className="mb-3" >
@@ -62,6 +62,7 @@ const Login = () => {
               id="password"
               required
               onChange={onchange}
+              name="password"
             />
           </div>
           <button type="submit" className="btn btn-primary">
