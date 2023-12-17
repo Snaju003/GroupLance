@@ -209,15 +209,7 @@ const CreateGroup = () => {
           </div>
         </form>
       </div>
-      {/* <script>
-        const slider = document.getElementById("customRange2");
-        const output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-
-        slider.oninput = function () {
-          output.innerHTML = this.value
-      }
-      </script> */}
+      
     </>
   );
 };
