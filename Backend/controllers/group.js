@@ -23,6 +23,13 @@ const createGroup = async (req, res) => {
             });
 
         }
+        const existingLeader = await GroupModel.findOne({ leader: leader });
+        if (existingLeader) {
+            return res.status(400).json({
+                success: false,
+                message: `Couldn't create another group`
+            });
+        }
         if (groupMembers < 2 || groupMembers > 4) {
             return res.status(400).json({
                 success: false,
@@ -50,8 +57,10 @@ const createGroup = async (req, res) => {
             gType: groupType,
             whoCanJoin: whoCanJoin,
             gMembers: groupMembers,
+            members: [leader],
         };
         const newGroup = await GroupModel.create(data);
+        await UserModel.findByIdAndUpdate(leader, { "$push": { groups: newGroup._id } });
         if (newGroup) {
             return res.status(200).json({
                 success: true,
@@ -100,4 +109,4 @@ const editGroupInfo = async (req, res) => {
 }
 
 
-module.exports = { createGroup };
+module.exports = { createGroup, inviteMember, editGroupInfo };
