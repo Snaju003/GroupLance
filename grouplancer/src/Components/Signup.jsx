@@ -16,15 +16,16 @@ const Signup = () => {
 
   const [buttonText, setButtonText] = useState("Send OTP");
 
-  const [showModal, setShowModal] = useState(false);
-
   let navigate = useNavigate();
 
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
+    // Add logic to send OTP and handle verification
+    // ...
+
+    // For demonstration, let's assume the OTP was successfully sent
     setOtpState({ ...otpState, sent: true });
     setButtonText("Verify OTP");
-    setShowModal(true);
   };
 
   const handlesubmit = async (e) => {
@@ -35,7 +36,7 @@ const Signup = () => {
 
     try {
       const response = await fetch("http://localhost:8080/api/auth/signup", {
-        method: "POST",// *GET, POST, PUT, DELETE, etc.
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
         headers: {
           "Content-Type": "application/json",
         },
@@ -61,16 +62,9 @@ const Signup = () => {
     setOtpState({ ...otpState, otp: e.target.value });
   };
 
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
   return (
     <>
-      <div
-        className="container my-3"
-        style={{ width: "800px", color: "white" }}
-      >
+      <div className="container my-3" style={{ width: "800px", color: "white" }}>
         <form onSubmit={otpState.sent ? handlesubmit : handleOtpSubmit}>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
@@ -124,8 +118,7 @@ const Signup = () => {
               name="cpassword"
             />
           </div>
-
-          {/* {otpState.sent ? (
+          {otpState.sent ? (
             <div className="mb-3">
               <label htmlFor="otp" className="form-label">
                 Verify OTP
@@ -139,7 +132,7 @@ const Signup = () => {
                 name="otp"
               />
             </div>
-          ) : null} */}
+          ) : null}
 
           <div
             style={{
@@ -153,68 +146,6 @@ const Signup = () => {
             </button>
           </div>
         </form>
-
-        
-         {showModal && (
-          <div className="modal" style={{ display: "block" ,padding:500}}>
-            <div className="modal-content" style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: "70%", padding: "20px" }}>
-              <span onClick={closeModal} style={{ cursor: "pointer", float: "right" }}>
-                &times;
-              </span>
-              <h2 style={{ color:"black"}}>Enter OTP</h2>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <input
-                  style={{margin:10}}
-                  type="text"
-                  className="form-control"
-                  id="otpBox1"
-                  placeholder=""
-                  maxLength="1"
-                  onChange={onOtpChange}
-                  required
-                  name="otp"
-
-                />
-                <input
-                 style={{margin:10}}
-                  type="text"
-                  className="form-control"
-                  id="otpBox2"
-                  placeholder=""
-                  maxLength="1"
-                  onChange={onOtpChange}
-                  required
-                  name="otp"
-                />
-                <input
-                 style={{margin:10}}
-                  type="text"
-                  className="form-control"
-                  id="otpBox3"
-                  placeholder=""
-                  maxLength="1"
-                  onChange={onOtpChange}
-                  required
-                  name="otp"
-                />
-                <input
-                 style={{margin:10}}
-                  type="text"
-                  className="form-control"
-                  id="otpBox4"
-                  placeholder=""
-                  maxLength="1"
-                  onChange={onOtpChange}
-                  required
-                  name="otp"
-                />
-              </div>
-              <button className="btn btn-primary mt-3" onClick={closeModal}>
-                Verify OTP
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </>
   );
