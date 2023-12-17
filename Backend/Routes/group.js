@@ -7,5 +7,6 @@ const groupRouter= express.Router();
 
 groupRouter.post('/create-group',fetchUser,createGroup);
 
+// groupRouter
 
 module.exports=groupRouter;
