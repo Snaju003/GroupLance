@@ -4,18 +4,19 @@ const groupDesign = {
     backgroundColor: "lightgray", marginLeft: "20px", padding: "15px", borderRadius: "15px"
 }
 
-const UserAccounts = ({ userId }) => {
+const UserAccounts = ({ userId, authToken }) => {
 
     const [userData, setUserData] = useState({ name: "", email: "" });
 
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const response = await fetch(`http://localhost:8080/api/auth/getuser/${userId}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
+                const response = await fetch(`http://localhost:8080/api/auth/getuser/${userId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
                 const data = await response.json();
                 setUserData(data);
             } catch (error) {
@@ -24,7 +25,7 @@ const UserAccounts = ({ userId }) => {
         };
 
         fetchUserData();
-    }, [userId]);
+    }, [userId,authToken]);
 
     return (
         <>
