@@ -22,3 +22,8 @@ Pass data from body
   "whoCanJoin": ""(who can join),
   "groupMembers": 2(group member number)
 }
+
+# Send OTP
+
+URL: localhost:8080/api/auth/verify-otp (POST Request)
+Pass 'activationToken' that will be get from signup and 'activationCode' that will be get in mail in body
