@@ -26,15 +26,14 @@ const signup = async (req, res) => {
                     password: securedPassword
                 });
 
-                console.log(user);
-
                 const data = {
                     user: {
                         id: user.id
                     }
                 }
                 const authToken = jwt.sign(data, JWT_SECRET);
-                return res.status(201).json({ authToken });
+                const getUser = await UserModel.findById(user.id).select('-password');
+                return res.status(201).json({ success: true, message: 'Sign Up success', getUser, authToken });
                 // return res.status(201).json({ msg: "Success" });
             }
         }
@@ -73,7 +72,8 @@ const login = async (req, res) => {
                     }
                 }
                 const authToken = jwt.sign(data, JWT_SECRET);
-                return res.status(201).json({ authToken });
+                const getUser = await UserModel.findById(user.id).select('-password');
+                return res.status(201).json({ success: true, message: 'Login successful', getUser, authToken });
             }
         }
 

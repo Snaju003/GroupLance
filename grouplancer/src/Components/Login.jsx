@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useUser } from "../context/UserContext";
 
 
 const Login = () => {
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const { login } = useUser();
   let navigate = useNavigate();
 
   //On submit of form
   const handlesubmit = async (e) => {
     e.preventDefault();
+    setCredentials({ email: '', password: '' });
     //API call 
     const response = await fetch("http://localhost:8080/api/auth/login", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -19,9 +22,9 @@ const Login = () => {
       body: JSON.stringify({ email: credentials.email, password: credentials.password }), // body data type must match "Content-Type" header
     });
     const json = await response.json();
-
+    login(json.getUser);
     // if (json.authtoken) {
-    localStorage.setItem('token', json.authtoken);
+    localStorage.setItem('auth-token', json.authToken);
     navigate('/');
     // }
     // else {
