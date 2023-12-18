@@ -124,7 +124,7 @@ const Signup = () => {
               name="cpassword"
             />
           </div>
-          {otpState.sent ? (
+          {/* {otpState.sent ? (
             <div className="mb-3">
               <label htmlFor="otp" className="form-label">
                 Verify OTP
@@ -138,7 +138,7 @@ const Signup = () => {
                 name="otp"
               />
             </div>
-          ) : null}
+          ) : null} */}
 
           <div
             style={{
@@ -153,27 +153,28 @@ const Signup = () => {
           </div>
         </form>
         {showModal && (
-          <div className="modal" style={{ display: "block",padding:500,position:"fixed" }}>
+          <div className="modal" style={{ display: "block",padding:500}}>
             <div
               className="modal-content"
               style={{
                 top: "50%",
                 left: "50%",
                 transform: "translate(-50%, -50%)",
-                width: "70%",
+                width: "20%",
                 padding: "20px",
+                position:"fixed",
               }}
             >
               <span
                 onClick={closeModal}
-                style={{ cursor: "pointer", float: "right" }}
+                style={{ cursor: "pointer", float: "right",color: "black" }}
               >
                 &times;
               </span>
               <h2 style={{ color: "black" }}>Enter OTP</h2>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <input
-                style={{margin:10}}
+                style={{margin:7}}
                   type="text"
                   className="form-control"
                   id="otpBox1"
@@ -184,7 +185,7 @@ const Signup = () => {
                   name="otp"
                 />
                 <input
-                style={{margin:10}}
+                style={{margin:7}}
                   type="text"
                   className="form-control"
                   id="otpBox2"
@@ -195,7 +196,7 @@ const Signup = () => {
                   name="otp"
                 />
                 <input
-                style={{margin:10}}
+                style={{margin:7}}
                   type="text"
                   className="form-control"
                   id="otpBox3"
@@ -206,7 +207,7 @@ const Signup = () => {
                   name="otp"
                 />
                 <input
-                style={{margin:10}}
+                style={{margin:7}}
                   type="text"
                   className="form-control"
                   id="otpBox4"
