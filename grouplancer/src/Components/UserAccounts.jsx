@@ -1,31 +1,38 @@
 import React, { useState, useEffect } from "react";
+import { useUser } from "../context/UserContext";
 
 const groupDesign = {
     backgroundColor: "lightgray", marginLeft: "20px", padding: "15px", borderRadius: "15px"
 }
 
-const UserAccounts = ({ userId, authToken }) => {
+const UserAccounts = () => {
 
     const [userData, setUserData] = useState({ name: "", email: "" });
 
+    const { currentUser } = useUser();
+    const userId = currentUser._id;
+
     useEffect(() => {
+        const authToken = localStorage.getItem('auth-token');
         const fetchUserData = async () => {
             try {
                 const response = await fetch(`http://localhost:8080/api/auth/getuser/${userId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
+                        'auth-token': authToken,
                     },
                 })
                 const data = await response.json();
-                setUserData(data);
+                console.log(data.user);
+                setUserData(data.user);
             } catch (error) {
                 console.error(error);
             }
         };
 
         fetchUserData();
-    }, [userId,authToken]);
+    }, [userId]);
 
     return (
         <>

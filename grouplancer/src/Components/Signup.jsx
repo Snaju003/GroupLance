@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -16,27 +17,20 @@ const Signup = () => {
 
   const [buttonText, setButtonText] = useState("Send OTP");
 
+  const [showModal, setShowModal] = useState(false);
+  const { login } = useUser();
   let navigate = useNavigate();
 
-  const handleOtpSubmit = async (e) => {
-    e.preventDefault();
-    // Add logic to send OTP and handle verification
-    // ...
-
-    // For demonstration, let's assume the OTP was successfully sent
-    setOtpState({ ...otpState, sent: true });
-    setButtonText("Verify OTP");
-  };
-
-  const handlesubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (credentials.password !== credentials.cpassword) {
+      window.alert("Enter correct password")
       return;
     }
 
     try {
       const response = await fetch("http://localhost:8080/api/auth/signup", {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
@@ -47,11 +41,15 @@ const Signup = () => {
         }),
       });
       const json = await response.json();
-      localStorage.setItem("token", json.authtoken);
+      login(json.getUser);
+      localStorage.setItem("auth-token", json.authToken);
       navigate("/");
     } catch (error) {
       console.log(error);
     }
+    setOtpState({ ...otpState, sent: true });
+    setButtonText("Verify OTP");
+    setShowModal(true);
   };
 
   const onchange = (e) => {
@@ -62,10 +60,17 @@ const Signup = () => {
     setOtpState({ ...otpState, otp: e.target.value });
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
-      <div className="container my-3" style={{ width: "800px", color: "white" }}>
-        <form onSubmit={otpState.sent ? handlesubmit : handleOtpSubmit}>
+      <div
+        className="container my-3"
+        style={{ width: "800px", color: "white" }}
+      >
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
               UserName
@@ -90,6 +95,7 @@ const Signup = () => {
               aria-describedby="emailHelp"
               onChange={onchange}
               name="email"
+              required
             />
           </div>
           <div className="mb-3">
@@ -118,7 +124,7 @@ const Signup = () => {
               name="cpassword"
             />
           </div>
-          {otpState.sent ? (
+          {/* {otpState.sent ? (
             <div className="mb-3">
               <label htmlFor="otp" className="form-label">
                 Verify OTP
@@ -132,7 +138,7 @@ const Signup = () => {
                 name="otp"
               />
             </div>
-          ) : null}
+          ) : null} */}
 
           <div
             style={{
@@ -146,6 +152,78 @@ const Signup = () => {
             </button>
           </div>
         </form>
+        {showModal && (
+          <div className="modal" style={{ display: "block", padding: 500 }}>
+            <div
+              className="modal-content"
+              style={{
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: "20%",
+                padding: "20px",
+                position: "fixed",
+              }}
+            >
+              <span
+                onClick={closeModal}
+                style={{ cursor: "pointer", float: "right", color: "black" }}
+              >
+                &times;
+              </span>
+              <h2 style={{ color: "black" }}>Enter OTP</h2>
+              <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <input
+                  style={{ margin: 7 }}
+                  type="text"
+                  className="form-control"
+                  id="otpBox1"
+                  placeholder=""
+                  maxLength="1"
+                  onChange={onOtpChange}
+                  required
+                  name="otp"
+                />
+                <input
+                  style={{ margin: 7 }}
+                  type="text"
+                  className="form-control"
+                  id="otpBox2"
+                  placeholder=""
+                  maxLength="1"
+                  onChange={onOtpChange}
+                  required
+                  name="otp"
+                />
+                <input
+                  style={{ margin: 7 }}
+                  type="text"
+                  className="form-control"
+                  id="otpBox3"
+                  placeholder=""
+                  maxLength="1"
+                  onChange={onOtpChange}
+                  required
+                  name="otp"
+                />
+                <input
+                  style={{ margin: 7 }}
+                  type="text"
+                  className="form-control"
+                  id="otpBox4"
+                  placeholder=""
+                  maxLength="1"
+                  onChange={onOtpChange}
+                  required
+                  name="otp"
+                />
+              </div>
+              <button className="btn btn-primary mt-3" onClick={closeModal}>
+                Verify OTP
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

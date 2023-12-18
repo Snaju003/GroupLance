@@ -112,19 +112,20 @@ section {
 }
 
 #aboutcard {
-  box-shadow: 0 4px 8px 0 black;
+  /* box-shadow: 0 4px 8px 0 black; */
   transition: 0.5s;
   margin-left: 2rem;
   margin-right: 1rem;
   border-radius: 10px;
   text-align: justify;
   padding: 15px;
-  width: fit-content;
+  width: 33.3%;
   cursor: pointer;
 }
 
 #aboutcard:hover {
-  box-shadow: 10px 16px 25px 0 black;
+  box-shadow: 10px 10px 10px rgba(255,255,255,0.6);
+  padding: 1.5rem 1.5rem 1.5rem 1.5rem;
   background-color: rgb(235, 234, 234);
 }
 
