@@ -19,20 +19,14 @@ const Signup = () => {
   const [showModal, setShowModal] = useState(false);
 
   let navigate = useNavigate();
-
-  const handleOtpSubmit = async (e) => {
-    e.preventDefault();
-    setOtpState({ ...otpState, sent: true });
-    setButtonText("Verify OTP");
-    setShowModal(true);
-  };
-
-  const handlesubmit = async (e) => {
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (credentials.password !== credentials.cpassword) {
+      window.alert("Enter correct password")
       return;
     }
-
+    
     try {
       const response = await fetch("http://localhost:8080/api/auth/signup", {
         method: "POST",
@@ -51,8 +45,11 @@ const Signup = () => {
     } catch (error) {
       console.log(error);
     }
+    setOtpState({ ...otpState, sent: true });
+    setButtonText("Verify OTP");
+    setShowModal(true);
   };
-
+  
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -71,7 +68,7 @@ const Signup = () => {
         className="container my-3"
         style={{ width: "800px", color: "white" }}
       >
-        <form onSubmit={otpState.sent ? handlesubmit : handleOtpSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">
               UserName
@@ -96,6 +93,7 @@ const Signup = () => {
               aria-describedby="emailHelp"
               onChange={onchange}
               name="email"
+              required
             />
           </div>
           <div className="mb-3">
