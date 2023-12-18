@@ -121,6 +121,9 @@ section {
   padding: 15px;
   width: 33.3%;
   cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-style: italic;
+  font-size: 1.25rem;
 }
 
 #aboutcard:hover {
