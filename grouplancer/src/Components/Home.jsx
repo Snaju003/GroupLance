@@ -1,9 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import About from "./About";
+import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
+
+const HandleSubmit = () => {
+  const {currentUser} = useUser
+  let navigate = useNavigate();
+  useEffect(() => {
+    if(!currentUser)
+    {
+      navigate("/signup")
+    }
+    else
+    {
+      navigate("/livegroups")
+    }
+  },[currentUser])
+}
 
 const Home = (props) => {
   const { bgcolor } = props;
   const cardcolor = "#dfdffb";
+
   return (
     <div style={{ backgroundColor: bgcolor }}>
       <div id="frontimage">
@@ -37,7 +55,7 @@ const Home = (props) => {
             <li>Chat And Connect With Others</li>
           </ul>
         </p>
-        <button type="submit" id="community">
+        <button type="submit" id="community" onChange={HandleSubmit}>
           Join the community
         </button>
       </div>
