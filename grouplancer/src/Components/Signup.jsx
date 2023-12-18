@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -17,16 +18,16 @@ const Signup = () => {
   const [buttonText, setButtonText] = useState("Send OTP");
 
   const [showModal, setShowModal] = useState(false);
-
+  const { login } = useUser();
   let navigate = useNavigate();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (credentials.password !== credentials.cpassword) {
       window.alert("Enter correct password")
       return;
     }
-    
+
     try {
       const response = await fetch("http://localhost:8080/api/auth/signup", {
         method: "POST",
@@ -40,7 +41,8 @@ const Signup = () => {
         }),
       });
       const json = await response.json();
-      localStorage.setItem("token", json.authtoken);
+      login(json.getUser);
+      localStorage.setItem("auth-token", json.authToken);
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -49,7 +51,7 @@ const Signup = () => {
     setButtonText("Verify OTP");
     setShowModal(true);
   };
-  
+
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -151,7 +153,7 @@ const Signup = () => {
           </div>
         </form>
         {showModal && (
-          <div className="modal" style={{ display: "block",padding:500}}>
+          <div className="modal" style={{ display: "block", padding: 500 }}>
             <div
               className="modal-content"
               style={{
@@ -160,19 +162,19 @@ const Signup = () => {
                 transform: "translate(-50%, -50%)",
                 width: "20%",
                 padding: "20px",
-                position:"fixed",
+                position: "fixed",
               }}
             >
               <span
                 onClick={closeModal}
-                style={{ cursor: "pointer", float: "right",color: "black" }}
+                style={{ cursor: "pointer", float: "right", color: "black" }}
               >
                 &times;
               </span>
               <h2 style={{ color: "black" }}>Enter OTP</h2>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <input
-                style={{margin:7}}
+                  style={{ margin: 7 }}
                   type="text"
                   className="form-control"
                   id="otpBox1"
@@ -183,7 +185,7 @@ const Signup = () => {
                   name="otp"
                 />
                 <input
-                style={{margin:7}}
+                  style={{ margin: 7 }}
                   type="text"
                   className="form-control"
                   id="otpBox2"
@@ -194,7 +196,7 @@ const Signup = () => {
                   name="otp"
                 />
                 <input
-                style={{margin:7}}
+                  style={{ margin: 7 }}
                   type="text"
                   className="form-control"
                   id="otpBox3"
@@ -205,7 +207,7 @@ const Signup = () => {
                   name="otp"
                 />
                 <input
-                style={{margin:7}}
+                  style={{ margin: 7 }}
                   type="text"
                   className="form-control"
                   id="otpBox4"
