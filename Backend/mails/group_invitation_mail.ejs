@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation to Join <%= group.name %> on Grouplancer</title>
+</head>
+
+<body style="font-family: Arial, sans-serif;">
+
+    <p>Hello <%= user.invitedName %>,</p>
+
+    <p>You have been invited to join the group "<%= group.name %>" on Grouplancer!</p>
+
+    <p><%= user.hostName %> has invited you to be a part of this group where you can collaborate, share information, and
+        connect with other members. Here are the details:</p>
+
+    <ul>
+        <li><strong>Group Name:</strong> <%= group.name %></li>
+        <li><strong>Inviter's Name:</strong> <%= user.hostName %></li>
+        <li><strong>Group Description:</strong> <%= group.desc %></li>
+    </ul>
+
+    <p>To accept the invitation and join the group, click on the following link:</p>
+
+    <p><a href="<%= invitationLink %>">Accept Invitation</a></p>
+
+    <p>If you have any questions or need further assistance, feel free to contact us at <a href="mailto:grouplancerz@gmail.como"></a>.</p>
+
+    <p>Best regards,<br>
+        The Grouplancer Team</p>
+
+</body>
+
+</html>

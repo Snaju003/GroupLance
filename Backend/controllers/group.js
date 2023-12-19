@@ -1,5 +1,8 @@
 const GroupModel = require("../models/Group");
 const UserModel = require("../models/User");
+const ejs = require('ejs');
+const path = require('path');
+const sendMail = require("../utils/sendmail");
 
 
 const createGroup = async (req, res) => {
@@ -11,12 +14,13 @@ const createGroup = async (req, res) => {
             projName,
             goal,
             domains,
-            groupType,
-            whoCanJoin,
+            publicGroup,
+            anyoneCanJoin,
             groupMembers,
+            totalMemmber,
         } = req.body;
 
-        if (!leader || !gName || !projName || !goal || !groupType || !whoCanJoin) {
+        if (!leader || !gName || !projName || !goal || !groupMembers) {
             return res.status(400).json({
                 success: false,
                 message: 'Please enter required fields'
@@ -45,7 +49,7 @@ const createGroup = async (req, res) => {
                 message: 'Another group exists with same name'
             });
         }
-
+        const members = [leader, ...groupMembers];
         // Create new group
         const data = {
             leader: leader,
@@ -54,13 +58,15 @@ const createGroup = async (req, res) => {
             gDesc: gDesc,
             domains: domains,
             goal: goal,
-            gType: groupType,
-            whoCanJoin: whoCanJoin,
-            gMembers: groupMembers,
-            members: [leader],
+            publicGroup: publicGroup,
+            anyoneCanJoin: anyoneCanJoin,
+            gMemberNumber: totalMemmber,
+            members: members,
         };
         const newGroup = await GroupModel.create(data);
-        await UserModel.findByIdAndUpdate(leader, { "$push": { groups: newGroup._id } });
+        for (let i = 0; i < members.length; i++) {
+            await UserModel.findByIdAndUpdate(members[i], { "$push": { groups: newGroup._id } });
+        }
         if (newGroup) {
             return res.status(200).json({
                 success: true,
@@ -79,26 +85,167 @@ const createGroup = async (req, res) => {
 const inviteMember = async (req, res) => {
     try {
 
-        const { userMail } = req.body;
-
-        if (userMail == '') {
+        const { invitedUserMail, invitationLink, group, inviterName } = req.body;
+        if (invitedUserMail == '' || invitationLink == '' || group == null || inviterName == '') {
             return res.status(400).json({
                 success: false,
-                message: 'Please provide a valid userId',
+                message: 'Please provide required fields',
             });
         }
-
-        const existUser = await UserModel.findOne({ email: userMail });
-        if (existUser) {
+        const existUser = await UserModel.findOne({ email: invitedUserMail });
+        if (!existUser) {
             return res.status(400).json({
                 success: false,
                 message: 'No User found with this email Id'
             });
         }
-
+        const existGroup = await GroupModel.findById(group.id);
+        if (!existGroup) {
+            return res.status(400).json({
+                success: false,
+                message: 'No group exists with this Id'
+            });
+        }
+        let isMemberExistsInGroup = false;
+        for (let i = 0; i < existGroup.members.length; i++) {
+            if (existGroup.members[i].toString() === existUser.id) {
+                isMemberExistsInGroup = true;
+            }
+        }
+        if (isMemberExistsInGroup) {
+            return res.status(400).json({
+                success: false,
+                message: 'User already in group'
+            });
+        }
+        const data = {
+            user: {
+                hostName: inviterName,
+                invitedName: existUser.name,
+            },
+            invitationLink,
+            group
+        };
+        try {
+            await sendMail({
+                email: invitedUserMail,
+                subject: 'Group Invitation Mail',
+                template: 'group_invitation_mail.ejs',
+                data
+            });
+            return res.status(200).json({
+                success: true,
+                message: `Activation mail sent to ${invitedUserMail}`,
+            });
+        } catch (error) {
+            return res.status(400).json({
+                success: false,
+                message: 'Failed to send message',
+                error
+            });
+        }
     } catch (error) {
         res.status(500).json({
             successs: false,
+            message: 'Internal server error'
+        });
+    }
+}
+
+const joinGroup = async (req, res) => {
+    try {
+        const { userId, groupId } = req.body;
+        if (userId == '' || groupId == '') {
+            return res.status(400).json({
+                success: false,
+                message: 'Please provide required fields'
+            });
+        }
+        const existGroup = await GroupModel.findById(groupId);
+        if (!existGroup) {
+            return res.status(400).json({
+                success: false,
+                message: 'No such group exists'
+            });
+        }
+        const existUser = await UserModel.findById(userId);
+        if (!existUser) {
+            return res.status(400).json({
+                success: false,
+                message: `User doesn't exists`
+            });
+        }
+        let isMemberExistsInGroup = false;
+        for (let i = 0; i < existGroup.members.length; i++) {
+            if (existGroup.members[i].toString() === existUser.id) {
+                isMemberExistsInGroup = true;
+            }
+        }
+        if (isMemberExistsInGroup) {
+            return res.status(400).json({
+                success: false,
+                message: 'User already in group'
+            });
+        }
+        await UserModel.findByIdAndUpdate(userId, { $push: { groups: groupId } });
+        await GroupModel.findByIdAndUpdate(groupId, { $inc: { gMemberNumber: 1 }, $push: { members: userId } });
+        return res.status(200).json({
+            success: true,
+            message: 'User added to the group successfully'
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+}
+
+const removeMember = async (req, res) => {
+    try {
+        const { userId, groupId } = req.body;
+        if (userId == '' || groupId == '') {
+            return res.status(400).json({
+                success: false,
+                message: 'Please provide required fields'
+            });
+        }
+        const existGroup = await GroupModel.findById(groupId);
+        if (!existGroup) {
+            return res.status(400).json({
+                success: false,
+                message: 'No such group exists'
+            });
+        }
+        const existUser = await UserModel.findById(userId);
+        if (!existUser) {
+            return res.status(400).json({
+                success: false,
+                message: `User doesn't exists`
+            });
+        }
+        let isMemberExistsInGroup = false;
+        for (let i = 0; i < existGroup.members.length; i++) {
+            if (existGroup.members[i].toString() === existUser.id) {
+                isMemberExistsInGroup = true;
+            }
+        }
+        if (!isMemberExistsInGroup) {
+            return res.status(400).json({
+                success: false,
+                message: `User isn't in the group`
+            });
+        }
+        await UserModel.findByIdAndUpdate(userId, { $pull: { groups: groupId } });
+        await GroupModel.findByIdAndUpdate(groupId, { $inc: { gMemberNumber: -1 }, $pull: { members: userId } });
+        return res.status(200).json({
+            success: true,
+            message: 'User removed from the group successfully'
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
             message: 'Internal server error'
         });
     }
@@ -109,4 +256,4 @@ const editGroupInfo = async (req, res) => {
 }
 
 
-module.exports = { createGroup, inviteMember, editGroupInfo };
+module.exports = { createGroup, inviteMember, editGroupInfo, joinGroup, removeMember };

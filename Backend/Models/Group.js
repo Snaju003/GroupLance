@@ -26,16 +26,16 @@ const GroupSchema = new Schema({
     domains: [{
         type: String,
     }],
-    gMembers: {
+    gMemberNumber: {
         type: Number,
         required: true,
     },
-    gType: {
-        type: String,
+    publicGroup: {
+        type: Boolean,
         required: true,
     },
-    whoCanJoin: {
-        type: String,
+    anyoneCanJoin: {
+        type: Boolean,
         required: true,
     },
     members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
