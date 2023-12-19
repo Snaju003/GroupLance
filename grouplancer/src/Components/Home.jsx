@@ -1,26 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import About from "./About";
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
-const HandleSubmit = () => {
-  const {currentUser} = useUser
-  let navigate = useNavigate();
-  useEffect(() => {
-    if(!currentUser)
-    {
-      navigate("/signup")
-    }
-    else
-    {
-      navigate("/livegroups")
-    }
-  },[currentUser])
-}
 
 const Home = (props) => {
   const { bgcolor } = props;
   const cardcolor = "#dfdffb";
+  const { currentUser } = useUser();
+  let navigate = useNavigate();
+  const handleClick = () => {
+    console.log(currentUser);
+    if (!currentUser) {
+      navigate("/login");
+    }
+    else {
+      navigate("/livegroups");
+    }
+  }
 
   return (
     <div style={{ backgroundColor: bgcolor }}>
@@ -55,7 +52,7 @@ const Home = (props) => {
             <li>Chat And Connect With Others</li>
           </ul>
         </p>
-        <button type="submit" id="community" onChange={HandleSubmit}>
+        <button type="submit" id="community" onChange={handleClick}>
           Join the community
         </button>
       </div>
