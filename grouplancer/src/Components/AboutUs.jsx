@@ -1,116 +1,349 @@
-import React from 'react';
+import React from "react";
 
 const AboutUs = (props) => {
-    const { bgcolor } = props;
-    return (
-        <>
-            <h1 className='text-center my-4' style={{ color: '#ffff' }}>About Us</h1>
+  const { bgcolor } = props;
+  return (
+    <>
+      <h1 className="text-center my-4" style={{ color: "#ffff" }}>
+        About Us
+      </h1>
 
-            <div className="container my-4" display="flex" alignItems="center">
+      <div className="container my-4" display="flex" alignItems="center">
+        <div classname="row">
+          <div
+            style={{
+              backgroundImage: "url(/aboutUs.jpg)",
+              backgroundSize: "90%",
+              marginTop: "0%",
+              width: " 1300px",
+              height: "700px",
+              paddingRight: "50px",
+              padingLeft: "50px",
+              marginBottom: "2px",
+              borderRadius: "20px",
+            }}
+            alt="image not yet ready"
+            srcset=" "
+          >
+            <div style={{ alignItems: "center" }}>
+              <h1
+                style={{
+                  color: "#ffff",
+                  paddingRight: "700px",
+                  textAlign: "center",
+                }}
+              >
+                {" "}
+                Welcome to grouplancer
+              </h1>
+              <p
+                style={{
+                  color: "#ffff",
+                  paddingRight: "700px",
+                  paddingBottom: "250px",
+                  textAlign: "justify",
+                }}
+              >
+                work in groups and enhance your knowledge.so why wait create
+                your own group and start collaborating
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="accordion" id="accordionExample">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button"
+                style={{
+                  backgroundColor: "#cfe2ff",
+                  marginBottom: "2px",
+                  height: "100px",
+                  borderRadius: "20px",
+                }}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                Accordion Item #1
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              className="accordion-collapse collapse show"
+              data-bs-parent="#accordionExample"
+            >
+              <div
+                className="accordion-body"
+                style={{
+                  backgroundColor: bgcolor,
+                  color: "#ffff",
+                  height: "100px",
+                }}
+              >
+                <strong>This is the first item's accordion body.</strong> It is
+                shown by default, until the collapse plugin adds the appropriate
+                classes that we use to style each element. These classes control
+                the overall appearance, as well as the showing and hiding via
+                CSS transitions. You can modify any of this with custom CSS or
+                overriding our default variables. It's also worth noting that
+                just about any HTML can go within the{" "}
+                <code>.accordion-body</code>, though the transition does limit
+                overflow.
+              </div>
+            </div>
+          </div>
 
-                <div classname="row">
-                    <div style={{ backgroundImage: "url(/aboutUs.jpg)", backgroundSize: "90%", marginTop: "0%", width: " 1300px", height: "700px", paddingRight: "50px", padingLeft: "50px", marginBottom: "2px", borderRadius: "20px" }} alt="image not yet ready" srcset=" ">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
+              <button
+                className="accordion-button collapsed"
+                style={{
+                  backgroundColor: "#cfe2ff",
+                  marginBottom: "2px",
+                  height: "100px",
+                  borderRadius: "20px",
+                }}
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                Accordion Item #2
+              </button>
+            </h2>
+            <div
+              id="collapseThree"
+              className="accordion-collapse collapse"
+              data-bs-parent="#accordionExample"
+            >
+              <div
+                className="accordion-body"
+                style={{
+                  backgroundColor: bgcolor,
+                  color: "#ffff",
+                  height: "100px",
+                }}
+              >
+                <strong>This is the third item's accordion body.</strong> It is
+                hidden by default, until the collapse plugin adds the
+                appropriate classes that we use to style each element. These
+                classes control the overall appearance, as well as the showing
+                and hiding via CSS transitions. You can modify any of this with
+                custom CSS or overriding our default variables. It's also worth
+                noting that just about any HTML can go within the{" "}
+                <code>.accordion-body</code>, though the transition does limit
+                overflow.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div
+              class="card"
+              style={{
+                marginTop: "5%",
+                flexDirection: "column",
+                boxShadow: "0 0 10px 5px",
+                borderRadius: "20px",
+                display: "flex",
+                width: "300px",
+                height: "250px",
+              }}
+            >
+              <div
+                class="card-body"
+                style={{ backgroundColor: "white", borderRadius: "20px" }}
+              >
+                <img
+                  style={{
+                    height: "100px",
+                    width: "200px",
+                    paddingLeft: "100px",
+                    paddingRight: "20px",
+                  }}
+                  src="./profile.jpg"
+                  alt="image"
+                  className="imaging"
+                />
+                <h5 class="card-title">Name</h5>
+                <p class="card-text">Description</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div
+              class="card"
+              style={{
+                marginTop: "5%",
+                flexDirection: "column",
+                boxShadow: "0 0 10px 5px",
+                borderRadius: "50px",
+                display: "flex",
+                width: "300px",
+                height: "250px",
+              }}
+            >
+              <div
+                class="card-body"
+                style={{ backgroundColor: "white", borderRadius: "20px" }}
+              >
+                <img
+                  style={{
+                    height: "100px",
+                    width: "200px",
+                    paddingLeft: "100px",
+                    paddingRight: "20px",
+                  }}
+                  src="./profile.jpg"
+                  alt="image"
+                  className="imaging"
+                />
+                <h5 class="card-title">Name</h5>
+                <p class="card-text">Description</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div
+              class="card"
+              style={{
+                marginTop: "5%",
+                flexDirection: "column",
+                boxShadow: "0 0 10px 5px",
+                borderRadius: "50px",
+                display: "flex",
+                width: "300px",
+                height: "250px",
+              }}
+            >
+              <div
+                class="card-body"
+                style={{ backgroundColor: "white", borderRadius: "20px" }}
+              >
+                <img
+                  style={{
+                    height: "100px",
+                    width: "200px",
+                    paddingLeft: "100px",
+                    paddingRight: "20px",
+                  }}
+                  src="./profile.jpg"
+                  alt="image"
+                  className="imaging"
+                />
+                <h5 class="card-title">Name</h5>
+                <p class="card-text">Description</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div
+              class="card"
+              style={{
+                marginTop: "5%",
+                flexDirection: "column",
+                boxShadow: "0 0 10px 5px",
+                borderRadius: "50px",
+                display: "flex",
+                width: "300px",
+                height: "250px",
+              }}
+            >
+              <div
+                class="card-body"
+                style={{ backgroundColor: "white", borderRadius: "20px" }}
+              >
+                <img
+                  style={{
+                    height: "100px",
+                    width: "200px",
+                    paddingLeft: "100px",
+                    paddingRight: "20px",
+                  }}
+                  src="./profile.jpg"
+                  alt="image"
+                  className="imaging"
+                />
+                <h5 class="card-title">Name</h5>
+                <p class="card-text">Description</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div
+              class="card"
+              style={{
+                marginTop: "5%",
+                flexDirection: "column",
+                boxShadow: "0 0 10px 5px",
+                borderRadius: "50px",
+                display: "flex",
+                width: "300px",
+                height: "250px",
+              }}
+            >
+              <div
+                class="card-body"
+                style={{ backgroundColor: "white", borderRadius: "20px" }}
+              >
+                <img
+                  style={{
+                    height: "100px",
+                    width: "200px",
+                    paddingLeft: "100px",
+                    paddingRight: "20px",
+                  }}
+                  src="./profile.jpg"
+                  alt="image"
+                  className="imaging"
+                />
+                <h5 class="card-title">Name</h5>
+                <p class="card-text">Description</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div
+              class="card"
+              style={{
+                marginTop: "5%",
+                flexDirection: "column",
+                boxShadow: "0 0 10px 5px",
+                borderRadius: "50px",
+                display: "flex",
+                width: "300px",
+                height: "250px",
+              }}
+            >
+              <div
+                class="card-body"
+                style={{ backgroundColor: "white", borderRadius: "20px" }}
+              >
+                <img
+                  style={{
+                    height: "100px",
+                    width: "200px",
+                    paddingLeft: "100px",
+                    paddingRight: "20px",
+                  }}
+                  src="./profile.jpg"
+                  alt="image"
+                  className="imaging"
+                />
+                <h5 class="card-title">Name</h5>
+                <p class="card-text">Description</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
-                        <div style={{ alignItems: "center" }}>
-                            <h1 style={{ color: '#ffff', paddingRight: "700px", textAlign: "center" }}> Welcome to grouplancer</h1>
-                            <p style={{ color: '#ffff', paddingRight: "700px", paddingBottom: "250px", textAlign: "justify" }}>work in groups and enhance your knowledge.so why wait create your own group and start collaborating</p>
-                        </div>
-                    </div>
-                </div>
-                <div className="accordion" id="accordionExample">
-                    <div className="accordion-item">
-                        <h2 className="accordion-header" >
-                            <button className="accordion-button" style={{ backgroundColor: "#cfe2ff", marginBottom: "2px", height: "100px", borderRadius: "20px" }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Accordion Item #1
-                            </button>
-                        </h2>
-                        <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                            <div className="accordion-body" style={{ backgroundColor: bgcolor, color: "#ffff", height: "100px" }}>
-                                <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="accordion-item">
-                        <h2 className="accordion-header">
-                            <button className="accordion-button collapsed" style={{ backgroundColor: "#cfe2ff", marginBottom: "2px", height: "100px", borderRadius: "20px" }} type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Accordion Item #2
-                            </button>
-                        </h2>
-                        <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                            <div className="accordion-body" style={{ backgroundColor: bgcolor, color: "#ffff", height: "100px" }}>
-                                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    <div class="row">
-                        <div class="col-sm-4" >
-                            <div class="card" style={{ marginTop: "5%", flexDirection: "column", boxShadow: "0 0 10px 5px", borderRadius: "20px", display: "flex", width: "300px", height: "250px" }}>
-                                <div class="card-body" style={{ backgroundColor: "white", borderRadius: "20px" }}>
-                                    <img style={{ height: "100px", width: "200px", paddingLeft: "100px", paddingRight: "20px" }} src="./profile.jpg" alt="image" className="imaging" />
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Description</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="card" style={{ marginTop: "5%", flexDirection: "column", boxShadow: "0 0 10px 5px", borderRadius: "50px", display: "flex", width: "300px", height: "250px" }}>
-                                <div class="card-body" style={{ backgroundColor: "white", borderRadius: "20px" }}>
-                                    <img style={{ height: "100px", width: "200px", paddingLeft: "100px", paddingRight: "20px" }} src="./profile.jpg" alt="image" className="imaging" />
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Description</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="card" style={{ marginTop: "5%", flexDirection: "column", boxShadow: "0 0 10px 5px", borderRadius: "50px", display: "flex", width: "300px", height: "250px" }}>
-                                <div class="card-body" style={{ backgroundColor: "white", borderRadius: "20px" }}>
-                                    <img style={{ height: "100px", width: "200px", paddingLeft: "100px", paddingRight: "20px" }} src="./profile.jpg" alt="image" className="imaging" />
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Description</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="card" style={{ marginTop: "5%", flexDirection: "column", boxShadow: "0 0 10px 5px", borderRadius: "50px", display: "flex", width: "300px", height: "250px" }}>
-                                <div class="card-body" style={{ backgroundColor: "white", borderRadius: "20px" }}>
-                                    <img style={{ height: "100px", width: "200px", paddingLeft: "100px", paddingRight: "20px" }} src="./profile.jpg" alt="image" className="imaging" />
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Description</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="card" style={{ marginTop: "5%", flexDirection: "column", boxShadow: "0 0 10px 5px", borderRadius: "50px", display: "flex", width: "300px", height: "250px" }}>
-                                <div class="card-body" style={{ backgroundColor: "white", borderRadius: "20px" }}>
-                                    <img style={{ height: "100px", width: "200px", paddingLeft: "100px", paddingRight: "20px" }} src="./profile.jpg" alt="image" className="imaging" />
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Description</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="card" style={{ marginTop: "5%", flexDirection: "column", boxShadow: "0 0 10px 5px", borderRadius: "50px", display: "flex", width: "300px", height: "250px" }}>
-                                <div class="card-body" style={{ backgroundColor: "white", borderRadius: "20px" }}>
-                                    <img style={{ height: "100px", width: "200px", paddingLeft: "100px", paddingRight: "20px" }} src="./profile.jpg" alt="image" className="imaging" />
-                                    <h5 class="card-title">Name</h5>
-                                    <p class="card-text">Description</p>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div >
-
-            </>
-            )
-}
-
-            export default AboutUs
+export default AboutUs;
