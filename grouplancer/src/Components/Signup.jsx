@@ -47,7 +47,7 @@ const Signup = () => {
       const json = await response.json();
       console.log(json)
       setActivationToken(json.activationToken)
-      navigate("/");
+      
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +71,7 @@ const Signup = () => {
   const sendOtp = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch("localhost:8080/api/auth/verify-otp", {
+      const response = await fetch("http://localhost:8080/api/auth/verify-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,6 +83,7 @@ const Signup = () => {
       });
       const json = await response.json();
       localStorage.setItem("auth-token", json.authToken);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
