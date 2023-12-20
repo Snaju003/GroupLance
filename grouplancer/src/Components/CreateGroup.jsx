@@ -1,10 +1,31 @@
 import React, { useState } from "react";
+import { useUser } from "../context/UserContext";
 
 const CreateGroup = () => {
   const [data, setData] = useState(2);
   const [domain, setDomain] = useState("General");
   const [gType, setGType] = useState("Public");
   const [whoCanJoin, setWhoCanJoin] = useState("Anyone can join");
+  const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: [], groupType: "", whoCanJoin: "", groupMembers: "" });
+  const { login,currentUser } = useUser();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch("localhost:8080/api/group/create-group", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ leader: currentUser, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: credentials.domains, groupType: credentials.groupType, whoCanJoin: credentials.whoCanJoin, groupMembers: credentials.groupMembers }),
+    });
+    const json = await response.json();
+    login(json.getUser);
+    localStorage.setItem('auth-token', json.authToken);
+  }
+
+  const onchange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value })
+  }
   return (
     <>
       <h1 className="text-center my-4" style={{ color: "#ffff" }}>
@@ -14,7 +35,7 @@ const CreateGroup = () => {
         className="container mt-3"
         style={{ width: "800px", color: "white" }}
       >
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="gname" className="form-label">
               Group Name
@@ -25,6 +46,8 @@ const CreateGroup = () => {
               id="gname"
               aria-describedby="emailHelp"
               required
+              onChange={onchange}
+              name="gName"
             />
             <hr />
             <label htmlFor="pname" className="form-label">
@@ -36,6 +59,8 @@ const CreateGroup = () => {
               id="pname"
               aria-describedby="emailHelp"
               required
+              onChange={onchange}
+              name="projName"
             />
             <br />
             <label htmlFor="text" className="form-label">
@@ -46,6 +71,8 @@ const CreateGroup = () => {
               className="form-control"
               id="text"
               aria-describedby="emailHelp"
+              onChange={onchange}
+              name="goal"
             />
           </div>
           <div className="input-group mb-3">
@@ -99,6 +126,8 @@ const CreateGroup = () => {
               className="form-control"
               aria-label="Text input with dropdown button"
               value={domain}
+              onChange={onchange}
+              name="domains"
             />
           </div>
           <div className="mb-3">
@@ -109,6 +138,7 @@ const CreateGroup = () => {
                 id="description"
                 cols="173"
                 rows="5"
+                name="gDesc"
               ></textarea>
             </label>
             <label htmlFor="text" className="form-label">
@@ -122,6 +152,7 @@ const CreateGroup = () => {
               id="customRange2"
               value={data}
               onChange={(e) => setData(e.target.value)}
+              name="groupMembers"
             />
             <h1 style={{ color: "white" }}>{data}</h1>
             <p>
@@ -160,6 +191,8 @@ const CreateGroup = () => {
                 className="form-control"
                 aria-label="Text input with dropdown button"
                 value={gType}
+                onChange={onchange}
+                name="groupType"
               />
             </div>
             <div className="input-group mb-3 mx-3">
@@ -192,6 +225,8 @@ const CreateGroup = () => {
                 className="form-control"
                 aria-label="Text input with dropdown button"
                 value={whoCanJoin}
+                onChange={onchange}
+                name="whoCanJoin"
               />
             </div>
           </div>

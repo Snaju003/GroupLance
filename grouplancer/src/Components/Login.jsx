@@ -10,7 +10,7 @@ const Login = () => {
   let navigate = useNavigate();
 
   //On submit of form
-  const handlesubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setCredentials({ email: '', password: '' });
     //API call 
@@ -40,7 +40,7 @@ const Login = () => {
   return (
     <>
       <div className="container my-3" style={{ width: "800px", color: "white" }}>
-        <form onSubmit={handlesubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label htmlFor="email" className="form-label">
               Email address

@@ -10,6 +10,7 @@ import Login from './Components/Login';
 import Navbar from './Components/Navbar';
 import Signup from './Components/Signup';
 import Jobs from './Components/Jobs';
+
 // import Recruit from './Components/Recruit';
 
 
@@ -18,6 +19,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChatBox from './Components/ChatBox/ChatBox';
 import Recruits from './Components/Recruits';
 import UserAccounts from './Components/UserAccounts';
+import Groups from './Components/Groups';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -38,6 +40,8 @@ function App() {
           <Route exact path='/recruit' element={<Recruits />} />
           <Route exact path='/chatbox' element={<ChatBox />} />
           <Route exact path='/userAccount' element={<UserAccounts />} />
+          <Route exact path='/groups' element={<Groups />} />
+          
         </Routes>
         <Footer />
       </Router>
