@@ -158,11 +158,17 @@ const activateUser = async (req, res) => {
             email: email,
             password: password
         });
-
+        const data = {
+            user: {
+                id: user.id
+            }
+        }
+        const authToken = jwt.sign(data, JWT_SECRET);
         return res.status(200).json({
             success: true,
             message: 'User Created successfully',
-            user
+            user,
+            authToken
         });
 
     } catch (error) {
