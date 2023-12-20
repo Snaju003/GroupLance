@@ -173,4 +173,28 @@ const activateUser = async (req, res) => {
     }
 }
 
-module.exports = { signup, login, getUser, activateUser };
+const deactivateUser = async (req, res) => {
+    try {
+        const { userId } = req.body;
+        if (!userId || userId === '') {
+            return res.status(400).json({
+                success: false,
+                message: 'Please enter required fields'
+            });
+        }
+
+        await UserModel.findByIdAndDelete(userId);
+        return res.status(200).json({
+            success: true,
+            message: 'User deleted successfully'
+        });
+
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+}
+
+module.exports = { signup, login, getUser, activateUser, deactivateUser };

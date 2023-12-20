@@ -33,7 +33,7 @@ Pass 'activationToken' that will be get from signup and 'activationCode' that wi
 URL: localhost:8080/api/group/invite-members (POST Request)
 Pass 'auth-token' in header (Take it from localstorage)
 
-
+Pass data from body
 {
   "invitedUserMail": "<give mail id of the invited user>",
   "invitationLink": "<give invitation link>",
@@ -51,6 +51,7 @@ Pass 'auth-token' in header (Take it from localstorage)
 URL: localhost:8080/api/group/join-group (PUT Request)
 Pass 'auth-token' in header (Take it from localstorage)
 
+Pass data from body
 {
   "userId": "<pass userId of the user who is joining>",
   "groupId": "<pass group id>"
@@ -62,7 +63,58 @@ Pass 'auth-token' in header (Take it from localstorage)
 URL: localhost:8080/api/group/remove-member (DELETE Request)
 Pass 'auth-token' in header (Take it from localstorage)
 
+Pass data from body
 {
   "userId": "<pass userId of the user who is being removed>",
   "groupId": "<pass group id>"
+}
+
+
+# Delete Group
+
+URL: localhost:8080/api/group/delete-group (DELETE Request)
+Pass 'auth-token' in header (Take it from localstorage)
+
+Pass data from body
+{
+  "groupId":"<pass group id>"
+}
+
+
+# Fetch all groups
+
+URL: localhost:8080/api/group/get-all-groups (GET Request)
+Pass 'auth-token' in header (Take it from localstorage)
+
+
+# Get Group Info
+
+URL: localhost:8080/api/group/get-group-details/:id (GET Request)
+Pass 'auth-token' in header (Take it from localstorage) and pass group id in params
+
+
+# Delete User
+
+URL: localhost:8080/api/auth/deactivate-user (DELETE Request)
+Pass 'auth-token' in header (Take it from localstorage)
+
+Pass data from body
+{
+  "userId":"<pass user id>"
+}
+
+
+# Edit group info (In testing...don't fetch it)
+
+URL: localhost:8080/api/group/edit-group-info (PUT Request)
+Pass 'auth-token' in header (Take it from localstorage)
+
+Pass data from body
+{
+  "groupId": "<pass group id>",
+  "data": {
+    "projName": "Softwre development",
+    "publicGroup": true,
+    "gDesc": "A group for developing softwares"
+  }
 }

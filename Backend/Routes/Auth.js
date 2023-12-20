@@ -1,6 +1,12 @@
 const express = require('express');
 const fetchUser = require('../middleware/fetchUser');
-const { signup, login, getUser, activateUser } = require('../controllers/auth');
+const {
+    signup,
+    login,
+    getUser,
+    activateUser,
+    deactivateUser
+} = require('../controllers/auth');
 const { body } = require('express-validator');
 
 const authRouter = express.Router();
@@ -26,5 +32,7 @@ authRouter.post('/verify-otp', activateUser);
 
 //ROUTE 4: Authenticate a User using: POST "/api/auth/getuser". Login required
 authRouter.get('/getuser/:id', fetchUser, getUser);
+
+authRouter.delete('/deactivate-user', fetchUser, deactivateUser);
 
 module.exports = authRouter;

@@ -1,7 +1,7 @@
 const GroupModel = require("../models/Group");
 const UserModel = require("../models/User");
-const ejs = require('ejs');
-const path = require('path');
+// const ejs = require('ejs');
+// const path = require('path');
 const sendMail = require("../utils/sendmail");
 
 
@@ -252,8 +252,118 @@ const removeMember = async (req, res) => {
 }
 
 const editGroupInfo = async (req, res) => {
-
+    try {
+        const { groupId, data } = req.body;
+        if (!data || !groupId || groupId == '') {
+            return res.status(400).json({
+                success: false,
+                message: 'Please provide required fields'
+            });
+        }
+        const existsGroup = await GroupModel.findById(groupId);
+        if (!existsGroup) {
+            return res.status(400).json({
+                success: false,
+                message: 'No group exists with this id'
+            });
+        }
+        await GroupModel.findByIdAndUpdate(groupId, data);
+        return res.status(200).json({
+            success: true,
+            message: 'Group updated successfully'
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
 }
 
+const deleteGroup = async (req, res) => {
+    try {
+        const { groupId } = req.body;
+        if (!groupId || groupId === '') {
+            return res.status(400).json({
+                success: false,
+                message: 'Please provide required fields'
+            });
+        }
+        const existsGroup = await GroupModel.findById(groupId);
+        if (!existsGroup) {
+            return res.status(400).json({
+                success: false,
+                message: `Group doesn't exists`
+            });
+        }
+        for (let i = 0; i < existsGroup.members.length; i++) {
+            await UserModel.findByIdAndUpdate(existsGroup.members[i].toString(), { $pull: { groups: groupId } });
+        }
+        await GroupModel.findByIdAndDelete(groupId);
+        return res.status(200).json({
+            success: true,
+            message: 'Group Deleted Successfully'
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+}
 
-module.exports = { createGroup, inviteMember, editGroupInfo, joinGroup, removeMember };
+const getAllGroups = async (req, res) => {
+    try {
+        const groups = await GroupModel.find({}).select("-gMemberNumber -members -goal -projName");
+        return res.status(200).json({
+            success: true,
+            message: 'All Groups fetched',
+            groups
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+}
+
+const getGroupInfo = async (req, res) => {
+    try {
+        const groupId = req.params.id;
+        if (!groupId || groupId == '') {
+            return res.status(400).json({
+                success: false,
+                message: 'Please provide required fields'
+            });
+        }
+        const group = await GroupModel.findById(groupId);
+        if (!group) {
+            return res.status(400).json({
+                success: false,
+                message: `Group doesn't exists`
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            message: 'Fetched whole group info',
+            group
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+}
+
+module.exports = {
+    createGroup,
+    inviteMember,
+    editGroupInfo,
+    joinGroup,
+    removeMember,
+    deleteGroup,
+    getAllGroups,
+    getGroupInfo,
+};
