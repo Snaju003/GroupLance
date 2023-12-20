@@ -7,6 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grouplancer Email Activation Mail</title>
     <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            min-width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            line-height: 1.5;
+            background-color: #FAFAFA;
+            color: #222222;
+        }
+
         p {
             margin: 1rem 1rem 1rem 1rem;
             font-family: Arial, Helvetica, sans-serif;
@@ -21,18 +32,26 @@
             width: 57%;
             border-radius: 10px;
             box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
         }
     </style>
 </head>
 
 <body>
-    <p>Hi <%= user.name %></p><br>
-    <p>We received your request for a single-use code to use with your Gmail account.</p><br>
-    <p>Your single-use code is: <%= activationCode %></p><br>
-    <p>If you didn't request this code, you can safely ignore this email. Someone else might have typed your email
-        address by mistake.</p><br>
-    <p>Thanks,</p><br>
-    <p>The Grouplancer account team.</p>
+    <div>
+        <p>
+        <p>Hi <%= user.name %>
+        </p>
+        <p>We received your request for a single-use code to use with your Gmail account.</p>
+        <p>Your single-use code is: <%= activationCode %>
+        </p>
+        <p>If you didn't request this code, you can safely ignore this email. Someone else might have typed your email
+            address by mistake.</p>
+        <p>Thanks,</p>
+        <p>The Grouplancer account team.</p>
+        </p>
+    </div>
 </body>
 
 </html>
