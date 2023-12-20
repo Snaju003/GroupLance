@@ -203,4 +203,6 @@ const deactivateUser = async (req, res) => {
     }
 }
 
+
+
 module.exports = { signup, login, getUser, activateUser, deactivateUser };

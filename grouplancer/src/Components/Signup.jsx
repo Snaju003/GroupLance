@@ -83,7 +83,6 @@ const Signup = () => {
       });
       const json = await response.json();
       localStorage.setItem("auth-token", json.authToken);
-      navigate("/");
     } catch (error) {
       console.log(error);
     }

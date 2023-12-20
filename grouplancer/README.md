@@ -1,7 +1,8 @@
 # Fetch User Data -> Done
 
 URL: localhost:8080/api/auth/getuser/:id
-give user id instead of :id
+give user id instead of :id 
+DONE
 
 # Create Group
 
@@ -22,11 +23,13 @@ Pass data from body
   "whoCanJoin": ""(who can join),
   "groupMembers": 2(group member number)
 }
+DONE
 
 # Send OTP
 
 URL: localhost:8080/api/auth/verify-otp (POST Request)
 Pass 'activationToken' that will be get from signup and 'activationCode' that will be get in mail in body
+DONE
 
 # Invite member to the group
 
