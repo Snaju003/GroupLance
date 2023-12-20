@@ -21,7 +21,8 @@ const Header = (props) => {
             height="50"
             style={{ width: "300px", height: "200px", justifyContent: "space-between", marginBottom: "-50px", marginTop: "-50px" }}
           />
-          {currentUser && <ProfileButton />}
+          {/* {currentUser && <ProfileButton />} */}
+          <ProfileButton/>
         </div>
       </header>
     </>
