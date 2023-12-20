@@ -11,13 +11,17 @@ const Signup = () => {
   });
 
   const [otpState, setOtpState] = useState({
-    sent: false,
-    otp: "",
+    num1: "",
+    num2: "",
+    num3: "",
+    num4: ""
+
   });
 
   const [buttonText, setButtonText] = useState("Send OTP");
 
   const [showModal, setShowModal] = useState(false);
+  const [activationToken,setActivationToken] = useState("")
   const { login } = useUser();
   let navigate = useNavigate();
 
@@ -41,8 +45,8 @@ const Signup = () => {
         }),
       });
       const json = await response.json();
-      login(json.getUser);
-      localStorage.setItem("auth-token", json.authToken);
+      console.log(json)
+      setActivationToken(json.activationToken)
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -57,12 +61,32 @@ const Signup = () => {
   };
 
   const onOtpChange = (e) => {
-    setOtpState({ ...otpState, otp: e.target.value });
+    setOtpState({ ...otpState, [e.target.name]: e.target.value });
   };
 
   const closeModal = () => {
     setShowModal(false);
   };
+
+  const sendOtp = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await fetch("localhost:8080/api/auth/verify-otp", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          activationToken: activationToken,
+          activationCode: otpState.num1+otpState.num2+otpState.num3+otpState.num4
+        }),
+      });
+      const json = await response.json();
+      localStorage.setItem("auth-token", json.authToken);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -182,7 +206,7 @@ const Signup = () => {
                   maxLength="1"
                   onChange={onOtpChange}
                   required
-                  name="otp"
+                  name="num1"
                 />
                 <input
                   style={{ margin: 7 }}
@@ -193,7 +217,7 @@ const Signup = () => {
                   maxLength="1"
                   onChange={onOtpChange}
                   required
-                  name="otp"
+                  name="num2"
                 />
                 <input
                   style={{ margin: 7 }}
@@ -204,7 +228,7 @@ const Signup = () => {
                   maxLength="1"
                   onChange={onOtpChange}
                   required
-                  name="otp"
+                  name="num3"
                 />
                 <input
                   style={{ margin: 7 }}
@@ -215,10 +239,10 @@ const Signup = () => {
                   maxLength="1"
                   onChange={onOtpChange}
                   required
-                  name="otp"
+                  name="num4"
                 />
               </div>
-              <button className="btn btn-primary mt-3" onClick={closeModal}>
+              <button className="btn btn-primary mt-3" onClick={sendOtp}>
                 Verify OTP
               </button>
             </div>
