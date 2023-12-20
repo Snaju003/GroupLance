@@ -7,7 +7,7 @@ const CreateGroup = () => {
   const [gType, setGType] = useState("Public");
   const [whoCanJoin, setWhoCanJoin] = useState("Anyone can join");
   const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: [], groupType: "", whoCanJoin: "", groupMembers: "" });
-  const { login } = useUser();
+  const { login,currentUser } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ const CreateGroup = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ leader: credentials.leader, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: credentials.domains, groupType: credentials.groupType, whoCanJoin: credentials.whoCanJoin, groupMembers: credentials.groupMembers }),
+      body: JSON.stringify({ leader: currentUser, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: credentials.domains, groupType: credentials.groupType, whoCanJoin: credentials.whoCanJoin, groupMembers: credentials.groupMembers }),
     });
     const json = await response.json();
     login(json.getUser);
