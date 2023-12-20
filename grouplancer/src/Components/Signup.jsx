@@ -83,6 +83,7 @@ const Signup = () => {
       });
       const json = await response.json();
       localStorage.setItem("auth-token", json.authToken);
+      login(json);
     } catch (error) {
       console.log(error);
     }
