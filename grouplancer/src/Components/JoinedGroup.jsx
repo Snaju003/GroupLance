@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom'
 const JoinedGroup = (props) => {
     let { title, description, color } = props;
     return (
@@ -8,7 +8,7 @@ const JoinedGroup = (props) => {
                 <div className="card-body">
                     <h5 className="card-title">{title}</h5>
                     <p className="card-text">{description}</p>
-                    <a href="/" target='__blank' className="btn btn-primary">View Group</a>
+                    <Link to="/groups" className="btn btn-primary">View Group</Link>
                 </div>
             </div>
         </>
