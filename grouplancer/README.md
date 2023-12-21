@@ -1,6 +1,6 @@
 # Fetch User Data -> Done
 
-URL: localhost:8080/api/auth/getuser/:id
+URL: localhost:8080/api/user/getuser/:id
 give user id instead of :id 
 DONE
 
@@ -19,9 +19,12 @@ Pass data from body
     "Web dev",
     "App dev"
   ](pass domains in array form),
-  "groupType": ""(group type),
-  "whoCanJoin": ""(who can join),
-  "groupMembers": 2(group member number)
+  "publicGroup": (boolean value),
+  "anyoneCanJoin": (boolean value),
+  "groupMembers": [
+    "<pass the members who are added while creating group>"(pass atleast one member as minimum one must join group while creating)
+  ],
+  "totalMemmber": (total number of members are in the group including leader)
 }
 DONE
 
