@@ -93,6 +93,12 @@ URL: localhost:8080/api/group/get-all-groups (GET Request)
 Pass 'auth-token' in header (Take it from localstorage)
 
 
+# Fetch joined groups
+
+URL: localhost:8080/api/user/get-joined-groups/<pass user id here> (GET Request)
+Pass 'auth-token' in header (Take it from localstorage)
+
+
 # Get Group Info
 
 URL: localhost:8080/api/group/get-group-details/:id (GET Request)
