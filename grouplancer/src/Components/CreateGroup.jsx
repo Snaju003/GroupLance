@@ -3,8 +3,8 @@ import { useUser } from "../context/UserContext";
 
 const CreateGroup = () => {
   const [domain, setDomain] = useState("General");
-  const [gType, setGType] = useState(true);
-  const [whoCanJoin, setWhoCanJoin] = useState(true);
+  const [gType, setGType] = useState("Public");
+  const [whoCanJoin, setWhoCanJoin] = useState("Anyone can join");
   const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: [], groupType: "", whoCanJoin: "", groupMembers: "" });
   const { login,currentUser } = useUser();
 
@@ -15,7 +15,7 @@ const CreateGroup = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ leader: currentUser, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: credentials.domains, groupType: credentials.groupType, whoCanJoin: credentials.whoCanJoin }),
+      body: JSON.stringify({ leader: currentUser, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: credentials.domains, groupType: credentials.groupType == "Public", whoCanJoin: credentials.whoCanJoin == "Anyone can join"}),
     });
     const json = await response.json();
     login(json.getUser);
@@ -156,14 +156,14 @@ const CreateGroup = () => {
                 <option
                   className="dropdown-item"
                   value="public"
-                  onClick={() => setGType(true)}
+                  onClick={() => setGType("Public")}
                 >
                   Public
                 </option>
                 <option
                   className="dropdown-item"
                   value="private"
-                  onClick={() => setGType(false)}
+                  onClick={() => setGType("Private")}
                 >
                   Private
                 </option>
@@ -190,14 +190,14 @@ const CreateGroup = () => {
                 <option
                   className="dropdown-item"
                   value="all"
-                  onClick={() => setWhoCanJoin(true)}
+                  onClick={() => setWhoCanJoin("Anyone can join")}
                 >
                   Anyone can join
                 </option>
                 <option
                   className="dropdown-item"
                   value="invited"
-                  onClick={() => setWhoCanJoin(false)}
+                  onClick={() => setWhoCanJoin("Join with invite")}
                 >
                   Join with invite
                 </option>
