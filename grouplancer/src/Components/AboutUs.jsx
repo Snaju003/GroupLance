@@ -50,16 +50,16 @@ const AboutUs = (props) => {
             </div>
           </div>
         </div>
-        <div className="accordion" id="accordionExample">
-          <div className="accordion-item">
+        <div className="accordion" id="accordionExample" style={{backgroundColor:bgcolor}}>
+          <div className="accordion-item"style={{backgroundColor:bgcolor}}>
             <h2 className="accordion-header">
               <button
                 className="accordion-button"
                 style={{
                   backgroundColor: "#cfe2ff",
                   marginBottom: "2px",
-                  height: "100px",
-                  borderRadius: "20px",
+                  height: "50px",
+                  borderRadius: "5px",
                 }}
                 type="button"
                 data-bs-toggle="collapse"
@@ -96,15 +96,15 @@ const AboutUs = (props) => {
             </div>
           </div>
 
-          <div className="accordion-item">
+          <div className="accordion-item" style={{backgroundColor:bgcolor}}>
             <h2 className="accordion-header">
               <button
                 className="accordion-button collapsed"
                 style={{
                   backgroundColor: "#cfe2ff",
                   marginBottom: "2px",
-                  height: "100px",
-                  borderRadius: "20px",
+                  height: "50px",
+                  borderRadius: "5px",
                 }}
                 type="button"
                 data-bs-toggle="collapse"
