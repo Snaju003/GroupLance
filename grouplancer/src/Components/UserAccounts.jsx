@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../context/UserContext";
+import { useNavigate } from 'react-router-dom';
 
 const groupDesign = {
     backgroundColor: "lightgray", marginLeft: "20px", padding: "15px", borderRadius: "15px"
@@ -8,31 +9,29 @@ const groupDesign = {
 const UserAccounts = () => {
 
     const [userData, setUserData] = useState({ name: "", email: "" });
-
+    const navigate = useNavigate();
     const { currentUser } = useUser();
-    const userId = currentUser._id;
 
+    const fetchUserData = async () => {
+        try {
+            const authToken = localStorage.getItem('auth-token');
+            const response = await fetch(`http://localhost:8080/api/auth/getuser/${currentUser._id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': authToken,
+                },
+            })
+            const data = await response.json();
+            setUserData(data.user);
+        } catch (error) {
+            console.error(error);
+        }
+    };
     useEffect(() => {
-        const authToken = localStorage.getItem('auth-token');
-        const fetchUserData = async () => {
-            try {
-                const response = await fetch(`http://localhost:8080/api/auth/getuser/${userId}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'auth-token': authToken,
-                    },
-                })
-                const data = await response.json();
-                console.log(data.user);
-                setUserData(data.user);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchUserData();
-    }, [userId]);
+        if (!currentUser) navigate("/login");
+        currentUser && fetchUserData();
+    }, [currentUser, navigate]);
 
     return (
         <>
