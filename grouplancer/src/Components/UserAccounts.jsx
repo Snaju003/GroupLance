@@ -51,6 +51,7 @@ const UserAccounts = () => {
             width: "200px",
           }}
         />
+
         <div
           style={{
             marginTop: "30px",
@@ -77,23 +78,80 @@ const UserAccounts = () => {
           </div>
         </div>
       </div>
-      <div
-        className="group-container"
-        style={{
-          backgroundColor: "white",
-          marginLeft: "120px",
-          marginRight: "110px",
-          marginTop: "40px",
-          padding: "15px",
-          borderRadius: "15px",
-        }}
+      <button
+        type="submit"
+        className="btn btn-primary mt-3"
+        style={{ marginLeft: "12.2vw" }}
       >
-        <p style={{ fontSize: "25px" }}>Group Information</p>
-        <div className="sub-group-container" style={{ groupDesign }}>
-          <p>Group 1</p>
+        Add image
+      </button>
+
+      <div class="row" style={{margin:"10vh 8vw"}}>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Rankings</h5>
+              <p class="card-text">
+                Rank: 10
+              </p>
+              <p class="card-text">
+                Rating Score: 4.9⭐
+              </p>
+              <a href="#" class="btn btn-primary">
+                Go to Rankings
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="sub-group-container" style={{ groupDesign }}>
-          <p>Group 2</p>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Skills</h5>
+              <p class="card-text">
+                Html CSS
+              </p>
+              <p class="card-text">
+                <br/>
+              </p>
+              <a href="#" class="btn btn-primary">
+                Add Skills
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style={{margin:"10vh 8vw"}}>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Work Experience</h5>
+              <p class="card-text">
+                Add Experience
+              </p>
+              <p class="card-text">
+                <br/>
+              </p>
+              <a href="#" class="btn btn-primary">
+              Add Experience
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Education</h5>
+              <p class="card-text">
+                RCC IIT
+              </p>
+              <p class="card-text">
+                <br/>
+              </p>
+              <a href="#" class="btn btn-primary">
+                Add Education
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </>
