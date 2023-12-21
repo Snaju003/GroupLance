@@ -10,7 +10,7 @@ const CreateGroup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("localhost:8080/api/group/create-group", {
+    const response = await fetch("http://localhost:8080/api/group/create-group", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
