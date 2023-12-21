@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { useUser } from "../context/UserContext";
 
 const CreateGroup = () => {
-  const [data, setData] = useState(2);
   const [domain, setDomain] = useState("General");
-  const [gType, setGType] = useState("Public");
-  const [whoCanJoin, setWhoCanJoin] = useState("Anyone can join");
+  const [gType, setGType] = useState(true);
+  const [whoCanJoin, setWhoCanJoin] = useState(true);
   const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: [], groupType: "", whoCanJoin: "", groupMembers: "" });
   const { login,currentUser } = useUser();
 
@@ -16,7 +15,7 @@ const CreateGroup = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ leader: currentUser, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: credentials.domains, groupType: credentials.groupType, whoCanJoin: credentials.whoCanJoin, groupMembers: credentials.groupMembers }),
+      body: JSON.stringify({ leader: currentUser, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: credentials.domains, groupType: credentials.groupType, whoCanJoin: credentials.whoCanJoin }),
     });
     const json = await response.json();
     login(json.getUser);
@@ -141,23 +140,6 @@ const CreateGroup = () => {
                 name="gDesc"
               ></textarea>
             </label>
-            <label htmlFor="text" className="form-label">
-              Group Members
-            </label>
-            <input
-              type="range"
-              className="form-range"
-              min="2"
-              max="6"
-              id="customRange2"
-              value={data}
-              onChange={(e) => setData(e.target.value)}
-              name="groupMembers"
-            />
-            <h1 style={{ color: "white" }}>{data}</h1>
-            <p>
-              <span id="demo"></span>
-            </p>
           </div>
           <br />
           <div className="d-flex">
@@ -174,14 +156,14 @@ const CreateGroup = () => {
                 <option
                   className="dropdown-item"
                   value="public"
-                  onClick={() => setGType("Public")}
+                  onClick={() => setGType(true)}
                 >
                   Public
                 </option>
                 <option
                   className="dropdown-item"
                   value="private"
-                  onClick={() => setGType("Private")}
+                  onClick={() => setGType(false)}
                 >
                   Private
                 </option>
@@ -208,14 +190,14 @@ const CreateGroup = () => {
                 <option
                   className="dropdown-item"
                   value="all"
-                  onClick={() => setWhoCanJoin("Anyone can join")}
+                  onClick={() => setWhoCanJoin(true)}
                 >
                   Anyone can join
                 </option>
                 <option
                   className="dropdown-item"
                   value="invited"
-                  onClick={() => setWhoCanJoin("Join with invite")}
+                  onClick={() => setWhoCanJoin(false)}
                 >
                   Join with invite
                 </option>
