@@ -45,8 +45,8 @@ const Signup = () => {
         }),
       });
       const json = await response.json();
-      console.log(json)
-      setActivationToken(json.activationToken)
+      console.log(json);
+      setActivationToken(json.activationToken);
     } catch (error) {
       console.log(error);
     }
@@ -82,7 +82,7 @@ const Signup = () => {
       });
       const json = await response.json();
       localStorage.setItem("auth-token", json.authToken);
-      login(json);
+      login(json.user);
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -149,22 +149,6 @@ const Signup = () => {
               name="cpassword"
             />
           </div>
-          {/* {otpState.sent ? (
-            <div className="mb-3">
-              <label htmlFor="otp" className="form-label">
-                Verify OTP
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="otp"
-                onChange={onOtpChange}
-                required
-                name="otp"
-              />
-            </div>
-          ) : null} */}
-
           <div
             style={{
               display: "flex",
