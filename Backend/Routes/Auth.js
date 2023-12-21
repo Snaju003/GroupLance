@@ -3,7 +3,6 @@ const fetchUser = require('../middleware/fetchUser');
 const {
     signup,
     login,
-    getUser,
     activateUser,
     deactivateUser
 } = require('../controllers/auth');
@@ -29,9 +28,6 @@ authRouter.post('/login', [//using validation through express-validator
 
 //ROUTE 3: Get OTP: POST
 authRouter.post('/verify-otp', activateUser);
-
-//ROUTE 4: Authenticate a User using: POST "/api/auth/getuser". Login required
-authRouter.get('/getuser/:id', fetchUser, getUser);
 
 authRouter.delete('/deactivate-user', fetchUser, deactivateUser);
 

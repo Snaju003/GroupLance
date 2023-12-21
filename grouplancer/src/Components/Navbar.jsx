@@ -2,7 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from "../context/UserContext";
 
-const NavMenu = ({ currentUser, logout }) => {
+const Navbar = () => {
+
+    const { currentUser, logout } = useUser();
+
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary mx-2" data-bs-theme="dark" style={{ borderRadius: "20px" }}>
@@ -67,15 +70,6 @@ const NavMenu = ({ currentUser, logout }) => {
                 </div>
             </nav>
         </>
-    )
-}
-const Navbar = () => {
-
-    const { currentUser, logout } = useUser();
-
-
-    return (
-        <NavMenu currentUser={currentUser} logout={logout} />
     )
 }
 

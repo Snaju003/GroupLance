@@ -21,7 +21,7 @@ const Signup = () => {
   const [buttonText, setButtonText] = useState("Send OTP");
 
   const [showModal, setShowModal] = useState(false);
-  const [activationToken,setActivationToken] = useState("")
+  const [activationToken, setActivationToken] = useState("")
   const { login } = useUser();
   let navigate = useNavigate();
 
@@ -45,9 +45,8 @@ const Signup = () => {
         }),
       });
       const json = await response.json();
-      console.log(json)
-      setActivationToken(json.activationToken)
-      navigate("/");
+      console.log(json);
+      setActivationToken(json.activationToken);
     } catch (error) {
       console.log(error);
     }
@@ -71,19 +70,20 @@ const Signup = () => {
   const sendOtp = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch("localhost:8080/api/auth/verify-otp", {
+      const response = await fetch("http://localhost:8080/api/auth/verify-otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           activationToken: activationToken,
-          activationCode: otpState.num1+otpState.num2+otpState.num3+otpState.num4
+          activationCode: otpState.num1 + otpState.num2 + otpState.num3 + otpState.num4
         }),
       });
       const json = await response.json();
       localStorage.setItem("auth-token", json.authToken);
-      login(json);
+      login(json.user);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -149,22 +149,6 @@ const Signup = () => {
               name="cpassword"
             />
           </div>
-          {/* {otpState.sent ? (
-            <div className="mb-3">
-              <label htmlFor="otp" className="form-label">
-                Verify OTP
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="otp"
-                onChange={onOtpChange}
-                required
-                name="otp"
-              />
-            </div>
-          ) : null} */}
-
           <div
             style={{
               display: "flex",

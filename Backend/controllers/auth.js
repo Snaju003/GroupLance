@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const ejs = require('ejs');
 const path = require('path');
 const sendMail = require("../utils/sendmail");
+const { getActivationToken } = require("../utils/activationToken");
 require('dotenv').config();
 JWT_SECRET = process.env.JWT_SECRET;
 
@@ -108,28 +109,6 @@ const login = async (req, res) => {
 
 }
 
-const getUser = async (req, res) => {
-
-    try {
-        const userId = req.params.id;
-        const user = await UserModel.findById(userId).select("-password");
-        return res.status(200).json({ success: true, message: 'User found', user });
-    } catch (error) {
-        console.log('Some error occured', error);
-        res.status(500).send('Internal server occured');
-    }
-}
-
-const getActivationToken = (user) => {
-    const activationCode = Math.floor(1000 + Math.random() * 9000).toString();
-    const token = jwt.sign(
-        { user, activationCode },
-        JWT_SECRET,
-        { expiresIn: '5m' }
-    );
-    return { token, activationCode };
-}
-
 const activateUser = async (req, res) => {
     try {
         const { activationCode, activationToken } = req.body;
@@ -203,6 +182,9 @@ const deactivateUser = async (req, res) => {
     }
 }
 
-
-
-module.exports = { signup, login, getUser, activateUser, deactivateUser };
+module.exports = {
+    signup,
+    login,
+    activateUser,
+    deactivateUser
+};
