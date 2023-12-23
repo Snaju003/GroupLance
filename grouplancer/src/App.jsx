@@ -40,8 +40,9 @@ function App() {
         },
       });
       const data = await response.json();
+      localStorage.setItem('auth-token', data.acceessToken);
+      localStorage.setItem('refresh-token', data.refreshToken);
       login(data.user);
-      console.log('From first time useeffect:', data);
     }
     fetchData();
   }, [])
@@ -59,7 +60,6 @@ function App() {
           },
         });
         const data = await response.json();
-        console.log('Response:', data);
         localStorage.setItem('auth-token', data.acceessToken);
         localStorage.setItem('refresh-token', data.refreshToken);
         return data.user;

@@ -14,29 +14,28 @@ const UserAccounts = () => {
   const navigate = useNavigate();
   const { currentUser } = useUser();
 
-  const fetchUserData = async () => {
-    try {
-      const authToken = localStorage.getItem("auth-token");
-      const response = await fetch(
-        `http://localhost:8080/api/user/getuser/${currentUser._id}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": authToken,
-          },
-        }
-      );
-      const data = await response.json();
-      setUserData(data.user);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  if (!currentUser) navigate("/login");
   useEffect(() => {
-    if (!currentUser) navigate("/login");
-    console.log('Current user:', currentUser);
-    currentUser && fetchUserData();
+    const fetchUserData = async () => {
+      try {
+        const authToken = localStorage.getItem("auth-token");
+        const response = await fetch(
+          `http://localhost:8080/api/user/getuser/${currentUser._id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token": authToken,
+            },
+          }
+        );
+        const data = await response.json();
+        setUserData(data.user);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserData();
   }, [currentUser, navigate]);
 
   return (
