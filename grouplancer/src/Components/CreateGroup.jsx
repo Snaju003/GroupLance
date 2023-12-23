@@ -10,15 +10,17 @@ const CreateGroup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const authToken = localStorage.getItem("auth-token");
     const response = await fetch("http://localhost:8080/api/group/create-group", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": localStorage.getItem("auth-token")
+        "auth-token": authToken
       },
-      body: JSON.stringify({ leader: currentUser, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: [credentials.domains], groupType: credentials.groupType == "Public"?true:false, whoCanJoin: credentials.whoCanJoin == "Anyone can join"?true:false,groupMembers: [currentUser._id],totalMemmber: 6}),
+      body: JSON.stringify({ leader: currentUser._id, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: [credentials.domains], publicGroup: credentials.groupType === "Public" ? true : false, anyoneCanJoin: credentials.whoCanJoin === "Anyone can join" ? true : false, groupMembers: [currentUser._id], totalMemmber: 6 }),
     });
     const json = await response.json();
+    console.log(json);
   }
 
   const onchange = (e) => {
