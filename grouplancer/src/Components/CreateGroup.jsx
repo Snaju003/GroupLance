@@ -5,8 +5,8 @@ const CreateGroup = () => {
   const [domain, setDomain] = useState("General");
   const [gType, setGType] = useState("Public");
   const [whoCanJoin, setWhoCanJoin] = useState("Anyone can join");
-  const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: [], groupType: "", whoCanJoin: "", groupMembers: "" });
-  const { login,currentUser } = useUser();
+  const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: "", groupType: "", whoCanJoin: "", groupMembers: "" });
+  const { currentUser } = useUser();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,12 +14,11 @@ const CreateGroup = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("auth-token")
       },
-      body: JSON.stringify({ leader: currentUser, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: credentials.domains, groupType: (credentials.groupType === "Public"?true:false), whoCanJoin: (credentials.whoCanJoin === "Anyone can join")?true:false}),
+      body: JSON.stringify({ leader: currentUser, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: [credentials.domains], groupType: credentials.groupType == "Public"?true:false, whoCanJoin: credentials.whoCanJoin == "Anyone can join"?true:false,groupMembers: [currentUser._id],totalMemmber: 6}),
     });
     const json = await response.json();
-    login(json.getUser);
-    localStorage.setItem('auth-token', json.authToken);
   }
 
   const onchange = (e) => {
@@ -226,15 +225,6 @@ const CreateGroup = () => {
           </div>
         </form>
       </div>
-      {/* <script>
-        const slider = document.getElementById("customRange2");
-        const output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-
-        slider.oninput = function () {
-          output.innerHTML = this.value
-      }
-      </script> */}
     </>
   );
 };
