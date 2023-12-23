@@ -1,12 +1,14 @@
 const express = require('express');
-const fetchUser = require('../middleware/fetchUser');
 const {
     signup,
     login,
     activateUser,
-    deactivateUser
+    deactivateUser,
+    updateAccessToken,
+    logout
 } = require('../controllers/auth');
 const { body } = require('express-validator');
+const fetchUser = require('../middleware/fetchuser');
 
 const authRouter = express.Router();
 
@@ -30,5 +32,7 @@ authRouter.post('/login', [//using validation through express-validator
 authRouter.post('/verify-otp', activateUser);
 
 authRouter.delete('/deactivate-user', fetchUser, deactivateUser);
+authRouter.get('/refresh', updateAccessToken);
+authRouter.get('/logout', fetchUser, logout);
 
 module.exports = authRouter;
