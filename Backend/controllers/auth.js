@@ -6,6 +6,7 @@ const ejs = require('ejs');
 const path = require('path');
 const sendMail = require("../utils/sendmail");
 const { getActivationToken } = require("../utils/activationToken");
+const { sendToken, accessTokenOptions, refreshTokenOptions } = require("../utils/jwt");
 require('dotenv').config();
 JWT_SECRET = process.env.JWT_SECRET;
 
@@ -65,8 +66,8 @@ const signup = async (req, res) => {
         else {
             return res.status(401).json({ errors: result.array() });//Throing error if any input is not valid
         }
-    } catch (error) {//Throwing error if any exception occurs
-        console.log('Some error occured', error);
+    } catch (error) {
+        //Throwing error if any exception occurs
         res.status(500).send(error);
     }
 }
@@ -91,14 +92,9 @@ const login = async (req, res) => {
                 return res.status(401).send('Please try to login with correct credentials');
             }
             else {
-                const data = {
-                    user: {
-                        id: user.id
-                    }
-                }
-                const authToken = jwt.sign(data, JWT_SECRET);
                 const getUser = await UserModel.findById(user.id).select('-password');
-                return res.status(201).json({ success: true, message: 'Login successful', getUser, authToken });
+                const { accessToken: authToken, refreshToken } = sendToken(getUser, res);
+                return res.status(201).json({ success: true, message: 'Login successful', getUser, authToken, refreshToken });
             }
         }
 
@@ -137,19 +133,32 @@ const activateUser = async (req, res) => {
             email: email,
             password: password
         });
-        const data = {
-            user: {
-                id: user.id
-            }
-        }
-        const authToken = jwt.sign(data, JWT_SECRET);
+        const { accessToken: authToken, refreshToken } = sendToken(getUser, res);
         return res.status(200).json({
             success: true,
             message: 'User Created successfully',
             user,
-            authToken
+            authToken,
+            refreshToken
         });
 
+    } catch (error) {
+        return res.status(400).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+}
+
+const logout = async (req, res) => {
+    try {
+        res.cookie('access_token', "", { maxAge: 1 });
+        res.cookie('refresh_token', "", { maxAge: 1 });
+
+        res.status(200).json({
+            success: true,
+            message: 'User Logged out successfully'
+        });
     } catch (error) {
         return res.status(400).json({
             success: false,
@@ -182,9 +191,58 @@ const deactivateUser = async (req, res) => {
     }
 }
 
+const updateAccessToken = async (req, res) => {
+    try {
+        const refresh_token = req.header("refresh-token");
+        const decoded = jwt.verify(
+            refresh_token,
+            process.env.REFRESH_TOKEN
+        );
+
+        const message = 'Couldn\'t refresh token';
+        if (!decoded) {
+            return next(new ErrorHandler(message, 400));
+        }
+
+        const user = await UserModel.findById(decoded.id);
+
+        const acceessToken = jwt.sign(
+            { id: user._id },
+            process.env.ACCESS_TOKEN,
+            { expiresIn: '5m' }
+        );
+
+        const refreshToken = jwt.sign(
+            { id: user._id },
+            process.env.REFRESH_TOKEN,
+            { expiresIn: '7d' }
+        );
+
+        req.user = user;
+
+        // Update Cookie
+        res.cookie('access_token', acceessToken, accessTokenOptions);
+        res.cookie('refresh_token', refreshToken, refreshTokenOptions);
+
+        res.status(200).json({
+            success: true,
+            user,
+            acceessToken,
+            refreshToken
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+        });
+    }
+}
+
 module.exports = {
     signup,
     login,
     activateUser,
-    deactivateUser
+    logout,
+    deactivateUser,
+    updateAccessToken,
 };

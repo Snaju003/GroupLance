@@ -25,6 +25,7 @@ const Login = () => {
     login(json.getUser);
     // if (json.authtoken) {
     localStorage.setItem('auth-token', json.authToken);
+    localStorage.setItem("refresh-token", json.refreshToken);
     navigate('/');
     // }
     // else {
