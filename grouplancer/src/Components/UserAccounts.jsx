@@ -35,6 +35,7 @@ const UserAccounts = () => {
   };
   useEffect(() => {
     if (!currentUser) navigate("/login");
+    console.log('Current user:', currentUser);
     currentUser && fetchUserData();
   }, [currentUser, navigate]);
 
