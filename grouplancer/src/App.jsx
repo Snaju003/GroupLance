@@ -22,6 +22,8 @@ import UserAccounts from './Components/UserAccounts';
 import Groups from './Components/Groups';
 import { useEffect } from 'react';
 import { useUser } from './context/UserContext';
+import MyGroups from './Components/Mygroups';
+import TopGroups from './Components/Topgroups';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -88,10 +90,12 @@ function App() {
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/livegroups' element={<LiveGroups />} />
+          <Route exact path='/Mygroups' element={<MyGroups />} />
           <Route exact path='/creategroup' element={<CreateGroup />} />
           <Route exact path='/joinedgroups' element={<JoinedGroups />} />
           <Route exact path='/findjob' element={<Jobs />} />
           <Route exact path='/recruit' element={<Recruits />} />
+          <Route exact path='/topgroups' element={<TopGroups />} />
           <Route exact path='/chatbox' element={<ChatBox />} />
           <Route exact path='/userAccount' element={<UserAccounts />} />
           <Route exact path='/groups' element={<Groups />} />

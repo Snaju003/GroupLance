@@ -39,7 +39,7 @@ const Navbar = () => {
                                 </Link>
                                 <ul className="dropdown-menu">
                                     <li>
-                                        <Link className="dropdown-item" to="/livegroups">Live Groups</Link>
+                                        <Link className="dropdown-item" to="/Mygroups">My Groups</Link>
                                     </li>
                                     <li>
                                         <Link className="dropdown-item" to="/joinedgroups">Joined Groups</Link>
@@ -56,9 +56,18 @@ const Navbar = () => {
                                 </Link>
                                 <ul className="dropdown-menu">
                                     <li><Link className="dropdown-item" to="/findjob">Browse Domains</Link></li>
-                                    <li><Link className="dropdown-item" to="/recruit">Invite a Grouplancer</Link></li>
-
-
+                                    <li><Link className="dropdown-item" to="/livegroups">All Groups</Link></li>
+                                    
+                                </ul>
+                            </li>
+                            <li className="nav-item dropdown mx-2">
+                                <Link className="nav-link dropdown-toggle" to="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Rankings
+                                </Link>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to="/topgroups">Groups</Link></li>
+                                    <li><Link className="dropdown-item" to="/recruit">Grouplancers</Link></li>
+                                    
                                 </ul>
                             </li>
                             <li className="nav-item mx-2">

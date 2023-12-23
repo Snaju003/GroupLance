@@ -15,7 +15,7 @@ const CreateGroup = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ leader: currentUser, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: credentials.domains, groupType: (credentials.groupType == "Public"?true:false), whoCanJoin: (credentials.whoCanJoin == "Anyone can join")?true:false}),
+      body: JSON.stringify({ leader: currentUser, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: credentials.domains, groupType: (credentials.groupType === "Public"?true:false), whoCanJoin: (credentials.whoCanJoin === "Anyone can join")?true:false}),
     });
     const json = await response.json();
     login(json.getUser);
