@@ -9,7 +9,7 @@ const getUser = async (req, res) => {
         return res.status(200).json({ success: true, message: 'User found', user });
     } catch (error) {
         console.log('Some error occured', error);
-        res.status(500).send('Internal server occured');
+        res.status(500).json({ message: 'Internal server occured', error });
     }
 }
 

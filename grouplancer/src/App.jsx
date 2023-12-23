@@ -20,9 +20,63 @@ import ChatBox from './Components/ChatBox/ChatBox';
 import Recruits from './Components/Recruits';
 import UserAccounts from './Components/UserAccounts';
 import Groups from './Components/Groups';
+import { useEffect } from 'react';
+import { useUser } from './context/UserContext';
 
 function App() {
   const bgcolor = "#0f054c";
+  const accessTokenExpire = parseInt(5, 10);
+  const time = accessTokenExpire * 60 * 1000;
+  const { login } = useUser();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const refreshToken = localStorage.getItem("refresh-token");
+      const response = await fetch("http://localhost:8080/api/auth/refresh", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "refresh-token": refreshToken
+        },
+      });
+      const data = await response.json();
+      login(data.user);
+      console.log('From first time useeffect:', data);
+    }
+    fetchData();
+  }, [])
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const refreshToken = localStorage.getItem("refresh-token");
+        const response = await fetch("http://localhost:8080/api/auth/refresh", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "refresh-token": refreshToken
+          },
+        });
+        const data = await response.json();
+        console.log('Response:', data);
+        localStorage.setItem('auth-token', data.acceessToken);
+        localStorage.setItem('refresh-token', data.refreshToken);
+        return data.user;
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    }
+    const intervalId = setInterval(() => {
+      const user = fetchData();
+      login(user);
+    }, time);
+    return () => {
+      clearInterval(intervalId);
+    }
+  });
+
+
   return (
     <>
       <Router>
@@ -36,12 +90,12 @@ function App() {
           <Route exact path='/livegroups' element={<LiveGroups />} />
           <Route exact path='/creategroup' element={<CreateGroup />} />
           <Route exact path='/joinedgroups' element={<JoinedGroups />} />
-          <Route exact path='/findjob' element={<Jobs />} /> 
+          <Route exact path='/findjob' element={<Jobs />} />
           <Route exact path='/recruit' element={<Recruits />} />
           <Route exact path='/chatbox' element={<ChatBox />} />
           <Route exact path='/userAccount' element={<UserAccounts />} />
           <Route exact path='/groups' element={<Groups />} />
-          
+
         </Routes>
         <Footer />
       </Router>

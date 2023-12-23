@@ -20,7 +20,6 @@ app.use('/api/auth', authRouter);
 app.use('/api/group', groupRouter);
 app.use('/api/user', userRouter);
 
-
 app.listen(port, () => {
     console.log(`Server is listening to port ${port}`);
 })

@@ -82,6 +82,7 @@ const Signup = () => {
       });
       const json = await response.json();
       localStorage.setItem("auth-token", json.authToken);
+      localStorage.setItem("refresh-token", json.refreshToken);
       login(json.user);
       navigate("/");
     } catch (error) {
