@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useUser } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
+
 // const groupDesign = {
 //   backgroundColor: "lightgray",
 //   marginLeft: "20px",
@@ -10,9 +11,24 @@ import { useNavigate } from "react-router-dom";
 // };
 
 const UserAccounts = () => {
+  const { currentUser, logout } = useUser();
+
+    const handleLogout = async () => {
+        const authToken = localStorage.getItem("auth-token");
+        await fetch("http://localhost:8080/api/auth/login", {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": authToken
+            },
+        });
+        logout();
+        localStorage.setItem("auth-token", "");
+        localStorage.setItem("refresh-token", "");
+    }
   const [userData, setUserData] = useState({ name: "", email: "" });
   const navigate = useNavigate();
-  const { currentUser } = useUser();
+  // const { currentUser } = useUser();
 
 
   useEffect(() => {
@@ -91,7 +107,7 @@ const UserAccounts = () => {
       >
         Add image
       </button>
-
+      <button className="btn btn-outline-success mx-2" type="submit" onClick={handleLogout}>Logout</button>
       <div className="row" style={{ margin: "10vh 8vw" }}>
         <div className="col-sm-6">
           <div className="card">

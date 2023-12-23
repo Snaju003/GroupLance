@@ -3,22 +3,8 @@ import { Link } from 'react-router-dom'
 import { useUser } from "../context/UserContext";
 
 const Navbar = () => {
-
-    const { currentUser, logout } = useUser();
-
-    const handleLogout = async () => {
-        const authToken = localStorage.getItem("auth-token");
-        await fetch("http://localhost:8080/api/auth/login", {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": authToken
-            },
-        });
-        logout();
-        localStorage.setItem("auth-token", "");
-        localStorage.setItem("refresh-token", "");
-    }
+    const { currentUser } = useUser();
+    
 
     return (
         <>
@@ -87,7 +73,7 @@ const Navbar = () => {
                                     <Link to="/signup"><button className="btn btn-outline-success mx-2" type="submit">Signup</button></Link>
                                     <Link to="/login"><button className="btn btn-outline-success mx-2" type="submit">Login</button></Link>
                                 </>
-                                : <button className="btn btn-outline-success mx-2" type="submit" onClick={handleLogout}>Logout</button>
+                                : null
                         }
                     </div>
                 </div>
