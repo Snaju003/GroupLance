@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "../context/UserContext";
+import { useNavigate } from 'react-router-dom';
 
 const CreateGroup = () => {
   const [domain, setDomain] = useState("General");
@@ -7,20 +8,30 @@ const CreateGroup = () => {
   const [whoCanJoin, setWhoCanJoin] = useState("Anyone can join");
   const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: "", groupType: "", whoCanJoin: "", groupMembers: "" });
   const { currentUser } = useUser();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!currentUser) {
+      navigate('/login');
+    }
+  }, [currentUser, navigate])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const authToken = localStorage.getItem("auth-token");
-    const response = await fetch("http://localhost:8080/api/group/create-group", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": authToken
-      },
-      body: JSON.stringify({ leader: currentUser._id, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: [credentials.domains], publicGroup: credentials.groupType === "Public" ? true : false, anyoneCanJoin: credentials.whoCanJoin === "Anyone can join" ? true : false, groupMembers: [currentUser._id], totalMemmber: 6 }),
-    });
-    const json = await response.json();
-    console.log(json);
+    try {
+      const authToken = localStorage.getItem("auth-token");
+      const response = await fetch("http://localhost:8080/api/group/create-group", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken
+        },
+        body: JSON.stringify({ leader: currentUser._id, gName: credentials.gName, gDesc: credentials.gDesc, projName: credentials.projName, goal: credentials.goal, domains: [credentials.domains], publicGroup: credentials.groupType === "Public" ? true : false, anyoneCanJoin: credentials.whoCanJoin === "Anyone can join" ? true : false }),
+      });
+      const json = await response.json();
+      console.log(json);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   const onchange = (e) => {

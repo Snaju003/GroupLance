@@ -16,11 +16,9 @@ const createGroup = async (req, res) => {
             domains,
             publicGroup,
             anyoneCanJoin,
-            groupMembers,
-            totalMemmber,
         } = req.body;
 
-        if (!leader || !gName || !projName || !goal || !groupMembers) {
+        if (!leader || !gName || !projName || !goal) {
             return res.status(400).json({
                 success: false,
                 message: 'Please enter required fields'
@@ -34,12 +32,12 @@ const createGroup = async (req, res) => {
                 message: `Couldn't create another group`
             });
         }
-        if (groupMembers < 2 || groupMembers > 4) {
-            return res.status(400).json({
-                success: false,
-                message: 'Invalid group member'
-            });
-        }
+        // if (groupMembers < 2 || groupMembers > 4) {
+        //     return res.status(400).json({
+        //         success: false,
+        //         message: 'Invalid group member'
+        //     });
+        // }
 
         //Check is another group exists or not
         const existingGroup = await GroupModel.findOne({ gName: gName });
@@ -49,7 +47,7 @@ const createGroup = async (req, res) => {
                 message: 'Another group exists with same name'
             });
         }
-        const members = [leader, ...groupMembers];
+        const members = [leader];
         // Create new group
         const data = {
             leader: leader,
@@ -60,7 +58,7 @@ const createGroup = async (req, res) => {
             goal: goal,
             publicGroup: publicGroup,
             anyoneCanJoin: anyoneCanJoin,
-            gMemberNumber: totalMemmber,
+            gMemberNumber: members.length,
             members: members,
         };
         const newGroup = await GroupModel.create(data);
@@ -77,7 +75,7 @@ const createGroup = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             successs: false,
-            message: 'Internal server error'
+            message: 'Internal server error',
         });
     }
 }
@@ -135,7 +133,7 @@ const inviteMember = async (req, res) => {
             });
             return res.status(200).json({
                 success: true,
-                message: `Activation mail sent to ${invitedUserMail}`,
+                message: `Invitation mail sent to ${invitedUserMail}`,
             });
         } catch (error) {
             return res.status(400).json({
@@ -154,8 +152,9 @@ const inviteMember = async (req, res) => {
 
 const joinGroup = async (req, res) => {
     try {
-        const { userId, groupId } = req.body;
-        if (userId == '' || groupId == '') {
+        const { groupId } = req.body;
+        const userId = req.user;
+        if (groupId == '') {
             return res.status(400).json({
                 success: false,
                 message: 'Please provide required fields'
@@ -337,7 +336,7 @@ const getGroupInfo = async (req, res) => {
                 message: 'Please provide required fields'
             });
         }
-        const group = await GroupModel.findById(groupId);
+        const group = await GroupModel.findById(groupId).populate({ path: 'members', model: 'user', select: 'name email' });
         if (!group) {
             return res.status(400).json({
                 success: false,

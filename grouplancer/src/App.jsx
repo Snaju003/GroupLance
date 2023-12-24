@@ -62,16 +62,15 @@ function App() {
           },
         });
         const data = await response.json();
+        console.log(data);
         localStorage.setItem('auth-token', data.acceessToken);
         localStorage.setItem('refresh-token', data.refreshToken);
-        return data.user;
       } catch (error) {
         console.error('Fetch error:', error);
       }
     }
     const intervalId = setInterval(() => {
-      const user = fetchData();
-      login(user);
+      fetchData();
     }, time);
     return () => {
       clearInterval(intervalId);
@@ -98,7 +97,7 @@ function App() {
           <Route exact path='/topgroups' element={<TopGroups />} />
           <Route exact path='/chatbox' element={<ChatBox />} />
           <Route exact path='/userAccount' element={<UserAccounts />} />
-          <Route exact path='/groups' element={<Groups />} />
+          <Route exact path='/groups/:id' element={<Groups />} />
 
         </Routes>
         <Footer />
