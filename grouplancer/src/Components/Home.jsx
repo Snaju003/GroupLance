@@ -19,6 +19,9 @@ const Home = (props) => {
     }
   }
 
+ 
+ 
+
   return (
     <div style={{ backgroundColor: bgcolor }}>
       <div id="frontimage">
@@ -73,7 +76,7 @@ const Home = (props) => {
               <li>Create groups of only specified size</li>
              
             </ui>
-          <button type="button" class="btn btn-outline-primary"  style={{color:"white",backgroundColor:"green",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>free</button>
+          <button type="button" class="btn btn-outline-primary"  style={{fontWeight:"1000",color:"black",backgroundColor:"white",border:" solid green",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>free</button>
           </div>
           <div class="card-body">
             
@@ -90,7 +93,7 @@ const Home = (props) => {
               <li>Create groups of any size</li>
               
             </ui>
-          <button type="button"  class="btn btn-outline-primary"  style={{color:"white",backgroundColor:"brown",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>premiun</button>
+          <button type="button"  class="btn btn-outline-primary"  style={{fontWeight:"1000",color:"black",backgroundColor:"white",border:" solid brown",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>premiun</button>
           </div>
           <div class="card-body">
             
@@ -108,7 +111,7 @@ const Home = (props) => {
               <li>Invite top users to your group</li>
               <li>Send requests to top users</li>
             </ui>
-          <button type="button" class="btn btn-outline-primary" style={{color:"white",backgroundColor:"#3d300c",width:"140px",height:"40px",borderRadius:"10px",marginTop:"0px",marginLeft:"80px",justifyContent:"center"}}>deluxe</button>
+          <button type="button" class="btn btn-outline-primary"  style={{fontWeight:"1000",color:"black",border:" solid #3d300c",backgroundColor:"white",width:"140px",height:"40px",borderRadius:"10px",marginTop:"0px",marginLeft:"80px",justifyContent:"center"}}>deluxe</button>
           </div>
           <div class="card-body">
             
