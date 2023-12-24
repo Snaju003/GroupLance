@@ -149,8 +149,9 @@ const CreateGroup = () => {
                 id="description"
                 cols="173"
                 rows="5"
+                onChange={onchange}
                 name="gDesc"
-              ></textarea>
+              />
             </label>
           </div>
           <br />

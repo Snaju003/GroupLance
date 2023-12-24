@@ -62,18 +62,20 @@ const UserAccounts = () => {
 
   return (
     <>
+      <button className="btn btn-outline-success mx-2" type="submit"  style={{float:"right",marginRight:"150x",padding:"10px",marginTop:"15px"}} onClick={handleLogout}>Logout</button>
       <div className="container" style={{ display: "flex", marginTop: "30px" }}>
         <img
           src="./default-user.jpg"
           alt="profile_image"
           style={{
-            marginRight: "350px",
-            marginLeft: "30px",
+            marginRight: "20px",
+            marginLeft: "220px",
             height: "200px",
             width: "200px",
+            marginTop:"30px",
           }}
         />
-
+         
         <div
           style={{
             marginTop: "30px",
@@ -83,8 +85,10 @@ const UserAccounts = () => {
             borderRadius: "15px",
             paddingLeft: "15px",
             paddingTop: "10px",
+            marginRight:"180px",
           }}
         >
+          
           <p style={{ fontSize: "25px" }}>Name: {userData.name}</p>
           <p style={{ fontSize: "25px" }}>Email: {userData.email}</p>
           <div
@@ -100,14 +104,15 @@ const UserAccounts = () => {
           </div>
         </div>
       </div>
+      
       <button
         type="submit"
         className="btn btn-primary mt-3"
-        style={{ marginLeft: "12.2vw" }}
+        style={{ marginLeft: "320px" }}
       >
-        Add image
+        Add your image
       </button>
-      <button className="btn btn-outline-success mx-2" type="submit" onClick={handleLogout}>Logout</button>
+      
       <div className="row" style={{ margin: "10vh 8vw" }}>
         <div className="col-sm-6">
           <div className="card">

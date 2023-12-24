@@ -44,44 +44,51 @@ const Groups = () => {
           }}
         >
           {" "}
+          Groups Details
+        </h1>
+      </div>
+      <div className="container my-4" display="flex" alignItems="center">
+      <div
+          style={{
+            marginTop: "30px",
+            backgroundColor: "white",
+            width: "180vh",
+            textAlign: "justify",
+            borderRadius: "15px",
+            paddingLeft: "20px",
+            paddingTop: "10px",
+          }}
+        >
+          <p style={{ fontSize: "25px" }}>Name:{groupDetails.projName} </p>
+          <p style={{ fontSize: "25px" }}>Description: {groupDetails.gDesc}</p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <button type="submit" className="btn btn-primary">
+              Edit
+            </button>
+          </div>
+        </div>
+        </div>
+      <div style={{ alignItems: "center" }}>
+        <h1
+          style={{
+            color: "#ffff",
+            paddingRight: "70vw",
+            textAlign: "center",
+          }}
+        >
+          {" "}
           Members
         </h1>
       </div>
       <div className="container my-4" display="flex" alignItems="center">
         <div className="row">
-          <div class="col-sm-4">
-            <div
-              class="card"
-              style={{
-                marginTop: "5%",
-                flexDirection: "column",
-                boxShadow: "0 0 10px 5px",
-                borderRadius: "20px",
-                display: "flex",
-                width: "300px",
-                height: "250px",
-              }}
-            >
-              <div
-                class="card-body"
-                style={{ backgroundColor: "white", borderRadius: "20px" }}
-              >
-                <img
-                  style={{
-                    height: "100px",
-                    width: "200px",
-                    paddingLeft: "100px",
-                    paddingRight: "20px",
-                  }}
-                  src="./profile.jpg"
-                  alt="image"
-                  className="imaging"
-                />
-                <h5 class="card-title">{groupDetails.projName}</h5>
-                <p class="card-text">{groupDetails.gDesc}</p>
-              </div>
-            </div>
-          </div>
+          
           {
             members.map(({ _id, name, email }) => (
               <div className="col-sm-4" key={_id}>
