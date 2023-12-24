@@ -39,9 +39,9 @@
 <body>
     <div class="email-container">
         <div class="email-content">
-            <p>Hi 'email',</p>
+            <p>Hi <%= user.name %>,</p>
             <p>We received your request for a single-use code to use with your Gmail account.</p>
-            <p>Your single-use code is: <span class="code">[YourCodeHere]</span></p>
+            <p>Your single-use code is: <span class="code"><%= activationCode %></span></p>
             <p>If you didn't request this code, you can safely ignore this email. Someone else might have typed your email address by mistake.</p>
             <p>Thanks,</p>
             <p>The Grouplancer account team.</p>
