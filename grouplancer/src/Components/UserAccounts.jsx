@@ -41,7 +41,7 @@ const UserAccounts = () => {
         try {
           const authToken = localStorage.getItem("auth-token");
           const response = await fetch(
-            `http://localhost:8080/api/user/getuser/${currentUser._id}`,
+            `http://localhost:8080/api/user/get-user-account`,
             {
               method: "GET",
               headers: {

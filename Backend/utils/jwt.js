@@ -15,7 +15,6 @@ const refreshTokenOptions = {
 };
 
 const sendToken = (user, res) => {
-
     const accessToken = user.SignAccessToken();
     const refreshToken = user.SignRefreshToken();
 

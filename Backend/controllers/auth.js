@@ -8,7 +8,6 @@ const sendMail = require("../utils/sendmail");
 const { getActivationToken } = require("../utils/activationToken");
 const { sendToken, accessTokenOptions, refreshTokenOptions } = require("../utils/jwt");
 require('dotenv').config();
-JWT_SECRET = process.env.JWT_SECRET;
 
 const signup = async (req, res) => {
     try {
@@ -114,7 +113,7 @@ const activateUser = async (req, res) => {
                 message: 'Please provide correct information',
             });
         }
-        const newUser = jwt.verify(activationToken, JWT_SECRET);
+        const newUser = jwt.verify(activationToken, process.env.JWT_SECRET);
 
         if (newUser.activationCode !== activationCode) {
             return res.status(400).json({
@@ -133,7 +132,7 @@ const activateUser = async (req, res) => {
             email: email,
             password: password
         });
-        const { accessToken: authToken, refreshToken } = sendToken(getUser, res);
+        const { accessToken: authToken, refreshToken } = sendToken(user, res);
         return res.status(200).json({
             success: true,
             message: 'User Created successfully',

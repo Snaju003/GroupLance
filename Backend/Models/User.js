@@ -54,7 +54,7 @@ const UserSchema = new Schema({
         type: String,
         default: Date.now
     },
-    groups: [{ type: Object }],
+    groups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'group' }],
     profile_pic: {
         type: String,
     },

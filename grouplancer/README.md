@@ -21,10 +21,6 @@ Pass data from body
   ](pass domains in array form),
   "publicGroup": (boolean value),
   "anyoneCanJoin": (boolean value),
-  "groupMembers": [
-    "<pass the members who are added while creating group>"(pass atleast one member as minimum one must join group while creating)
-  ],
-  "totalMemmber": (total number of members are in the group including leader)
 }
 DONE
 
@@ -59,7 +55,6 @@ Pass 'auth-token' in header (Take it from localstorage)
 
 Pass data from body
 {
-  "userId": "<pass userId of the user who is joining>",
   "groupId": "<pass group id>"
 }
 
