@@ -19,6 +19,9 @@ const Home = (props) => {
     }
   }
 
+ 
+ 
+
   return (
     <div style={{ backgroundColor: bgcolor }}>
       <div id="frontimage">
@@ -71,9 +74,9 @@ const Home = (props) => {
               <li style={{}}>Ad free</li>
               <li>Create only one group</li>
               <li>Create groups of only specified size</li>
-
-            </ul>
-            <button type="button" className="btn btn-outline-primary" style={{ color: "white", backgroundColor: "green", width: "140px", height: "50px", borderRadius: "10px", marginBottom: "300px", marginLeft: "70px" }}>free</button>
+             
+            </ui>
+          <button type="button" class="btn btn-outline-primary"  style={{color:"white",backgroundColor:"green",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>free</button>
           </div>
           <div className="card-body">
 
@@ -88,9 +91,9 @@ const Home = (props) => {
               <li style={{ listStyle: "inherit" }}>Ad free</li>
               <li>Create multiple groups</li>
               <li>Create groups of any size</li>
-
-            </ul>
-            <button type="button" className="btn btn-outline-primary" style={{ color: "white", backgroundColor: "brown", width: "140px", height: "50px", borderRadius: "10px", marginBottom: "300px", marginLeft: "70px" }}>premiun</button>
+              
+            </ui>
+          <button type="button"  class="btn btn-outline-primary"  style={{color:"white",backgroundColor:"brown",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>premiun</button>
           </div>
           <div className="card-body">
 
@@ -107,8 +110,8 @@ const Home = (props) => {
               <li>Create groups of any size</li>
               <li>Invite top users to your group</li>
               <li>Send requests to top users</li>
-            </ul>
-            <button type="button" className="btn btn-outline-primary" style={{ color: "white", backgroundColor: "#3d300c", width: "140px", height: "40px", borderRadius: "10px", marginTop: "0px", marginLeft: "80px", justifyContent: "center" }}>deluxe</button>
+            </ui>
+          <button type="button" class="btn btn-outline-primary" style={{color:"white",backgroundColor:"#3d300c",width:"140px",height:"40px",borderRadius:"10px",marginTop:"0px",marginLeft:"80px",justifyContent:"center"}}>deluxe</button>
           </div>
           <div className="card-body">
 
