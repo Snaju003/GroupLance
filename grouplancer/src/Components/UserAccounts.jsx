@@ -62,7 +62,7 @@ const UserAccounts = () => {
 
   return (
     <>
-      <button className="btn btn-outline-success mx-2" type="submit"  style={{float:"right",marginRight:"150x",padding:"10px",marginTop:"15px"}} onClick={handleLogout}>Logout</button>
+      <button className="btn btn-outline-success mx-2" type="submit"  style={{color:"white",float:"right",marginRight:"150x",padding:"10px",marginTop:"15px",backgroundImage: "linear-gradient( to bottom , purple,blue "}} onClick={handleLogout}>Logout</button>
       <div className="container" style={{ display: "flex", marginTop: "30px" }}>
         <img
           src="./default-user.jpg"
@@ -98,7 +98,7 @@ const UserAccounts = () => {
               alignItems: "center",
             }}
           >
-            <button type="submit" className="btn btn-primary">
+            <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}}type="submit" className="btn btn-primary">
               Edit
             </button>
           </div>
@@ -108,7 +108,7 @@ const UserAccounts = () => {
       <button
         type="submit"
         className="btn btn-primary mt-3"
-        style={{ marginLeft: "320px" }}
+        style={{ backgroundImage: "linear-gradient( to bottom , purple,blue ",marginLeft: "300px" }}
       >
         Add your image
       </button>
@@ -124,7 +124,7 @@ const UserAccounts = () => {
               <p className="card-text">
                 Rating Score: 4.9⭐
               </p>
-              <button href="#" className="btn btn-primary">
+              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
                 Go to Rankings
               </button>
             </div>
@@ -140,7 +140,7 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button href="#" className="btn btn-primary">
+              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
                 Add Skills
               </button>
             </div>
@@ -158,7 +158,7 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button href="#" className="btn btn-primary">
+              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
                 Add Experience
               </button>
             </div>
@@ -174,7 +174,7 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button href="#" className="btn btn-primary">
+              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
                 Add Education
               </button>
             </div>
