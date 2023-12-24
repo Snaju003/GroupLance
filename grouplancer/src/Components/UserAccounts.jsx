@@ -110,7 +110,7 @@ const UserAccounts = () => {
         className="btn btn-primary mt-3"
         style={{ marginLeft: "320px" }}
       >
-        Add image
+        Add your image
       </button>
       
       <div className="row" style={{ margin: "10vh 8vw" }}>
