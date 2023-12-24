@@ -93,7 +93,7 @@ const Home = (props) => {
               <li>Create groups of any size</li>
               
             </ul>
-          <button type="button"  class="btn btn-outline-primary"  style={{color:"white",backgroundColor:"brown",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>premiun</button>
+          <button type="button"  class="btn btn-outline-primary"  style={{color:"white",backgroundColor:"brown",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>premium</button>
           </div>
           <div className="card-body">
 
