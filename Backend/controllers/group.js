@@ -287,7 +287,6 @@ const addMember = async (req, res) => {
         const { userId, groupId } = req.body;
         const leaderId = req.user;
         const existsGroup = await GroupModel.findById(groupId);
-        console.log(existsGroup.leader, leaderId);
         if (!existsGroup || existsGroup.leader.toString() !== leaderId) {
             return res.status(400).json({
                 success: false,
