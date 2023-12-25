@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations on Creating a Group</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #172940;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #a2b5cd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgb(0, 0, 0);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h2>Congratulations! Your Group has been Created</h2>
+        </div>
+
+        <div class="content">
+            <p>Dear <%= leader %>,</p>
+
+            <p>Congratulations! Your group "<%= group.gName %>" has been successfully created. Here are the details of your new
+                group:</p>
+
+            <ul>
+                <li><strong>Group Name:</strong> <%= group.gName %></li>
+                <li><strong>Project Name:</strong> <%= group.projName %></li>
+                <li><strong>Main Goal:</strong> <%= group.goal %></li>
+                <li><strong>Domain:</strong> <%= domains %></li>
+                <li><strong>Group Type:</strong> <%= groupType %></li>
+                <li><strong>Who Can Join:</strong> <%= whoCanJoin %></li>
+            </ul>
+
+            <p>Thank you for using our platform. If you have any questions or need further assistance, feel free to
+                contact us.</p>
+
+            <p>Best regards,<br>Grouplancer</p>
+        </div>
+
+        <div class="footer">
+            <p>This is an automated email. Please do not reply to this message.</p>
+        </div>
+    </div>
+</body>
+
+</html>

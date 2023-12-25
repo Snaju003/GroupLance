@@ -8,8 +8,8 @@ const AboutUs = (props) => {
         About Us
       </h1>
 
-      <div className="container my-4" display="flex" alignItems="center">
-        <div classname="row">
+      <div className="container my-4" display="flex" alignitems="center">
+        <div className="row">
           <div
             style={{
               backgroundImage: "url(/aboutUs.jpg)",
@@ -23,9 +23,9 @@ const AboutUs = (props) => {
               borderRadius: "20px",
             }}
             alt="image not yet ready"
-            srcset=" "
+            srcSet=" "
           >
-            <div style={{ alignItems: "center" }}>
+            <div style={{ alignitems: "center" }}>
               <h1
                 style={{
                   color: "#ffff",
@@ -141,10 +141,10 @@ const AboutUs = (props) => {
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-4">
+        <div className="row">
+          <div className="col-sm-4">
             <div
-              class="card"
+              className="card"
               style={{
                 marginTop: "5%",
                 flexDirection: "column",
@@ -156,7 +156,7 @@ const AboutUs = (props) => {
               }}
             >
               <div
-                class="card-body"
+                className="card-body"
                 style={{ backgroundColor: "white", borderRadius: "20px" }}
               >
                 <img
@@ -170,14 +170,14 @@ const AboutUs = (props) => {
                   alt="profile"
                   className="imaging"
                 />
-                <h5 class="card-title">Name</h5>
-                <p class="card-text">Description</p>
+                <h5 className="card-title">Name</h5>
+                <p className="card-text">Description</p>
               </div>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <div
-              class="card"
+              className="card"
               style={{
                 marginTop: "5%",
                 flexDirection: "column",
@@ -189,7 +189,7 @@ const AboutUs = (props) => {
               }}
             >
               <div
-                class="card-body"
+                className="card-body"
                 style={{ backgroundColor: "white", borderRadius: "20px" }}
               >
                 <img
@@ -203,14 +203,14 @@ const AboutUs = (props) => {
                   alt="profile"
                   className="imaging"
                 />
-                <h5 class="card-title">Name</h5>
-                <p class="card-text">Description</p>
+                <h5 className="card-title">Name</h5>
+                <p className="card-text">Description</p>
               </div>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <div
-              class="card"
+              className="card"
               style={{
                 marginTop: "5%",
                 flexDirection: "column",
@@ -222,7 +222,7 @@ const AboutUs = (props) => {
               }}
             >
               <div
-                class="card-body"
+                className="card-body"
                 style={{ backgroundColor: "white", borderRadius: "20px" }}
               >
                 <img
@@ -236,14 +236,14 @@ const AboutUs = (props) => {
                   alt="profile"
                   className="imaging"
                 />
-                <h5 class="card-title">Name</h5>
-                <p class="card-text">Description</p>
+                <h5 className="card-title">Name</h5>
+                <p className="card-text">Description</p>
               </div>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <div
-              class="card"
+              className="card"
               style={{
                 marginTop: "5%",
                 flexDirection: "column",
@@ -255,7 +255,7 @@ const AboutUs = (props) => {
               }}
             >
               <div
-                class="card-body"
+                className="card-body"
                 style={{ backgroundColor: "white", borderRadius: "20px" }}
               >
                 <img
@@ -269,14 +269,14 @@ const AboutUs = (props) => {
                   alt="profile"
                   className="imaging"
                 />
-                <h5 class="card-title">Name</h5>
-                <p class="card-text">Description</p>
+                <h5 className="card-title">Name</h5>
+                <p className="card-text">Description</p>
               </div>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <div
-              class="card"
+              className="card"
               style={{
                 marginTop: "5%",
                 flexDirection: "column",
@@ -288,7 +288,7 @@ const AboutUs = (props) => {
               }}
             >
               <div
-                class="card-body"
+                className="card-body"
                 style={{ backgroundColor: "white", borderRadius: "20px" }}
               >
                 <img
@@ -302,14 +302,14 @@ const AboutUs = (props) => {
                   alt="profile"
                   className="imaging"
                 />
-                <h5 class="card-title">Name</h5>
-                <p class="card-text">Description</p>
+                <h5 className="card-title">Name</h5>
+                <p className="card-text">Description</p>
               </div>
             </div>
           </div>
-          <div class="col-sm-4">
+          <div className="col-sm-4">
             <div
-              class="card"
+              className="card"
               style={{
                 marginTop: "5%",
                 flexDirection: "column",
@@ -321,7 +321,7 @@ const AboutUs = (props) => {
               }}
             >
               <div
-                class="card-body"
+                className="card-body"
                 style={{ backgroundColor: "white", borderRadius: "20px" }}
               >
                 <img
@@ -335,8 +335,8 @@ const AboutUs = (props) => {
                   alt="profile"
                   className="imaging"
                 />
-                <h5 class="card-title">Name</h5>
-                <p class="card-text">Description</p>
+                <h5 className="card-title">Name</h5>
+                <p className="card-text">Description</p>
               </div>
             </div>
           </div>

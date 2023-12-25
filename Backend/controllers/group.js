@@ -1,7 +1,7 @@
 const GroupModel = require("../models/Group");
 const UserModel = require("../models/User");
-// const ejs = require('ejs');
-// const path = require('path');
+const ejs = require('ejs');
+const path = require('path');
 const sendMail = require("../utils/sendmail");
 
 
@@ -25,8 +25,8 @@ const createGroup = async (req, res) => {
             });
 
         }
-        const existingLeader = await GroupModel.findOne({ leader: leader });
-        if (existingLeader) {
+        const existingLeader = await GroupModel.find({ leader: leader });
+        if (existingLeader.length > 2) {
             return res.status(400).json({
                 success: false,
                 message: `Couldn't create another group`
@@ -62,20 +62,50 @@ const createGroup = async (req, res) => {
             members: members,
         };
         const newGroup = await GroupModel.create(data);
+        if (!newGroup) {
+            return res.status(400).json({
+                success: false,
+                message: 'Failed to create new group due to some error occured on DB',
+            });
+        }
         for (let i = 0; i < members.length; i++) {
             await UserModel.findByIdAndUpdate(members[i], { "$push": { groups: newGroup._id } });
         }
-        if (newGroup) {
+
+        const leaderName = await UserModel.findById(leader);
+        const mailData = {
+            leader: leaderName.name,
+            group: newGroup,
+            domains: domains.toString(),
+            groupType: publicGroup ? 'Public' : 'Private',
+            whoCanJoin: anyoneCanJoin ? 'Anyone can join' : 'Join with invitation'
+        };
+
+        try {
+            await sendMail({
+                email: leaderName.email,
+                subject: 'Group Creation Mail',
+                template: 'create_group_mail.ejs',
+                data: mailData
+            });
+
             return res.status(200).json({
                 success: true,
-                message: 'New group created',
-                newGroup
+                message: `New group created. Group creation mail sent to ${leaderName.email}`,
+                newGroup,
+            });
+        } catch (error) {
+            return res.status(401).json({
+                success: false,
+                message: 'Failed to send message'
             });
         }
     } catch (error) {
+        console.log(error);
         res.status(500).json({
             successs: false,
             message: 'Internal server error',
+            error
         });
     }
 }

@@ -6,7 +6,7 @@ const CreateGroup = () => {
   const [domain, setDomain] = useState("General");
   const [gType, setGType] = useState("Public");
   const [whoCanJoin, setWhoCanJoin] = useState("Anyone can join");
-  const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: "", groupType: "", whoCanJoin: "", groupMembers: "" });
+  const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: domain, groupType: gType, whoCanJoin: whoCanJoin, groupMembers: "" });
   const { currentUser } = useUser();
   const navigate = useNavigate();
   useEffect(() => {
@@ -29,6 +29,7 @@ const CreateGroup = () => {
       });
       const json = await response.json();
       console.log(json);
+      setCredentials({});
     } catch (error) {
       console.log(error);
     }
@@ -95,7 +96,7 @@ const CreateGroup = () => {
             >
               Select Domain
             </button>
-            <ul className="dropdown-menu">
+            <ul className="dropdown-menu" onChange={onchange}>
               <option
                 className="dropdown-item"
                 value="general"
