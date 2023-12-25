@@ -41,21 +41,21 @@
 <body>
     <div class="email-container">
         <div class="header">
-            <h2>Welcome to [GroupName]!</h2>
+            <h2>Welcome to <%= group.gName %>!</h2>
         </div>
 
         <div class="content">
-            <p>Dear [UserName],</p>
+            <p>Dear <%= user.name %>,</p>
 
-            <p>Your request to join the group "[GroupName]" has been accepted. You are now a member of the group!</p>
+            <p>Your request to join the group "<%= group.gName %>" has been accepted. You are now a member of the group!</p>
 
             <p>Here are some details about the group:</p>
 
             <ul>
-                <li><strong>Group Name:</strong> [GroupName]</li>
-                <li><strong>Leader:</strong> [LeaderName]</li>
-                <li><strong>Group Type:</strong> [GroupType]</li>
-                <li><strong>Who Can Join:</strong> [WhoCanJoin]</li>
+                <li><strong>Group Name:</strong> <%= group.gName %></li>
+                <li><strong>Leader:</strong> <%= group.gName %></li>
+                <li><strong>Group Description:</strong> <%= group.gDesc %></li>
+                <li><strong>Main Goal:</strong> <%= group.goal %></li>
             </ul>
 
             <p>Feel free to start participating in group activities and discussions. If you have any questions or need

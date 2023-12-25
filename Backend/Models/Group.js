@@ -39,6 +39,7 @@ const GroupSchema = new Schema({
         required: true,
     },
     members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
+    pendingRequest: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
 }, { timestamps: true });
 
 const GroupModel = mongoose.model('group', GroupSchema);

@@ -54,19 +54,18 @@
         </div>
 
         <div class="content">
-            <p>Dear [LeaderName],</p>
+            <p>Dear <%= leader %>,</p>
 
-            <p>[UserName] has requested to join your group "[GroupName]". Here are the details of the user:</p>
+            <p><%= user.name %> has requested to join your group "<%= group.gName %>". Here are the details of the user:</p>
 
             <ul>
-                <li><strong>User Name:</strong> [UserName]</li>
-                <li><strong>Email:</strong> [UserEmail]</li>
-                <li><strong>Additional Information:</strong> [AdditionalInfo]</li>
+                <li><strong>User Name:</strong> <%= user.name %></li>
+                <li><strong>Email:</strong> <%= user.email %></li>
             </ul>
 
             <p>Click the button below to accept the invitation:</p>
 
-            <a class="cta-button" href="[AcceptInviteLink]">Accept Invitation</a>
+            <a class="cta-button" href="<%= invitationLink %>">Accept Invitation</a>
 
             <p>If you have any questions or need further information, feel free to contact us.</p>
 

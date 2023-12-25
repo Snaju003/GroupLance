@@ -125,3 +125,23 @@ Pass data from body
     "gDesc": "A group for developing softwares"
   }
 }
+
+# Send Join request mail
+
+URL: localhost:8080/api/group/join-request (POST Request)
+Pass 'auth-token' in header (Take it from localstorage)
+
+{
+  "groupId":"<pass group id>",
+  "invitationLink":"<send accept/reject the request link>"
+}
+
+# Accept join request mail
+
+URL: localhost:8080/api/group/add-member (PUT Request)
+Pass 'auth-token' in header (Take it from localstorage)
+
+{
+  "userId": "<pass the userId who will join>",
+  "groupId": "<pass group id>"
+}

@@ -110,6 +110,58 @@ const createGroup = async (req, res) => {
     }
 }
 
+const joinRequest = async (req, res) => {
+    try {
+        const userId = req.user;
+        const { groupId, invitationLink } = req.body;
+        const existsUser = await UserModel.findById(userId);
+        const existGroup = await GroupModel.findById(groupId).populate({ path: 'leader', select: 'name email' });
+        console.log(existGroup);
+        if (!existGroup) {
+            return res.status(400).json({
+                success: false,
+                message: 'No group exists with this Id'
+            });
+        }
+        let isMemberExistsInGroup = false;
+        for (let i = 0; i < existGroup.members.length; i++) {
+            if (existGroup.members[i].toString() === userId) {
+                isMemberExistsInGroup = true;
+            }
+        }
+        await GroupModel.findByIdAndUpdate(groupId, { $push: { pendingRequest: userId } });
+        const data = {
+            user: existsUser,
+            leader: existGroup.leader.name,
+            group: existGroup,
+            invitationLink,
+        };
+        try {
+            await sendMail({
+                email: existGroup.leader.email,
+                subject: 'Group Join Request',
+                template: 'join_request_mail.ejs',
+                data
+            });
+            return res.status(200).json({
+                success: true,
+                message: `Invitation mail sent to ${existGroup.leader.email}`,
+            });
+        } catch (error) {
+            return res.status(400).json({
+                success: false,
+                message: 'Failed to send message',
+                error
+            });
+        }
+    } catch (error) {
+        res.status(500).json({
+            successs: false,
+            message: 'Internal server error'
+        });
+    }
+}
+
 const inviteMember = async (req, res) => {
     try {
 
@@ -223,6 +275,70 @@ const joinGroup = async (req, res) => {
             message: 'User added to the group successfully'
         });
     } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+}
+
+const addMember = async (req, res) => {
+    try {
+        const { userId, groupId } = req.body;
+        const leaderId = req.user;
+        const existsGroup = await GroupModel.findById(groupId);
+        console.log(existsGroup.leader, leaderId);
+        if (!existsGroup || existsGroup.leader.toString() !== leaderId) {
+            return res.status(400).json({
+                success: false,
+                message: `Group couldn't find or only leader can change`
+            });
+        }
+        const existsUser = await UserModel.findById(userId);
+        if (!existsUser) {
+            return res.status(400).json({
+                success: false,
+                message: `User doesn't exists`
+            });
+        }
+        let isMemberExistsInGroup = false;
+        for (let i = 0; i < existsGroup.members.length; i++) {
+            if (existsGroup.members[i].toString() === userId) {
+                isMemberExistsInGroup = true;
+            }
+        }
+        if (isMemberExistsInGroup) {
+            return res.status(400).json({
+                success: false,
+                message: 'User already in group'
+            });
+        }
+        await UserModel.findByIdAndUpdate(userId, { $push: { groups: groupId } });
+        await GroupModel.findByIdAndUpdate(groupId, { $inc: { gMemberNumber: 1 }, $push: { members: userId }, $pull: { pendingRequest: userId } });
+        const data = {
+            user: existsUser,
+            group: existsGroup,
+        };
+        try {
+            await sendMail({
+                email: existsUser.email,
+                subject: 'Accept Group Join Request',
+                template: 'accept_invite_mail.ejs',
+                data
+            });
+            return res.status(200).json({
+                success: true,
+                message: `Acceptation mail sent to ${existsUser.email}`,
+            });
+        } catch (error) {
+            return res.status(400).json({
+                success: false,
+                message: 'Failed to send message',
+                error
+            });
+        }
+    } catch (error) {
+        console.log(error);
         return res.status(500).json({
             success: false,
             message: 'Internal server error'
@@ -386,11 +502,15 @@ const getGroupInfo = async (req, res) => {
     }
 }
 
+
+
 module.exports = {
     createGroup,
+    joinRequest,
     inviteMember,
     editGroupInfo,
     joinGroup,
+    addMember,
     removeMember,
     deleteGroup,
     getAllGroups,
