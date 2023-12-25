@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import MyGroup from './Mygroup';
 
 const MyGroups = () => {
-    const title = "hello";
-    const description = "world";
     const color = "#dfdffb";
     const [myGroups, setMyGroups] = useState([]);
 

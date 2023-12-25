@@ -167,7 +167,7 @@ const AboutUs = (props) => {
                     paddingRight: "20px",
                   }}
                   src="./profile.jpg"
-                  alt="image"
+                  alt="profile"
                   className="imaging"
                 />
                 <h5 class="card-title">Name</h5>
@@ -200,7 +200,7 @@ const AboutUs = (props) => {
                     paddingRight: "20px",
                   }}
                   src="./profile.jpg"
-                  alt="image"
+                  alt="profile"
                   className="imaging"
                 />
                 <h5 class="card-title">Name</h5>
@@ -233,7 +233,7 @@ const AboutUs = (props) => {
                     paddingRight: "20px",
                   }}
                   src="./profile.jpg"
-                  alt="image"
+                  alt="profile"
                   className="imaging"
                 />
                 <h5 class="card-title">Name</h5>
@@ -266,7 +266,7 @@ const AboutUs = (props) => {
                     paddingRight: "20px",
                   }}
                   src="./profile.jpg"
-                  alt="image"
+                  alt="profile"
                   className="imaging"
                 />
                 <h5 class="card-title">Name</h5>
@@ -299,7 +299,7 @@ const AboutUs = (props) => {
                     paddingRight: "20px",
                   }}
                   src="./profile.jpg"
-                  alt="image"
+                  alt="profile"
                   className="imaging"
                 />
                 <h5 class="card-title">Name</h5>
@@ -332,7 +332,7 @@ const AboutUs = (props) => {
                     paddingRight: "20px",
                   }}
                   src="./profile.jpg"
-                  alt="image"
+                  alt="profile"
                   className="imaging"
                 />
                 <h5 class="card-title">Name</h5>

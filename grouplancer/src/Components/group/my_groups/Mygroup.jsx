@@ -1,5 +1,4 @@
-import React from 'react'
-import { useUser } from "../context/UserContext";
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MyGroup = ({ color, data }) => {

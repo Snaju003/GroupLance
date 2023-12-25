@@ -1,21 +1,21 @@
 import React from 'react'
-import { useUser } from "../context/UserContext";
+import { useUser } from "../../../context/UserContext";
 
 const TopGroup = (props) => {
     let { title, description, color } = props;
-    const {currentUser} = useUser()
+    const { currentUser } = useUser()
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch("http://localhost:8080/api/group/join-group", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": localStorage.getItem('auth-token'),
-          },
-          body: JSON.stringify({ userId: currentUser, groupId: e.target.id }),
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem('auth-token'),
+            },
+            body: JSON.stringify({ userId: currentUser, groupId: e.target.id }),
         });
-        const json = await response.json();
-
+        const data = await response.json();
+        console.log(data);
     }
     return (
         <>

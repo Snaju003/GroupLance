@@ -1,6 +1,6 @@
 import React from "react";
 import About from "./About";
-import { useUser } from "../context/UserContext";
+import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 

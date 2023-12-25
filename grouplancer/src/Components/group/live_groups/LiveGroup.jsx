@@ -1,5 +1,4 @@
-import React from 'react'
-import { useUser } from "../context/UserContext";
+import React from 'react';
 
 const LiveGroup = ({color,title,description,id,canJoin}) => {
     const liveGroup = async (e) => {

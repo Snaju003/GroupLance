@@ -1,7 +1,6 @@
 import React from "react";
 
 const About = (props) => {
-  const { cardcolor } = props;
   return (
     <>
       <div className="container">

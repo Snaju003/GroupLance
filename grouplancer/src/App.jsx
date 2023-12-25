@@ -1,29 +1,24 @@
 import './App.css';
-import AboutUs from './Components/AboutUs';
-import CreateGroup from './Components/CreateGroup';
-import Footer from './Components/Footer';
-import Header from './Components/Header';
-import Home from './Components/Home';
-import JoinedGroups from './Components/JoinedGroups';
-import LiveGroups from './Components/LiveGroups';
-import Login from './Components/Login';
-import Navbar from './Components/Navbar';
-import Signup from './Components/Signup';
-import Jobs from './Components/Jobs';
-
-// import Recruit from './Components/Recruit';
-
-
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ChatBox from './Components/ChatBox/ChatBox';
-import Recruits from './Components/Recruits';
-import UserAccounts from './Components/UserAccounts';
-import Groups from './Components/Groups';
 import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useUser } from './context/UserContext';
-import MyGroups from './Components/Mygroups';
-import TopGroups from './Components/Topgroups';
+import Header from './Components/general/Header';
+import Navbar from './Components/general/Navbar';
+import Footer from './Components/general/footer/Footer';
+import Login from './Components/auth/Login';
+import Signup from './Components/auth/Signup';
+import UserAccounts from './Components/auth/UserAccounts';
+import Home from './Components/features/Home';
+import AboutUs from './Components/features/AboutUs';
+import Groups from './Components/group/Groups';
+import CreateGroup from './Components/group/CreateGroup';
+import MyGroups from './Components/group/my_groups/Mygroups';
+import JoinedGroups from './Components/group/joined_groups/JoinedGroups';
+import LiveGroups from './Components/group/live_groups/LiveGroups';
+import TopGroups from './Components/group/top_groups/Topgroups';
+import Recruits from './Components/group/top_grouplancers/Recruits';
+import Jobs from './Components/Jobs';
+import ChatBox from './Components/ChatBox/ChatBox';
 
 function App() {
   const bgcolor = "#0f054c";

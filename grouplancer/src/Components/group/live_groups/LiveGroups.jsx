@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import JoinedGroup from './JoinedGroup';
-import { useUser } from "../context/UserContext";
+import LiveGroup from './LiveGroup';
+import { useUser } from "../../../context/UserContext";
 import { useNavigate } from 'react-router-dom';
 
-const JoinedGroups = () => {
+const LiveGroups = () => {
     const color = "#dfdffb";
-    const [groupData, setGroupData] = useState([]);
+    const [liveGroupData, setLiveGroupData] = useState([]);
     const navigate = useNavigate()
     const { currentUser } = useUser();
     useEffect(() => {
         if (!currentUser)
             navigate("/login")
         else {
-            const fetchJoinedGroup = async () => {
+            const getAllGroups = async () => {
                 try {
                     const authToken = localStorage.getItem("auth-token");
                     const response = await fetch(
-                        `http://localhost:8080/api/user/get-joined-groups`,
+                        `http://localhost:8080/api/group/get-all-groups`,
                         {
                             method: "GET",
                             headers: {
@@ -26,33 +26,35 @@ const JoinedGroups = () => {
                         }
                     );
                     const data = await response.json();
-                    // console.log(data.joinedGroups);
-                    setGroupData(data.joinedGroups)
+                    // console.log(data)
+                    setLiveGroupData(data.groups)
                 } catch (error) {
                     console.error(error);
                 }
             }
-            fetchJoinedGroup()
+            getAllGroups()
         }
     }, [currentUser, navigate])
     return (
         <>
-            <h1 className='text-center my-4' style={{ color: '#ffff' }}>Joined Groups</h1>
+            <h1 className='text-center my-4' style={{ color: '#ffff' }}>Live Groups</h1>
             <div className="container">
                 <div className="container row">
-
                     {
-                        groupData.map(({ _id, gName, gDesc }) => {
+                        liveGroupData.map(({ _id, gName, gDesc, anyoneCanJoin }) => {
                             return (
                                 <div className="col-md-3 mb-3" key={_id}>
-                                    <JoinedGroup id={_id} name={gName} desc={gDesc} color={color} />
-                                </div>)
-                        })
+                                    <LiveGroup id={_id} title={gName} description={gDesc} canJoin={anyoneCanJoin} color={color} />
+                                </div>
+                            )
+                        }
+
+                        )
                     }
                 </div>
-            </div >
+            </div>
         </>
     )
 }
 
-export default JoinedGroups;
+export default LiveGroups;
