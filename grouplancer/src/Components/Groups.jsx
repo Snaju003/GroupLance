@@ -116,7 +116,7 @@ const Groups = () => {
                         paddingRight: "20px",
                       }}
                       // src={member.profileImageUrl}
-                      alt="image"
+                      alt="profile"
                       className="imaging"
                     />
                     <h5 className="card-title">{name}</h5>

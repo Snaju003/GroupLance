@@ -38,7 +38,7 @@ const Home = (props) => {
         >
           Find and Connect with like-minded individuals and create or join groups effortlessly, online.
         </p>
-        <p
+        <div
           style={{
             color: "white",
             width: "400px",
@@ -54,7 +54,7 @@ const Home = (props) => {
             <li>Secure, Global Community Connections</li>
             <li>Chat And Connect With Others</li>
           </ul>
-        </p>
+        </div>
         <button type="submit" className="community" onChange={handleClick}>
           Join the community
         </button>
@@ -76,7 +76,7 @@ const Home = (props) => {
               <li>Create groups of only specified size</li>
              
             </ul>
-          <button type="button" class="btn btn-outline-primary"  style={{color:"white",backgroundColor:"green",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>free</button>
+          <button type="button" className="btn btn-outline-primary"  style={{color:"white",backgroundColor:"green",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>free</button>
           </div>
           <div className="card-body">
 
@@ -93,7 +93,7 @@ const Home = (props) => {
               <li>Create groups of any size</li>
               
             </ul>
-          <button type="button"  class="btn btn-outline-primary"  style={{color:"white",backgroundColor:"brown",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>premium</button>
+          <button type="button"  className="btn btn-outline-primary"  style={{color:"white",backgroundColor:"brown",width:"140px",height:"50px",borderRadius:"10px",marginBottom:"300px",marginLeft:"70px"}}>premium</button>
           </div>
           <div className="card-body">
 
@@ -111,7 +111,7 @@ const Home = (props) => {
               <li>Invite top users to your group</li>
               <li>Send requests to top users</li>
             </ul>
-          <button type="button" class="btn btn-outline-primary" style={{color:"white",backgroundColor:"#3d300c",width:"140px",height:"40px",borderRadius:"10px",marginTop:"0px",marginLeft:"80px",justifyContent:"center"}}>deluxe</button>
+          <button type="button" className="btn btn-outline-primary" style={{color:"white",backgroundColor:"#3d300c",width:"140px",height:"40px",borderRadius:"10px",marginTop:"0px",marginLeft:"80px",justifyContent:"center"}}>deluxe</button>
           </div>
           <div className="card-body">
 
