@@ -63,6 +63,20 @@ const Groups = () => {
     }
   };
 
+  const deleteGroup = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:8080/api/group/delete-group", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem('auth-token'),
+      },
+      body: JSON.stringify({ groupId: groupDetails._id }),
+    });
+    const json = await response.json();
+    console.log(json)
+}
+
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -85,6 +99,7 @@ const Groups = () => {
           <button
             className="btn btn-outline-success mx-2"
             type="submit"
+            onClick={deleteGroup}
             style={{
               color: "white",
               marginLeft: "auto",

@@ -80,7 +80,7 @@ Pass data from body
 {
   "groupId":"<pass group id>"
 }
-
+DONE
 
 # Fetch all groups
 
