@@ -66,7 +66,9 @@ const Groups = () => {
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
-
+  const isGroupLeader = () => {
+    return groupDetails.leader === currentUser._id;
+  };
   return (
     <>
       <div
@@ -79,19 +81,20 @@ const Groups = () => {
         <h1 className="text-center my-4" style={{ color: "#ffff",margin:"auto" }}>
           {groupDetails.gName}
         </h1>
-        <button
-          className="btn btn-outline-success mx-2"
-          type="submit"
-          style={{
-            color: "white",
-            marginLeft: "auto",
-            padding: "10px",
-           
-            backgroundImage: "linear-gradient( to bottom , purple,blue )",
-          }}
-        >
-          Delete Group
-        </button>
+        {isGroupLeader() && (
+          <button
+            className="btn btn-outline-success mx-2"
+            type="submit"
+            style={{
+              color: "white",
+              marginLeft: "auto",
+              padding: "10px",
+              backgroundImage: "linear-gradient( to bottom , purple,blue )",
+            }}
+          >
+            Delete Group
+          </button>
+        )}
       </div>
 
       <div style={{ alignItems: "center" }}>
@@ -127,13 +130,14 @@ const Groups = () => {
               alignItems: "center",
             }}
           >
-            <button
+            {isGroupLeader() && (<button
               type="submit"
               className="btn btn-primary"
               style={{ marginBottom: "3vh" }}
+              
             >
               Edit
-            </button>
+            </button>)}
           </div>
         </div>
       </div>
@@ -182,19 +186,19 @@ const Groups = () => {
                   />
                   <h5 className="card-title">{name}</h5>
                   <p className="card-text">{email}</p>
-                  <button
+                  {isGroupLeader() &&(<button
                     type="submit"
                     className="btn btn-primary"
                     style={{ marginTop: "3vh" }}
                   >
                     Remove
-                  </button>
+                  </button>)}
                 </div>
               </div>
             </div>
           ))}
           <div class="col-sm-4">
-            <div
+          {isGroupLeader() &&(<div
               class="card"
               style={{
                 marginTop: "5%",
@@ -229,7 +233,7 @@ const Groups = () => {
                   Send Invite
                 </button>
               </div>
-            </div>
+            </div>)}
           </div>
         </div>
       </div>
