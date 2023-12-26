@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../context/UserContext";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 
 const Groups = () => {
   const [credentials, setCredentials] = useState({ email: "" });
   const [groupDetails, setGroupDetails] = useState({});
   const [members, setMembers] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { currentUser } = useUser();
   const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const authToken = localStorage.getItem("auth-token");
-        const response = await fetch(`http://localhost:8080/api/group/get-group-details/${id}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": authToken,
-          },
-        });
+        const response = await fetch(
+          `http://localhost:8080/api/group/get-group-details/${id}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token": authToken,
+            },
+          }
+        );
         const data = await response.json();
         console.log(data.group);
         setGroupDetails(data.group);
@@ -34,25 +37,26 @@ const Groups = () => {
   const inviteMember = async () => {
     try {
       const authToken = localStorage.getItem("auth-token");
-      const response = await fetch(`http://localhost:8080/api/group/invite-members`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": authToken,
-        },
-        body: JSON.stringify(
-          {
+      const response = await fetch(
+        `http://localhost:8080/api/group/invite-members`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+          body: JSON.stringify({
             invitedUserMail: credentials.email,
-            "invitationLink": "<give invitation link>",
+            invitationLink: "<give invitation link>",
             group: {
               id: id,
               name: groupDetails.gName,
-              desc: groupDetails.gDesc
+              desc: groupDetails.gDesc,
             },
-            inviterName: currentUser
-          }
-        )
-      });
+            inviterName: currentUser,
+          }),
+        }
+      );
       const data = await response.json();
     } catch (error) {
       console.error(error);
@@ -60,14 +64,36 @@ const Groups = () => {
   };
 
   const onchange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value })
-  }
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
   return (
     <>
-      <h1 className="text-center my-4" style={{ color: "#ffff" }}>
-        {groupDetails.gName}
-      </h1>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <h1 className="text-center my-4" style={{ color: "#ffff",margin:"auto" }}>
+          {groupDetails.gName}
+        </h1>
+        <button
+          className="btn btn-outline-success mx-2"
+          type="submit"
+          style={{
+            color: "white",
+            marginLeft: "auto",
+            padding: "10px",
+           
+            backgroundImage: "linear-gradient( to bottom , purple,blue )",
+          }}
+        >
+          Delete Group
+        </button>
+      </div>
+
       <div style={{ alignItems: "center" }}>
         <h1
           style={{
@@ -101,7 +127,11 @@ const Groups = () => {
               alignItems: "center",
             }}
           >
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              style={{ marginBottom: "3vh" }}
+            >
               Edit
             </button>
           </div>
@@ -121,44 +151,48 @@ const Groups = () => {
       </div>
       <div className="container my-4" display="flex" alignItems="center">
         <div className="row">
-
-          {
-            members.map(({ _id, name, email }) => (
-              <div className="col-sm-4" key={_id}>
+          {members.map(({ _id, name, email }) => (
+            <div className="col-sm-4" key={_id}>
+              <div
+                className="card"
+                style={{
+                  marginTop: "5%",
+                  flexDirection: "column",
+                  boxShadow: "0 0 10px 5px",
+                  borderRadius: "50px",
+                  display: "flex",
+                  width: "300px",
+                  height: "250px",
+                }}
+              >
                 <div
-                  className="card"
-                  style={{
-                    marginTop: "5%",
-                    flexDirection: "column",
-                    boxShadow: "0 0 10px 5px",
-                    borderRadius: "50px",
-                    display: "flex",
-                    width: "300px",
-                    height: "250px",
-                  }}
+                  className="card-body"
+                  style={{ backgroundColor: "white", borderRadius: "20px" }}
                 >
-                  <div
-                    className="card-body"
-                    style={{ backgroundColor: "white", borderRadius: "20px" }}
+                  <img
+                    style={{
+                      height: "100px",
+                      width: "200px",
+                      paddingLeft: "100px",
+                      paddingRight: "20px",
+                    }}
+                    // src={member.profileImageUrl}
+                    alt="profile"
+                    className="imaging"
+                  />
+                  <h5 className="card-title">{name}</h5>
+                  <p className="card-text">{email}</p>
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    style={{ marginTop: "3vh" }}
                   >
-                    <img
-                      style={{
-                        height: "100px",
-                        width: "200px",
-                        paddingLeft: "100px",
-                        paddingRight: "20px",
-                      }}
-                      // src={member.profileImageUrl}
-                      alt="profile"
-                      className="imaging"
-                    />
-                    <h5 className="card-title">{name}</h5>
-                    <p className="card-text">{email}</p>
-                  </div>
+                    Remove
+                  </button>
                 </div>
               </div>
-            ))
-          }
+            </div>
+          ))}
           <div class="col-sm-4">
             <div
               class="card"
@@ -191,7 +225,9 @@ const Groups = () => {
                     required
                   />
                 </div>
-                <button className="btn btn-primary" onSubmit={inviteMember}>Send Invite</button>
+                <button className="btn btn-primary" onSubmit={inviteMember}>
+                  Send Invite
+                </button>
               </div>
             </div>
           </div>

@@ -26,8 +26,9 @@ const LiveGroups = () => {
                         }
                     );
                     const data = await response.json();
-                    // console.log(data)
-                    setLiveGroupData(data.groups)
+                    const filteredGroups = data.groups.filter(group => group.leader !== currentUser._id);
+                    //console.log(filteredGroups)
+                    setLiveGroupData(filteredGroups);
                 } catch (error) {
                     console.error(error);
                 }
