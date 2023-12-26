@@ -57,7 +57,7 @@ Pass data from body
 {
   "groupId": "<pass group id>"
 }
-
+DONE
 
 # Remove member
 
@@ -86,19 +86,19 @@ Pass data from body
 
 URL: localhost:8080/api/group/get-all-groups (GET Request)
 Pass 'auth-token' in header (Take it from localstorage)
-
+DONE
 
 # Fetch joined groups
 
 URL: localhost:8080/api/user/get-joined-groups/<pass user id here> (GET Request)
 Pass 'auth-token' in header (Take it from localstorage)
-
+DONE
 
 # Get Group Info
 
 URL: localhost:8080/api/group/get-group-details/:id (GET Request)
 Pass 'auth-token' in header (Take it from localstorage) and pass group id in params
-
+DONE
 
 # Delete User
 

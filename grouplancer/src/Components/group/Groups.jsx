@@ -3,6 +3,7 @@ import { useUser } from "../../context/UserContext";
 import { useNavigate, useParams } from 'react-router-dom';
 
 const Groups = () => {
+  const [credentials, setCredentials] = useState({ email: "" });
   const [groupDetails, setGroupDetails] = useState({});
   const [members, setMembers] = useState([]);
   const navigate = useNavigate()
@@ -30,6 +31,38 @@ const Groups = () => {
     fetchData();
   }, [currentUser, navigate, id]);
 
+  const inviteMember = async () => {
+    try {
+      const authToken = localStorage.getItem("auth-token");
+      const response = await fetch(`http://localhost:8080/api/group/invite-members`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken,
+        },
+        body: JSON.stringify(
+          {
+            invitedUserMail: credentials.email,
+            "invitationLink": "<give invitation link>",
+            group: {
+              id: id,
+              name: groupDetails.gName,
+              desc: groupDetails.gDesc
+            },
+            inviterName: currentUser
+          }
+        )
+      });
+      const data = await response.json();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const onchange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value })
+  }
+
   return (
     <>
       <h1 className="text-center my-4" style={{ color: "#ffff" }}>
@@ -48,7 +81,7 @@ const Groups = () => {
         </h1>
       </div>
       <div className="container my-4" display="flex" alignItems="center">
-      <div
+        <div
           style={{
             marginTop: "30px",
             backgroundColor: "white",
@@ -73,7 +106,7 @@ const Groups = () => {
             </button>
           </div>
         </div>
-        </div>
+      </div>
       <div style={{ alignItems: "center" }}>
         <h1
           style={{
@@ -88,7 +121,7 @@ const Groups = () => {
       </div>
       <div className="container my-4" display="flex" alignItems="center">
         <div className="row">
-          
+
           {
             members.map(({ _id, name, email }) => (
               <div className="col-sm-4" key={_id}>
@@ -158,7 +191,7 @@ const Groups = () => {
                     required
                   />
                 </div>
-                <button className="btn btn-primary">Send Invite</button>
+                <button className="btn btn-primary" onSubmit={inviteMember}>Send Invite</button>
               </div>
             </div>
           </div>
