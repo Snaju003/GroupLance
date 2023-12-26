@@ -1,5 +1,4 @@
 import React from 'react'
-import { useUser } from "../../../context/UserContext";
 
 const TopGroup = (color,title,description,id,canJoin) => {
     const topGroup = async (e) => {
