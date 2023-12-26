@@ -9,7 +9,7 @@ const TopGroups = () => {
         <>
             <h1 className='text-center my-4' style={{ color: '#ffff' }}>Top Groups</h1>
             <div className="container">
-                <div className="container row">
+                <div className="container row" style={{flexDirection:"column"}}>
                     <div class="col-md-3 mb-3">
                         <TopGroup title={title} description={description} color={color} />
                     </div>
