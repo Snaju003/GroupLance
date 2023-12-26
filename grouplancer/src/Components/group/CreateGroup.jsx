@@ -30,6 +30,7 @@ const CreateGroup = () => {
       const json = await response.json();
       console.log(json);
       setCredentials({});
+      navigate("/")
     } catch (error) {
       console.log(error);
     }

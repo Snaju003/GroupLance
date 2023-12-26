@@ -101,7 +101,7 @@ const Groups = () => {
               alignItems: "center",
             }}
           >
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" style={{ marginBottom: "3vh" }}>
               Edit
             </button>
           </div>
@@ -154,6 +154,9 @@ const Groups = () => {
                     />
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">{email}</p>
+                    <button type="submit" className="btn btn-primary" style={{ marginTop: "3vh" }}>
+                      Remove
+                    </button>
                   </div>
                 </div>
               </div>
