@@ -75,6 +75,7 @@ const Groups = () => {
     });
     const json = await response.json();
     console.log(json)
+    navigate("/")
 }
 
   const onchange = (e) => {
