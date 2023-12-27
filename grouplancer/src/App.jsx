@@ -19,6 +19,7 @@ import TopGroups from './Components/group/top_groups/Topgroups';
 import Recruits from './Components/group/top_grouplancers/Recruits';
 import Jobs from './Components/Jobs';
 import ChatBox from './Components/ChatBox/ChatBox';
+import GroupsInvite from './Components/group/group_invite/groupsinvite';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -87,6 +88,7 @@ function App() {
           <Route exact path='/Mygroups' element={<MyGroups />} />
           <Route exact path='/creategroup' element={<CreateGroup />} />
           <Route exact path='/joinedgroups' element={<JoinedGroups />} />
+          <Route exact path='/groupinvite' element={<GroupsInvite />} />
           <Route exact path='/findjob' element={<Jobs />} />
           <Route exact path='/recruit' element={<Recruits />} />
           <Route exact path='/topgroups' element={<TopGroups />} />
