@@ -108,7 +108,7 @@ const UserAccounts = () => {
       <button
         type="submit"
         className="btn btn-primary mt-3"
-        style={{ backgroundImage: "linear-gradient( to bottom , purple,blue ",marginLeft: "300px" }}
+        style={{ backgroundImage: "linear-gradient( to bottom , purple,blue ",marginLeft: "312px" }}
       >
         Add your image
       </button>
