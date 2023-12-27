@@ -1,30 +1,38 @@
 import React, { useEffect, useState } from 'react'
 import MyGroup from './Mygroup';
+import { useUser } from "../../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const MyGroups = () => {
     const color = "#dfdffb";
     const [myGroups, setMyGroups] = useState([]);
+    const navigate = useNavigate()
+    const { currentUser } = useUser();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const authToken = localStorage.getItem('auth-token');
-                const response = await fetch("http://localhost:8080/api/user/owned-groups", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "auth-token": authToken,
-                    },
-                });
-                const data = await response.json();
-                console.log(data.ownedGroups);
-                setMyGroups(data.ownedGroups);
-            } catch (error) {
-                console.log(error);
+        if (!currentUser)
+            navigate("/login")
+        else {
+            const fetchData = async () => {
+                try {
+                    const authToken = localStorage.getItem('auth-token');
+                    const response = await fetch("http://localhost:8080/api/user/owned-groups", {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": authToken,
+                        },
+                    });
+                    const data = await response.json();
+                    console.log(data.ownedGroups);
+                    setMyGroups(data.ownedGroups);
+                } catch (error) {
+                    console.log(error);
+                }
             }
+            fetchData();
         }
-        fetchData();
-    }, [])
+    }, [currentUser,navigate])
 
 
     return (

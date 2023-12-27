@@ -1,25 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from 'react'
 import TopGroup from "./TopGroup";
+import { useUser } from "../../../context/UserContext";
+import { useNavigate } from 'react-router-dom';
 
 const TopGroups = () => {
-    const title = "hello";
-    const description = "world";
     const color = "#dfdffb";
+    const [topGroupData, setTopGroupData] = useState([]);
+    const navigate = useNavigate()
+    const { currentUser } = useUser();
+    useEffect(() => {
+        if (!currentUser)
+            navigate("/login")
+        else {
+            const getAllGroups = async () => {
+                try {
+                    const authToken = localStorage.getItem("auth-token");
+                    const response = await fetch(
+                        `http://localhost:8080/api/group/get-all-groups`,
+                        {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "auth-token": authToken,
+                            },
+                        }
+                    );
+                    const data = await response.json();
+                    const filteredGroups = data.groups.filter(group => group.leader !== currentUser._id);
+                    //console.log(filteredGroups)
+                    setTopGroupData(filteredGroups);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+            getAllGroups()
+        }
+    }, [currentUser, navigate])
     return (
         <>
             <h1 className='text-center my-4' style={{ color: '#ffff' }}>Top Groups</h1>
             <div className="container">
                 <div className="container row">
-                    <div class="col-md-3 mb-3">
-                        <TopGroup title={title} description={description} color={color} />
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <TopGroup title={title} description={description} color={color} />
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <TopGroup title={title} description={description} color={color} />
-                    </div>
-                   
+                    {
+                        topGroupData.map(({ _id, gName, gDesc, anyoneCanJoin }) => {
+                            return (
+                                <div className="col-md-3 mb-3" key={_id}>
+                                    <TopGroup id={_id} title={gName} description={gDesc} canJoin={anyoneCanJoin} color={color} />
+                                </div>
+                            )
+                        }
+
+                        )
+                    }
                 </div>
             </div>
         </>
