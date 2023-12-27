@@ -1,4 +1,5 @@
 const UserModel = require("../models/User");
+const GroupModel = require("../models/Group");
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -175,8 +176,13 @@ const deactivateUser = async (req, res) => {
                 message: 'Please enter required fields'
             });
         }
-
+        const user = await UserModel.findById(userId);
+        const joinedGroups = user.groups;
+        for (let i = 0; i < joinedGroups.length; i++) {
+            await GroupModel.findByIdAndUpdate(joinedGroups[i], { $inc: { gMemberNumber: -1 }, $pull: { members: userId } });
+        }
         await UserModel.findByIdAndDelete(userId);
+
         return res.status(200).json({
             success: true,
             message: 'User deleted successfully'
