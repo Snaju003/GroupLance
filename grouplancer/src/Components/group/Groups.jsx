@@ -76,13 +76,23 @@ const Groups = () => {
     const json = await response.json();
     console.log(json)
     navigate("/")
-}
+  }
+
+  const removeMember = async (id) => {
+    const response = await fetch("http://localhost:8080/api/group/remove-member", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem('auth-token'),
+      },
+      body: JSON.stringify({ userId: id, groupId: groupDetails._id }),
+    });
+    const json = await response.json();
+    console.log(json)
+  }
 
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
-  const isGroupLeader = () => {
-    return groupDetails.leader === currentUser._id;
   };
   return (
     <>
@@ -93,10 +103,10 @@ const Groups = () => {
           alignItems: "center",
         }}
       >
-        <h1 className="text-center my-4" style={{ color: "#ffff",margin:"auto" }}>
+        <h1 className="text-center my-4" style={{ color: "#ffff", margin: "auto" }}>
           {groupDetails.gName}
         </h1>
-        {isGroupLeader() && (
+        {(groupDetails.leader === currentUser._id) && (
           <button
             className="btn btn-outline-success mx-2"
             type="submit"
@@ -146,11 +156,11 @@ const Groups = () => {
               alignItems: "center",
             }}
           >
-            {isGroupLeader() && (<button
+            {(groupDetails.leader === currentUser._id) && (<button
               type="submit"
               className="btn btn-primary"
               style={{ marginBottom: "3vh" }}
-              
+
             >
               Edit
             </button>)}
@@ -202,9 +212,10 @@ const Groups = () => {
                   />
                   <h5 className="card-title">{name}</h5>
                   <p className="card-text">{email}</p>
-                  {isGroupLeader() &&(<button
+                  {(groupDetails.leader === currentUser._id && _id !== currentUser._id) && (<button
                     type="submit"
                     className="btn btn-primary"
+                    onClick={removeMember(_id)}
                     style={{ marginTop: "3vh" }}
                   >
                     Remove
@@ -214,7 +225,7 @@ const Groups = () => {
             </div>
           ))}
           <div class="col-sm-4">
-          {isGroupLeader() &&(<div
+            {(groupDetails.leader === currentUser._id) && (<div
               class="card"
               style={{
                 marginTop: "5%",
