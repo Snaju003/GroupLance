@@ -212,7 +212,7 @@ const Groups = () => {
                   />
                   <h5 className="card-title">{name}</h5>
                   <p className="card-text">{email}</p>
-                  {(currentUser._id !== _id) && (<button
+                  {(groupDetails.leader === currentUser._id) && (<button
                     type="submit"
                     className="btn btn-primary"
                     onClick={removeMember(_id)}
