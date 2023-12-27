@@ -361,6 +361,12 @@ const removeMember = async (req, res) => {
                 message: 'No such group exists'
             });
         }
+        if (existGroup.leader.toString() === userId) {
+            return res.status(400).json({
+                success: false,
+                message: `You can't remove leader`
+            })
+        }
         const existUser = await UserModel.findById(userId);
         if (!existUser) {
             return res.status(400).json({
