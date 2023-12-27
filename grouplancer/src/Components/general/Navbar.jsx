@@ -30,6 +30,9 @@ const Navbar = () => {
                                     <li>
                                         <Link className="dropdown-item" to="/joinedgroups">Joined Groups</Link>
                                     </li>
+                                    <li>
+                                        <Link className="dropdown-item" to="/groupinvite">Group Invite</Link>
+                                    </li>
                                     <li><hr className="dropdown-divider" /></li>
                                     <li>
                                         <Link className="dropdown-item" to="/creategroup">Create Group</Link>
