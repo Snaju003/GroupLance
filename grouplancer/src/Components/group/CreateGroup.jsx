@@ -235,7 +235,7 @@ const CreateGroup = () => {
               padding: 5,
             }}
           >
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="button-48" style={{borderRdaius:"20px"}}>
               Create Group
             </button>
           </div>
