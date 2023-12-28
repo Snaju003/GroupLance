@@ -55,7 +55,7 @@ const Home = (props) => {
             <li>Chat And Connect With Others</li>
           </ul>
         </div>
-        <button type="submit" className="community" onChange={handleClick}>
+        <button type="submit" className="button-48" onChange={handleClick} style={{marginLeft:"100px",borderRadius:"20px",fontWeight:"750",width:"400px"}}>
           Join the community
         </button>
       </div>
