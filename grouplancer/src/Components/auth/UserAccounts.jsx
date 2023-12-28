@@ -13,19 +13,19 @@ import { useNavigate } from "react-router-dom";
 const UserAccounts = () => {
   const { currentUser, logout } = useUser();
 
-    const handleLogout = async () => {
-        const authToken = localStorage.getItem("auth-token");
-        await fetch("http://localhost:8080/api/auth/login", {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": authToken
-            },
-        });
-        logout();
-        localStorage.setItem("auth-token", "");
-        localStorage.setItem("refresh-token", "");
-    }
+  const handleLogout = async () => {
+    const authToken = localStorage.getItem("auth-token");
+    await fetch("http://localhost:8080/api/auth/login", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": authToken
+      },
+    });
+    logout();
+    localStorage.setItem("auth-token", "");
+    localStorage.setItem("refresh-token", "");
+  }
   const [userData, setUserData] = useState({ name: "", email: "" });
   const navigate = useNavigate();
   // const { currentUser } = useUser();
@@ -62,7 +62,7 @@ const UserAccounts = () => {
 
   return (
     <>
-      <button className="btn btn-outline-success mx-2" type="submit"  style={{color:"white",float:"right",marginRight:"150x",padding:"10px",marginTop:"15px",backgroundImage: "linear-gradient( to bottom , purple,blue "}} onClick={handleLogout}>Logout</button>
+      <button className="btn btn-outline-success mx-2" type="submit" style={{ color: "white", float: "right", marginRight: "150x", padding: "10px", marginTop: "15px", backgroundImage: "linear-gradient( to bottom , purple,blue " }} onClick={handleLogout}>Logout</button>
       <div className="container" style={{ display: "flex", marginTop: "30px" }}>
         <img
           src="./default-user.jpg"
@@ -72,10 +72,10 @@ const UserAccounts = () => {
             marginLeft: "220px",
             height: "200px",
             width: "200px",
-            marginTop:"30px",
+            marginTop: "30px",
           }}
         />
-         
+
         <div
           style={{
             marginTop: "30px",
@@ -85,10 +85,10 @@ const UserAccounts = () => {
             borderRadius: "15px",
             paddingLeft: "15px",
             paddingTop: "10px",
-            marginRight:"180px",
+            marginRight: "180px",
           }}
         >
-          
+
           <p style={{ fontSize: "25px" }}>Name: {userData.name}</p>
           <p style={{ fontSize: "25px" }}>Email: {userData.email}</p>
           <div
@@ -98,21 +98,21 @@ const UserAccounts = () => {
               alignItems: "center",
             }}
           >
-            <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}}type="submit" className="btn btn-primary">
+            <button style={{ backgroundImage: "linear-gradient( to bottom , purple,blue " }} type="submit" className="btn btn-primary">
               Edit
             </button>
           </div>
         </div>
       </div>
-      
+
       <button
         type="submit"
         className="btn btn-primary mt-3"
-        style={{ backgroundImage: "linear-gradient( to bottom , purple,blue ",marginLeft: "312px" }}
+        style={{ backgroundImage: "linear-gradient( to bottom , purple,blue ", marginLeft: "312px" }}
       >
         Add your image
       </button>
-      
+
       <div className="row" style={{ margin: "10vh 8vw" }}>
         <div className="col-sm-6">
           <div className="card">
@@ -124,7 +124,7 @@ const UserAccounts = () => {
               <p className="card-text">
                 Rating Score: 4.9⭐
               </p>
-              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
+              <button style={{ backgroundImage: "linear-gradient( to bottom , purple,blue " }} href="#" className="btn btn-primary">
                 Go to Rankings
               </button>
             </div>
@@ -140,7 +140,7 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
+              <button style={{ backgroundImage: "linear-gradient( to bottom , purple,blue " }} href="#" className="btn btn-primary">
                 Add Skills
               </button>
             </div>
@@ -158,7 +158,7 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
+              <button style={{ backgroundImage: "linear-gradient( to bottom , purple,blue " }} href="#" className="btn btn-primary">
                 Add Experience
               </button>
             </div>
@@ -174,13 +174,14 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
+              <button style={{ backgroundImage: "linear-gradient( to bottom , purple,blue " }} href="#" className="btn btn-primary">
                 Add Education
               </button>
             </div>
           </div>
         </div>
       </div>
+      <button style={{ backgroundImage: "linear-gradient( to bottom , purple,blue " }} type="submit" className="btn btn-primary">Deactivate User</button>
     </>
   );
 };
