@@ -60,11 +60,26 @@ const UserAccounts = () => {
     }
   }, [currentUser, navigate]);
 
+  const deactivateUser = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:8080/api/auth/deactivate-user", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem('auth-token'),
+      },
+      body: JSON.stringify({ userId: currentUser }),
+    });
+    const json = await response.json();
+    console.log(json)
+    navigate("/")
+  }
+
   return (
     <>
       <button className="button-48" type="submit" style={{ color: "white", float: "right", marginRight: "150x", padding: "10px", marginTop: "15px", backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} onClick={handleLogout}>
-      <span class="text">LogOut</span>
-        </button>
+        <span class="text">LogOut</span>
+      </button>
       <div className="container" style={{ display: "flex", marginTop: "30px" }}>
         <img
           src="./default-user.jpg"
@@ -101,7 +116,7 @@ const UserAccounts = () => {
             }}
           >
             <button style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} type="submit" className="button-48">
-            <span class="text">Edit</span>
+              <span class="text">Edit</span>
             </button>
           </div>
         </div>
@@ -127,7 +142,7 @@ const UserAccounts = () => {
                 Rating Score: 4.9⭐
               </p>
               <button style={{ backgroundImage: "linear-gradient( to bottom ,#191970 ,#add8e6" }} href="#" className="button-48">
-              <span class="text">Go to rankings</span>
+                <span class="text">Go to rankings</span>
               </button>
             </div>
           </div>
@@ -143,7 +158,7 @@ const UserAccounts = () => {
                 <br />
               </p>
               <button style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} href="#" className="button-48">
-              <span class="text">Add Skills</span>
+                <span class="text">Add Skills</span>
               </button>
             </div>
           </div>
@@ -161,7 +176,7 @@ const UserAccounts = () => {
                 <br />
               </p>
               <button style={{ backgroundImage: "linear-gradient( to bottom ,#191970 ,#add8e6" }} href="#" className="button-48">
-              <span class="text">Add experience</span>
+                <span class="text">Add experience</span>
               </button>
             </div>
           </div>
@@ -177,15 +192,15 @@ const UserAccounts = () => {
                 <br />
               </p>
               <button style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} href="#" className="button-48">
-              <span class="text">Add education</span>
+                <span class="text">Add education</span>
               </button>
             </div>
           </div>
         </div>
       </div>
-      <button style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} type="submit" className="button-48">
-      <span class="text">Deactivate User</span>
-        </button>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button style={{ backgroundImage: "linear-gradient( to bottom ,#191970 ,#add8e6" }} type="submit" className="btn btn-primary" onClick={deactivateUser}>Deactivate User</button>
+      </div>
     </>
   );
 };
