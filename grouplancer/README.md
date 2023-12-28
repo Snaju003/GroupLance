@@ -46,7 +46,7 @@ Pass data from body
   },
   "inviterName": "<enter group leader name>"
 }
-
+DONE
 
 # Join Group
 
@@ -69,6 +69,7 @@ Pass data from body
   "userId": "<pass userId of the user who is being removed>",
   "groupId": "<pass group id>"
 }
+DONE
 
 
 # Delete Group
