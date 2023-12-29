@@ -26,7 +26,7 @@ const JoinedGroups = () => {
                         }
                     );
                     const data = await response.json();
-                    // console.log(data.joinedGroups);
+                    console.log(data.joinedGroups);
                     setGroupData(data.joinedGroups)
                 } catch (error) {
                     console.error(error);
@@ -42,10 +42,10 @@ const JoinedGroups = () => {
                 <div className="container row">
 
                     {
-                        groupData.map(({ _id, gName, gDesc }) => {
+                        groupData.map(({ _id, gName, gDesc,projName }) => {
                             return (
                                 <div className="col-md-3 mb-3" key={_id}>
-                                    <JoinedGroup id={_id} name={gName} desc={gDesc} color={color} />
+                                    <JoinedGroup id={_id} name={gName} desc={projName} color={color} />
                                 </div>)
                         })
                     }
