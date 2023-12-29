@@ -68,10 +68,10 @@ const UserAccounts = () => {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('auth-token'),
       },
-      body: JSON.stringify({ userId: currentUser }),
     });
     const json = await response.json();
     console.log(json)
+    logout()
     navigate("/")
   }
 
