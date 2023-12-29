@@ -125,7 +125,7 @@ const UserAccounts = () => {
       <button
         type="submit"
         className="button-48"
-        style={{ backgroundColor: "#077b6", marginLeft: "300px" }}
+        style={{ backgroundColor: "#077b6", marginLeft: "34vh", margginTop: "4rem" }}
       >
         <span class="text">Add Your Image</span>
       </button>
