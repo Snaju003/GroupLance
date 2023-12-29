@@ -169,7 +169,7 @@ const logout = async (req, res) => {
 
 const deactivateUser = async (req, res) => {
     try {
-        const { userId } = req.body;
+        const userId = req.user;
         if (!userId || userId === '') {
             return res.status(400).json({
                 success: false,
