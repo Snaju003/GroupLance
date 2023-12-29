@@ -3,7 +3,7 @@ body {
   margin: 0;
   /* background: linear-gradient(172deg, #6644ff 50%, #ff99dd 300%);
   */
-  background: #172940; 
+  background: #130950; 
   font-family: "Euclid Circular A", "Poppins";
 }
 
@@ -172,7 +172,7 @@ section {
 .button-48:before {
   animation: opacityFallbackOut .5s step-end forwards;
   backface-visibility: hidden;
-  background-color: #add8e6;
+  background-color: #00afb9;
   clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
   content: "";
   height: 100%;

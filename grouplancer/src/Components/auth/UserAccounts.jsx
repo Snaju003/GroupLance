@@ -77,7 +77,7 @@ const UserAccounts = () => {
 
   return (
     <>
-      <button className="button-48" type="submit" style={{ color: "white", float: "right", marginRight: "150x", padding: "10px", marginTop: "15px", backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} onClick={handleLogout}>
+      <button className="button-48" type="submit" style={{ color: "white", float: "right", marginRight: "15vh", padding: "10px", marginTop: "3vh", backgroundColor: "#0077b6"}} onClick={handleLogout}>
         <span class="text">LogOut</span>
       </button>
       <div className="container" style={{ display: "flex", marginTop: "30px" }}>
@@ -115,7 +115,7 @@ const UserAccounts = () => {
               alignItems: "center",
             }}
           >
-            <button style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} type="submit" className="button-48">
+            <button style={{ backgroundColor: "#077b6"}} type="submit" className="button-48">
               <span class="text">Edit</span>
             </button>
           </div>
@@ -125,7 +125,7 @@ const UserAccounts = () => {
       <button
         type="submit"
         className="button-48"
-        style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6 ", marginLeft: "300px" }}
+        style={{ backgroundColor: "#077b6", marginLeft: "300px" }}
       >
         <span class="text">Add Your Image</span>
       </button>
@@ -141,7 +141,7 @@ const UserAccounts = () => {
               <p className="card-text">
                 Rating Score: 4.9⭐
               </p>
-              <button style={{ backgroundImage: "linear-gradient( to bottom ,#191970 ,#add8e6" }} href="#" className="button-48">
+              <button style={{ backgroundColor: "#077b6"  }} href="#" className="button-48">
                 <span class="text">Go to rankings</span>
               </button>
             </div>
@@ -157,7 +157,7 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} href="#" className="button-48">
+              <button style={{backgroundColor: "#077b6" }} href="#" className="button-48">
                 <span class="text">Add Skills</span>
               </button>
             </div>
@@ -175,7 +175,7 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button style={{ backgroundImage: "linear-gradient( to bottom ,#191970 ,#add8e6" }} href="#" className="button-48">
+              <button style={{ backgroundColor: "#077b6"  }} href="#" className="button-48">
                 <span class="text">Add experience</span>
               </button>
             </div>
@@ -191,7 +191,7 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} href="#" className="button-48">
+              <button style={{ backgroundColor: "#077b6" }} href="#" className="button-48">
                 <span class="text">Add education</span>
               </button>
             </div>
@@ -199,7 +199,7 @@ const UserAccounts = () => {
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <button style={{ backgroundImage: "linear-gradient( to bottom ,#191970 ,#add8e6" }} type="submit" className="btn btn-primary" onClick={deactivateUser}>Deactivate User</button>
+        <button style={{ backgroundColor: "#077b6" }} type="submit" className="btn btn-primary" onClick={deactivateUser}>Deactivate User</button>
       </div>
     </>
   );
