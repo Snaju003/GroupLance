@@ -13,19 +13,19 @@ import { useNavigate } from "react-router-dom";
 const UserAccounts = () => {
   const { currentUser, logout } = useUser();
 
-    const handleLogout = async () => {
-        const authToken = localStorage.getItem("auth-token");
-        await fetch("http://localhost:8080/api/auth/login", {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": authToken
-            },
-        });
-        logout();
-        localStorage.setItem("auth-token", "");
-        localStorage.setItem("refresh-token", "");
-    }
+  const handleLogout = async () => {
+    const authToken = localStorage.getItem("auth-token");
+    await fetch("http://localhost:8080/api/auth/login", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": authToken
+      },
+    });
+    logout();
+    localStorage.setItem("auth-token", "");
+    localStorage.setItem("refresh-token", "");
+  }
   const [userData, setUserData] = useState({ name: "", email: "" });
   const navigate = useNavigate();
   // const { currentUser } = useUser();
@@ -60,9 +60,26 @@ const UserAccounts = () => {
     }
   }, [currentUser, navigate]);
 
+  const deactivateUser = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:8080/api/auth/deactivate-user", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem('auth-token'),
+      },
+      body: JSON.stringify({ userId: currentUser }),
+    });
+    const json = await response.json();
+    console.log(json)
+    navigate("/")
+  }
+
   return (
     <>
-      <button className="btn btn-outline-success mx-2" type="submit"  style={{color:"white",float:"right",marginRight:"150x",padding:"10px",marginTop:"15px",backgroundImage: "linear-gradient( to bottom , purple,blue "}} onClick={handleLogout}>Logout</button>
+      <button className="button-48" type="submit" style={{ color: "white", float: "right", marginRight: "150x", padding: "10px", marginTop: "15px", backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} onClick={handleLogout}>
+        <span class="text">LogOut</span>
+      </button>
       <div className="container" style={{ display: "flex", marginTop: "30px" }}>
         <img
           src="./default-user.jpg"
@@ -72,10 +89,10 @@ const UserAccounts = () => {
             marginLeft: "220px",
             height: "200px",
             width: "200px",
-            marginTop:"30px",
+            marginTop: "30px",
           }}
         />
-         
+
         <div
           style={{
             marginTop: "30px",
@@ -85,10 +102,10 @@ const UserAccounts = () => {
             borderRadius: "15px",
             paddingLeft: "15px",
             paddingTop: "10px",
-            marginRight:"180px",
+            marginRight: "180px",
           }}
         >
-          
+
           <p style={{ fontSize: "25px" }}>Name: {userData.name}</p>
           <p style={{ fontSize: "25px" }}>Email: {userData.email}</p>
           <div
@@ -98,21 +115,21 @@ const UserAccounts = () => {
               alignItems: "center",
             }}
           >
-            <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}}type="submit" className="btn btn-primary">
-              Edit
+            <button style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} type="submit" className="button-48">
+              <span class="text">Edit</span>
             </button>
           </div>
         </div>
       </div>
-      
+
       <button
         type="submit"
-        className="btn btn-primary mt-3"
-        style={{ backgroundImage: "linear-gradient( to bottom , purple,blue ",marginLeft: "312px" }}
+        className="button-48"
+        style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6 ", marginLeft: "300px" }}
       >
-        Add your image
+        <span class="text">Add Your Image</span>
       </button>
-      
+
       <div className="row" style={{ margin: "10vh 8vw" }}>
         <div className="col-sm-6">
           <div className="card">
@@ -124,8 +141,8 @@ const UserAccounts = () => {
               <p className="card-text">
                 Rating Score: 4.9⭐
               </p>
-              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
-                Go to Rankings
+              <button style={{ backgroundImage: "linear-gradient( to bottom ,#191970 ,#add8e6" }} href="#" className="button-48">
+                <span class="text">Go to rankings</span>
               </button>
             </div>
           </div>
@@ -140,8 +157,8 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
-                Add Skills
+              <button style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} href="#" className="button-48">
+                <span class="text">Add Skills</span>
               </button>
             </div>
           </div>
@@ -158,8 +175,8 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
-                Add Experience
+              <button style={{ backgroundImage: "linear-gradient( to bottom ,#191970 ,#add8e6" }} href="#" className="button-48">
+                <span class="text">Add experience</span>
               </button>
             </div>
           </div>
@@ -174,12 +191,15 @@ const UserAccounts = () => {
               <p className="card-text">
                 <br />
               </p>
-              <button style={{backgroundImage: "linear-gradient( to bottom , purple,blue "}} href="#" className="btn btn-primary">
-                Add Education
+              <button style={{ backgroundImage: "linear-gradient( to bottom , #191970 ,#add8e6" }} href="#" className="button-48">
+                <span class="text">Add education</span>
               </button>
             </div>
           </div>
         </div>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button style={{ backgroundImage: "linear-gradient( to bottom ,#191970 ,#add8e6" }} type="submit" className="btn btn-primary" onClick={deactivateUser}>Deactivate User</button>
       </div>
     </>
   );

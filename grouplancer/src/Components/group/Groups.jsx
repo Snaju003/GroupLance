@@ -47,7 +47,7 @@ const Groups = () => {
           },
           body: JSON.stringify({
             invitedUserMail: credentials.email,
-            invitationLink: "<give invitation link>",
+            invitationLink: "http://localhost:3000/groupinvite",
             group: {
               id: id,
               name: groupDetails.gName,

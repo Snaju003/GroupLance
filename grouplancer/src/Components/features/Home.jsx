@@ -55,7 +55,7 @@ const Home = (props) => {
             <li>Chat And Connect With Others</li>
           </ul>
         </div>
-        <button type="submit" className="community" onChange={handleClick}>
+        <button type="submit" className="community" onChange={handleClick} style={{marginLeft:"100px",borderRadius:"20px",fontWeight:"750",width:"400px"}}>
           Join the community
         </button>
       </div>
@@ -70,7 +70,7 @@ const Home = (props) => {
 
             <img src="./free-tag-icon-business-bicolor-260nw-286152590.jpg" alt="icon" style={{ marginLeft: "85px", marginTop: "10px" }} />
             <h3 style={{ paddingLeft: "70px", paddingBottom: "5px", paddingTop: "10px" }}>Try for free</h3>
-            <ul style={{ marginBottom: "40px", marginTop: "30px", paddingLeft: "20px" }} >
+            <ul style={{ marginBottom: "40px", marginTop: "30px", marginLeft: "20px" }} >
               <li style={{}}>Ad free</li>
               <li>Create only one group</li>
               <li>Create groups of only specified size</li>
@@ -87,7 +87,7 @@ const Home = (props) => {
 
             <img src="./Premium-Icon-600x600-1.png" alt="icon" style={{ marginLeft: "85px", width: "120px", height: "120px", marginTop: "2px" }} />
             <h3 style={{ paddingLeft: "50px", paddingBottom: "5px", paddingTop: "10px" }}>Just for 700/-</h3>
-            <ul style={{ marginBottom: "40px", marginTop: "20px", paddingLeft: "20px" }} >
+            <ul style={{ marginBottom: "40px", marginTop: "20px", marginLeft: "20px" }} >
               <li style={{ listStyle: "inherit" }}>Ad free</li>
               <li>Create multiple groups</li>
               <li>Create groups of any size</li>
@@ -104,14 +104,14 @@ const Home = (props) => {
 
             <img src="./deluxe-gold-label-vector-2274967.jpg" alt="icon" style={{ marginLeft: "90px", marginTop: "15px" }} />
             <h3 style={{ paddingLeft: "50px", paddingBottom: "5px", paddingTop: "10px" }}>Just for 1000/-</h3>
-            <ul style={{ marginBottom: "30px", marginTop: "10px", paddingLeft: "20px" }} >
+            <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px" }} >
               <li style={{ listStyle: "inherit" }}>Ad free</li>
               <li>Create multiple groups</li>
               <li>Create groups of any size</li>
               <li>Invite top users to your group</li>
               <li>Send requests to top users</li>
             </ul>
-          <button type="button" className="btn btn-outline-primary" style={{color:"white",backgroundColor:"#3d300c",width:"140px",height:"40px",borderRadius:"10px",marginTop:"0px",marginLeft:"80px",justifyContent:"center"}}>deluxe</button>
+          <button type="button" className="button-48" style={{color:"white",backgroundColor:"#3d300c",width:"140px",height:"40px",borderRadius:"10px",marginTop:"0px",marginLeft:"80px",justifyContent:"center"}}>deluxe</button>
           </div>
           <div className="card-body">
 

@@ -235,8 +235,8 @@ const CreateGroup = () => {
               padding: 5,
             }}
           >
-            <button type="submit" className="btn btn-primary">
-              Create Group
+            <button type="submit" className="button-48" style={{borderRadius:"20px"}}>
+              <span class="text">Create Group</span>
             </button>
           </div>
         </form>
