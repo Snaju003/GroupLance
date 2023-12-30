@@ -115,7 +115,8 @@ const Home = (props) => {
             </div>
           </div>
         </div> */}
-        <Signup/>
+        <div id="connect" style={{}}><Signup /></div>
+        
       </div>
     </div>
   );
