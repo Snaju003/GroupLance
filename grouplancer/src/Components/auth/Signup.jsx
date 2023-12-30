@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
+import { Container, Row, Col } from "react-bootstrap";
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -92,7 +93,7 @@ const Signup = () => {
 
   return (
     <>
-      <div
+      {/* <div
         className="container my-3"
         style={{ width: "800px", color: "white" }}
       >
@@ -234,7 +235,38 @@ const Signup = () => {
             </div>
           </div>
         )}
-      </div>
+      </div> */}
+      <section className="signup">
+        <Container>
+          <Row className="align-items-center">
+            <Col size={12} md={6}>
+              <img src="./signup_img.png" />
+            </Col>
+            <Col size={12} md={6}>
+              <h2 style={{color: "white"}}>Sign Up</h2>
+              <form onSubmit={handleSubmit}>
+                <Col>
+                  <Row size={12} sm={6} className="px-1">
+                    <input type="text" placeholder="Name"/>
+                  </Row>
+                  <Row size={12} sm={6} className="px-1">
+                    <input type="email" placeholder="Email"/>
+                  </Row>
+                  <Row size={12} sm={6} className="px-1">
+                    <input type="password" placeholder="Password"/>
+                  </Row>
+                  <Row size={12} sm={6} className="px-1">
+                    <input type="password" placeholder="Confirm Password"/>
+                  </Row>
+                  <Col size={12} className="px-1">
+                    <button type="submit"><span>{buttonText}</span></button>
+                  </Col>
+                </Col>
+              </form>
+            </Col>
+          </Row>
+        </Container>
+      </section >
     </>
   );
 };

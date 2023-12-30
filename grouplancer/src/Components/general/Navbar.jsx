@@ -1,14 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useUser } from "../../context/UserContext";
+import { Navbar, Nav, Container } from "react-bootstrap";
+import { HashLink } from 'react-router-hash-link';
+import {
+    BrowserRouter as Router
+} from "react-router-dom";
 
-const Navbar = () => {
+const NavBar = () => {
     const { currentUser } = useUser();
-    
+    const [activeLink, setActiveLink] = useState('home');
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => {
+            if (window.scrollY > 50) {
+                setScrolled(true);
+            } else {
+                setScrolled(false);
+            }
+        }
+
+        window.addEventListener("scroll", onScroll);
+
+        return () => window.removeEventListener("scroll", onScroll);
+    }, [])
+
+    const onUpdateActiveLink = (value) => {
+        setActiveLink(value);
+    }
 
     return (
         <>
-            <nav className="navbar navbar-expand-lg" data-bs-theme="dark" style={{ borderRadius: "20px", display: "flex", justifyContent: "space-between", backgroundImage: "linear-gradient(to top, #000066,   #4d4dff)", boxShadow: "7px 7px 7px rgba(0, 0, 0, 0.9)" }}>
+            {/* <nav className="navbar navbar-expand-lg" data-bs-theme="dark" style={{ borderRadius: "20px", display: "flex", justifyContent: "space-between", backgroundImage: "linear-gradient(to top, #000066,   #4d4dff)", boxShadow: "7px 7px 7px rgba(0, 0, 0, 0.9)" }}>
                 <div className="container-fluid" style={{}}>
 
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,10 +90,6 @@ const Navbar = () => {
                                 <Link className="nav-link" to="/aboutus">About Us</Link>
                             </li>
                         </ul>
-                        {/* <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success" type="submit">Search</button>
-                        </form> */}
                         {
                             !currentUser
                                 ? <>
@@ -80,9 +100,41 @@ const Navbar = () => {
                         }
                     </div>
                 </div>
-            </nav>
+            </nav> */}
+            <Router>
+                <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
+                    <Container>
+                        <Navbar.Brand href="/">
+                            <img src="./grouplan.png" alt="Logo" style={{ width: "300px", height: "200px", justifyContent: "space-between", marginBottom: "-50px", marginTop: "-50px" }}/>
+                        </Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav">
+                            <span className="navbar-toggler-icon"></span>
+                        </Navbar.Toggle>
+                        <Navbar.Collapse id="basic-navbar-nav">
+                            <Nav className="ms-auto">
+                                <Nav.Link href="#home" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
+                                <Nav.Link href="#groups" className={activeLink === 'groups' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('groups')}>Groups</Nav.Link>
+                                <Nav.Link href="#categories" className={activeLink === 'categories' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('categories')}>Catagories</Nav.Link>
+                                <Nav.Link href="#rankings" className={activeLink === 'rankings' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('rankings')}>Rankings</Nav.Link>
+                                <Nav.Link href="#chatbox" className={activeLink === 'chatbox' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('chatbox')}>ChatBox</Nav.Link>
+                                <Nav.Link href="#about" className={activeLink === 'about' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('about')}>About Us</Nav.Link>
+                            </Nav>
+                            <span className="navbar-text">
+                                {/* <div className="social-icon">
+                                    <a href="#"><img src={navIcon1} alt="" /></a>
+                                    <a href="#"><img src={navIcon2} alt="" /></a>
+                                    <a href="#"><img src={navIcon3} alt="" /></a>
+                                </div> */}
+                                <HashLink to='#connect'>
+                                    <button className="vvd"><span>Profile</span></button>
+                                </HashLink>
+                            </span>
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+            </Router>
         </>
     )
 }
 
-export default Navbar
+export default NavBar

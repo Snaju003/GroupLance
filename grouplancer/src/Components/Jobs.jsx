@@ -88,7 +88,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./web.png"
+            src="./browsedomainicons/prog.jpg"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -129,7 +129,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./app.png"
+            src="./browsedomainicons/data science.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -170,7 +170,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./cyber.jpg"
+            src="./browsedomainicons/mobile.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -213,7 +213,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/frontend.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -255,7 +255,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/backend.webp"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -298,7 +298,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/cloud.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -341,7 +341,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/devops.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -385,7 +385,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/game.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -425,7 +425,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/blockcain.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -465,7 +465,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/ai.webp"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -507,7 +507,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/ui.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -547,7 +547,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/networking.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -587,7 +587,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/os.jpg"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -667,7 +667,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./cyber.jpg"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -709,7 +709,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/virtual.jpg"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -749,7 +749,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/software testing.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -791,7 +791,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/database.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -831,7 +831,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/web servers.png"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />
@@ -871,7 +871,7 @@ const Jobs = () => {
           }}
         >
           <img
-            src="./iot.jpg"
+            src="./browsedomainicons/tech.avif"
             alt="icon"
             style={{ height: "80px", width: "80px", marginLeft: "50px" }}
           />

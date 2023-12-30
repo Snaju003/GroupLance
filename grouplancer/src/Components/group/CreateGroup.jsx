@@ -106,13 +106,7 @@ const CreateGroup = () => {
               >
                 General
               </option>
-              <option
-                className="dropdown-item"
-                value="webdev"
-                onClick={() => setDomain("Web Developement")}
-              >
-                Web Developement
-              </option>
+              
               <option
                 className="dropdown-item"
                 value="appdev"
@@ -252,6 +246,13 @@ const CreateGroup = () => {
                 onClick={() => setDomain("Tech Entrepreneurship")}
               >
                 Tech Entrepreneurship
+              </option>
+              <option
+                className="dropdown-item"
+                value="do"
+                onClick={() => setDomain("DevOps")}
+              >
+                DevOps
               </option>
             </ul>
             <input
