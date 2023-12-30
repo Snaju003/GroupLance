@@ -82,6 +82,7 @@ const CreateGroup = () => {
             <input
               type="text"
               className="form-control"
+              maxLength="75"
               id="text"
               aria-describedby="emailHelp"
               onChange={onchange}
@@ -272,6 +273,7 @@ const CreateGroup = () => {
                 rows="5"
                 onChange={onchange}
                 name="gDesc"
+                required
               />
             </label>
           </div>
@@ -355,7 +357,7 @@ const CreateGroup = () => {
             }}
           >
             <button type="submit" className="button-48" style={{borderRadius:"20px"}}>
-              <span class="text">Create Group</span>
+              <span className="text">Create Group</span>
             </button>
           </div>
         </form>
