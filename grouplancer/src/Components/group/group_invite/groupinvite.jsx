@@ -20,8 +20,16 @@ const GroupInvite = ({color,title,description,id,canJoin}) => {
                 <div className="card-body">
                     <h5 className="card-title">{title}</h5>
                     <p className="card-text">{description}</p>
-                    <span><a href="/" className="btn btn-primary" onClick={liveGroup}>Accept</a></span>
-                    <span style={{margin:"50px"}}><a href="/" className="btn btn-primary" onClick={liveGroup} >Reject</a></span>
+                    <div style={{display: "flex"}}>
+                    <button className='button-48' style={{width:"15vh"}}> 
+                    <span><a href="/" onClick={liveGroup} style={{textDecoration:"none", color: "white", fontWeight: "700"}}>Accept</a></span>
+                    </button>
+                    <button className='button-48' style={{ width: "15vh",marginLeft: "1rem"}}>
+                    <span style={{margin:"50px"}}><a href="/"  onClick={liveGroup} style={{ textDecoration:"none", color: "white", fontWeight: "700"}}>Reject</a></span>
+                    </button>
+                    </div>
+                  
+                 
                 </div>
             </div>
         </>
