@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import { Container, Row, Col } from "react-bootstrap";
-
+import "./signup.css";
 const Signup = () => {
   const [credentials, setCredentials] = useState({
     username: "",
@@ -15,21 +15,20 @@ const Signup = () => {
     num1: "",
     num2: "",
     num3: "",
-    num4: ""
-
+    num4: "",
   });
 
   const [buttonText, setButtonText] = useState("Send OTP");
 
   const [showModal, setShowModal] = useState(false);
-  const [activationToken, setActivationToken] = useState("")
+  const [activationToken, setActivationToken] = useState("");
   const { login } = useUser();
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (credentials.password !== credentials.cpassword) {
-      window.alert("Enter correct password")
+      window.alert("Enter correct password");
       return;
     }
 
@@ -69,18 +68,22 @@ const Signup = () => {
   };
 
   const sendOtp = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/api/auth/verify-otp", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          activationToken: activationToken,
-          activationCode: otpState.num1 + otpState.num2 + otpState.num3 + otpState.num4
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:8080/api/auth/verify-otp",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            activationToken: activationToken,
+            activationCode:
+              otpState.num1 + otpState.num2 + otpState.num3 + otpState.num4,
+          }),
+        }
+      );
       const json = await response.json();
       localStorage.setItem("auth-token", json.authToken);
       localStorage.setItem("refresh-token", json.refreshToken);
@@ -89,7 +92,46 @@ const Signup = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const [isActive, setActive] = useState(false);
+
+  const handleRegisterClick = () => {
+    setActive(true);
+  };
+
+  const handleLoginClick = () => {
+    setActive(false);
+  };
+
+  // const [credentials, setCredentials] = useState({ email: "", password: "" });
+  //const { login } = useUser();
+  //let navigate = useNavigate();
+
+  //On submit of form
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    setCredentials({ email: '', password: '' });
+    //API call 
+    const response = await fetch("http://localhost:8080/api/auth/login", {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: credentials.email, password: credentials.password }), // body data type must match "Content-Type" header
+    });
+    const json = await response.json();
+    login(json.getUser);
+    // if (json.authtoken) {
+    localStorage.setItem('auth-token', json.authToken);
+    localStorage.setItem("refresh-token", json.refreshToken);
+    navigate('/');
+    // }
+    // else {
+    // alert("Invalid Credentials!!");
+    // }
   }
+
+  
 
   return (
     <>
@@ -236,7 +278,86 @@ const Signup = () => {
           </div>
         )}
       </div> */}
-      <section className="signup">
+      
+      <div className={`container1 ${isActive ? "active" : ""}`}>
+        <div className="form-container sign-up">
+          <form onSubmit={handleSubmit}>
+            <h1>Create Account</h1>
+            {/* <div className="social-icons">
+              <a href="#" className="icon">
+                <i className="fa-brands fa-google-plus-g"></i>
+              </a>
+              <a href="#" className="icon">
+                <i className="fa-brands fa-facebook-f"></i>
+              </a>
+              <a href="#" className="icon">
+                <i className="fa-brands fa-github"></i>
+              </a>
+              <a href="#" className="icon">
+                <i className="fa-brands fa-linkedin-in"></i>
+              </a>
+            </div> */}
+            {/* <span>or use your email for registration</span> */}
+            <input type="text" placeholder="Name" onChange={onchange} />
+            <input type="email" placeholder="Email" onChange={onchange}/>
+            <input type="password" placeholder="Password" onChange={onchange}/>
+            <input type="password" placeholder="Confirm Password" onChange={onchange}/>
+            <button>Send Otp</button>
+          </form>
+        </div>
+        <div className="form-container sign-in">
+          <form onSubmit={handleLoginSubmit}>
+            <h1>Sign In</h1>
+            {/* <div className="social-icons">
+              <a href="#" className="icon">
+                <i className="fa-brands fa-google-plus-g"></i>
+              </a>
+              <a href="#" className="icon">
+                <i className="fa-brands fa-facebook-f"></i>
+              </a>
+              <a href="#" className="icon">
+                <i className="fa-brands fa-github"></i>
+              </a>
+              <a href="#" className="icon">
+                <i className="fa-brands fa-linkedin-in"></i>
+              </a>
+            </div>
+            <span>or use your email password</span> */}
+            <input type="email" placeholder="Email" onChange={onchange}/>
+            <input type="password" placeholder="Password" onChange={onchange}/>
+            <a href="#">Forget Your Password?</a>
+            <button>Sign In</button>
+          </form>
+        </div>
+        <div className="toggle-container">
+          <div className="toggle">
+            <div className="toggle-panel toggle-left">
+              <h1>Welcome Back!</h1>
+              <p>Enter your personal details to use all site features</p>
+              <button className="hidden" id="login" onClick={handleLoginClick}>
+                Sign In
+              </button>
+            </div>
+            <div className="toggle-panel toggle-right">
+              <h1>Welcome, Friend!</h1>
+              <p>Enter your personal details to use all site features</p>
+              <button
+                className="hidden"
+                id="register"
+                onClick={handleRegisterClick}
+              >
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Signup;
+{/* <section className="signup">
         <Container>
           <Row className="align-items-center">
             <Col size={12} md={6}>
@@ -266,9 +387,4 @@ const Signup = () => {
             </Col>
           </Row>
         </Container>
-      </section >
-    </>
-  );
-};
-
-export default Signup;
+      </section > */}
