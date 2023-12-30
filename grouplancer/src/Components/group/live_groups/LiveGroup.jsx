@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LiveGroup = ({color,title,description,id,canJoin}) => {
+const LiveGroup = ({color,title,mainGoal,id,projName,canJoin}) => {
     const liveGroup = async (e) => {
         e.preventDefault();
         const response = await fetch("http://localhost:8080/api/group/join-group", {
@@ -19,7 +19,7 @@ const LiveGroup = ({color,title,description,id,canJoin}) => {
             <div className="card" style={{ backgroundColor: color }}>
                 <div className="card-body">
                     <h5 className="card-title">{title}</h5>
-                    <p className="card-text">{description}</p>
+                    <p className="card-text">{projName}</p>
                     <a href="/" className="btn btn-primary" onClick={liveGroup}>Join Group</a>
                 </div>
             </div>

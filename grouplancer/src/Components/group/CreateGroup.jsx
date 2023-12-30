@@ -105,13 +105,7 @@ const CreateGroup = () => {
               >
                 General
               </option>
-              <option
-                className="dropdown-item"
-                value="webdev"
-                onClick={() => setDomain("Web Developement")}
-              >
-                Web Developement
-              </option>
+              
               <option
                 className="dropdown-item"
                 value="appdev"
@@ -132,6 +126,132 @@ const CreateGroup = () => {
                 onClick={() => setDomain("IOT")}
               >
                 IOT
+              </option>
+              <option
+                className="dropdown-item"
+                value="pdev"
+                onClick={() => setDomain("Programming and Development")}
+              >
+              Programming and Development
+              </option>
+              <option
+                className="dropdown-item"
+                value="dsa"
+                onClick={() => setDomain("Data science and analytics")}
+              >
+                Data science and analytics
+              </option>
+              <option
+                className="dropdown-item"
+                value="mobdev"
+                onClick={() => setDomain("Mobile Development")}
+              >
+                Mobile Development
+              </option>
+              <option
+                className="dropdown-item"
+                value="frontend"
+                onClick={() => setDomain("Frontend Development")}
+              >
+                Frontend Development
+              </option>
+              <option
+                className="dropdown-item"
+                value="backend"
+                onClick={() => setDomain("Backend Development")}
+              >
+               Backtend Development
+              </option>
+              <option
+                className="dropdown-item"
+                value="cloud"
+                onClick={() => setDomain("Cloud Computing")}
+              >
+                Cloud Computing
+              </option>
+              <option
+                className="dropdown-item"
+                value="gamedev"
+                onClick={() => setDomain("Game Development")}
+              >
+                Game Development
+              </option>
+              <option
+                className="dropdown-item"
+                value="Blockcurrency"
+                onClick={() => setDomain("Blockchain and Cryptocurrency")}
+              >
+                Blockchain and Cryptocurrency
+              </option>
+              <option
+                className="dropdown-item"
+                value="ai"
+                onClick={() => setDomain("Artificial Intelligence")}
+                >
+                Artificial Intelligence
+              </option>
+              <option
+                className="dropdown-item"
+                value="design"
+                onClick={() => setDomain("UI/UX Design")}
+              >
+               UI/UX Design
+              </option>
+              <option
+                className="dropdown-item"
+                value="net"
+                onClick={() => setDomain("Networking")}
+              >
+                Networking
+              </option>
+              <option
+                className="dropdown-item"
+                value="os"
+                onClick={() => setDomain("Operating System")}
+              >
+                Operating System
+              </option>
+              <option
+                className="dropdown-item"
+                value="var"
+                onClick={() => setDomain("Virtual Reality and Augmented Reality")}
+              >
+                Virtual Reality and Augmented Reality
+              </option>
+              <option
+                className="dropdown-item"
+                value="softtesting"
+                onClick={() => setDomain("Software Testing")}
+              >
+                Software Testing
+              </option>
+              <option
+                className="dropdown-item"
+                value="servers"
+                onClick={() => setDomain("Web Servers")}
+              >
+                Web Servers
+              </option>
+              <option
+                className="dropdown-item"
+                value="database"
+                onClick={() => setDomain("Databases")}
+              >
+                Databases
+              </option>
+              <option
+                className="dropdown-item"
+                value="tech"
+                onClick={() => setDomain("Tech Entrepreneurship")}
+              >
+                Tech Entrepreneurship
+              </option>
+              <option
+                className="dropdown-item"
+                value="do"
+                onClick={() => setDomain("DevOps")}
+              >
+                DevOps
               </option>
             </ul>
             <input
