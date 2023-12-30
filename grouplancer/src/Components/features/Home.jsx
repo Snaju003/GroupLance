@@ -115,7 +115,7 @@ const Home = (props) => {
             </div>
           </div>
         </div> */}
-        <div id="connect" style={{}}><Signup /></div>
+        {currentUser?<div id="connect" style={{}}><Signup /></div>:null}
         
       </div>
     </div>
