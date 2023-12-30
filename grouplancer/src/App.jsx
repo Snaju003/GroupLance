@@ -20,7 +20,7 @@ import Recruits from './Components/group/top_grouplancers/Recruits';
 import Jobs from './Components/Jobs';
 import ChatBox from './Components/ChatBox/ChatBox';
 import GroupsInvite from './Components/group/group_invite/groupsinvite';
-import Sidebar from './Components/Sidebar';
+
 
 function App() {
   const bgcolor = "#0f054c";
@@ -82,7 +82,6 @@ function App() {
         {/* <Header /> */}
         <Routes>
           <Route exact path='/' element={<Home />} />
-          <Route exact path="/sidebar" element={<Sidebar/>}/>
           <Route exact path='/aboutus' element={<AboutUs bgcolor={bgcolor} />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
