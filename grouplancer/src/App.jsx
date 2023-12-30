@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useUser } from './context/UserContext';
 import Header from './Components/general/Header';
-import Navbar from './Components/general/Navbar';
+import NavBar from './Components/general/Navbar';
 import Footer from './Components/general/footer/Footer';
 import Login from './Components/auth/Login';
 import Signup from './Components/auth/Signup';
@@ -75,12 +75,12 @@ function App() {
 
 
   return (
-    <>
+    <div className='App'>
+      <NavBar />
       <Router>
-        <Header />
-        <Navbar />
+        {/* <Header /> */}
         <Routes>
-          <Route exact path='/' element={<Home bgcolor={bgcolor} />} />
+          <Route exact path='/' element={<Home />} />
           <Route exact path='/aboutus' element={<AboutUs bgcolor={bgcolor} />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
@@ -99,7 +99,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-    </>
+    </div>
   );
 }
 
