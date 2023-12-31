@@ -115,10 +115,86 @@ const Home = (props) => {
             </div>
           </div>
         </div> */}
-        {currentUser?<div id="connect" style={{}}><Signup /></div>:null}
-        
+        {currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
+
+        < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundImage: "url(./frontpage_image2.jpg)", backgroundSize: "cover" }}>
+        <div className="subscription"style={{display:"flex"}} >
+            <div className="card-active" style={{  borderRadius: "10px"}}>
+              <div className="space" style={{display:"flex"}}>
+            <img className="payment" src="./free.jpg" alt="icon" style={{transform:"translateX(150%)", marginTop:"20px",width: "100px", height: "100px",boxShadow:" 5px black"}}/>
+            <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center" ,alignItems:"center",padding:"10px"}}>
+              <span className="text">Subscribe</span>
+              </button>
+              
+              </div>
+              <h6 style={{opacity:"0.7",margin:"30px 40px 10px 30px",color:"white"}}>Try grouplancing for free</h6>
+              <div className="card-content">
+              
+                <h4 style={{color:"white",padding:"10px 40px 40px 40px",position:"sticky",lineHeight:"1em"}}> NO SUBSCRIPTION </h4>
+                <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px",color:"white",position:"sticky" }} >
+                <li style={{ listStyle: "inherit" }}>Ad free</li>
+                <li>Create only one group</li>
+                <li>Create group of only specified size</li>
+                
+              </ul>
+                
+              </div>
+              <div className="backdrop"></div>
+            </div>
+          </div>
+          <div className="subscription"style={{display:"flex"}} >
+            <div className="card-active" style={{  borderRadius: "10px"}}>
+              <div className="space" style={{display:"flex"}}>
+            <img className="payment" src="./prem.avif" alt="icon" style={{transform:"translateX(150%)", marginTop:"20px",width: "100px", height: "100px",boxShadow:" 5px black"}}/>
+            <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center" ,alignItems:"center",padding:"10px"}}>
+              <span className="text">Subscribe</span>
+              </button>
+              
+              </div>
+              <h6 style={{opacity:"0.7",margin:"30px 30px 10px 30px",color:"white"}}>Enjoy premium features just at Rs.800 </h6>
+              <div className="card-content">
+              
+                <h4 style={{color:"white",padding:"10px 30px 30px 30px",position:"sticky",lineHeight:"1em"}}>PREMIUM SUBSCRIPTION </h4>
+                <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px",color:"white",position:"sticky" }} >
+                <li style={{ listStyle: "inherit" }}>Ad free</li>
+                <li>Create multiple groups</li>
+                <li>Create groups of any size</li>
+                
+              </ul>
+                
+              </div>
+              <div className="backdrop"></div>
+            </div>
+          </div>
+          <div className="subscription"style={{display:"flex"}} >
+            <div className="card-active" style={{  borderRadius: "10px"}}>
+              <div className="space" style={{display:"flex"}}>
+            <img className="payment" src="./deluxe2.jpg" alt="icon" style={{transform:"translateX(150%)", marginTop:"20px",width: "100px", height: "100px",boxShadow:" 5px black"}}/>
+            <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center" ,alignItems:"center",padding:"10px"}}>
+              <span className="text">Subscribe</span>
+              </button>
+              
+              </div>
+              <h6 style={{opacity:"0.7",margin:"30px 40px 10px 30px",color:"white"}}>Enjoy deluxe features just at Rs.1500 </h6>
+              <div className="card-content">
+              
+                <h4 style={{color:"white",padding:"10px 40px 40px 40px",position:"sticky",lineHeight:"1em"}}>DELUXE SUBSCRIPTION </h4>
+                <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px",color:"white",position:"sticky" }} >
+                <li style={{ listStyle: "inherit" }}>Ad free</li>
+                <li>Create multiple groups</li>
+                <li>Create groups of any size</li>
+                <li>Invite top users to your group</li>
+                <li>Send requests to top users</li>
+              </ul>
+                
+              </div>
+              <div className="backdrop"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    
   );
 };
 
