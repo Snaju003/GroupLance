@@ -477,7 +477,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   backdrop-filter: blur(5px);
   border-radius:150px 20px 150px 20px;
   box-shadow:#00afb9 ;
- 
+  transition:0.8s;
   
 }
 
