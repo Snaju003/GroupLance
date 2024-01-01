@@ -105,19 +105,19 @@ const NavBar = () => {
                 <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
                     <Container>
                         <Navbar.Brand href="/">
-                            <img src="./grouplan.png" alt="Logo" style={{ width: "300px", height: "200px", justifyContent: "space-between", marginBottom: "-50px", marginTop: "-50px" }}/>
+                            <img src="./grouplan.png" alt="Logo" style={{ width: "300px", height: "200px", justifyContent: "space-between", marginBottom: "-50px", marginTop: "-50px" }} />
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav">
                             <span className="navbar-toggler-icon"></span>
                         </Navbar.Toggle>
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ms-auto">
-                                <Nav.Link href="/"  className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
-                                <Nav.Link href="#groups"  className={activeLink === 'groups' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('groups')}>Groups</Nav.Link>
-                                <Nav.Link href="#categories"  className={activeLink === 'categories' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('categories')}>Catagories</Nav.Link>
+                                <Nav.Link href="/" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
+                                <Nav.Link href="#groups" className={activeLink === 'groups' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('groups')}>Groups</Nav.Link>
+                                <Nav.Link href="#categories" className={activeLink === 'categories' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('categories')}>Catagories</Nav.Link>
                                 <Nav.Link href="#rankings" className={activeLink === 'rankings' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('rankings')}>Rankings</Nav.Link>
-                                <Nav.Link href="#chatbox"  className={activeLink === 'chatbox' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('chatbox')}>ChatBox</Nav.Link>
-                                <Nav.Link href="aboutus"  className={activeLink === 'about' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('about')}>About Us</Nav.Link>
+                                <Nav.Link href="#chatbox" className={activeLink === 'chatbox' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('chatbox')}>ChatBox</Nav.Link>
+                                <Nav.Link href="aboutus" className={activeLink === 'about' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('about')}>About Us</Nav.Link>
                             </Nav>
                             <span className="navbar-text">
                                 {/* <div className="social-icon">
@@ -126,13 +126,13 @@ const NavBar = () => {
                                     <a href="#"><img src={navIcon3} alt="" /></a>
                                 </div> */}
                                 {
-                                    !currentUser?
-                                <HashLink to='#connect'>
-                                    <button className="vvd"><span>Profile</span></button>
-                                </HashLink>:<HashLink to='#connect'>
-                                    <button className="vvd"><span>Sign Up/Sign In</span></button>
-                                </HashLink>
-}
+                                    !currentUser ?
+                                        <HashLink to='#connect'>
+                                            <Link className="profile" to="/userAccount"><button className="vvd"><span>Profile</span></button></Link>
+                                        </HashLink> : <HashLink to='#connect'>
+                                            <button className="vvd"><span>Sign Up/Sign In</span></button>
+                                        </HashLink>
+                                }
                             </span>
                         </Navbar.Collapse>
                     </Container>
