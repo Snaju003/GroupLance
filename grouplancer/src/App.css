@@ -464,6 +464,41 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   width: 100%;
 }
 
+.subscription{
+  width:380px;
+  height:450px;
+  display:flex;
+  margin-left:50px;
+  margin-right:50px;
+  margin-top:50px;
+  margin-bottom:50px;
+  gap:80px;
+  background:rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(5px);
+  border-radius:150px 20px 150px 20px;
+  box-shadow:#00afb9 ;
+ 
+  
+}
+
+.subscription:hover{
+  height:500px;
+  width:410px;
+  border-radius:150px 20px 150px 20px;
+  background-image: linear-gradient(yellow,blue);
+}
+
+.card{
+  min-width:70px;
+  height:100%;
+  flex-grow:1;
+  transition:0.5s cubic-bezier(0.455, 0.03, 0.515 ,0.995);
+  
+}
+
+.card-active{
+  flex-grow:100;
+}
 /* Sidebar */
 .sidebar {
   position: fixed;
