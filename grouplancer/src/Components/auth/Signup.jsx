@@ -11,6 +11,7 @@ const Signup = () => {
     cpassword: "",
   });
 
+
   const [otpState, setOtpState] = useState({
     num1: "",
     num2: "",
@@ -96,10 +97,15 @@ const Signup = () => {
 
   const handleRegisterClick = () => {
     setActive(true);
+    let btn = document.querySelector(".toggle");
+    btn.style.backgroundColor = "#00b4d8";
+  
   };
 
   const handleLoginClick = () => {
     setActive(false);
+    let btn = document.querySelector(".toggle");
+    btn.style.backgroundColor = "#0e065a";
   };
 
   // const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -109,7 +115,6 @@ const Signup = () => {
   //On submit of form
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    setCredentials({ email: '', password: '' });
     //API call 
     const response = await fetch("http://localhost:8080/api/auth/login", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -123,7 +128,8 @@ const Signup = () => {
     // if (json.authtoken) {
     localStorage.setItem('auth-token', json.authToken);
     localStorage.setItem("refresh-token", json.refreshToken);
-    navigate('/');
+    navigate('/userAccount');
+    // setCredentials({ email: '', password: '' });
     // }
     // else {
     // alert("Invalid Credentials!!");
@@ -134,173 +140,23 @@ const Signup = () => {
 
   return (
     <>
-      {/* <div
-        className="container my-3"
-        style={{ width: "800px", color: "white" }}
-      >
-        <form onSubmit={handleSubmit}>
-          <div className="mb-3">
-            <label htmlFor="username" className="form-label">
-              UserName
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="username"
-              aria-describedby="emailHelp"
-              onChange={onchange}
-              name="username"
-              required
-            />
-            <hr />
-            <label htmlFor="email" className="form-label">
-              Email address
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              aria-describedby="emailHelp"
-              onChange={onchange}
-              name="email"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              onChange={onchange}
-              required
-              name="password"
-            />
-          </div>
-          <div className="mb-3">
-            <label htmlFor="cpassword" className="form-label">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="cpassword"
-              onChange={onchange}
-              required
-              name="cpassword"
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <button type="submit" className="btn btn-primary">
-              {buttonText}
-            </button>
-          </div>
-        </form>
-        {showModal && (
-          <div className="modal" style={{ display: "block", padding: 500 }}>
-            <div
-              className="modal-content"
-              style={{
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: "20%",
-                padding: "20px",
-                position: "fixed",
-              }}
-            >
-              <span
-                onClick={closeModal}
-                style={{ cursor: "pointer", float: "right", color: "black" }}
-              >
-                &times;
-              </span>
-              <h2 style={{ color: "black" }}>Enter OTP</h2>
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <input
-                  style={{ margin: 7 }}
-                  type="text"
-                  className="form-control"
-                  id="otpBox1"
-                  placeholder=""
-                  maxLength="1"
-                  onChange={onOtpChange}
-                  required
-                  name="num1"
-                />
-                <input
-                  style={{ margin: 7 }}
-                  type="text"
-                  className="form-control"
-                  id="otpBox2"
-                  placeholder=""
-                  maxLength="1"
-                  onChange={onOtpChange}
-                  required
-                  name="num2"
-                />
-                <input
-                  style={{ margin: 7 }}
-                  type="text"
-                  className="form-control"
-                  id="otpBox3"
-                  placeholder=""
-                  maxLength="1"
-                  onChange={onOtpChange}
-                  required
-                  name="num3"
-                />
-                <input
-                  style={{ margin: 7 }}
-                  type="text"
-                  className="form-control"
-                  id="otpBox4"
-                  placeholder=""
-                  maxLength="1"
-                  onChange={onOtpChange}
-                  required
-                  name="num4"
-                />
-              </div>
-              <button className="btn btn-primary mt-3" onClick={sendOtp}>
-                Verify OTP
-              </button>
-            </div>
-          </div>
-        )}
-      </div> */}
-
       <div className={`container1 ${isActive ? "active" : ""}`}>
         <div className="form-container sign-up">
           <form onSubmit={handleSignUpSubmit}>
             <h1>Create Account</h1>
-            {/* <div className="social-icons">
+            <div className="social-icons">
               <a href="#" className="icon">
                 <i className="fa-brands fa-google-plus-g"></i>
               </a>
               <a href="#" className="icon">
-                <i className="fa-brands fa-facebook-f"></i>
-              </a>
-              <a href="#" className="icon">
                 <i className="fa-brands fa-github"></i>
               </a>
-              <a href="#" className="icon">
-                <i className="fa-brands fa-linkedin-in"></i>
-              </a>
-            </div> */}
-            {/* <span>or use your email for registration</span> */}
-            <input type="text" placeholder="Name" onChange={onchange} />
-            <input type="email" placeholder="Email" onChange={onchange} />
-            <input type="password" placeholder="Password" onChange={onchange} />
-            <input type="password" placeholder="Confirm Password" onChange={onchange} />
+            </div>
+            <span>or use your email for registration</span>
+            <input type="text" placeholder="Name" onChange={onchange} name="username"/>
+            <input type="email" placeholder="Email" onChange={onchange} name="email"/>
+            <input type="password" placeholder="Password" onChange={onchange} name="password"/>
+            <input type="password" placeholder="Confirm Password" onChange={onchange} name="cpassword"/>
             <button>{buttonText}</button>
           </form>
           {showModal && (
@@ -379,33 +235,27 @@ const Signup = () => {
         <div className="form-container sign-in">
           <form onSubmit={handleLoginSubmit}>
             <h1>Sign In</h1>
-            {/* <div className="social-icons">
+            <div className="social-icons">
               <a href="#" className="icon">
                 <i className="fa-brands fa-google-plus-g"></i>
               </a>
               <a href="#" className="icon">
-                <i className="fa-brands fa-facebook-f"></i>
-              </a>
-              <a href="#" className="icon">
                 <i className="fa-brands fa-github"></i>
               </a>
-              <a href="#" className="icon">
-                <i className="fa-brands fa-linkedin-in"></i>
-              </a>
             </div>
-            <span>or use your email password</span> */}
-            <input type="email" placeholder="Email" onChange={onchange} />
-            <input type="password" placeholder="Password" onChange={onchange} />
+            <span>or use your email password</span>
+            <input type="email" placeholder="Email" onChange={onchange} name="email"/>
+            <input type="password" placeholder="Password" onChange={onchange} name="password"/>
             <a href="#">Forget Your Password?</a>
             <button>Sign In</button>
           </form>
         </div>
         <div className="toggle-container">
-          <div className="toggle">
+          <div className="toggle" >
             <div className="toggle-panel toggle-left">
               <h1>Welcome Back!</h1>
               <p>Enter your personal details to use all site features</p>
-              <button className="hidden" id="login" onClick={handleLoginClick}>
+              <button className="hidden" id="login" onClick={handleLoginClick} >
                 Sign In
               </button>
             </div>

@@ -4,7 +4,7 @@ const AboutUs = (props) => {
   const { bgcolor } = props;
   return (
     <>
-      <h1 className="text-center my-4" style={{ color: "#ffff" }}>
+      <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop:"100px" }}>
         About Us
       </h1>
 

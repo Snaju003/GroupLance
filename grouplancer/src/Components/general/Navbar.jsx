@@ -127,9 +127,9 @@ const NavBar = () => {
                                 </div> */}
                                 {
                                     currentUser ?
-                                        <HashLink to='#connect'>
-                                            <Link className="profile" to="/userAccount"><button className="vvd"><span>Profile</span></button></Link>
-                                        </HashLink> : <HashLink to='#connect'>
+
+                                            <Nav.Link className="profile" href="userAccount"><button className="vvd"><span>Profile</span></button></Nav.Link>
+                                             : <HashLink to='#connect'>
                                             <button className="vvd"><span>Sign Up/Sign In</span></button>
                                         </HashLink>
                                 }
