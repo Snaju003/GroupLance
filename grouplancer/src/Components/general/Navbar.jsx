@@ -113,10 +113,10 @@ const NavBar = () => {
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ms-auto">
                                 <Nav.Link href="/" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
-                                <Nav.Link href="#groups" className={activeLink === 'groups' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('groups')}>Groups</Nav.Link>
-                                <Nav.Link href="#categories" className={activeLink === 'categories' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('categories')}>Catagories</Nav.Link>
-                                <Nav.Link href="#rankings" className={activeLink === 'rankings' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('rankings')}>Rankings</Nav.Link>
-                                <Nav.Link href="#chatbox" className={activeLink === 'chatbox' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('chatbox')}>ChatBox</Nav.Link>
+                                <Nav.Link href="sidebar" className={activeLink === 'groups' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('groups')}>Groups</Nav.Link>
+                                <Nav.Link href="categories" className={activeLink === 'categories' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('categories')}>Catagories</Nav.Link>
+                                <Nav.Link href="rankings" className={activeLink === 'rankings' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('rankings')}>Rankings</Nav.Link>
+                                <Nav.Link href="chatbox" className={activeLink === 'chatbox' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('chatbox')}>ChatBox</Nav.Link>
                                 <Nav.Link href="aboutus" className={activeLink === 'about' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('about')}>About Us</Nav.Link>
                             </Nav>
                             <span className="navbar-text">
@@ -126,7 +126,7 @@ const NavBar = () => {
                                     <a href="#"><img src={navIcon3} alt="" /></a>
                                 </div> */}
                                 {
-                                    !currentUser ?
+                                    currentUser ?
                                         <HashLink to='#connect'>
                                             <Link className="profile" to="/userAccount"><button className="vvd"><span>Profile</span></button></Link>
                                         </HashLink> : <HashLink to='#connect'>
