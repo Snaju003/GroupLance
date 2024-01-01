@@ -2,20 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
-
-// const groupDesign = {
-//   backgroundColor: "lightgray",
-//   marginLeft: "20px",
-//   padding: "15px",
-//   borderRadius: "15px",
-// };
-
 const UserAccounts = () => {
   const { currentUser, logout } = useUser();
 
   const handleLogout = async () => {
     const authToken = localStorage.getItem("auth-token");
-    await fetch("http://localhost:8080/api/auth/login", {
+    await fetch("http://localhost:8080/api/auth/logout", {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
@@ -28,14 +20,10 @@ const UserAccounts = () => {
   }
   const [userData, setUserData] = useState({ name: "", email: "" });
   const navigate = useNavigate();
-  // const { currentUser } = useUser();
 
 
   useEffect(() => {
-    if (!currentUser) {
-      navigate("/login");
-    }
-    else {
+
 
       const fetchUserData = async () => {
         try {
@@ -58,7 +46,7 @@ const UserAccounts = () => {
       };
       fetchUserData();
     }
-  }, [currentUser, navigate]);
+  , [currentUser, navigate]);
 
   const deactivateUser = async (e) => {
     e.preventDefault();
@@ -77,7 +65,7 @@ const UserAccounts = () => {
 
   return (
     <>
-      <button className="button-48" type="submit" style={{ color: "white", float: "right", marginRight: "15vh", padding: "10px", marginTop: "3vh", backgroundColor: "#0077b6"}} onClick={handleLogout}>
+      <button className="button-48" type="submit" style={{ color: "white", float: "right", marginRight: "15vh", padding: "10px", marginTop: "20vh", backgroundColor: "#0077b6"}} onClick={handleLogout}>
         <span class="text">LogOut</span>
       </button>
       <div className="container" style={{ display: "flex", marginTop: "30px" }}>
