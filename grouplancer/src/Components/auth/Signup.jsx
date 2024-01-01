@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
-import { Container, Row, Col } from "react-bootstrap";
 import "./signup.css";
+
 const Signup = () => {
   const [credentials, setCredentials] = useState({
     username: "",
@@ -26,13 +26,13 @@ const Signup = () => {
   const { login } = useUser();
   let navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSignUpSubmit = async (e) => {
     e.preventDefault();
     if (credentials.password !== credentials.cpassword) {
       window.alert("Enter correct password");
       return;
     }
-
+    setButtonText("Sending...");
     try {
       const response = await fetch("http://localhost:8080/api/auth/signup", {
         method: "POST",
@@ -52,7 +52,6 @@ const Signup = () => {
       console.log(error);
     }
     setOtpState({ ...otpState, sent: true });
-    setButtonText("Verify OTP");
     setShowModal(true);
   };
 
@@ -110,8 +109,8 @@ const Signup = () => {
   };
 
   // const [credentials, setCredentials] = useState({ email: "", password: "" });
-  //const { login } = useUser();
-  //let navigate = useNavigate();
+  // const { login } = useUser();
+  // let navigate = useNavigate();
 
   //On submit of form
   const handleLoginSubmit = async (e) => {
@@ -137,7 +136,7 @@ const Signup = () => {
     // }
   }
 
-  
+
 
   return (
     <>
@@ -284,10 +283,10 @@ const Signup = () => {
           </div>
         )}
       </div> */}
-      
+
       <div className={`container1 ${isActive ? "active" : ""}`}>
         <div className="form-container sign-up">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSignUpSubmit}>
             <h1>Create Account</h1>
             {/* <div className="social-icons">
               <a href="#" className="icon">
@@ -305,11 +304,83 @@ const Signup = () => {
             </div> */}
             {/* <span>or use your email for registration</span> */}
             <input type="text" placeholder="Name" onChange={onchange} />
-            <input type="email" placeholder="Email" onChange={onchange}/>
-            <input type="password" placeholder="Password" onChange={onchange}/>
-            <input type="password" placeholder="Confirm Password" onChange={onchange}/>
-            <button>Send Otp</button>
+            <input type="email" placeholder="Email" onChange={onchange} />
+            <input type="password" placeholder="Password" onChange={onchange} />
+            <input type="password" placeholder="Confirm Password" onChange={onchange} />
+            <button>{buttonText}</button>
           </form>
+          {showModal && (
+            <div className="modal" style={{ display: "block", padding: 500 }}>
+              <div
+                className="modal-content"
+                style={{
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "20%",
+                  padding: "20px",
+                  position: "fixed",
+                }}
+              >
+                <span
+                  onClick={closeModal}
+                  style={{ cursor: "pointer", float: "right", color: "black" }}
+                >
+                  &times;
+                </span>
+                <h2 style={{ color: "black" }}>Enter OTP</h2>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <input
+                    style={{ margin: 7 }}
+                    type="text"
+                    className="form-control"
+                    id="otpBox1"
+                    placeholder=""
+                    maxLength="1"
+                    onChange={onOtpChange}
+                    required
+                    name="num1"
+                  />
+                  <input
+                    style={{ margin: 7 }}
+                    type="text"
+                    className="form-control"
+                    id="otpBox2"
+                    placeholder=""
+                    maxLength="1"
+                    onChange={onOtpChange}
+                    required
+                    name="num2"
+                  />
+                  <input
+                    style={{ margin: 7 }}
+                    type="text"
+                    className="form-control"
+                    id="otpBox3"
+                    placeholder=""
+                    maxLength="1"
+                    onChange={onOtpChange}
+                    required
+                    name="num3"
+                  />
+                  <input
+                    style={{ margin: 7 }}
+                    type="text"
+                    className="form-control"
+                    id="otpBox4"
+                    placeholder=""
+                    maxLength="1"
+                    onChange={onOtpChange}
+                    required
+                    name="num4"
+                  />
+                </div>
+                <button className="btn btn-primary mt-3" onClick={sendOtp}>
+                  Verify OTP
+                </button>
+              </div>
+            </div>
+          )}
         </div>
         <div className="form-container sign-in">
           <form onSubmit={handleLoginSubmit}>
@@ -329,8 +400,8 @@ const Signup = () => {
               </a>
             </div>
             <span>or use your email password</span> */}
-            <input type="email" placeholder="Email" onChange={onchange}/>
-            <input type="password" placeholder="Password" onChange={onchange}/>
+            <input type="email" placeholder="Email" onChange={onchange} />
+            <input type="password" placeholder="Password" onChange={onchange} />
             <a href="#">Forget Your Password?</a>
             <button>Sign In</button>
           </form>

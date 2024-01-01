@@ -115,9 +115,9 @@ const Home = (props) => {
             </div>
           </div>
         </div> */}
-        {currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
+        { !currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
 
-        < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundImage: "url(./frontpage_image2.jpg)", backgroundSize: "cover" }}>
+        < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover" }}>
         <div className="subscription"style={{display:"flex"}} >
             <div className="card-active" style={{  borderRadius: "10px"}}>
               <div className="space" style={{display:"flex"}}>
