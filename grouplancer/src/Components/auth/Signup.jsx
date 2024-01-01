@@ -11,6 +11,7 @@ const Signup = () => {
     cpassword: "",
   });
 
+
   const [otpState, setOtpState] = useState({
     num1: "",
     num2: "",
@@ -97,10 +98,15 @@ const Signup = () => {
 
   const handleRegisterClick = () => {
     setActive(true);
+    let btn = document.querySelector(".toggle");
+    btn.style.backgroundColor = "#00b4d8";
+  
   };
 
   const handleLoginClick = () => {
     setActive(false);
+    let btn = document.querySelector(".toggle");
+    btn.style.backgroundColor = "#0e065a";
   };
 
   // const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -330,11 +336,11 @@ const Signup = () => {
           </form>
         </div>
         <div className="toggle-container">
-          <div className="toggle">
+          <div className="toggle" >
             <div className="toggle-panel toggle-left">
               <h1>Welcome Back!</h1>
               <p>Enter your personal details to use all site features</p>
-              <button className="hidden" id="login" onClick={handleLoginClick}>
+              <button className="hidden" id="login" onClick={handleLoginClick} >
                 Sign In
               </button>
             </div>
