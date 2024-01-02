@@ -65,8 +65,8 @@ const UserAccounts = () => {
 
   return (
     <>
-      <div style={{ paddingTop: "15vh" }}>
-        <button className="button-48" type="submit" style={{ color: "white", float: "right", marginRight: "15vh", padding: "10px", marginTop: "6vh", backgroundColor: "#0077b6" }} onClick={handleLogout}>
+      <div style={{  }}>
+        <button className="button-48" type="submit" style={{ color: "white", float: "right", marginRight: "15vh", padding: "10px", marginTop: "5vh", backgroundColor: "#0077b6" }} onClick={handleLogout}>
           <span class="text">LogOut</span>
         </button>
         <div className="container" style={{ display: "flex", marginTop: "30px" }}>
