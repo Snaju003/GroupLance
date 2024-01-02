@@ -5,49 +5,73 @@ import CreateGroup from "./group/CreateGroup";
 import GroupsInvite from "./group/group_invite/groupsinvite";
 
 const Sidebar = () => {
+    const [activeTab, setActiveTab] = useState("myGroups");
+
+    const handleTabChange = (tab) => {
+        setActiveTab(tab);
+    };
+
     return (
         <>
-            <nav
-                id="sidebarMenu"
-                class="collapse d-lg-block sidebar collapse bg-white"
-            >
-                <div class="position-sticky">
-                    <div class="list-group list-group-flush mx-3 mt-4">
-                        <a
-                            href="#"
-                            class="list-group-item list-group-item-action py-2 ripple"
-                            aria-current="true"
-                        >
-                            <i class="fas fa-tachometer-alt fa-fw me-3"></i
-                            ><span>My Groups</span>
-                        </a>
-                        <a
-                            href="#"
-                            class="list-group-item list-group-item-action py-2 ripple"
-                        >
-                            <i class="fas fa-chart-area fa-fw me-3"></i
-                            ><span>Joined Groups</span>
-                        </a>
-                        <a
-                            href="#"
-                            class="list-group-item list-group-item-action py-2 ripple"
-                        ><i class="fas fa-lock fa-fw me-3"></i><span>Create Group</span></a
-                        >
-                        <a
-                            href="#"
-                            class="list-group-item list-group-item-action py-2 ripple"
-                        ><i class="fas fa-chart-line fa-fw me-3"></i
-                        ><span>Group Invite</span></a
-                        >
-                    </div>
-                </div>
-            </nav>
-            <MyGroups/>
-            <JoinedGroups/>
-            <CreateGroup/>
-            <GroupsInvite/>
+        <br /><br />
+        <div style={{ marginTop: "100px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <div style={{ display: "flex" }}>
+                <button
+                className="button-48"
+                    style={{
+                        padding: "10px",
+                        marginRight: "10px",
+                        backgroundColor: activeTab === "myGroups" ? "#00b4d8" : "#ffffff",
+                        color: activeTab === "myGroups" ? "#ffffff" : "#000000",
+                    }}
+                    onClick={() => handleTabChange("myGroups")}
+                ><span>
+                    My groups</span>
+                </button>
+                <button
+                className="button-48"
+                    style={{
+                        padding: "10px",
+                        marginRight: "10px",
+                        backgroundColor: activeTab === "joinedGroups" ? "#00b4d8" : "#ffffff",
+                        color: activeTab === "joinedGroups" ? "#ffffff" : "#000000",
+                    }}
+                    onClick={() => handleTabChange("joinedGroups")}
+                >
+                  <span>  Joined groups</span>
+                </button>
+                <button
+                className="button-48"
+                    style={{
+                        
+                        padding: "10px",
+                        marginRight: "10px",
+                        backgroundColor: activeTab === "createGroup" ? "#00b4d8" : "#ffffff",
+                        color: activeTab === "createGroup" ? "#ffffff" : "#000000",
+                    }}
+                    onClick={() => handleTabChange("createGroup")}
+                >
+                   <span> Create Group</span>
+                </button>
+                <button
+                className="button-48"
+                    style={{
+                        padding: "10px",
+                        backgroundColor: activeTab === "groupInvites" ? "#00b4d8" : "#ffffff",
+                        color: activeTab === "groupInvites" ? "#ffffff" : "#000000",
+                    }}
+                    onClick={() => handleTabChange("groupInvites")}
+                >
+                   <span> Group Invites</span>
+                </button>
+            </div>
+            {activeTab === "myGroups" && <MyGroups />}
+            {activeTab === "joinedGroups" && <JoinedGroups />}
+            {activeTab === "createGroup" && <CreateGroup />}
+            {activeTab === "groupInvites" && <GroupsInvite />}
+        </div>
         </>
-    )
-}
+    );
+};
 
 export default Sidebar;

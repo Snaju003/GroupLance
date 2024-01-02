@@ -9,8 +9,8 @@ const LiveGroups = () => {
   const navigate = useNavigate();
   const { currentUser } = useUser();
   useEffect(() => {
-    if (!currentUser) navigate("/login");
-    else {
+    // if (currentUser) navigate("/login");
+    // else {
       const getAllGroups = async () => {
         try {
           const authToken = localStorage.getItem("auth-token");
@@ -36,7 +36,8 @@ const LiveGroups = () => {
       };
       getAllGroups();
     }
-  }, [currentUser, navigate]);
+  //}
+  , [currentUser, navigate]);
   return (
     <>
       <h1 className="text-center my-4" style={{ color: "#ffff" }}>

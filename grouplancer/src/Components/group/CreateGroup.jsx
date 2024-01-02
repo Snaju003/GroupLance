@@ -10,9 +10,9 @@ const CreateGroup = () => {
   const { currentUser } = useUser();
   const navigate = useNavigate();
   useEffect(() => {
-    if (!currentUser) {
-      navigate('/login');
-    }
+    // if (!currentUser) {
+    //   navigate('/login');
+    // }
   }, [currentUser, navigate])
 
   const handleSubmit = async (e) => {

@@ -101,6 +101,7 @@ const NavBar = () => {
                     </div>
                 </div>
             </nav> */}
+           
             <Router>
                 <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
                     <Container>
@@ -138,6 +139,8 @@ const NavBar = () => {
                     </Container>
                 </Navbar>
             </Router>
+           
+
         </>
     )
 }
