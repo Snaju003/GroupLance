@@ -536,8 +536,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
 
-.card{
-   /*height:190px;*/
+{/*.card{
+   
    position:relative;
    width:300px;
    height:320px;
@@ -594,5 +594,5 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   display:flex;
   justify-content: center;
   align-items: flex-end;
-}
+}*/}
 
