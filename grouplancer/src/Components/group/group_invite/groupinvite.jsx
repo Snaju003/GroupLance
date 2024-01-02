@@ -20,8 +20,8 @@ const GroupInvite = ({ color, title, description, id, canJoin }) => {
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{description}</p>
-          <div style={{ display: "flex" }}>
-            <button className="button-48" style={{ width: "15vh" }}>
+          <div style={{ display: "flex"}}>
+            <button className="button-48" style={{ width: "15vh",display:"flex",justifyContent:"center", alignItems:"center" }}>
               <span>
                 <a
                   href="/"
@@ -38,7 +38,7 @@ const GroupInvite = ({ color, title, description, id, canJoin }) => {
             </button>
             <button
               className="button-48"
-              style={{ width: "15vh", marginLeft: "1rem" }}
+              style={{ width: "15vh", marginLeft: "1rem",display:"flex",justifyContent:"center", alignItems:"center" }}
             >
               <span style={{ margin: "0px" }}>
                 <a

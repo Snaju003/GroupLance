@@ -21,7 +21,7 @@ import Jobs from './Components/Jobs';
 import ChatBox from './Components/ChatBox/ChatBox';
 import GroupsInvite from './Components/group/group_invite/groupsinvite';
 import Sidebar from './Components/sidebar';
-
+import Sidebar_ranking from './Components/sidebar_ranking';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -98,7 +98,7 @@ function App() {
           <Route exact path='/sidebar' element={<Sidebar />} />
           <Route exact path='/userAccount' element={<UserAccounts />} />
           <Route exact path='/groups/:id' element={<Groups />} />
-
+          <Route exact path='/sidebar_ranking' element={<Sidebar_ranking />} />
         </Routes>
         <Footer />
       </Router>
