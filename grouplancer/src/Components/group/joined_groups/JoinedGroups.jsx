@@ -9,9 +9,9 @@ const JoinedGroups = () => {
     const navigate = useNavigate()
     const { currentUser } = useUser();
     useEffect(() => {
-        if (!currentUser)
-            navigate("/login")
-        else {
+        // if (!currentUser)
+        //     navigate("/login")
+        // else {
             const fetchJoinedGroup = async () => {
                 try {
                     const authToken = localStorage.getItem("auth-token");
@@ -26,7 +26,7 @@ const JoinedGroups = () => {
                         }
                     );
                     const data = await response.json();
-                    // console.log(data.joinedGroups);
+                    console.log(data.joinedGroups);
                     setGroupData(data.joinedGroups)
                 } catch (error) {
                     console.error(error);
@@ -34,7 +34,8 @@ const JoinedGroups = () => {
             }
             fetchJoinedGroup()
         }
-    }, [currentUser, navigate])
+    //}
+    , [currentUser, navigate])
     return (
         <>
             <h1 className='text-center my-4' style={{ color: '#ffff' }}>Joined Groups</h1>
@@ -42,7 +43,7 @@ const JoinedGroups = () => {
                 <div className="container row">
 
                     {
-                        groupData.map(({ _id, gName, gDesc }) => {
+                        groupData.map(({ _id, gName, gDesc,projName}) => {
                             return (
                                 <div className="col-md-3 mb-3" key={_id}>
                                     <JoinedGroup id={_id} name={gName} desc={gDesc} color={color} />

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useUser } from './context/UserContext';
 import Header from './Components/general/Header';
-import Navbar from './Components/general/Navbar';
+import NavBar from './Components/general/Navbar';
 import Footer from './Components/general/footer/Footer';
 import Login from './Components/auth/Login';
 import Signup from './Components/auth/Signup';
@@ -20,6 +20,8 @@ import Recruits from './Components/group/top_grouplancers/Recruits';
 import Jobs from './Components/Jobs';
 import ChatBox from './Components/ChatBox/ChatBox';
 import GroupsInvite from './Components/group/group_invite/groupsinvite';
+import Sidebar from './Components/sidebar';
+import Sidebar_ranking from './Components/sidebar_ranking';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -75,12 +77,12 @@ function App() {
 
 
   return (
-    <>
+    <div className='App'>
+      <NavBar />
       <Router>
-        <Header />
-        <Navbar />
+        {/* <Header /> */}
         <Routes>
-          <Route exact path='/' element={<Home bgcolor={bgcolor} />} />
+          <Route exact path='/' element={<Home />} />
           <Route exact path='/aboutus' element={<AboutUs bgcolor={bgcolor} />} />
           <Route exact path='/login' element={<Login />} />
           <Route exact path='/signup' element={<Signup />} />
@@ -93,13 +95,14 @@ function App() {
           <Route exact path='/recruit' element={<Recruits />} />
           <Route exact path='/topgroups' element={<TopGroups />} />
           <Route exact path='/chatbox' element={<ChatBox />} />
+          <Route exact path='/sidebar' element={<Sidebar />} />
           <Route exact path='/userAccount' element={<UserAccounts />} />
           <Route exact path='/groups/:id' element={<Groups />} />
-
+          <Route exact path='/sidebar_ranking' element={<Sidebar_ranking />} />
         </Routes>
         <Footer />
       </Router>
-    </>
+    </div>
   );
 }
 
