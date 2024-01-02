@@ -13,8 +13,7 @@ const Sidebar = () => {
 
     return (
         <>
-        <br /><br />
-        <div style={{ marginTop: "100px", display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <div style={{ display: "flex" }}>
                 <button
                 className="button-48"
