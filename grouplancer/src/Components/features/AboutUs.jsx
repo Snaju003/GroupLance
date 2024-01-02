@@ -141,32 +141,12 @@ const AboutUs = (props) => {
             </div>
           </div>
         </div>
-        <div className="row">
+        {/*<div className="row">
           <div className="col-sm-4">
-            <div
-              className="card"
-              style={{
-                marginTop: "5%",
-                flexDirection: "column",
-                boxShadow: "0 0 10px 5px",
-                borderRadius: "20px",
-                display: "flex",
-                width: "300px",
-                height: "250px",
-              }}
-            >
-              <div
-                className="card-body"
-                style={{ backgroundColor: "white", borderRadius: "20px" }}
-              >
+            <div className="card">
+              <div className="card-body">
                 <img
-                  style={{
-                    height: "100px",
-                    width: "200px",
-                    paddingLeft: "100px",
-                    paddingRight: "20px",
-                  }}
-                  src="./profile.jpg"
+                  src="./default-user.jpg"
                   alt="profile"
                   className="imaging"
                 />
@@ -340,7 +320,94 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-        </div>
+       </div>*/}
+       <div className="rows" style={{display:"flex"}}>
+        <div className="card">
+                <div className="imagebox">
+                    <img src="./profile.jpg" alt="profile pic"/>
+                </div>
+                <div className="content">
+                    <div className="details">
+                        <h4 style={{marginTop:"280px",marginLeft:"110px",marginRight:"100px",fontWeight:"500",color:"white"}}>  NAME <br/><span style={{marginTop:"3px",fontWeight:"300",marginLeft:"-50px",marginRight:"-30px"}}>description</span></h4>
+                        <div className="lines">
+                            
+                            <p style={{margin:"0px 30px 30px 30px",color:"white"}}>short message from my side to all the grouplancers here....Thank you for joining us</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="card">
+                <div className="imagebox">
+                    <img src="./profile.jpg" alt="profile pic"/>
+                </div>
+                <div className="content">
+                    <div className="details">
+                        <h4 style={{marginTop:"280px",marginLeft:"110px",marginRight:"100px",fontWeight:"500",color:"white"}}>  NAME <br/><span style={{marginTop:"3px",fontWeight:"300",marginLeft:"-50px",marginRight:"-30px"}}>description</span></h4>
+                        <div className="lines">
+                            
+                            <p style={{margin:"0px 30px 30px 30px",color:"white"}}>short message from my side to all the grouplancers here....Thank you for joining us</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="card">
+                <div className="imagebox">
+                    <img src="./profile.jpg" alt="profile pic"/>
+                </div>
+                <div className="content">
+                    <div className="details">
+                        <h4 style={{marginTop:"280px",marginLeft:"110px",marginRight:"100px",fontWeight:"500",color:"white"}}>  NAME <br/><span style={{marginTop:"3px",fontWeight:"300",marginLeft:"-50px",marginRight:"-30px"}}>description</span></h4>
+                        <div className="lines">
+                            
+                            <p style={{margin:"0px 30px 30px 30px",color:"white"}}>short message from my side to all the grouplancers here....Thank you for joining us</p>
+                        </div>
+                    </div>
+                </div>
+            </div></div>
+            <div className="rows" style={{display:"flex"}}>
+            <div className="card">
+                <div className="imagebox">
+                    <img src="./profile.jpg" alt="profile pic"/>
+                </div>
+                <div className="content">
+                    <div className="details">
+                        <h4 style={{marginTop:"280px",marginLeft:"110px",marginRight:"100px",fontWeight:"500",color:"white"}}>  NAME <br/><span style={{marginTop:"3px",fontWeight:"300",marginLeft:"-50px",marginRight:"-30px"}}>description</span></h4>
+                        <div className="lines">
+                            
+                            <p style={{margin:"0px 30px 30px 30px",color:"white"}}>short message from my side to all the grouplancers here....Thank you for joining us</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="card">
+                <div className="imagebox">
+                    <img src="./profile.jpg" alt="profile pic"/>
+                </div>
+                <div className="content">
+                    <div className="details">
+                        <h4 style={{marginTop:"280px",marginLeft:"110px",marginRight:"100px",fontWeight:"500",color:"white"}}>  NAME <br/><span style={{marginTop:"3px",fontWeight:"300",marginLeft:"-50px",marginRight:"-30px"}}>description</span></h4>
+                        <div className="lines">
+                            
+                            <p style={{margin:"0px 30px 30px 30px",color:"white"}}>short message from my side to all the grouplancers here....Thank you for joining us</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="card">
+                <div className="imagebox">
+                    <img src="./profile.jpg" alt="profile pic"/>
+                </div>
+                <div className="content">
+                    <div className="details">
+                        <h4 style={{marginTop:"280px",marginLeft:"110px",marginRight:"100px",fontWeight:"500",color:"white"}}>  NAME <br/><span style={{marginTop:"3px",fontWeight:"300",marginLeft:"-50px",marginRight:"-30px"}}>description</span></h4>
+                        <div className="lines">
+                            
+                            <p style={{margin:"0px 30px 30px 30px",color:"white"}}>short message from my side to all the grouplancers here....Thank you for joining us</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
       </div>
     </>
   );
