@@ -3,7 +3,7 @@ import React from "react";
 const Jobs = () => {
   return (
     <>
-      <div
+      {/* <div
         class="nav-down"
         style={{
           borderRadius: "20px",
@@ -21,7 +21,10 @@ const Jobs = () => {
         >
           Browse by Category
         </h1>
-      </div>
+      </div> */}
+      <h1 className="text-center my-4" style={{ color: "#ffff" }}>
+        Domains
+      </h1>
       <div
         className="box"
         style={{
@@ -30,7 +33,7 @@ const Jobs = () => {
           justifyContent: "space-evenly",
           marginLeft: "1rem",
           marginRight: "1rem",
-
+          flexDirection:"column",
           color: "white",
           // backgroundImage: "linear-gradient( to bottom , #012a4a,#080402 ",
           paddingTop: "20px",
@@ -72,7 +75,7 @@ const Jobs = () => {
               {" "}
               General
             </h5>
-            <a href="">Create a group for general purpose...</a>
+            {/* <a href="">Create a group for general purpose...</a> */}
           </div>
         </div>
         <div
@@ -111,9 +114,9 @@ const Jobs = () => {
               {" "}
               Programming and Development
             </h5>
-            <a href="">
+            {/* <a href="">
               Python, JavaScript, Java, C++, Ruby, Swift, PHP, TypeScript
-            </a>
+            </a> */}
           </div>
         </div>{" "}
         <div
@@ -151,10 +154,10 @@ const Jobs = () => {
             >
               Data Science and Analytics
             </h5>
-            <a href="">
+            {/* <a href="">
               Data Visualization, Machine Learning, Big Data, Data Engineering,
               Data Warehousing, Business Intelligence
-            </a>
+            </a> */}
           </div>
         </div>{" "}
         <div
@@ -193,10 +196,10 @@ const Jobs = () => {
               {" "}
               Mobile Development
             </h5>
-            <a href="">
+            {/* <a href="">
               {" "}
               Android Development, iOS Development, Cross-Platform Development
-            </a>
+            </a> */}
           </div>
         </div>{" "}
         <div
@@ -236,9 +239,9 @@ const Jobs = () => {
               {" "}
               Frontend Development
             </h5>
-            <a href="">
+            {/* <a href="">
               HTML/CSS, Responsive Design, UI/UX Design, Web Accessibility
-            </a>
+            </a> */}
           </div>
         </div>
         <div
@@ -278,10 +281,10 @@ const Jobs = () => {
               {" "}
               Backend Development
             </h5>
-            <a href="">
+            {/* <a href="">
               Server-side scripting, APIs and RESTful services, Database
               Management
-            </a>
+            </a> */}
           </div>
         </div>
         <div
@@ -321,10 +324,10 @@ const Jobs = () => {
               {" "}
               Cloud Computing
             </h5>
-            <a href="">
+            {/* <a href="">
               Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform
               (GCP)
-            </a>
+            </a> */}
           </div>
         </div>
         <div
@@ -364,11 +367,11 @@ const Jobs = () => {
               {" "}
               DevOps
             </h5>
-            <a href="">
+            {/* <a href="">
               CI/CD,
               Containerization (Docker, Kubernetes), Infrastructure as Code
               (IaC)
-            </a>
+            </a> */}
           </div>
         </div>
         <div
@@ -408,7 +411,7 @@ const Jobs = () => {
               {" "}
               Game Development
             </h5>
-            <a href="">Unity, Unreal Engine, Game Design</a>
+            {/* <a href="">Unity, Unreal Engine, Game Design</a> */}
           </div>
         </div>
         <div
@@ -448,7 +451,7 @@ const Jobs = () => {
               {" "}
               Blockchain and Cryptocurrency
             </h5>
-            <a href="">Smart Contracts, Decentralized Finance (DeFi)</a>
+            {/* <a href="">Smart Contracts, Decentralized Finance (DeFi)</a> */}
           </div>
         </div>
         <div
@@ -488,9 +491,9 @@ const Jobs = () => {
               {" "}
               Artificial Intelligence
             </h5>
-            <a href="">
+            {/* <a href="">
               Natural Language Processing (NLP), Computer Vision, Robotics
-            </a>
+            </a> */}
           </div>
         </div>
         <div
@@ -530,7 +533,7 @@ const Jobs = () => {
               {" "}
               UI/UX Design
             </h5>
-            <a href="">Design Thinking, Prototyping, User Research</a>
+            {/* <a href="">Design Thinking, Prototyping, User Research</a> */}
           </div>
         </div>
         <div
@@ -570,7 +573,7 @@ const Jobs = () => {
               {" "}
               Networking
             </h5>
-            <a href="">TCP/IP, Network Security, Wireless Networking</a>
+            {/* <a href="">TCP/IP, Network Security, Wireless Networking</a> */}
           </div>
         </div>
         <div
@@ -610,7 +613,7 @@ const Jobs = () => {
               {" "}
               Operating Systems
             </h5>
-            <a href="">Linux, Windows, MacOS</a>
+            {/* <a href="">Linux, Windows, MacOS</a> */}
           </div>
         </div>
         <div
@@ -650,7 +653,7 @@ const Jobs = () => {
               {" "}
               Internet of Things (IoT)
             </h5>
-            <a href="">IoT Platforms, IoT Security, IoT Protocols</a>
+            {/* <a href="">IoT Platforms, IoT Security, IoT Protocols</a> */}
           </div>
         </div>
         <div
@@ -690,9 +693,9 @@ const Jobs = () => {
               {" "}
               Cybersecurity
             </h5>
-            <a href="">
+            {/* <a href="">
               Ethical Hacking, Penetration Testing, Security Policies
-            </a>
+            </a> */}
           </div>
         </div>
         <div
@@ -732,7 +735,7 @@ const Jobs = () => {
               {" "}
               Virtual Reality (VR) and Augmented Reality (AR)
             </h5>
-            <a href="">VR Development, AR Development, Mixed Reality</a>
+            {/* <a href="">VR Development, AR Development, Mixed Reality</a> */}
           </div>
         </div>
         <div
@@ -772,9 +775,9 @@ const Jobs = () => {
               {" "}
               Software Testing
             </h5>
-            <a href="">
+            {/* <a href="">
               Automated Testing, Manual Testing, Test-driven Development (TDD)
-            </a>
+            </a> */}
           </div>
         </div>
         <div
@@ -814,7 +817,7 @@ const Jobs = () => {
               {" "}
               Databases
             </h5>
-            <a href="">SQL, NoSQL, Database Administration</a>
+            {/* <a href="">SQL, NoSQL, Database Administration</a> */}
           </div>
         </div>
         <div
@@ -854,7 +857,7 @@ const Jobs = () => {
               {" "}
               Web Servers
             </h5>
-            <a href="">Apache, Nginx, IIS</a>
+            {/* <a href="">Apache, Nginx, IIS</a> */}
           </div>
         </div>
         <div
@@ -894,9 +897,9 @@ const Jobs = () => {
               {" "}
               Tech Entrepreneurship
             </h5>
-            <a href="">
+            {/* <a href="">
               Startup Development, Business Strategy, Funding and Investments
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

@@ -10,9 +10,9 @@ const MyGroups = () => {
     const { currentUser } = useUser();
 
     useEffect(() => {
-        if (!currentUser)
-            navigate("/login")
-        else {
+        // if (currentUser)
+        //     navigate("/login")
+        // else {
             const fetchData = async () => {
                 try {
                     const authToken = localStorage.getItem('auth-token');
@@ -32,7 +32,8 @@ const MyGroups = () => {
             }
             fetchData();
         }
-    }, [currentUser,navigate])
+    //}
+    , [currentUser,navigate])
 
 
     return (

@@ -69,7 +69,7 @@ const About = (props) => {
         </section>
       </div>
       <br/> */}
-      <section className="carouselCards" id="skills">
+      <section className="carouselCards">
         <div className="container">
             <div className="row">
                 <div className="col-12">

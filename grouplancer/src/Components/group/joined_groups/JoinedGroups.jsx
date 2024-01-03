@@ -9,9 +9,9 @@ const JoinedGroups = () => {
     const navigate = useNavigate()
     const { currentUser } = useUser();
     useEffect(() => {
-        if (!currentUser)
-            navigate("/login")
-        else {
+        // if (!currentUser)
+        //     navigate("/login")
+        // else {
             const fetchJoinedGroup = async () => {
                 try {
                     const authToken = localStorage.getItem("auth-token");
@@ -34,7 +34,8 @@ const JoinedGroups = () => {
             }
             fetchJoinedGroup()
         }
-    }, [currentUser, navigate])
+    //}
+    , [currentUser, navigate])
     return (
         <>
             <h1 className='text-center my-4' style={{ color: '#ffff' }}>Joined Groups</h1>
