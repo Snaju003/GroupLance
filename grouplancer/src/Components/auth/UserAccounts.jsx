@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 const UserAccounts = () => {
   const { currentUser, logout } = useUser();
+  const [userData, setUserData] = useState({ name: "", email: "" });
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     const authToken = localStorage.getItem("auth-token");
@@ -17,9 +19,8 @@ const UserAccounts = () => {
     logout();
     localStorage.setItem("auth-token", "");
     localStorage.setItem("refresh-token", "");
+    navigate("/")
   }
-  const [userData, setUserData] = useState({ name: "", email: "" });
-  const navigate = useNavigate();
 
 
   useEffect(() => {
