@@ -19,11 +19,12 @@ const LiveGroup = ({color,title,mainGoal,id,projName,canJoin}) => {
         <h1 className=" my-4" style={{ color: "#ffff" }}>
         Live Groups
       </h1>
-            <div className="card" style={{ backgroundColor: color, height:'20vh'}}>
+            <div className="card" style={{ backgroundColor: color, height:'26vh'}}>
                 <div className="card-body">
                     <h5 className="card-title">{title}</h5>
                     <p className="card-text">{projName}</p>
-                    <a href="/" className="btn btn-primary" onClick={liveGroup}>Join Group</a>
+                    <p className="card-text">{mainGoal}</p>
+                    <a href="/" className="button-48" onClick={liveGroup}><span>Join Group</span></a>
                 </div>
             </div>
         </>
