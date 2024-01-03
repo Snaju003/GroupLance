@@ -362,16 +362,17 @@ const CreateGroup = () => {
           </div>
         </form> 
       </div> */}
-      <section className="create">
-        <Container>
-          <Row className="align-items-center">
+      <section className="create" >
+        <Container >
+          <Row className="align-items-center" >
             <h1 className="text-center my-4" style={{ color: "#ffff", paddingBottom: "2vh" }}>
               Create Group
             </h1>
-            <Col size={12} md={6}>
-              <form onSubmit={handleSubmit}>
-                <Col>
-                  <Row size={12} sm={6} className="px-1">
+            
+            <Col size={12} md={6} style={{display:"flex",gap:"150px",marginLeft:"100px"}}>
+              <form onSubmit={handleSubmit} >
+              <Col style={{width:"600px"}}>
+                  <Row size={12} sm={6} className="px-1" >
                     <input type="text" placeholder="Group Name" onChange={onchange}
                       name="gName" required />
                   </Row>
@@ -429,11 +430,15 @@ const CreateGroup = () => {
                       <option value="Join with invite" style={{ color: "black" }}>Join with invite</option>
                     </Form.Select>
                   </Row>
-                  <Col size={12} className="px-1">
-                    <button type="submit"><span>Create Group</span></button>
+                  <Col size={12} className="px-1" style={{marginLeft:"160px"}}>
+                    <button className="button-48" style={{borderRadius:"20px"}} type="submit"><span>Create Group</span></button>
                   </Col>
                 </Col>
               </form>
+              <div className="boximage" style={{gap:"50px"}}>
+              <img src="./creategrp.jpg" alt="image" style={{ borderRadius:"30px 30px 0px 0px",height:"400px",width:"450px"}}/>
+              <img src="./creategrp3.avif" alt="image" style={{ borderRadius:"0px 0px 30px 30px",height:"400px",width:"450px"}}/>
+              </div>
             </Col>
           </Row>
         </Container>
