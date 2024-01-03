@@ -464,7 +464,7 @@ const deleteGroup = async (req, res) => {
 
 const getAllGroups = async (req, res) => {
     try {
-        const groups = await GroupModel.find({}).select("-gMemberNumber -members -goal -projName");
+        const groups = await GroupModel.find({}).select("-gMemberNumber -members");
         return res.status(200).json({
             success: true,
             message: 'All Groups fetched',
