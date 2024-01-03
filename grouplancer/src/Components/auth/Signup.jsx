@@ -160,15 +160,15 @@ const Signup = () => {
             <button>{buttonText}</button>
           </form>
           {showModal && (
-            <div className="modal" style={{ display: "block", padding: 500 }}>
+            <div className="modal" style={{ display: "block"}}>
               <div
                 className="modal-content"
                 style={{
                   top: "50%",
                   left: "50%",
                   transform: "translate(-50%, -50%)",
-                  width: "20%",
-                  padding: "20px",
+                  width: "60%",
+                  padding: "10px",
                   position: "fixed",
                 }}
               >
@@ -181,7 +181,7 @@ const Signup = () => {
                 <h2 style={{ color: "black" }}>Enter OTP</h2>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                   <input
-                    style={{ margin: 7 }}
+                    style={{ margin: 7}}
                     type="text"
                     className="form-control"
                     id="otpBox1"
