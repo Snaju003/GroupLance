@@ -38,8 +38,15 @@ const GroupSchema = new Schema({
         type: Boolean,
         required: true,
     },
+    tot_tweets:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'tweet'
+    }],
     members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
     pendingRequest: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
+    followers:[{ type:mongoose.Schema.Types.ObjectId,ref:'user'}],
+    following:[{type:mongoose.Schema.Types.ObjectId,ref:'user'}],
+    tweets:[{type:mongoose.Schema.Types.ObjectId,ref:'tweet'}],
 }, { timestamps: true });
 
 const GroupModel = mongoose.model('group', GroupSchema);

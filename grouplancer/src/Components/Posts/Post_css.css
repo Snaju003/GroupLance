@@ -1,0 +1,50 @@
+.post-container {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 10px;
+  max-width: 450px;
+  border-radius: 8px;
+  align-items: center;
+  margin-left: 75vh;
+}
+
+.like-button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 6vh;
+}
+
+.comment-section {
+  margin-top: 10px;
+}
+
+.comment-input {
+  padding: 8px;
+  width: 70%;
+  margin-right: 10px;
+  border-radius: 10px;
+  margin-left: 2vh;
+}
+
+.comment-button {
+  background-color: #2ecc71;
+  color: #fff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 2vh;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.comment-item {
+  margin-top: 5px;
+}
