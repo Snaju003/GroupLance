@@ -39,3 +39,6 @@ const deleteTweet=async(res,req)=>{
             });
         }
     }
+module.exports = {
+    deleteTweet
+};
