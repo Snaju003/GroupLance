@@ -23,7 +23,7 @@ const deleteTweet=async(res,req)=>{
         }
         let isContentExistsInTweet = false;
         for (let i = 0; i < existingTweet.userId.length; i++) {
-            if (existGroup.members[i].toString() === existUser.id) 
+            if (existingTweet.userId.toString() === existingTweet.id) 
                 isContentExistsInTweet = true;
         }
             await TweetModel.findByIdAndUpdate(userId, { $inc: { tot_tweets: -1 }, $pull: { userId: userId } });
