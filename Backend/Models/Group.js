@@ -38,6 +38,10 @@ const GroupSchema = new Schema({
         type: Boolean,
         required: true,
     },
+    tot_tweets:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'tweet'
+    }],
     members: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
     pendingRequest: [{ type: mongoose.Schema.Types.ObjectId, ref: 'user' }],
     followers:[{ type:mongoose.Schema.Types.ObjectId,ref:'user'}],
