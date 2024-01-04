@@ -23,6 +23,7 @@ import GroupsInvite from './Components/group/group_invite/groupsinvite';
 import Sidebar from './Components/sidebar';
 import Sidebar_ranking from './Components/sidebar_ranking';
 import LiveSide from './Components/liveside';
+import Post from './Components/Posts/Post';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -101,6 +102,7 @@ function App() {
           <Route exact path='/groups/:id' element={<Groups />} />
           <Route exact path='/sidebar_ranking' element={<Sidebar_ranking />} />
           <Route exact path='/liveside' element={<LiveSide />} />
+          <Route exact path="/posts" element={<Post />} />
         </Routes>
         <Footer />
       </Router>
