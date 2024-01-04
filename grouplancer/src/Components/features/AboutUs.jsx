@@ -1,22 +1,36 @@
 import React from "react";
+// const responsive ={
+//   @media (min-width: 576px) { }
 
+//   // Medium devices (tablets, 768px and up)
+//   @media (min-width: 768px) {  }
+
+//   // Large devices (desktops, 992px and up)
+//   @media (min-width: 992px) {  }
+
+//   // X-Large devices (large desktops, 1200px and up)
+//   @media (min-width: 1200px) { }
+
+//   // XX-Large devices (larger desktops, 1400px and up)
+//   @media (min-width: 1400px) { }
+// };
 const AboutUs = (props) => {
   const { bgcolor } = props;
   return (
     <>
-      <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop:"100px" }}>
+      <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop: "100px" }}>
         About Us
       </h1>
 
       <div className="container my-4" display="flex" alignitems="center">
         <div className="row">
-          <div
+          <div className="hero-image"
             style={{
               backgroundImage: "url(/aboutUs.jpg)",
               backgroundSize: "90%",
               marginTop: "0%",
-              width: " 1300px",
-              height: "700px",
+              width: " 100%",
+              height: "94.85vh",
               paddingRight: "50px",
               padingLeft: "50px",
               marginBottom: "2px",
@@ -25,21 +39,21 @@ const AboutUs = (props) => {
             alt="image not yet ready"
             srcSet=" "
           >
-            <div style={{ alignitems: "center" }}>
-              <h1
+            <div style={{ display: "flex", alignItems: "left", flexDirection: "column" }}>
+              <h1 className="heading"
                 style={{
                   color: "#ffff",
-                  paddingRight: "700px",
                   textAlign: "center",
                 }}
               >
                 {" "}
                 Welcome to grouplancer
               </h1>
-              <p
+
+              <p className="des"
                 style={{
                   color: "#ffff",
-                  paddingRight: "700px",
+                  width: "50%",
                   paddingBottom: "250px",
                   textAlign: "justify",
                 }}
@@ -50,8 +64,8 @@ const AboutUs = (props) => {
             </div>
           </div>
         </div>
-        <div className="accordion" id="accordionExample" style={{backgroundColor:bgcolor}}>
-          <div className="accordion-item"style={{backgroundColor:bgcolor}}>
+        <div className="accordion" id="accordionExample" style={{ backgroundColor: bgcolor }}>
+          <div className="accordion-item" style={{ backgroundColor: bgcolor }}>
             <h2 className="accordion-header">
               <button
                 className="accordion-button"
@@ -96,7 +110,7 @@ const AboutUs = (props) => {
             </div>
           </div>
 
-          <div className="accordion-item" style={{backgroundColor:bgcolor}}>
+          <div className="accordion-item" style={{ backgroundColor: bgcolor }}>
             <h2 className="accordion-header">
               <button
                 className="accordion-button collapsed"
@@ -141,9 +155,9 @@ const AboutUs = (props) => {
             </div>
           </div>
         </div>
-        <div className="row">
-          
-          <div className="col-sm-4">
+        <div className="row" style={{width: "100%",display:"flex", gap: "2rem",flexWrap: "wrap",marginLeft:"3.5rem"}}>
+
+          <div className="col-sm-4" style={{width: "30%"}}>
             <div
               className="card"
               style={{
@@ -176,7 +190,7 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4" style={{width: "30%"}} >
             <div
               className="card"
               style={{
@@ -209,7 +223,7 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4" style={{width: "30%"}}>
             <div
               className="card"
               style={{
@@ -242,7 +256,7 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4" style={{width: "30%"}}>
             <div
               className="card"
               style={{
@@ -275,7 +289,7 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4" style={{width: "30%"}}>
             <div
               className="card"
               style={{
@@ -308,7 +322,7 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4">
+          <div className="col-sm-4" style={{width: "30%"}}>
             <div
               className="card"
               style={{
@@ -341,9 +355,9 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-       </div>
-       
-           {/*<div className="rows" style={{display:"flex"}}>
+        </div>
+
+        {/*<div className="rows" style={{display:"flex"}}>
             <div className="card">
                 <div className="imagebox">
                     <img src="./profile.jpg" alt="profile pic"/>
@@ -360,6 +374,57 @@ const AboutUs = (props) => {
             </div>
             </div>*/}
       </div>
+      <style>
+        {`
+     @media (max-width: 575.98px) { 
+    
+     }
+
+    
+     @media (max-width: 767.98px) { 
+      .row{
+        flex-direction: column;
+      }
+     
+      }
+     
+   
+     @media (max-width: 991.98px) { 
+      .heading{
+        font-size: 1.7rem;
+      }
+      .des{
+        font-size: 0.8rem;
+        width: 100%;
+      }
+      .hero-image{
+        height: 200px;
+      }
+   
+      }
+     
+
+     @media (max-width: 1199.98px) { 
+      .hero-image{
+        height: 30vh;
+        
+      }
+      .row{
+        flex-direction: column;
+        justify-content: center;
+      }
+    
+     }
+     
+    
+     @media (max-width: 1399.98px) { 
+      .hero-image{
+        background-repeat: no-repeat;
+        border-radius: 20px 20px;
+      }
+      }
+        `}
+      </style>
     </>
   );
 };

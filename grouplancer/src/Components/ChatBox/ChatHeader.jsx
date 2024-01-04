@@ -4,9 +4,9 @@ const ChatHeader = () => {
   return (
     <>
       <header>
-        <div className="container" style={{color:'#fff'}}>
-          Hey This is Chat Header
-        </div>
+      <h1 className="text-center my-4" style={{ color: "#ffff" }}>
+        Chats
+      </h1>
       </header>
     </>
   )
