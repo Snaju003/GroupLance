@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Chat.css"; // Import your CSS file
 
-const Chat = () => {
+const Chat = ({ groupName }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
@@ -16,13 +16,13 @@ const Chat = () => {
   return (
     <>
       <div className="chat-container">
-        <div className="message-container" style={{borderRadius:"20px",backgroundImage:"url(./chat.jpg)",opacity:"0.8"}}>
+        <div className="message-container">
           {messages.map((message, index) => (
             <div
               key={index}
               className={`message ${message.sender === "user" ? "user-message" : "other-message"}`}
             >
-              <strong style={{color:"white"}}>{message.sender}:</strong> {message.text}
+              <strong>{message.sender}:</strong> {message.text}
             </div>
           ))}
         </div>
@@ -33,7 +33,6 @@ const Chat = () => {
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type your message..."
             className="input-field"
-            style={{borderRadius:"20px"}}
           />
           <button onClick={handleSendMessage} className="button-48" style={{height:"5vh",lineHeight:"0em"}}>
            <span>Send</span> 
@@ -45,5 +44,7 @@ const Chat = () => {
 };
 
 export default Chat;
+
+          
 
 

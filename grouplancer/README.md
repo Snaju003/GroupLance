@@ -146,3 +146,28 @@ Pass 'auth-token' in header (Take it from localstorage)
   "userId": "<pass the userId who will join>",
   "groupId": "<pass group id>"
 }
+
+# Create Tweet
+
+URL: localhost:8080/api/tweet/create-post (POST Request)
+pass auth token
+
+{
+  "groupId":"<group id>",
+  "content":"<text>"
+}
+
+# Delete Tweet
+
+URL: localhost:8080/api/tweet/delete-post (DELETE Request)
+pass auth token
+
+{
+  "groupId":"<group id>",
+  "tweetId":"<tweet id>"
+}
+
+# Fetch posts
+
+URL: localhost:8080/api/tweet/get-posts/:id(pass id here) (GET Request)
+pass auth token
