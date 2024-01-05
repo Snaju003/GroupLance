@@ -49,9 +49,9 @@ const CreateGroup = () => {
               Create Group
             </h1>
             
-            <Col size={12} md={6} style={{display:"flex",gap:"150px",marginLeft:"100px"}}>
+            <Col className="form"size={12} md={6} style={{display:"flex",gap:"150px",marginLeft:"100px"}}>
               <form onSubmit={handleSubmit} >
-              <Col style={{width:"600px"}}>
+              <Col className="column" style={{width:"31.25vw"}}>
                   <Row size={12} sm={6} className="px-1" >
                     <input type="text" placeholder="Group Name" onChange={onchange}
                       name="gName" required />
@@ -122,6 +122,51 @@ const CreateGroup = () => {
             </Col>
           </Row>
         </Container>
+        <style>
+        {`
+     @media (max-width: 575.98px) { 
+    
+     }
+
+    
+     @media (max-width: 767.98px) { 
+  
+   
+      }
+     
+   
+     @media (max-width: 991.98px) { 
+     
+      .boximage{
+        display: none;
+       }
+       .form{
+        align-items: center;
+       
+       }
+       h1{
+        padding-left: 15vw;
+
+       }
+      }
+     .button-48{
+      margin-right: 100px;
+     }
+
+     @media (max-width: 1199.98px) { 
+      .button-48{
+        margin-right: 5000vw;
+       }
+  
+    
+     }
+     
+    
+     @media (max-width: 1399.98px) { 
+ 
+      }
+        `}
+      </style>
       </section >
     </>
   );
