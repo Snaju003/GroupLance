@@ -19,37 +19,43 @@ const Post = () => {
 
     return (
         <div className="post-container">
-            <img src='./aboutUs.jpg' alt='posts' style={{
-                marginRight: "20px",
-                marginLeft: "20px",
-                height: "200px",
-                width: "200px",
-                marginTop: "10px",
-            }} />
-            <div className="comment-section">
-                <button className="like-button" onClick={handleLike}>
-                    Like ({likes})
-                </button>
-                <input
-                    type="text"
-                    placeholder="Add a comment"
-                    value={commentInput}
-                    onChange={(e) => setCommentInput(e.target.value)}
-                    className="comment-input"
-                />
-            </div>
-            <button className="comment-button" onClick={handleComment}>
-                Comment
-            </button>
-            <div>
-                <h4 style={{ marginTop: "10px", color: "white" }}>Comments:</h4>
-                <ul className="comments-list">
-                    {comments.map((comment, index) => (
-                        <li key={index} className="comment-item" style={{ color: "white" }}>
-                            {comment}
-                        </li>
-                    ))}
-                </ul>
+            <div style={{ display: "flex" }}>
+                <div>
+                    <img src='./aboutUs.jpg' alt='posts' style={{
+                        marginRight: "20px",
+                        marginLeft: "20px",
+                        height: "200px",
+                        width: "200px",
+                        marginTop: "10px",
+                    }} />
+                    <button className="like-button" onClick={handleLike}>
+                        Like ({likes})
+                    </button>
+                </div>
+                <div className="comment-section" style={{ borderLeft: "3px solid white"}}>
+                    <div style={{display: "flex"}}>
+                        <input
+                            type="text"
+                            placeholder="Add a comment"
+                            value={commentInput}
+                            onChange={(e) => setCommentInput(e.target.value)}
+                            className="comment-input"
+                        />
+                        <button className="comment-button" onClick={handleComment}>
+                            Comment
+                        </button>
+                    </div>
+                    <div>
+                        <h4 style={{ marginTop: "10px", color: "white", marginLeft: "2vh", }}>Comments:</h4>
+                        <ul className="comments-list">
+                            {comments.map((comment, index) => (
+                                <li key={index} className="comment-item" style={{ color: "white" }}>
+                                    {comment}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     );
