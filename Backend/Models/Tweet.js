@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const TweetSchema = new Schema({
-    userId:
+    groupId:
     {
         type: mongoose.Schema.Types.ObjectId,
         require : true,
