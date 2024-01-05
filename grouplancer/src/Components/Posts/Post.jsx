@@ -5,6 +5,7 @@ const Post = () => {
     const [likes, setLikes] = useState(0);
     const [comments, setComments] = useState([]);
     const [commentInput, setCommentInput] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     const handleLike = () => {
         setLikes(likes + 1);
@@ -15,6 +16,10 @@ const Post = () => {
             setComments([...comments, commentInput]);
             setCommentInput('');
         }
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
     };
 
     return (
@@ -30,6 +35,9 @@ const Post = () => {
                 <button className="like-button" onClick={handleLike}>
                     Like ({likes})
                 </button>
+                <button className="comment-button" onClick={handleComment}>
+                    Comment
+                </button>
                 <input
                     type="text"
                     placeholder="Add a comment"
@@ -38,9 +46,6 @@ const Post = () => {
                     className="comment-input"
                 />
             </div>
-            <button className="comment-button" onClick={handleComment}>
-                Comment
-            </button>
             <div>
                 <h4 style={{ marginTop: "10px", color: "white" }}>Comments:</h4>
                 <ul className="comments-list">
