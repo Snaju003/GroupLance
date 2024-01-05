@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import Post from "../Posts/Post";
 
 const UserAccounts = () => {
   const { currentUser, logout } = useUser();
@@ -13,19 +14,16 @@ const UserAccounts = () => {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: {
         "Content-Type": "application/json",
-        "auth-token": authToken
+        "auth-token": authToken,
       },
     });
     logout();
     localStorage.setItem("auth-token", "");
     localStorage.setItem("refresh-token", "");
-    navigate("/")
-  }
-
+    navigate("/");
+  };
 
   useEffect(() => {
-
-
     const fetchUserData = async () => {
       try {
         const authToken = localStorage.getItem("auth-token");
@@ -46,23 +44,25 @@ const UserAccounts = () => {
       }
     };
     fetchUserData();
-  }
-    , [currentUser, navigate]);
+  }, [currentUser, navigate]);
 
   const deactivateUser = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8080/api/auth/deactivate-user", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": localStorage.getItem('auth-token'),
-      },
-    });
+    const response = await fetch(
+      "http://localhost:8080/api/auth/deactivate-user",
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("auth-token"),
+        },
+      }
+    );
     const json = await response.json();
-    console.log(json)
-    logout()
-    navigate("/")
-  }
+    console.log(json);
+    logout();
+    navigate("/");
+  };
 
   return (
     <>
@@ -193,9 +193,17 @@ const UserAccounts = () => {
         </div>
       </div>*/}
 
-      <div className="row" style={{margin:"10vh 8vw" }}>
+      <div className="row" style={{ margin: "10vh 8vw" }}>
         <div className="col-sm-6" style={{}}>
-          <div className="card" style={{ backdropFilter: "blur(5px)", width: "600px", height: "700px", borderRadius: "20px" }}>
+          <div
+            className="card"
+            style={{
+              backdropFilter: "blur(5px)",
+              width: "600px",
+              height: "700px",
+              borderRadius: "20px",
+            }}
+          >
             <div style={{ display: "flex" }}>
               <img
                 src="./default-user.jpg"
@@ -206,64 +214,129 @@ const UserAccounts = () => {
                   height: "190px",
                   width: "190px",
                   margin: "7px 20px 80px 20px",
-                }} />
+                }}
+              />
 
-              <div style={{ marginTop: "30px" }}><p style={{ fontSize: "20px" }}>{userData.name}</p>
+              <div style={{ marginTop: "30px" }}>
+                <p style={{ fontSize: "20px" }}>{userData.name}</p>
                 <p style={{ fontSize: "15px" }}> {userData.email}</p>
-                <button style={{ backgroundColor: "#077b6", margin: "0px 30px 30px 30px", color: "white", width: "100px", height: "50px" }} type="submit" className="button-48">
+                <button
+                  style={{
+                    backgroundColor: "#077b6",
+                    margin: "0px 30px 30px 30px",
+                    color: "white",
+                    width: "100px",
+                    height: "50px",
+                  }}
+                  type="submit"
+                  className="button-48"
+                >
                   <span class="text">Edit</span>
                 </button>
               </div>
             </div>
-            <ul style={{ marginLeft: "20px", justifyContent: "right" }}>
-              <li><div className="card-body" style={{ display: "flex" }}>
-                <div><h5 className="card-title">Rankings<br /></h5>
-                  <p className="card-text">
-                    Rank: 10
+            <ul style={{ marginLeft: "20px", justifyContent: "right" ,listStyle:"none"}}>
+              <li>
+                <div className="card-body" style={{ display: "flex",justifyContent:"space-between" }}>
+                  <div>
+                    <h5 className="card-title">
+                      Rankings
+                      <br />
+                    </h5>
+                    <p className="card-text">
+                      Rank: 10
+                      <br />
+                      Rating Score: 4.9⭐
+                    </p>
+                  </div>
+                  <button
+                    style={{
+                      gap: "50px",
+                      backgroundColor: "#077b6",
+                      color: "white",
+                      
+                    }}
+                    href="#"
+                    className="button-48"
+                  >
+                    <span class="text">Go to rankings</span>
+                  </button>
+                </div>{" "}
+              </li>
+              <li>
+                <div className="card-body" style={{ display: "flex",justifyContent:"space-between" }}>
+                  <h5 className="card-title">
+                    Skills
                     <br />
-                    Rating Score: 4.9⭐
-                  </p></div>
-                <button style={{ gap: "50px", backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Go to rankings</span>
-                </button>
-              </div>  </li>
-              <li><div className="card-body" style={{ display: "flex" }}>
-                <h5 className="card-title">Skills<br /></h5>
-                <p className="card-text">
-                  Html CSS</p>
-                <button style={{ marginLeft: "70px", backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Add Skills</span>
-                </button>
-              </div>  </li>
-              <li><div className="card-body" style={{ display: "flex" }}>
-                <h5 className="card-title">Work Experience<br /></h5>
-                <p className="card-text">
-                  Add Experience</p>
-                <button style={{ marginLeft: "20px", backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Add experience</span>
-                </button>
-              </div>  </li>
-              <li><div className="card-body" style={{ display: "flex" }}>
-                <h5 className="card-title">Education<br /></h5>
-                <p className="card-text">
-                  RCC IIT</p>
-                <button style={{ marginLeft: "80px", backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Add Education</span>
-                </button>
-              </div>  </li>
+                  </h5>
+                  <p className="card-text">Html CSS</p>
+                  <button
+                    style={{
+                      marginLeft: "70px",
+                      backgroundColor: "#077b6",
+                      color: "white",
+                    }}
+                    href="#"
+                    className="button-48"
+                  >
+                    <span class="text">Add Skills</span>
+                  </button>
+                </div>{" "}
+              </li>
+              <li>
+                <div className="card-body" style={{ display: "flex" ,justifyContent:"space-between"}}>
+                  <h5 className="card-title">
+                    Work Experience
+                    <br />
+                  </h5>
+                  <p className="card-text">Add Experience</p>
+                  <button
+                    style={{
+                      marginLeft: "20px",
+                      backgroundColor: "#077b6",
+                      color: "white",
+                    }}
+                    href="#"
+                    className="button-48"
+                  >
+                    <span class="text">Add experience</span>
+                  </button>
+                </div>{" "}
+              </li>
+              <li>
+                <div className="card-body" style={{ display: "flex",justifyContent:"space-between" }}>
+                  <h5 className="card-title">
+                    Education
+                    <br />
+                  </h5>
+                  <p className="card-text">RCC IIT</p>
+                  <button
+                    style={{
+                      marginLeft: "80px",
+                      backgroundColor: "#077b6",
+                      color: "white",
+                    }}
+                    href="#"
+                    className="button-48"
+                  >
+                    <span class="text">Add Education</span>
+                  </button>
+                </div>{" "}
+              </li>
             </ul>
+          </div></div>
+          <div className="col-sm-6" style={{display: "flex",flexDirection:"column"}}>
+          <h3 className="text-center">My Group's Post</h3>
+            
+            
+              
+              <div><Post/></div>
+            
+            
+            
           </div>
-          <div className="col-sm-6" style={{}}>
-            <div className="card" style={{ backdropFilter: "blur(5px)", width: "600px", height: "700px", borderRadius: "20px" }}>
-              <h3>My Group's Post</h3></div>
-          </div>
-        </div>
+        
       </div>
-
-
-
-
-
     </>
   );
 };
