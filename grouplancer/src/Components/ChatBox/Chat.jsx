@@ -16,7 +16,7 @@ const Chat = ({ groupName }) => {
   return (
     <>
       <div className="chat-container">
-        <div className="message-container">
+        <div className="message-container" style={{borderRadius:"20px",backgroundImage:"url(./chat.jpg)"}}>
           {messages.map((message, index) => (
             <div
               key={index}
@@ -33,6 +33,7 @@ const Chat = ({ groupName }) => {
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type your message..."
             className="input-field"
+            style={{borderRadius:"20px"}}
           />
           <button onClick={handleSendMessage} className="button-48" style={{height:"5vh",lineHeight:"0em"}}>
            <span>Send</span> 
