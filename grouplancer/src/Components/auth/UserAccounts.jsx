@@ -195,7 +195,7 @@ const UserAccounts = () => {
 
       <div className="row" style={{margin:"10vh 8vw" }}>
         <div className="col-sm-6" style={{}}>
-          <div className="card" style={{ backdropFilter: "blur(5px)", width: "600px", height: "700px", borderRadius: "20px" }}>
+          <div className="card" style={{ backdropFilter: "blur(5px)", width: "400px", height: "700px", borderRadius: "20px" }}>
             <div style={{ display: "flex" }}>
               <img
                 src="./default-user.jpg"
