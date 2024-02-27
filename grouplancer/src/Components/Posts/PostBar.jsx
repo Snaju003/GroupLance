@@ -11,9 +11,9 @@ const Postbar = () => {
             <section className="tab">
                 <Container>
                     <Row>
-                        <Col size={9}>
+                        <Col size={12}>
                             <Tab.Container id="tabs-group" defaultActiveKey="first">
-                                <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
+                                <Nav fill variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                                     <Nav.Item>
                                         <Nav.Link eventKey="first">Live Posts</Nav.Link>
                                     </Nav.Item>
