@@ -94,10 +94,45 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/UserContext";
 
 const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const { currentUser, logout } = useUser();
+
+
+    const handleLogout = async () => {
+        const authToken = localStorage.getItem("auth-token");
+        await fetch("http://localhost:8080/api/auth/logout", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": authToken,
+            },
+        });
+        logout();
+        localStorage.setItem("auth-token", "");
+        localStorage.setItem("refresh-token", "");
+    };
+
+    const deactivateUser = async (e) => {
+        e.preventDefault();
+        const response = await fetch(
+            "http://localhost:8080/api/auth/deactivate-user",
+            {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": localStorage.getItem("auth-token"),
+                },
+            }
+        );
+        const json = await response.json();
+        console.log(json);
+        logout();
+    };
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
@@ -110,8 +145,12 @@ const NavBar = () => {
         setAnchorElNav(null);
     };
 
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
+
     return (
-        <AppBar position="static" style={{backgroundColor: "#253aa1", background: "transparent"}}>
+        <AppBar position="static" style={{ backgroundColor: "#253aa1", background: "transparent" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <img src="./grouplan.png" alt="Logo" style={{ width: "300px", height: "200px", justifyContent: "space-between", marginBottom: "-50px", marginTop: "-50px", marginLeft: "0px" }} />
@@ -216,13 +255,44 @@ const NavBar = () => {
                             <Link href="/postbar" style={{ color: "white", textDecoration: "none" }}>Posts</Link>
                         </Button>
                     </Box>
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Link href="/userAccount"><img alt="Remy Sharp" src="./default-user.jpg" style={{height: "10vh", width: "10vh"}}/></Link>
-                            </IconButton>
-                        </Tooltip>
-                    </Box>
+                    {
+                        currentUser ?
+                            <Box sx={{ flexGrow: 0 }}>
+                                <Tooltip title="Open settings">
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <img alt="Remy Sharp" src="./default-user.jpg" style={{ height: "10vh", width: "10vh" }} />
+                                    </IconButton>
+                                </Tooltip>
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    <MenuItem onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center"><Button href="/userAccount" style={{ color: "black", textDecoration: "none" }}>Profile</Button></Typography>
+                                    </MenuItem>
+                                    <MenuItem onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center"><Button href="/" style={{ color: "black", textDecoration: "none" }} onClick={handleLogout}>Logout</Button></Typography>
+                                    </MenuItem>
+                                    <MenuItem onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center"><Button href="/" style={{ color: "black", textDecoration: "none" }} onClick={deactivateUser}>Delete User</Button></Typography>
+                                    </MenuItem>
+
+                                </Menu>
+                            </Box>: 
+                            <Button style={{borderRadius: "10px", backgroundColor: "white", height: "8vh", width: "20vh", color: "black"}}>Sign Up/Sign In</Button>
+                    }
                 </Toolbar>
             </Container>
         </AppBar>
