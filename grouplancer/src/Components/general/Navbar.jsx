@@ -90,15 +90,10 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from "@mui/material";
-
-
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -115,27 +110,13 @@ const NavBar = () => {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
-
     return (
-        <AppBar position="static">
+        <AppBar position="static" style={{backgroundColor: "#253aa1", background: "transparent"}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <img src="./grouplan.png" alt="Logo" style={{ width: "300px", height: "200px", justifyContent: "space-between", marginBottom: "-50px", marginTop: "-50px", marginLeft: "0px" }} />
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
                         <Menu
                             id="menu-appbar"
                             anchorEl={anchorElNav}
@@ -161,22 +142,32 @@ const NavBar = () => {
                             </MenuItem>
                             <MenuItem onClick={handleCloseNavMenu}>
                                 <Typography textAlign="center">
-                                    <Link to="/sidebar" style={{ color: "black", textDecoration: "none" }}>My Portfolios</Link>
+                                    <Link to="/sidebar" style={{ color: "black", textDecoration: "none" }}>Groups</Link>
                                 </Typography>
                             </MenuItem>
                             <MenuItem onClick={handleCloseNavMenu}>
                                 <Typography textAlign="center">
-                                    <Link href="/sidebar" style={{ color: "black", textDecoration: "none" }}>Chat</Link>
+                                    <Link href="/liveside" style={{ color: "black", textDecoration: "none" }}>Categories</Link>
                                 </Typography>
                             </MenuItem>
                             <MenuItem onClick={handleCloseNavMenu}>
                                 <Typography textAlign="center">
-                                    <Link href="/createport" style={{ color: "black", textDecoration: "none" }}>Build your Site</Link>
+                                    <Link href="/sidebar_ranking" style={{ color: "black", textDecoration: "none" }}>Rankings</Link>
                                 </Typography>
                             </MenuItem>
                             <MenuItem onClick={handleCloseNavMenu}>
                                 <Typography textAlign="center">
-                                    <Link href="/createport" style={{ color: "black", textDecoration: "none" }}>Build your Site</Link>
+                                    <Link href="/chatbox" style={{ color: "black", textDecoration: "none" }}>ChatBox</Link>
+                                </Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Typography textAlign="center">
+                                    <Link href="/aboutus" style={{ color: "black", textDecoration: "none" }}>About Us</Link>
+                                </Typography>
+                            </MenuItem>
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Typography textAlign="center">
+                                    <Link href="/postbar" style={{ color: "black", textDecoration: "none" }}>Posts</Link>
                                 </Typography>
                             </MenuItem>
                         </Menu>
@@ -222,37 +213,15 @@ const NavBar = () => {
                             onClick={handleCloseNavMenu}
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         >
-                            <Link href="/posts" style={{ color: "white", textDecoration: "none" }}>Posts</Link>
+                            <Link href="/postbar" style={{ color: "white", textDecoration: "none" }}>Posts</Link>
                         </Button>
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Link href="/userAccount"><img alt="Remy Sharp" src="./default-user.jpg" style={{height: "10vh", width: "10vh"}}/></Link>
                             </IconButton>
                         </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
                     </Box>
                 </Toolbar>
             </Container>
