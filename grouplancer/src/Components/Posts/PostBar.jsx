@@ -11,7 +11,7 @@ const Postbar = () => {
             <section className="tab">
                 <Container>
                     <Row>
-                        <Col size={12}>
+                        <Col size={9}>
                             <Tab.Container id="tabs-group" defaultActiveKey="first">
                                 <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                                     <Nav.Item>
@@ -28,13 +28,13 @@ const Postbar = () => {
                                     </Nav.Item> */}
                                 </Nav>
                                 <Tab.Content id="slideInUp">
-                                    <Tab.Pane eventKey="second">
+                                    <Tab.Pane eventKey="first">
                                         <Post />
                                     </Tab.Pane>
-                                    <Tab.Pane eventKey="third">
+                                    <Tab.Pane eventKey="second">
                                         <CreatePost />
                                     </Tab.Pane>
-                                    <Tab.Pane eventKey="first">
+                                    <Tab.Pane eventKey="third">
                                         <Post />
                                     </Tab.Pane>
                                     {/* <Tab.Pane eventKey="fourth">
