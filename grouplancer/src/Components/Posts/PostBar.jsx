@@ -15,29 +15,29 @@ const Postbar = () => {
                             <Tab.Container id="tabs-group" defaultActiveKey="first">
                                 <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                                     <Nav.Item>
-                                        <Nav.Link eventKey="third">Live Posts</Nav.Link>
+                                        <Nav.Link eventKey="first">Live Posts</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="first">My Posts</Nav.Link>
+                                        <Nav.Link eventKey="second">My Posts</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="second">Create Post</Nav.Link>
+                                        <Nav.Link eventKey="third">Create Post</Nav.Link>
                                     </Nav.Item>
-                                    <Nav.Item>
+                                    {/* <Nav.Item>
                                         <Nav.Link eventKey="fourth">Group Invite</Nav.Link>
-                                    </Nav.Item>
+                                    </Nav.Item> */}
                                 </Nav>
                                 <Tab.Content id="slideInUp">
+                                    <Tab.Pane eventKey="second">
+                                        <Post />
+                                    </Tab.Pane>
+                                    <Tab.Pane eventKey="third">
+                                        <CreatePost />
+                                    </Tab.Pane>
                                     <Tab.Pane eventKey="first">
                                         <Post />
                                     </Tab.Pane>
-                                    <Tab.Pane eventKey="second">
-                                        <CreatePost />
-                                    </Tab.Pane>
-                                    {/* <Tab.Pane eventKey="third">
-                                        <CreateGroup />
-                                    </Tab.Pane>
-                                    <Tab.Pane eventKey="fourth">
+                                    {/* <Tab.Pane eventKey="fourth">
                                         <GroupsInvite />
                                     </Tab.Pane> */}
                                 </Tab.Content>
