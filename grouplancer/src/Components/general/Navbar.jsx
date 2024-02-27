@@ -291,7 +291,7 @@ const NavBar = () => {
 
                                 </Menu>
                             </Box>: 
-                            <Button style={{borderRadius: "10px", backgroundColor: "white", height: "8vh", width: "20vh", color: "black"}}>Sign Up/Sign In</Button>
+                            <Button href="/#connect" style={{borderRadius: "10px", backgroundColor: "white", height: "8vh", width: "20vh", color: "black"}}>Sign Up/Sign In</Button>
                     }
                 </Toolbar>
             </Container>
