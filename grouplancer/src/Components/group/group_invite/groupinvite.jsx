@@ -21,7 +21,7 @@ const GroupInvite = ({ color, title, description, id, canJoin }) => {
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{description}</p>
           <div style={{ display: "flex"}}>
-            <button className="button-48" style={{ width: "15vh",display:"flex",justifyContent:"center", alignItems:"center" }}>
+            <button className="button-48" style={{ width: "15vh",margin: 0,display:"flex",justifyContent:"center", alignItems:"center" }}>
               <span>
                 <a
                   href="/"

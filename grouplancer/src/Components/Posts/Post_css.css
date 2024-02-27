@@ -9,8 +9,8 @@
 }
 
 .like-button {
-  background-color: #3498db;
-  color: #fff;
+  background-color: #2ecc71;
+  color: white;
   padding: 8px 15px;
   border: none;
   border-radius: 4px;
@@ -53,3 +53,6 @@
 .comment-item {
   margin-top: 5px;
 }
+
+
+
