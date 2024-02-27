@@ -174,6 +174,11 @@ const NavBar = () => {
                                     <Link href="/createport" style={{ color: "black", textDecoration: "none" }}>Build your Site</Link>
                                 </Typography>
                             </MenuItem>
+                            <MenuItem onClick={handleCloseNavMenu}>
+                                <Typography textAlign="center">
+                                    <Link href="/createport" style={{ color: "black", textDecoration: "none" }}>Build your Site</Link>
+                                </Typography>
+                            </MenuItem>
                         </Menu>
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -212,6 +217,12 @@ const NavBar = () => {
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         >
                             <Link href="/aboutus" style={{ color: "white", textDecoration: "none" }}>About Us</Link>
+                        </Button>
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            <Link href="/posts" style={{ color: "white", textDecoration: "none" }}>Posts</Link>
                         </Button>
                     </Box>
                     <Box sx={{ flexGrow: 0 }}>
