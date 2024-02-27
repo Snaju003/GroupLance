@@ -9,7 +9,7 @@ const TopGroups = () => {
     const navigate = useNavigate()
     const { currentUser } = useUser();
     useEffect(() => {
-        if (!currentUser)
+        if (1==0)
             navigate("/login")
         else {
             const getAllGroups = async () => {
