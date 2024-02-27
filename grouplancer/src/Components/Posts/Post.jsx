@@ -20,7 +20,7 @@ const Post = () => {
     };
 
     return (
-        <div className="post-container" style={{display: "flex",flexDirection:"column"}}>
+        <div className="post-container" style={{display: "flex",flexDirection:"column", margin:"auto"}}>
             <div style={{ display: "flex" }}>
                 <div>
                     <img src='./creategrp.jpg' alt='posts' style={{
