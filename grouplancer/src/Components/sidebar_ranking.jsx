@@ -1,53 +1,52 @@
 import React, { useState } from "react";
 import Recruits from "./group/top_grouplancers/Recruits";
 import TopGroups from "./group/top_groups/Topgroups";
-// import MyGroups from "./group/my_groups/Mygroups";
-// import JoinedGroups from "./group/joined_groups/JoinedGroups";
-// import CreateGroup from "./group/CreateGroup";
-// import GroupsInvite from "./group/group_invite/groupsinvite";
+import TopGroup from "./group/top_groups/TopGroup";
 
+import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 const Sidebar_ranking = () => {
-    const [activeTab, setActiveTab] = useState("top_grouplancers");
-
-    const handleTabChange = (tab) => {
-        setActiveTab(tab);
-    };
-
+    
     return (
         <>
-        <div style={{ marginTop: "10px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <div style={{ display: "flex" }}>
-                <button
-                className="button-48"
-                    style={{
-                        padding: "10px",
-                        marginRight: "10px",
-                        backgroundColor: activeTab === "top_groups" ? "#00b4d8" : "#ffffff",
-                        color: activeTab === "top_groups" ? "#ffffff" : "#000000",
-                    }}
-                     onClick={() => handleTabChange("top_groups")}
-                ><span>
-                    Top Groups</span>
-                </button>
-                <button
-                className="button-48"
-                    style={{
-                        padding: "10px",
-                        marginRight: "10px",
-                        backgroundColor: activeTab === "top_grouplancers" ? "#00b4d8" : "#ffffff",
-                        color: activeTab === "top_grouplancers" ? "#ffffff" : "#000000",
-                    }}
-                    onClick={() => handleTabChange("top_grouplancers")}
-                >
-                  <span>  Top grouplancers</span>
-                </button>
-                
-            </div>
-            {activeTab === "top_grouplancers" && <Recruits />}
-             {activeTab === "top_groups" && <TopGroups />}
-            {/*{activeTab === "createGroup" && <CreateGroup />}
-            {activeTab === "groupInvites" && <GroupsInvite />} */}
-        </div>
+         <section className="tab">
+                <Container>
+                    <Row>
+                        <Col size={12}>
+                            <Tab.Container id="tabs-group" defaultActiveKey="first">
+                                <Nav fill variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="first">Top Grouplancers</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link eventKey="second">Top Groups</Nav.Link>
+                                    </Nav.Item>
+                                    {/* <Nav.Item>
+                                        <Nav.Link eventKey="third">Create Post</Nav.Link>
+                                    </Nav.Item> */}
+                                    {/* <Nav.Item>
+                                        <Nav.Link eventKey="fourth">Group Invite</Nav.Link>
+                                    </Nav.Item> */}
+                                </Nav>
+                                <Tab.Content id="slideInUp">
+                                    <Tab.Pane eventKey="first">
+                                        <Recruits />
+                                    </Tab.Pane>
+                                    <Tab.Pane eventKey="second">
+                                        <TopGroups />
+                                    </Tab.Pane>
+                                    {/* <Tab.Pane eventKey="third">
+                                        <Post />
+                                    </Tab.Pane> */}
+                                    {/* <Tab.Pane eventKey="fourth">
+                                        <GroupsInvite />
+                                    </Tab.Pane> */}
+                                </Tab.Content>
+                            </Tab.Container>
+
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
         </>
     );
 };

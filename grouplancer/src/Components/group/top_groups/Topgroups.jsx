@@ -26,9 +26,9 @@ const TopGroups = () => {
                         }
                     );
                     const data = await response.json();
-                    const filteredGroups = data.groups.filter(group => group.leader !== currentUser._id);
-                    //console.log(filteredGroups)
-                    setTopGroupData(filteredGroups);
+                    // const filteredGroups = data.groups.filter(group => group.leader !== currentUser._id);
+                    // //console.log(filteredGroups)
+                    setTopGroupData(data.groups);
                 } catch (error) {
                     console.error(error);
                 }
