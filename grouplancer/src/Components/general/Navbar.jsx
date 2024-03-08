@@ -156,6 +156,16 @@ const NavBar = () => {
                     <img src="./grouplan.png" alt="Logo" style={{ width: "300px", height: "200px", justifyContent: "space-between", marginBottom: "-50px", marginTop: "-50px", marginLeft: "0px" }} />
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
+                        >
+                            <MenuIcon />
+                        </IconButton>
                         <Menu
                             id="menu-appbar"
                             anchorEl={anchorElNav}
@@ -290,8 +300,8 @@ const NavBar = () => {
                                     </MenuItem>
 
                                 </Menu>
-                            </Box>: 
-                            <Button href="/#connect" style={{borderRadius: "10px", backgroundColor: "white", height: "8vh", width: "20vh", color: "black"}}>Sign Up/Sign In</Button>
+                            </Box> :
+                            <Button href="/#connect" style={{ borderRadius: "10px", backgroundColor: "white", height: "8vh", width: "20vh", color: "black" }}>Sign Up/Sign In</Button>
                     }
                 </Toolbar>
             </Container>
