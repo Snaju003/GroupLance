@@ -229,6 +229,12 @@ const UserAccounts = () => {
               }}
             >
               <li>
+                <h4>Rankings:</h4>
+                <ul>
+                  
+                </ul>
+              </li>
+              <li>
                 <h4>Skills:</h4>
                 <ul>
                   {skillsList.map((skill, index) => (
