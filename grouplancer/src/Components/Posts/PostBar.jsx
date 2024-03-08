@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import CreatePost from "./CreatePost";
+import CreatePost1 from "./CreatePost1";
 import Post from "./Post";
 
 const Postbar = () => {
@@ -32,7 +33,7 @@ const Postbar = () => {
                                         <Post />
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="second">
-                                        <CreatePost />
+                                        <CreatePost1 />
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="third">
                                         <Post />
