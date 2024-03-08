@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import Post from "../Posts/Post";
-import { Button, Box, Typography, Modal } from "@mui/material";
+import {
+  Button,
+  Box,
+  Typography,
+  Modal,
+  TextField,
+  Fab,
+  Autocomplete,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import { names } from "../constant/skills";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -14,6 +24,7 @@ const style = {
   boxShadow: 24,
   p: 4,
 };
+
 const UserAccounts = () => {
   const { currentUser, logout } = useUser();
   const [userData, setUserData] = useState({ name: "", email: "" });
@@ -77,6 +88,28 @@ const UserAccounts = () => {
     navigate("/");
   };
 
+  const [education, setEducation] = useState("");
+  const [educationList, setEducationList] = useState([]);
+  const handleAddEducation = () => {
+    if (education.trim() !== "") {
+      setEducationList([...educationList, education]);
+      setEducation("");
+    }
+  };
+
+  const [WorkExp, setWorkExp] = useState("");
+  const [WorkExpList, setWorkExpList] = useState([]);
+  const handleAddWorkExp = () => {
+    if (WorkExp.trim() !== "") {
+      setWorkExpList([...WorkExpList, WorkExp]);
+      setWorkExp("");
+    }
+  };
+
+  const [skillsList, setSkillsList] = useState([]);
+
+  
+
   return (
     <>
       <div className="row" style={{ margin: "10vh 8vw" }}>
@@ -106,7 +139,7 @@ const UserAccounts = () => {
               <div style={{ marginTop: "30px" }}>
                 <p style={{ fontSize: "20px" }}>{userData.name}</p>
                 <p style={{ fontSize: "15px" }}> {userData.email}</p>
-                <Button onClick={handleOpen}>Open modal</Button>
+                <Button onClick={handleOpen}>Edit</Button>
                 <Modal
                   open={open}
                   onClose={handleClose}
@@ -114,40 +147,113 @@ const UserAccounts = () => {
                   aria-describedby="modal-modal-description"
                 >
                   <Box sx={style}>
-                    <Typography
-                      id="modal-modal-title"
-                      variant="h6"
-                      component="h2"
+                    <div
+                      style={{
+                        justifyContent: "space-between",
+                        padding: "1vh",
+                      }}
                     >
-                      Text in a modal
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                      Duis mollis, est non commodo luctus, nisi erat porttitor
-                      ligula.
-                    </Typography>
+                      <Autocomplete
+                        multiple
+                        id="tags-outlined"
+                        options={names}
+                        getOptionLabel={(option) => option}
+                        filterSelectedOptions
+                        onChange={(event, newValue) =>
+                          setSkillsList(newValue)
+                        }
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            label="Skills"
+                            placeholder="Add"
+                          />
+                        )}
+                      />
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        padding: "1vh",
+                      }}
+                    >
+                      <TextField
+                        id="standard-basic"
+                        label="Education"
+                        variant="standard"
+                        value={education}
+                        onChange={(e) => setEducation(e.target.value)}
+                        sx={{ width: "100%" }}
+                      />
+                      <Fab
+                        color="primary"
+                        aria-label="add"
+                        onClick={handleAddEducation}
+                      >
+                        <AddIcon />
+                      </Fab>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        padding: "1vh",
+                      }}
+                    >
+                      <TextField
+                        id="standard-basic"
+                        label="Work Experience"
+                        variant="standard"
+                        value={WorkExp}
+                        onChange={(e) => setWorkExp(e.target.value)}
+                        sx={{ width: "100%" }}
+                      />
+                      <Fab
+                        color="primary"
+                        aria-label="add"
+                        onClick={handleAddWorkExp}
+                      >
+                        <AddIcon />
+                      </Fab>
+                    </div>
                   </Box>
                 </Modal>
               </div>
             </div>
+            <ul
+              style={{
+                marginLeft: "20px",
+                justifyContent: "right",
+                listStyle: "none",
+              }}
+            >
+              <li>
+                <h4>Skills:</h4>
+                <ul>
+                  {skillsList.map((skill, index) => (
+                    <li key={index}>{skill}</li>
+                  ))}
+                </ul>
+              </li>
+              <li>
+                <h4>Education:</h4>
+                <ul>
+                  {educationList.map((edu, index) => (
+                    <li key={index}>{edu}</li>
+                  ))}
+                </ul>
+              </li>
+              <li>
+                <h4>Work Experience:</h4>
+                <ul>
+                  {WorkExpList.map((work, index) => (
+                    <li key={index}>{work}</li>
+                  ))}
+                </ul>
+              </li>
+            </ul>
           </div>
-          <ul
-            style={{
-              marginLeft: "20px",
-              justifyContent: "right",
-              listStyle: "none",
-            }}
-          >
-            <li></li>
-          </ul>
-        </div>
-      </div>
-      <div
-        className="col-sm-6"
-        style={{ display: "flex", flexDirection: "column" }}
-      >
-        <h3 className="text-center">My Group's Post</h3>
-        <div>
-          <Post />
         </div>
       </div>
     </>
