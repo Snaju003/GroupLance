@@ -5,36 +5,39 @@ const TweetSchema = new Schema({
     groupId:
     {
         type: mongoose.Schema.Types.ObjectId,
-        require : true,
+        require: true,
         ref: 'group'
     },
     content:
     {
-        type:String,
-        require:true
+        type: String,
+        require: true
+    },
+    file: {
+        type: String,
     },
     likes:
-    [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'group'
-        }
-    ],
+        [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'group'
+            }
+        ],
     retweets:
-    [
+        [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'group'
+            }
+        ],
+    comments: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'group'
-        }
-    ],
-    comments:[
-    {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'tweet'
-    }]
-},{ timestamps: true })
+            ref: 'tweet'
+        }]
+}, { timestamps: true })
 
-const TweetModel = mongoose.model('tweet',TweetSchema)
+const TweetModel = mongoose.model('tweet', TweetSchema)
 TweetModel.createIndexes();
 
 module.exports = TweetModel;

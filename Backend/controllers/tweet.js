@@ -13,8 +13,13 @@ const createTweet = async (req, res) => {
                 success: false,
                 message: 'No content found.'
             });
-
         }
+
+        let imageUrl;
+        if (!req.file) {
+            imageUrl = `${url}/file/${req.file.filename}`;
+        }
+
         const existsGroup = await GroupModel.findById(groupId);
         if (!existsGroup) {
             return res.status(400).json({
@@ -25,15 +30,16 @@ const createTweet = async (req, res) => {
 
         const newTweet = await TweetModel.create({
             groupId,
-            content
+            content,
+            file: imageUrl,
         });
 
         const updateGroup = await GroupModel.findByIdAndUpdate(groupId, {
             $push: { tweets: newTweet._id }
         });
 
-        return res.status(400).json({
-            success: false,
+        return res.status(200).json({
+            success: true,
             message: 'New tweet created!',
             newTweet
         });
