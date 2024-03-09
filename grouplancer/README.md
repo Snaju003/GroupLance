@@ -110,7 +110,7 @@ Pass data from body
 {
   "userId":"<pass user id>"
 }
-
+Done
 
 # Edit group info (In testing...don't fetch it)
 
@@ -156,6 +156,7 @@ pass auth token
   "groupId":"<group id>",
   "content":"<text>"
 }
+Done
 
 # Delete Tweet
 

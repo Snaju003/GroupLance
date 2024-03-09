@@ -24,6 +24,11 @@ import Sidebar from './Components/sidebar';
 import Sidebar_ranking from './Components/sidebar_ranking';
 import LiveSide from './Components/liveside';
 import Post from './Components/Posts/Post';
+import CreatePost from './Components/Posts/CreatePost';
+import Postbar from './Components/Posts/PostBar';
+import CreatePost1 from './Components/Posts/CreatePost1';
+import Livepost from './Components/Posts/Livepost';
+import LivePosts from './Components/Posts/LivePosts';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -103,6 +108,10 @@ function App() {
           <Route exact path='/sidebar_ranking' element={<Sidebar_ranking />} />
           <Route exact path='/liveside' element={<LiveSide />} />
           <Route exact path="/posts" element={<Post />} />
+          <Route exact path="/createposts" element={<CreatePost />} />
+          <Route exact path="/createposts1" element={<CreatePost1 />} />
+          <Route exact path="/postbar" element={<Postbar />} />
+          <Route exact path="/liveposts" element={<LivePosts />} />
         </Routes>
         <Footer />
       </Router>

@@ -1,31 +1,53 @@
 import React, { useState, useEffect } from "react";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import {
+  Button,
+  Box,
+  Typography,
+  Modal,
+  TextField,
+  Fab,
+  Autocomplete,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import { names } from "../constant/skills";
+
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 const UserAccounts = () => {
   const { currentUser, logout } = useUser();
   const [userData, setUserData] = useState({ name: "", email: "" });
   const navigate = useNavigate();
-
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const handleLogout = async () => {
     const authToken = localStorage.getItem("auth-token");
     await fetch("http://localhost:8080/api/auth/logout", {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token": authToken
+        "auth-token": authToken,
       },
     });
     logout();
     localStorage.setItem("auth-token", "");
     localStorage.setItem("refresh-token", "");
-    navigate("/")
-  }
-
+    navigate("/");
+  };
 
   useEffect(() => {
-
-
     const fetchUserData = async () => {
       try {
         const authToken = localStorage.getItem("auth-token");
@@ -46,156 +68,61 @@ const UserAccounts = () => {
       }
     };
     fetchUserData();
-  }
-    , [currentUser, navigate]);
+  }, [currentUser, navigate]);
 
   const deactivateUser = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8080/api/auth/deactivate-user", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": localStorage.getItem('auth-token'),
-      },
-    });
+    const response = await fetch(
+      "http://localhost:8080/api/auth/deactivate-user",
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("auth-token"),
+        },
+      }
+    );
     const json = await response.json();
-    console.log(json)
-    logout()
-    navigate("/")
-  }
+    console.log(json);
+    logout();
+    navigate("/");
+  };
+
+  const [education, setEducation] = useState("");
+  const [educationList, setEducationList] = useState([]);
+  const handleAddEducation = () => {
+    if (education.trim() !== "") {
+      setEducationList([...educationList, education]);
+      setEducation("");
+    }
+  };
+
+  const [WorkExp, setWorkExp] = useState("");
+  const [WorkExpList, setWorkExpList] = useState([]);
+  const handleAddWorkExp = () => {
+    if (WorkExp.trim() !== "") {
+      setWorkExpList([...WorkExpList, WorkExp]);
+      setWorkExp("");
+    }
+  };
+
+  const [skillsList, setSkillsList] = useState([]);
+
+  
 
   return (
     <>
-      {/*<div style={{  }}>
-        <button className="button-48" type="submit" style={{ color: "white", float: "right", marginRight: "15vh", padding: "10px", marginTop: "5vh", backgroundColor: "#0077b6" }} onClick={handleLogout}>
-          <span class="text">LogOut</span>
-        </button>
-        <div className="container" style={{ display: "flex", marginTop: "30px" }}>
-          <img
-            src="./default-user.jpg"
-            alt="profile_image"
-            style={{
-              marginRight: "20px",
-              marginLeft: "220px",
-              height: "200px",
-              width: "200px",
-              marginTop: "30px",
-            }}
-          />
-
+      <div className="row" style={{ margin: "10vh 8vw" }}>
+        <div className="col-sm-6">
           <div
+            className="card"
             style={{
-              marginTop: "30px",
-              backgroundColor: "white",
-              width: "1500px",
-              textAlign: "justify",
-              borderRadius: "15px",
-              paddingLeft: "15px",
-              paddingTop: "10px",
-              marginRight: "180px",
+              backdropFilter: "blur(5px)",
+              width: "600px",
+              height: "700px",
+              borderRadius: "20px",
             }}
           >
-
-            <p style={{ fontSize: "25px" }}>Name: {userData.name}</p>
-            <p style={{ fontSize: "25px" }}>Email: {userData.email}</p>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <button style={{ backgroundColor: "#077b6", color: "white" }} type="submit" className="button-48">
-                <span class="text">Edit</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          className="button-48"
-          style={{ backgroundColor: "#077b6", marginLeft: "34vh", margginTop: "4rem", color: "white" }}
-        >
-          <span class="text">Add Your Image</span>
-        </button>
-
-        <div className="row" style={{ margin: "10vh 8vw" }}>
-          <div className="col-sm-6">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Rankings</h5>
-                <p className="card-text">
-                  Rank: 10
-                </p>
-                <p className="card-text">
-                  Rating Score: 4.9⭐
-                </p>
-                <button style={{ backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Go to rankings</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Skills</h5>
-                <p className="card-text">
-                  Html CSS
-                </p>
-                <p className="card-text">
-                  <br />
-                </p>
-                <button style={{ backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Add Skills</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row" style={{ margin: "10vh 8vw" }}>
-          <div className="col-sm-6">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Work Experience</h5>
-                <p className="card-text">
-                  Add Experience
-                </p>
-                <p className="card-text">
-                  <br />
-                </p>
-                <button style={{ backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Add experience</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="col-sm-6">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Education</h5>
-                <p className="card-text">
-                  RCC IIT
-                </p>
-                <p className="card-text">
-                  <br />
-                </p>
-                <button style={{ backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Add education</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <button style={{ backgroundColor: "#077b6" }} type="submit" className="btn btn-primary" onClick={deactivateUser}>Deactivate User</button>
-        </div>
-      </div>*/}
-
-      <div className="row" style={{margin:"10vh 8vw" }}>
-        <div className="col-sm-6" style={{}}>
-          <div className="card" style={{ backdropFilter: "blur(5px)", width: "600px", height: "700px", borderRadius: "20px" }}>
             <div style={{ display: "flex" }}>
               <img
                 src="./default-user.jpg"
@@ -206,64 +133,135 @@ const UserAccounts = () => {
                   height: "190px",
                   width: "190px",
                   margin: "7px 20px 80px 20px",
-                }} />
+                }}
+              />
 
-              <div style={{ marginTop: "30px" }}><p style={{ fontSize: "20px" }}>{userData.name}</p>
+              <div style={{ marginTop: "30px" }}>
+                <p style={{ fontSize: "20px" }}>{userData.name}</p>
                 <p style={{ fontSize: "15px" }}> {userData.email}</p>
-                <button style={{ backgroundColor: "#077b6", margin: "0px 30px 30px 30px", color: "white", width: "100px", height: "50px" }} type="submit" className="button-48">
-                  <span class="text">Edit</span>
-                </button>
+                <Button onClick={handleOpen}>Edit</Button>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <div
+                      style={{
+                        justifyContent: "space-between",
+                        padding: "1vh",
+                      }}
+                    >
+                      <Autocomplete
+                        multiple
+                        id="tags-outlined"
+                        options={names}
+                        getOptionLabel={(option) => option}
+                        filterSelectedOptions
+                        onChange={(event, newValue) =>
+                          setSkillsList(newValue)
+                        }
+                        renderInput={(params) => (
+                          <TextField
+                            {...params}
+                            label="Skills"
+                            placeholder="Add"
+                          />
+                        )}
+                      />
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        padding: "1vh",
+                      }}
+                    >
+                      <TextField
+                        id="standard-basic"
+                        label="Education"
+                        variant="standard"
+                        value={education}
+                        onChange={(e) => setEducation(e.target.value)}
+                        sx={{ width: "100%" }}
+                      />
+                      <Fab
+                        color="primary"
+                        aria-label="add"
+                        onClick={handleAddEducation}
+                      >
+                        <AddIcon />
+                      </Fab>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        padding: "1vh",
+                      }}
+                    >
+                      <TextField
+                        id="standard-basic"
+                        label="Work Experience"
+                        variant="standard"
+                        value={WorkExp}
+                        onChange={(e) => setWorkExp(e.target.value)}
+                        sx={{ width: "100%" }}
+                      />
+                      <Fab
+                        color="primary"
+                        aria-label="add"
+                        onClick={handleAddWorkExp}
+                      >
+                        <AddIcon />
+                      </Fab>
+                    </div>
+                  </Box>
+                </Modal>
               </div>
             </div>
-            <ul style={{ marginLeft: "20px", justifyContent: "right" }}>
-              <li><div className="card-body" style={{ display: "flex" }}>
-                <div><h5 className="card-title">Rankings<br /></h5>
-                  <p className="card-text">
-                    Rank: 10
-                    <br />
-                    Rating Score: 4.9⭐
-                  </p></div>
-                <button style={{ gap: "50px", backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Go to rankings</span>
-                </button>
-              </div>  </li>
-              <li><div className="card-body" style={{ display: "flex" }}>
-                <h5 className="card-title">Skills<br /></h5>
-                <p className="card-text">
-                  Html CSS</p>
-                <button style={{ marginLeft: "70px", backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Add Skills</span>
-                </button>
-              </div>  </li>
-              <li><div className="card-body" style={{ display: "flex" }}>
-                <h5 className="card-title">Work Experience<br /></h5>
-                <p className="card-text">
-                  Add Experience</p>
-                <button style={{ marginLeft: "20px", backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Add experience</span>
-                </button>
-              </div>  </li>
-              <li><div className="card-body" style={{ display: "flex" }}>
-                <h5 className="card-title">Education<br /></h5>
-                <p className="card-text">
-                  RCC IIT</p>
-                <button style={{ marginLeft: "80px", backgroundColor: "#077b6", color: "white" }} href="#" className="button-48">
-                  <span class="text">Add Education</span>
-                </button>
-              </div>  </li>
+            <ul
+              style={{
+                marginLeft: "20px",
+                justifyContent: "right",
+                listStyle: "none",
+              }}
+            >
+              <li>
+                <h4>Rankings:</h4>
+                <ul>
+                  
+                </ul>
+              </li>
+              <li>
+                <h4>Skills:</h4>
+                <ul>
+                  {skillsList.map((skill, index) => (
+                    <li key={index}>{skill}</li>
+                  ))}
+                </ul>
+              </li>
+              <li>
+                <h4>Education:</h4>
+                <ul>
+                  {educationList.map((edu, index) => (
+                    <li key={index}>{edu}</li>
+                  ))}
+                </ul>
+              </li>
+              <li>
+                <h4>Work Experience:</h4>
+                <ul>
+                  {WorkExpList.map((work, index) => (
+                    <li key={index}>{work}</li>
+                  ))}
+                </ul>
+              </li>
             </ul>
-          </div>
-          <div className="col-sm-6" style={{}}>
-            <div className="card" style={{ backdropFilter: "blur(5px)", width: "600px", height: "700px", borderRadius: "20px" }}>
-              <h3>My Group's Post</h3></div>
           </div>
         </div>
       </div>
-
-
-
-
-
     </>
   );
 };
