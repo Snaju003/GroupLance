@@ -39,7 +39,10 @@ function Livepost(props) {
             >
               {postdesc}
             </Typography>
-            <Box display="flex" alignItems="center">
+          
+          
+          </CardContent>
+            <Box display="flex" alignItems="center" marginBottom={15} >
               {[1, 2, 3, 4, 5].map((star) => (
                 <IconButton
                   key={star}
@@ -52,8 +55,8 @@ function Livepost(props) {
               <Typography variant="body1" style={{ color: "black" }}>
                 Rated: {rating} stars
               </Typography>
+              
             </Box>
-          </CardContent>
         </Box>
       </Card>
     </>
