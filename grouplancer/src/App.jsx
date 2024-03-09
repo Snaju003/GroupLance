@@ -29,6 +29,7 @@ import Postbar from './Components/Posts/PostBar';
 import CreatePost1 from './Components/Posts/CreatePost1';
 import Livepost from './Components/Posts/Livepost';
 import LivePosts from './Components/Posts/LivePosts';
+import Myposts from './Components/Posts/Myposts';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -112,6 +113,8 @@ function App() {
           <Route exact path="/createposts1" element={<CreatePost1 />} />
           <Route exact path="/postbar" element={<Postbar />} />
           <Route exact path="/liveposts" element={<LivePosts />} />
+          <Route exact path="/myposts" element={<Myposts />} />
+          
         </Routes>
         <Footer />
       </Router>

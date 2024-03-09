@@ -25,8 +25,8 @@ const Post = ({ groupName, postDescription }) => {
       style={{ display: "flex", flexDirection: "column", margin: "auto" }}
     >
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <h2 style={{ color: "white" }}>groupName</h2>
-        <p style={{ color: "white" }}>postDescription</p>
+        {/* <h2 style={{ color: "white" }}>{groupName}</h2> */}
+        <p style={{ color: "black" }}>{postDescription}</p>
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div>
@@ -86,12 +86,10 @@ const Post = ({ groupName, postDescription }) => {
           Share
         </button>
       </div>
-      <h4 style={{ marginTop: "1rem", color: "white", textAlign: "center" }}>
-        Comments:
-      </h4>
+      
       <ul className="comments-list">
         {comments.map((comment, index) => (
-          <li key={index} className="comment-item" style={{ color: "white" }}>
+          <li key={index} className="comment-item" style={{ color: "black" }}>
             {comment}
           </li>
         ))}

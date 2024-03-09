@@ -5,6 +5,8 @@ import CreatePost from "./CreatePost";
 import CreatePost1 from "./CreatePost1";
 import Post from "./Post";
 import LivePosts from "./LivePosts";
+import Mypost from "./Mypost";
+import Myposts from "./Myposts";
 
 const Postbar = () => {
 
@@ -37,7 +39,7 @@ const Postbar = () => {
                                         <CreatePost1 />
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="third">
-                                        <Post />
+                                        <Myposts />
                                     </Tab.Pane>
                                     {/* <Tab.Pane eventKey="fourth">
                                         <GroupsInvite />
