@@ -15,10 +15,11 @@ const createTweet = async (req, res) => {
             });
         }
 
-        let imageUrl;
-        if (!req.file) {
-            imageUrl = `${url}/file/${req.file.filename}`;
-        }
+        // let imageUrl=null;
+        // const url = 'http://localhost:8000';
+        // if (!req.file) {
+        //     imageUrl = `${url}/file/${req.file.filename}`;
+        // }
 
         const existsGroup = await GroupModel.findById(groupId);
         if (!existsGroup) {
@@ -31,7 +32,7 @@ const createTweet = async (req, res) => {
         const newTweet = await TweetModel.create({
             groupId,
             content,
-            file: imageUrl,
+            // file: imageUrl,
         });
 
         const updateGroup = await GroupModel.findByIdAndUpdate(groupId, {
@@ -44,7 +45,7 @@ const createTweet = async (req, res) => {
             newTweet
         });
     }
-    catch {
+    catch (error) {
         console.log(error);
         res.status(500).json({
             successs: false,
@@ -112,6 +113,7 @@ const getAllTweets = async (req, res) => {
             tweets
         });
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
             success: false,
             message: 'Internal server error'

@@ -39,6 +39,7 @@ const CreatePost1 = () => {
 
     const handlePost = async (e) => {
         try {
+            e.preventDefault();
             const authToken = localStorage.getItem('auth-token');
             console.log(selGroup)
             const response = await fetch("http://localhost:8080/api/tweet/create-post", {
@@ -77,10 +78,10 @@ const CreatePost1 = () => {
         setSelGroup(e.value);
     }
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log(formData);
-    // };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+    };
 
     return (
         <section className="create">
@@ -100,7 +101,7 @@ const CreatePost1 = () => {
                     />
 
                     <Col className="form" size={12} md={6}>
-                        <Form>
+                        <Form onSubmit={handleSubmit}>
                             <Col className="column" style={{ width: "31.25vw" }}>
                                 <Row className="px-1">
                                     <Form.Group as={Col}>
@@ -122,7 +123,7 @@ const CreatePost1 = () => {
                                             onChange={handleChange}
                                             name="media"
                                             accept="image/*, video/*"
-                                            required
+                                            
                                         />
                                     </Form.Group>
                                 </Row>
