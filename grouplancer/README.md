@@ -156,6 +156,7 @@ pass auth token
   "groupId":"<group id>",
   "content":"<text>"
 }
+Done
 
 # Delete Tweet
 
