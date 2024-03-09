@@ -16,6 +16,7 @@ const createTweet = async (req, res) => {
         }
 
         let imageUrl;
+        const url = 'http://localhost:8000';
         if (!req.file) {
             imageUrl = `${url}/file/${req.file.filename}`;
         }
