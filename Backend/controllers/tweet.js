@@ -115,7 +115,10 @@ const getAllTweets = async (req, res) => {
                 message: 'Group not found'
             });
         }
-        const tweets = await TweetModel.find({ groupId: groupId });
+        const tweets = await TweetModel.find({ groupId: groupId }).populate({
+            path: 'groupId',
+            select: 'gName'
+        });
         return res.status(200).json({
             success: true,
             message: 'All Groups fetched',
