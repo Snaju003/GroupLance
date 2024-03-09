@@ -44,7 +44,7 @@ const createTweet = async (req, res) => {
             newTweet
         });
     }
-    catch {
+    catch (error) {
         console.log(error);
         res.status(500).json({
             successs: false,
@@ -112,6 +112,7 @@ const getAllTweets = async (req, res) => {
             tweets
         });
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
             success: false,
             message: 'Internal server error'
