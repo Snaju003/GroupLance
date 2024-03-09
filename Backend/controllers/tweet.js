@@ -15,11 +15,11 @@ const createTweet = async (req, res) => {
             });
         }
 
-        let imageUrl;
-        const url = 'http://localhost:8000';
-        if (!req.file) {
-            imageUrl = `${url}/file/${req.file.filename}`;
-        }
+        // let imageUrl=null;
+        // const url = 'http://localhost:8000';
+        // if (!req.file) {
+        //     imageUrl = `${url}/file/${req.file.filename}`;
+        // }
 
         const existsGroup = await GroupModel.findById(groupId);
         if (!existsGroup) {
@@ -32,7 +32,7 @@ const createTweet = async (req, res) => {
         const newTweet = await TweetModel.create({
             groupId,
             content,
-            file: imageUrl,
+            // file: imageUrl,
         });
 
         const updateGroup = await GroupModel.findByIdAndUpdate(groupId, {
