@@ -25,11 +25,12 @@ function Myposts() {
       );
       const data = await response.json();
       setPosts(data)
+      console.log(data.gName)
     } catch (error) {
       console.error(error);
     }
   }
-  getAllGroups()
+  fetchPost()
 
   return (
     <>
@@ -39,7 +40,7 @@ function Myposts() {
           {
             posts.map(({gName,content}) => {
               <div class="col-md-3 mb-3" style={{ width: "100%", height: "100%" }} >
-                <Mypost groupName={gName} postdesc={description} groupImage={groupImage} color={color} />
+                <Mypost groupName={gName} postdesc={content} groupImage={groupImage} color={color} />
               </div>
             })
           }
