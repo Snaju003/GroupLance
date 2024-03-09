@@ -8,6 +8,13 @@ const createTweet = async (req, res) => {
             content,
         } = req.body;
 
+        const userId = req.user;
+        if (!userId) {
+            return res.status(400).json({
+                success: false,
+                message: `User Id needed`
+            });
+        }
         if (!content) {
             return res.status(400).json({
                 success: false,
@@ -30,6 +37,7 @@ const createTweet = async (req, res) => {
         }
 
         const newTweet = await TweetModel.create({
+            userId,
             groupId,
             content,
             // file: imageUrl,

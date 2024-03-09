@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const TweetSchema = new Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        require: true,
+        ref: 'user',
+    },
     groupId:
     {
         type: mongoose.Schema.Types.ObjectId,

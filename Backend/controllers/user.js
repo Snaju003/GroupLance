@@ -1,4 +1,5 @@
 const GroupModel = require("../models/Group");
+const TweetModel = require("../models/Tweet");
 const UserModel = require("../models/User");
 
 
@@ -82,9 +83,37 @@ const ownedGroup = async (req, res) => {
     }
 }
 
+const myPosts = async (req, res) => {
+    try {
+        const userId = req.user;
+        const user = await UserModel.findById(userId);
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: 'No user found'
+            });
+        }
+        const posts = TweetModel.find({ userId: userId });
+        if (!posts) {
+            return res.status(400).json({
+                success: false,
+                message: `No Posts available`
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            message: `Posts fetched`,
+            posts
+        });
+    } catch (error) {
+        return res.status(500).send('Internal server occured');
+    }
+}
+
 module.exports = {
     getUser,
     getJoinedGroups,
     getUserAccount,
     ownedGroup,
+    myPosts
 };
