@@ -16,7 +16,7 @@ import Button from "@mui/material/Button";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
-function Livepost(props) {
+function Mypost(props) {
   const theme = useTheme();
   const { color, groupName, groupImage, postdesc } = props;
   const [rating, setRating] = useState(0);
@@ -103,4 +103,4 @@ function Livepost(props) {
   );
 }
 
-export default Livepost;
+export default Mypost;
