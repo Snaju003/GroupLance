@@ -9,11 +9,11 @@ function Myposts() {
   const groupImage = "/creategrp.jpg";
   const color = "#dfdffb";
   const [posts, setPosts] = useState()
-
+  const authToken = localStorage.getItem("auth-token");
+  
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const authToken = localStorage.getItem("auth-token");
         const response = await fetch(
           `http://localhost:8080/api/user/get-all-posts`,
           {
@@ -25,15 +25,15 @@ function Myposts() {
           }
         );
         const data = await response.json();
-        setPosts(data)
-        console.log(data.gName)
+        setPosts(data.posts)
+        console.log(data)
       } catch (error) {
         console.error(error);
       }
     }
     fetchPost()
   }
-  ,[])
+  ,[authToken])
 
   return (
     <>
@@ -41,9 +41,9 @@ function Myposts() {
       <div className="container">
         <div className="container row" style={{ flexDirection: "column", display: "flex", }}>
           {
-            posts&&posts?.map(({gName,content}) => {
+            posts&&posts?.map(({groupId,content}) => {
               <div class="col-md-3 mb-3" style={{ width: "100%", height: "100%" }} >
-                <Mypost groupName={gName} postdesc={content} groupImage={groupImage} color={color} />
+                <Mypost groupName={groupId.gName} postdesc={content} groupImage={groupImage} color={color} />
               </div>
             })
           }
