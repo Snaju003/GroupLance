@@ -10,6 +10,7 @@ const CreatePost = () => {
   const navigate = useNavigate();
   const [myGroups, setMyGroups] = useState([]);
   const { currentUser } = useUser();
+  const [selGroup,setSelGroup] = useState();
 
   const [formData, setFormData] = useState({
     groupId: "",
@@ -30,7 +31,14 @@ const CreatePost = () => {
         });
         const data = await response.json();
         console.log(data.ownedGroups);
-        setMyGroups(data.ownedGroups);
+        let groups = []
+        setMyGroups(data.ownedGroups.map(({ gName, _id }) => {
+          const gDetails = {
+            value: _id, label: gName
+          }
+          groups.push(gDetails)
+          return groups;
+        }))
       } catch (error) {
         console.log(error);
       }
@@ -71,6 +79,10 @@ const CreatePost = () => {
       });
     };
 
+    const handleGroupChange = (e) => {
+      setSelGroup(e.value);
+    }
+
     const handleSubmit = (e) => {
       e.preventDefault();
       console.log(formData);
@@ -84,17 +96,15 @@ const CreatePost = () => {
               Create Post
             </h1>
             <h3 style={{ color: "white" }}>Select Group:</h3>
-            <div className="container row">
-              {
-                myGroups.map((groupData) => {
-                  return (
-                    <button className="col-md-3 mb-3" name="groupId" value={groupData._id} style={{ paddingTop: "10px", paddingBottom: "5px", borderRadius: "10px" }}>
-                      <h5>{groupData.gName}</h5>
-                    </button>
-                  )
-                })
-              }
-            </div>
+            
+
+            <Select
+              options={myGroups}
+              value={myGroups.label}
+              text={selGroup}
+              onChange={handleGroupChange}
+            />
+
             <Col className="form" size={12} md={6}>
               <Form onSubmit={handleSubmit}>
                 <Col className="column" style={{ width: "31.25vw" }}>

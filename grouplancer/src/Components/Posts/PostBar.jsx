@@ -22,7 +22,7 @@ const Postbar = () => {
                                         <Nav.Link eventKey="second">Create Post</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="third">My Groups</Nav.Link>
+                                        <Nav.Link eventKey="third">My Posts</Nav.Link>
                                     </Nav.Item>
                                     {/* <Nav.Item>
                                         <Nav.Link eventKey="fourth">Group Invite</Nav.Link>
