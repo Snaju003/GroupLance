@@ -32,7 +32,7 @@ const createTweet = async (req, res) => {
             groupId,
             content,
             file: imageUrl,
-        });
+        }); 
 
         const updateGroup = await GroupModel.findByIdAndUpdate(groupId, {
             $push: { tweets: newTweet._id }
