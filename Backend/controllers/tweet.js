@@ -32,7 +32,7 @@ const createTweet = async (req, res) => {
             groupId,
             content,
             file: imageUrl,
-        }); 
+        });
 
         const updateGroup = await GroupModel.findByIdAndUpdate(groupId, {
             $push: { tweets: newTweet._id }
@@ -44,7 +44,7 @@ const createTweet = async (req, res) => {
             newTweet
         });
     }
-    catch {
+    catch (error) {
         console.log(error);
         res.status(500).json({
             successs: false,
@@ -112,6 +112,7 @@ const getAllTweets = async (req, res) => {
             tweets
         });
     } catch (error) {
+        console.log(error);
         return res.status(500).json({
             success: false,
             message: 'Internal server error'
