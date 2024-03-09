@@ -4,6 +4,7 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import CreatePost from "./CreatePost";
 import CreatePost1 from "./CreatePost1";
 import Post from "./Post";
+import LivePosts from "./LivePosts";
 
 const Postbar = () => {
 
@@ -30,7 +31,7 @@ const Postbar = () => {
                                 </Nav>
                                 <Tab.Content id="slideInUp">
                                     <Tab.Pane eventKey="first">
-                                        <Post />
+                                        <LivePosts />
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="second">
                                         <CreatePost1 />
