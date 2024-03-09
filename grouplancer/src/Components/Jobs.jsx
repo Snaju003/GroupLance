@@ -29,6 +29,7 @@ import Select from 'react-select';
   function Jobs() {
    const[selectedOptions, setSelectedOptions] = useState([])
    const handleChange = (selectedOption)=>{setSelectedOptions(selectedOption)};
+   console.log(selectedOptions)
   
   
   return(
