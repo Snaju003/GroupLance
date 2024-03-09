@@ -93,7 +93,11 @@ const myPosts = async (req, res) => {
                 message: 'No user found'
             });
         }
-        const posts = TweetModel.find({ userId: userId });
+        console.log(user);
+        const posts = await TweetModel.find({ userId: userId }).populate({
+            path: 'groupId',
+            select: 'gName'
+        });;
         if (!posts) {
             return res.status(400).json({
                 success: false,
