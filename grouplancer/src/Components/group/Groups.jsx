@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../context/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const Groups = () => {
   const [credentials, setCredentials] = useState({ email: "" });
@@ -8,7 +10,14 @@ const Groups = () => {
   const [members, setMembers] = useState([]);
   const navigate = useNavigate();
   const { currentUser } = useUser();
-  const { id } = useParams();
+  const { id, idPos } = useParams();
+  const [posts, setPosts] = useState()
+  const [rating, setRating] = useState(0);
+
+  const handleRating = (starCount) => {
+    setRating(starCount);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,6 +42,32 @@ const Groups = () => {
     };
     fetchData();
   }, [currentUser, navigate, id]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const authToken = localStorage.getItem("auth-token");
+        const response = await fetch(
+          `http://localhost:8080/api/tweet/get-posts/${idPos}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token": authToken,
+            },
+          }
+        );
+        const data = await response.json();
+        console.log(data)
+        setPosts(data)
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchPosts()
+  }
+    , [idPos])
+
 
   const inviteMember = async () => {
     try {
@@ -108,14 +143,13 @@ const Groups = () => {
         </h1>
         {(groupDetails.leader === currentUser._id) && (
           <button
-            className="btn btn-outline-success mx-2"
+            className="btn btn-primary"
             type="submit"
             onClick={deleteGroup}
             style={{
               color: "white",
-              marginLeft: "auto",
               padding: "10px",
-              backgroundImage: "linear-gradient( to bottom , purple,blue )",
+              marginRight: "1rem"
             }}
           >
             Delete Group
@@ -212,6 +246,23 @@ const Groups = () => {
                   />
                   <h5 className="card-title">{name}</h5>
                   <p className="card-text">{email}</p>
+                  {(_id !== currentUser._id) && (<div style={{ display: "flex", marginRight: "1rem" }}>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <FontAwesomeIcon
+                        key={star}
+                        icon={faStar}
+                        style={{
+                          color: star <= rating ? "yellow" : "grey",
+                          cursor: "pointer",
+                          marginRight: "5px",
+                        }}
+                        onClick={() => handleRating(star)}
+                      />
+                    ))}
+                    <span style={{ marginLeft: "1rem", color: "white" }}>
+                      Rated: {rating} stars
+                    </span>
+                  </div>)}
                   {(groupDetails.leader === currentUser._id && _id !== currentUser._id) && (<button
                     type="submit"
                     className="btn btn-primary"
