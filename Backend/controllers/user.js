@@ -97,7 +97,7 @@ const myPosts = async (req, res) => {
         const posts = await TweetModel.find({ userId: userId }).populate({
             path: 'groupId',
             select: 'gName'
-        });;
+        });
         if (!posts) {
             return res.status(400).json({
                 success: false,
