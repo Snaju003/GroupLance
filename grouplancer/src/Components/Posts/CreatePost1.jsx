@@ -96,7 +96,7 @@ const CreatePost1 = () => {
                         value={myGroups.label}
                         text={selGroup}
                         onChange={handleGroupChange}
-                        styles={{width: "5rem"}}
+                        width="5rem"
                     />
 
                     <Col className="form" size={12} md={6}>
