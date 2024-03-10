@@ -77,17 +77,17 @@ const About = (props) => {
                         <h2>Guide</h2>
                         <p>Find or create groups tailored to your interests, passions, and needs.<br></br> Easily join or create groups in just a few clicks, connecting with like-minded individuals effortlessly.</p>
                         <Carousel responsive={responsive} infinite={true} className="owl-carousel owl-theme carouselCards-slider">
-                            <Card className="item" style={{backgroundColor: "#131c82ef"}}>
-                                <Card.Text>Sign up or log in, create a group with details and customization, and invite others to join your community</Card.Text>
+                            <Card className="item" style={{background: "linear-gradient( #fa8072, #131c82ef)"}}>
+                                <Card.Text style={{fontWeight:"bold"}}>Sign up or log in, create a group with details and customization, and invite others to join your community</Card.Text>
                             </Card>
-                            <Card className="item" style={{backgroundColor: "#131c82ef"}}>
-                                <Card.Text>Browse and filter groups based on your interests, then click to join and engage with members who share your passions</Card.Text>
+                            <Card className="item" style={{background: "linear-gradient(#be93d4  ,#131c82ef)"}}>
+                                <Card.Text style={{fontWeight:"bold"}}>Browse and filter groups based on your interests, then click to join and engage with members who share your passions</Card.Text>
                             </Card>
-                            <Card className="item" style={{backgroundColor: "#131c82ef"}}>
-                                <Card.Text>Utilize our integrated chat section within each group to communicate</Card.Text>
+                            <Card className="item" style={{background: "linear-gradient( #b2d3c2, #131c82ef)"}}>
+                                <Card.Text style={{fontWeight:"bold"}}>Utilize our integrated chat section within each group to communicate</Card.Text>
                             </Card>
-                            <Card className="item" style={{backgroundColor: "#131c82ef"}}>
-                                <Card.Text>Plan events, share resources, and expand your connections within the community</Card.Text>
+                            <Card className="item" style={{background: "linear-gradient( #e75480 , #131c82ef)"}}>
+                                <Card.Text style={{fontWeight:"bold"}}>Plan events, share resources, and expand your connections within the community</Card.Text>
                             </Card>
                         </Carousel>
                     </div>
