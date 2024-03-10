@@ -18,7 +18,7 @@ const AboutUs = (props) => {
   const { bgcolor } = props;
   return (
     <>
-      <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop: "100px"}}>
+      <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop: "100px",fontWeight:"bold"}}>
       Welcome To Grouplancer!!!!
       </h1>
 
@@ -46,7 +46,7 @@ const AboutUs = (props) => {
                   padding: "20px",
                   textAlign: "justify"
                   ,background:"linear-gradient(#0492c2 ,#fec5e5)",
-                  borderRadius:"20px",fontWeight:"500"
+                  borderRadius:"20px",fontWeight:"bold"
                 }}
               >
                 Welcome to GroupLancer, your go-to platform for connecting skilled freelancers with businesses and organizations seeking top-notch talent for group projects.
@@ -63,12 +63,12 @@ const AboutUs = (props) => {
           </div>
         </div>
         <div style={{ justifyItems: "center", display: "flex", gap: "30px", marginTop: "30px",marginBottom:"30px" }}>
-          <img src="./aboutUs.jpg" style={{ width: "600px", height: "530px", borderRadius: "20px", marginLeft: "10px", marginTop: "20px" }} alt="image" />
-          <p
+          <img src="./aboutUs.jpg" style={{ width: "600px", height: "570px", borderRadius: "20px", marginLeft: "10px", marginTop: "60px" }} alt="image" />
+         <div style={{padding:"20px 40px 20px 20px",height:"600px",marginBottom:"80px"}}> <p
                   style={{
                     color: "black",
-                    width: "100%",height:"560px",
-                    fontWeight:"500",
+                    width: "100%",
+                   
                     padding: "20px 40px 20px 20px",
                     textAlign: "justify"
                     ,background:"linear-gradient(#0492c2 ,#fec5e5)",
@@ -78,21 +78,21 @@ const AboutUs = (props) => {
 
                 
 
-               <h3 style={{fontWeight:"500",marginTop:"15px",marginLeft:"30px"}}> Why Choose GroupLancer?</h3>
+               <h3 style={{fontWeight:"bold",marginTop:"15px",marginLeft:"30px"}}> Why Choose GroupLancer?</h3>
               <ul style={{marginTop:"25px"}}>
-                <li>Efficiency: Save time and resources by tapping into a network of pre-vetted freelancers ready to collaborate on your project.</li>
+                <li><p style={{fontWeight:"bold"}}>Efficiency:</p> Save time and resources by tapping into a network of pre-vetted freelancers ready to collaborate on your project.</li>
 
-               <li>Diverse Talent: Access a vast pool of freelancers with diverse skills and backgrounds, ensuring that your project receives comprehensive expertise.</li> 
+               <li><p style={{fontWeight:"bold"}}>Diverse Talent:</p> Access a vast pool of freelancers with diverse skills and backgrounds, ensuring that your project receives comprehensive expertise.</li> 
 
-                <li>Cost-Effective Solutions: Our platform enables businesses to find cost-effective solutions by leveraging the collective talents of freelance teams.</li>
+                <li><p style={{fontWeight:"bold"}}>Cost-Effective Solutions:</p> Our platform enables businesses to find cost-effective solutions by leveraging the collective talents of freelance teams.</li>
 
-                <li>Transparent Communication: We prioritize transparent communication throughout the project lifecycle, fostering trust and accountability among team members.</li>
+                <li><p style={{fontWeight:"bold"}}>Transparent Communication:</p> We prioritize transparent communication throughout the project lifecycle, fostering trust and accountability among team members.</li>
 
 
                <p> Whether you're a freelancer looking to expand your network or a business in need of specialized talent, GroupLancer is your solution. Join our vibrant community today and experience the power of collaborative freelancing. Together, we can turn your projects into success stories.</p>
                 </ul>
           </p>
-          
+          </div>
         </div>
         {/*<div className="accordion" id="accordionExample" style={{ backgroundColor: bgcolor }}>
           <div className="accordion-item" style={{ backgroundColor: bgcolor }}>

@@ -117,8 +117,15 @@ const Home = (props) => {
         </div> */}
         { !currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
 
-        <div style={{}}>
-          <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{borderRadius:"20px",paddingLeft:"300px",width:"1200px"}}  alt="gif"></video>
+        <div style={{display:"flex",marginLeft:"40px",gap:"50px"}}>
+          <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{borderRadius:"30px",marginnLeft:"40px",width:"800px",height:"600px"}}  alt="gif"></video>
+          <div style={{color:"white",marginTop:"70px",height:"600px",padding:"30px"}}>
+            <h1 style={{fontSize:"65px",fontWeight:"bold"}}>Divide
+            <br/>the Tasks 
+            <br/>and
+            <br/>Multiply
+            <br/>the Success</h1>
+          </div>
         </div>
 
         < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover" }}>
