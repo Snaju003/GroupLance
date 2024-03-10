@@ -118,7 +118,7 @@ const Home = (props) => {
         { !currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
 
         <div style={{}}>
-          <video src="./ezgif-6-71cbf8c057.mp4" style={{borderRadius:"20px",paddingLeft:"300px",width:"1200px"}} autoPlay loop muted alt="gif"></video>
+          <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{borderRadius:"20px",paddingLeft:"300px",width:"1200px"}}  alt="gif"></video>
         </div>
 
         < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover" }}>

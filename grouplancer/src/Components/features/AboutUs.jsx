@@ -18,53 +18,83 @@ const AboutUs = (props) => {
   const { bgcolor } = props;
   return (
     <>
-      <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop: "100px" }}>
-        About Us
+      <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop: "100px"}}>
+      Welcome To Grouplancer!!!!
       </h1>
 
       <div className="container my-4" display="flex" alignitems="center">
         <div className="row">
-          <div className="hero-image"
-            style={{
-              backgroundImage: "url(/aboutUs.jpg)",
-              backgroundSize: "90%",
-              marginTop: "0%",
-              width: " 100%",
-              height: "94.85vh",
-              paddingRight: "50px",
-              padingLeft: "50px",
-              marginBottom: "2px",
-              borderRadius: "20px",
-            }}
-            alt="image not yet ready"
-            srcSet=" "
-          >
-            <div style={{ display: "flex", alignItems: "left", flexDirection: "column" }}>
-              <h1 className="heading"
+        <h2 className="heading"
                 style={{
                   color: "#ffff",
                   textAlign: "center",
                 }}
               >
                 {" "}
-                Welcome to grouplancer
-              </h1>
+                
+              </h2>
+          <div className="hero-image" style={{display:"flex",gap:"30px",marginBottom:"20px"}}>
+          
+            <div style={{paddingLeft:"10px",width:"500px"}}>
+              
 
               <p className="des"
                 style={{
-                  color: "#ffff",
-                  width: "50%",
-                  paddingBottom: "250px",
-                  textAlign: "justify",
+                  color: "black",
+                  width: "100%",height:"640px",
+                  paddingTop: "50px",
+                  padding: "20px",
+                  textAlign: "justify"
+                  ,background:"linear-gradient(#0492c2 ,#fec5e5)",
+                  borderRadius:"20px",fontWeight:"500"
                 }}
               >
+                Welcome to GroupLancer, your go-to platform for connecting skilled freelancers with businesses and organizations seeking top-notch talent for group projects.
+
+                At GroupLancer, we understand the importance of collaboration and synergy in achieving outstanding results. That's why we've created a space where freelancers can come together, pool their expertise, and tackle projects of all sizes with efficiency and precision.
+
+
+                Our mission at GroupLancer is to empower freelancers and businesses alike by providing a dynamic platform where collaboration thrives. We strive to foster a community where individuals can leverage their diverse skills and experiences to deliver exceptional outcomes for our clients.
                 work in groups and enhance your knowledge.so why wait create
-                your own group and start collaborating
-              </p>
+                your own group and start collaborating.GroupLancer simplifies the process of finding and forming freelance teams. Businesses can post their project requirements, and our platform matches them with skilled freelancers who possess the necessary expertise. Freelancers can join forces, form groups tailored to project needs, and collectively bid on projects.</p>
+                
             </div>
+            <video src="./ezgif-6-0fa881e524.mp4" autoPlay loop muted style={{ width: "800px", height: "600px", borderRadius: "30px", marginTop: "20px" }} alt="video" />
           </div>
         </div>
-        <div className="accordion" id="accordionExample" style={{ backgroundColor: bgcolor }}>
+        <div style={{ justifyItems: "center", display: "flex", gap: "30px", marginTop: "30px",marginBottom:"30px" }}>
+          <img src="./aboutUs.jpg" style={{ width: "600px", height: "530px", borderRadius: "20px", marginLeft: "10px", marginTop: "20px" }} alt="image" />
+          <p
+                  style={{
+                    color: "black",
+                    width: "100%",height:"560px",
+                    fontWeight:"500",
+                    padding: "20px 40px 20px 20px",
+                    textAlign: "justify"
+                    ,background:"linear-gradient(#0492c2 ,#fec5e5)",
+                  borderRadius:"20px"
+                  }}
+                >
+
+                
+
+               <h3 style={{fontWeight:"500",marginTop:"15px",marginLeft:"30px"}}> Why Choose GroupLancer?</h3>
+              <ul style={{marginTop:"25px"}}>
+                <li>Efficiency: Save time and resources by tapping into a network of pre-vetted freelancers ready to collaborate on your project.</li>
+
+               <li>Diverse Talent: Access a vast pool of freelancers with diverse skills and backgrounds, ensuring that your project receives comprehensive expertise.</li> 
+
+                <li>Cost-Effective Solutions: Our platform enables businesses to find cost-effective solutions by leveraging the collective talents of freelance teams.</li>
+
+                <li>Transparent Communication: We prioritize transparent communication throughout the project lifecycle, fostering trust and accountability among team members.</li>
+
+
+               <p> Whether you're a freelancer looking to expand your network or a business in need of specialized talent, GroupLancer is your solution. Join our vibrant community today and experience the power of collaborative freelancing. Together, we can turn your projects into success stories.</p>
+                </ul>
+          </p>
+          
+        </div>
+        {/*<div className="accordion" id="accordionExample" style={{ backgroundColor: bgcolor }}>
           <div className="accordion-item" style={{ backgroundColor: bgcolor }}>
             <h2 className="accordion-header">
               <button
@@ -154,10 +184,10 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="row" style={{width: "100%",display:"flex", gap: "2rem",flexWrap: "wrap",marginLeft:"3.5rem"}}>
+              </div>*/}
+        <div className="row" style={{ width: "100%", display: "flex", gap: "2rem", flexWrap: "wrap", marginLeft: "3.5rem" }}>
 
-          <div className="col-sm-4" style={{width: "30%"}}>
+          <div className="col-sm-4" style={{ width: "30%" }}>
             <div
               className="card"
               style={{
@@ -190,7 +220,7 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4" style={{width: "30%"}} >
+          <div className="col-sm-4" style={{ width: "30%" }} >
             <div
               className="card"
               style={{
@@ -223,7 +253,7 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4" style={{width: "30%"}}>
+          <div className="col-sm-4" style={{ width: "30%" }}>
             <div
               className="card"
               style={{
@@ -256,7 +286,7 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4" style={{width: "30%"}}>
+          <div className="col-sm-4" style={{ width: "30%" }}>
             <div
               className="card"
               style={{
@@ -289,7 +319,7 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4" style={{width: "30%"}}>
+          <div className="col-sm-4" style={{ width: "30%" }}>
             <div
               className="card"
               style={{
@@ -322,7 +352,7 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-          <div className="col-sm-4" style={{width: "30%"}}>
+          <div className="col-sm-4" style={{ width: "30%" }}>
             <div
               className="card"
               style={{
