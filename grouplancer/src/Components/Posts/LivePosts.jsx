@@ -8,9 +8,9 @@ function Liveposts() {
     const groupImage = "/creategrp.jpg";
     const color = "#dfdffb";
     const [posts, setPosts] = useState();
+    
+    useEffect(() => {
     const authToken = localStorage.getItem("auth-token");
-
-  useEffect(() => {
     const fetchPost = async () => {
       try {
         const response = await fetch(
@@ -32,7 +32,7 @@ function Liveposts() {
     }
     fetchPost()
   }
-    , [authToken])
+    , [])
 
   return (
     <>
@@ -40,7 +40,7 @@ function Liveposts() {
       <div className="container">
         <div className="container row" style={{ flexDirection: "column" , display:"flex",}}>
         {
-            posts && posts.map(({ groupId, content }) => {
+            posts && posts?.map(({ groupId, content }) => {
               return (
                 <div class="col-md-3 mb-3" style={{ width: "100%", height: "100%" }} >
                   <Livepost groupName={groupId.gName} postdesc={content} groupImage={groupImage} color={color} />
