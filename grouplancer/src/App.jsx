@@ -30,6 +30,8 @@ import CreatePost1 from './Components/Posts/CreatePost1';
 import Livepost from './Components/Posts/Livepost';
 import LivePosts from './Components/Posts/LivePosts';
 import Myposts from './Components/Posts/Myposts';
+import GroupTab from './Components/group/Group_Sidebar';
+
 
 function App() {
   const bgcolor = "#0f054c";
@@ -114,6 +116,7 @@ function App() {
           <Route exact path="/postbar" element={<Postbar />} />
           <Route exact path="/liveposts" element={<LivePosts />} />
           <Route exact path="/myposts" element={<Myposts />} />
+          <Route exact path="/groupTab" element={<GroupTab />} />
           
         </Routes>
         <Footer />
