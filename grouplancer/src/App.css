@@ -477,7 +477,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .subscription:hover{
-  height:480px;
+  
   width:400px;
   border-radius:150px 20px 150px 20px;
   background-image: linear-gradient(blue, #00afb9);
