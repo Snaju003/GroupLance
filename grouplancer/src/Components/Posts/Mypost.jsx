@@ -75,7 +75,7 @@ function Mypost(props) {
             <Typography variant="body1" style={{ color: "black" }}>
               Rated: {rating} stars
             </Typography>
-            <Stack direction="row" spacing={2} style={{margin: 'auto'}}>
+            <Stack direction="row" spacing={2} style={{ margin: 'auto' }}>
               <Button
                 variant="outlined"
                 onClick={handleCommentClick}
@@ -85,6 +85,9 @@ function Mypost(props) {
               </Button>
               <Button variant="contained" endIcon={<SendIcon />}>
                 Share
+              </Button>
+              <Button variant="outlined" color="error">
+                Delete
               </Button>
             </Stack>
           </Box>
