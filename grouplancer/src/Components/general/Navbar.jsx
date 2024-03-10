@@ -1,87 +1,5 @@
-// import React, { useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
-// import { useUser } from "../../context/UserContext";
-// import { Navbar, Nav, Container } from "react-bootstrap";
-// import { HashLink } from 'react-router-hash-link';
-// import {
-//     BrowserRouter as Router
-// } from "react-router-dom";
-
-// const NavBar = () => {
-//     const { currentUser } = useUser();
-//     const [activeLink, setActiveLink] = useState('home');
-//     const [scrolled, setScrolled] = useState(false);
-
-//     useEffect(() => {
-//         const onScroll = () => {
-//             if (window.scrollY > 50) {
-//                 setScrolled(true);
-//             } else {
-//                 setScrolled(false);
-//             }
-//         }
-
-//         window.addEventListener("scroll", onScroll);
-
-//         return () => window.removeEventListener("scroll", onScroll);
-//     }, [])
-
-//     const onUpdateActiveLink = (value) => {
-//         setActiveLink(value);
-//     }
-
-//     return (
-//         <>
-
-
-//             <Router>
-//                 <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
-//                     <Container>
-//                         <Navbar.Brand href="/">
-//                             <img src="./grouplan.png" alt="Logo" style={{ width: "300px", height: "200px", justifyContent: "space-between", marginBottom: "-50px", marginTop: "-50px" }} />
-//                         </Navbar.Brand>
-//                         <Navbar.Toggle aria-controls="basic-navbar-nav">
-//                             <span className="navbar-toggler-icon"></span>
-//                         </Navbar.Toggle>
-//                         <Navbar.Collapse id="basic-navbar-nav">
-//                             <Nav className="ms-auto">
-//                                 <Link to="/" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Link>
-//                                 <Link to="sidebar" className={activeLink === 'groups' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('groups')}>Groups</Link>
-//                                 <Link to="liveside" className={activeLink === 'categories' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('categories')}>Categories</Link>
-//                                 <Link to="sidebar_ranking" className={activeLink === 'rankings' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('rankings')}>Rankings</Link>
-//                                 <Link to="chatbox" className={activeLink === 'chatbox' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('chatbox')}>ChatBox</Link>
-//                                 <Link to="aboutus" className={activeLink === 'about' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('about')}>About Us</Link>
-//                             </Nav>
-//                             <span className="navbar-text">
-//                                 <div className="social-icon">
-//                                     <a href="#"><img src={navIcon1} alt="" /></a>
-//                                     <a href="#"><img src={navIcon2} alt="" /></a>
-//                                     <a href="#"><img src={navIcon3} alt="" /></a>
-//                                 </div>
-//                                 {
-//                                     currentUser ?
-
-//                                             <Nav.Link className="profile" href="userAccount"><button className="vvd"><span>Profile</span></button></Nav.Link>
-//                                              : <HashLink to='#connect'>
-//                                             <button className="vvd"><span>Sign Up/Sign In</span></button>
-//                                         </HashLink>
-//                                 }
-//                             </span>
-//                         </Navbar.Collapse>
-//                     </Container>
-//                 </Navbar>
-//             </Router>
-
-
-//         </>
-//     )
-// }
-
-// export default NavBar
-import React, { useState, useEffect } from "react";
-import { Navbar, Nav } from "react-bootstrap";
-import { HashLink } from "react-router-hash-link";
-import { BrowserRouter as Router } from "react-router-dom";
+import React from 'react';
+import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -93,14 +11,58 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import InputBase from '@mui/material/InputBase';
 import { Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
+import SearchIcon from '@mui/icons-material/Search';
 
 const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const { currentUser, logout } = useUser();
+
+    const Search = styled('div')(({ theme }) => ({
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
+        },
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing(1),
+            width: 'auto',
+        },
+    }));
+
+    const SearchIconWrapper = styled('div')(({ theme }) => ({
+        padding: theme.spacing(0, 2),
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }));
+
+    const StyledInputBase = styled(InputBase)(({ theme }) => ({
+        color: 'inherit',
+        width: '100%',
+        '& .MuiInputBase-input': {
+            padding: theme.spacing(1, 1, 1, 0),
+            // vertical padding + font size from searchIcon
+            paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+            transition: theme.transitions.create('width'),
+            [theme.breakpoints.up('sm')]: {
+                width: '12ch',
+                '&:focus': {
+                    width: '20ch',
+                },
+            },
+        },
+    }));
 
 
     const handleLogout = async () => {
@@ -265,12 +227,21 @@ const NavBar = () => {
                             <Link href="/postbar" style={{ color: "white", textDecoration: "none" }}>Posts</Link>
                         </Button>
                     </Box>
+                    <Search style={{marginRight: "6rem"}}>
+                        <SearchIconWrapper>
+                            <SearchIcon />
+                        </SearchIconWrapper>
+                        <StyledInputBase
+                            placeholder="Search…"
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </Search>
                     {
                         currentUser ?
-                            <Box sx={{ flexGrow: 0 }}>
+                            <Box sx={{ flexGrow: 0, marginLeft: "2rem" }}>
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <img alt="Remy Sharp" src="./default-user.jpg" style={{ height: "10vh", width: "10vh" }} />
+                                        <img alt="Profile Picture" src="./default-user.jpg" style={{ height: "10vh", width: "10vh" }} />
                                     </IconButton>
                                 </Tooltip>
                                 <Menu
@@ -301,7 +272,7 @@ const NavBar = () => {
 
                                 </Menu>
                             </Box> :
-                            <Button href="/#connect" style={{ borderRadius: "10px", backgroundColor: "white", height: "8vh", width: "20vh", color: "black" }}>Sign Up/Sign In</Button>
+                            <Button href="/#connect" style={{ borderRadius: "10px", backgroundColor: "white", height: "8vh", width: "20vh", color: "black", marginLeft: "-2rem" }}>Sign Up/Sign In</Button>
                     }
                 </Toolbar>
             </Container>
