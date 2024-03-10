@@ -43,12 +43,15 @@ const LiveGroups = () => {
       {/* <h1 className="text-center my-4" style={{ color: "#ffff" }}>
         Live Groups
       </h1> */}
+      <h1 className=" my-4" style={{ color: "#ffff" }}>
+        Live Groups
+      </h1>
       <div className="container">
         <div className="container column">
           {liveGroupData.map(
             ({ _id, gName, goal, projName, anyoneCanJoin }) => {
               return (
-                <div className="col-md-3 mb-3" key={_id} style={{width:"65.5vw",height:"15vh"}}>
+                <div className="col-md-3 mb-3" key={_id} style={{width:"90%"}}>
                   <LiveGroup
                   
                     id={_id}
