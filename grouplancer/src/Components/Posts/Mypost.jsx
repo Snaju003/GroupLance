@@ -50,6 +50,9 @@ function Mypost(props) {
           />
         )}
         <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
+          <Button style={{width:"7rem",translate:"35rem 2rem"}} variant="contained" disableElevation>
+            Edit
+          </Button>
           <CardContent sx={{ flex: "1 0 auto" }}>
             <Typography component="div" variant="h5">
               {groupName}
@@ -63,6 +66,7 @@ function Mypost(props) {
             </Typography>
           </CardContent>
           <Box display="flex" alignItems="center" marginBottom={15}>
+
             {[1, 2, 3, 4, 5].map((star) => (
               <IconButton
                 key={star}
@@ -75,6 +79,7 @@ function Mypost(props) {
             <Typography variant="body1" style={{ color: "black" }}>
               Rated: {rating} stars
             </Typography>
+
             <Stack direction="row" spacing={2} style={{ margin: 'auto' }}>
               <Button
                 variant="outlined"
@@ -89,6 +94,7 @@ function Mypost(props) {
               <Button variant="outlined" color="error">
                 Delete
               </Button>
+
             </Stack>
           </Box>
         </Box>
