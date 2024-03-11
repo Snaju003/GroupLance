@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import { Container, Row, Col, Form } from "react-bootstrap";
 function Mypost(props) {
   const theme = useTheme();
   const { color, groupName, groupImage, postdesc, groupId, tweetId } = props;
@@ -103,8 +104,24 @@ function Mypost(props) {
       Edit
     </Typography>
     
-    <TextField id="outlined-basic" label="Change Description" variant="outlined" />
-    <Button variant="outlined" color="error" style={{translate:"4rem 3rem"}}
+    <TextField id="outlined-basic" label="Change Description" variant="outlined" style={{marginBottom:"2rem", fontFamily: "Arial"}} />
+    <Typography id="modal-modal-title" variant="h6" component="h2" style={{marginBottom:"1rem"}}>
+      Add image
+    </Typography>
+    <Row className="px-1" >
+                    <Form.Group as={Col}>
+                      <Form.Control
+                        type="file"
+                        placeholder="Upload Media"
+                        // onChange={handleChange}
+                        name="media"
+                        accept="image/*, video/*"
+                        required
+                        style={{fontFamily:"Arial"}}
+                      />
+                    </Form.Group>
+                  </Row>
+    <Button variant="outlined" color="error" style={{translate: "17rem 1.5rem"}}
     onClick={handleClose}
     >
   Close
