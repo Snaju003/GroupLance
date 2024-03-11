@@ -4,14 +4,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
+const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const [credentials, setCredentials] = useState({ email: "" });
-  const [groupDetails, setGroupDetails] = useState({});
-  const [members, setMembers] = useState([]);
   const navigate = useNavigate();
   const { currentUser } = useUser();
   const { id } = useParams();
-  const [posts, setPosts] = useState()
   const [rating, setRating] = useState(0);
 
   const handleRating = (starCount) => {
@@ -34,8 +31,8 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
             invitationLink: "http://localhost:3000/groupinvite",
             group: {
               id: id,
-              name: groupDetails.gName,
-              desc: groupDetails.gDesc,
+              name: grpName,
+              desc: grpDesc,
             },
             inviterName: currentUser,
           }),
@@ -55,7 +52,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('auth-token'),
       },
-      body: JSON.stringify({ groupId: groupDetails._id }),
+      body: JSON.stringify({ groupId: groupId }),
     });
     const json = await response.json();
     console.log(json)
@@ -69,7 +66,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('auth-token'),
       },
-      body: JSON.stringify({ userId: id, groupId: groupDetails._id }),
+      body: JSON.stringify({ userId: id, groupId: groupId }),
     });
     const json = await response.json();
     console.log(json)
@@ -204,7 +201,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
                   {(grpLeader === currentUser?._id && _id !== currentUser?._id) && (<button
                     type="submit"
                     className="btn btn-primary"
-                    onClick={removeMember(_id)}
+                    onClick={() => removeMember(_id)}
                     style={{ marginTop: "3vh" }}
                   >
                     Remove
