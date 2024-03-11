@@ -1,5 +1,6 @@
 const TweetModel = require("../models/Tweet");
 const GroupModel = require("../models/Group");
+const mongoose = require("mongoose");
 
 const createTweet = async (req, res) => {
     try {
@@ -84,8 +85,8 @@ const deleteTweet = async (req, res) => {
                 message: 'No such tweet or group exists'
             });
         }
-        await TweetModel.findByIdAndDelete(tweetId);
-        await GroupModel.findByIdAndUpdate(groupId, { $pull: { tweets: tweetId } });
+        await TweetModel.findByIdAndDelete(mongoose.Types.ObjectId(tweetId));
+        await GroupModel.findByIdAndUpdate(mongoose.Types.ObjectId(groupId), { $pull: { tweets: tweetId } });
         return res.status(200).json({
             success: true,
             message: 'Tweet removed from the group successfully'
@@ -142,7 +143,7 @@ const getPosts = async (req, res) => {
                 select: 'gName',
             })
             .sort({ createdAt: -1 });
-            console.log(posts)
+        console.log(posts)
         return res.status(200).json({
             success: true,
             message: `All Posts Fetched`,
