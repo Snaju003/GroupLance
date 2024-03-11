@@ -39,6 +39,21 @@ function Mypost(props) {
     navigate("/")
   }
 
+  // const ratingPost = async (e) => {
+  //   e.preventDefault();
+  //   const response = await fetch("http://localhost:8080/api/user/rate-user", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "auth-token": localStorage.getItem('auth-token'),
+  //     },
+  //     body: JSON.stringify({ rate: rating == 0? 1 : rating }),
+  //   });
+  //   const json = await response.json();
+  //   console.log(json)
+  //   console.log(rating)
+  // }
+
   const handleRating = (starCount) => {
     setRating(starCount);
   };
@@ -88,13 +103,15 @@ function Mypost(props) {
             {[1, 2, 3, 4, 5].map((star) => (
               <IconButton
                 key={star}
-                onClick={() => handleRating(star)}
+                onClick={(e) => {
+                  handleRating(star);
+                }}
                 color={star <= rating ? "warning" : "inherit"}
               >
                 <StarIcon />
               </IconButton>
             ))}
-            <Typography variant="body1" style={{ color: "black" }}>
+            <Typography variant="body1" style={{ color: "black" }} >
               Rated: {rating} stars
             </Typography>
 
