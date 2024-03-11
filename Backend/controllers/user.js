@@ -116,7 +116,7 @@ const myPosts = async (req, res) => {
 
 const rateUser = async (req, res) => {
     try {
-        const { rate } = req.body;
+        const { userId: rateUser, rate } = req.body;
         const userId = req.user;
         const user = await UserModel.findById(userId);
         if (!user) {
@@ -125,7 +125,14 @@ const rateUser = async (req, res) => {
                 message: 'No user found'
             });
         }
-        const updatedUser = await UserModel.findByIdAndUpdate(userId, {
+        const ratedUser = await UserModel.findById(rateUser);
+        if (!ratedUser) {
+            return res.status(400).json({
+                success: false,
+                message: 'No user found'
+            });
+        }
+        const updatedUser = await UserModel.findByIdAndUpdate(rateUser, {
             $set: { rate: rate }
         });
         console.log(updatedUser);

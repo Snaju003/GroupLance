@@ -31,6 +31,7 @@ import Livepost from './Components/Posts/Livepost';
 import LivePosts from './Components/Posts/LivePosts';
 import Myposts from './Components/Posts/Myposts';
 import GroupTab from './Components/group/Group_Sidebar';
+import EditGroup from './Components/group/EditGroup';
 
 
 function App() {
@@ -117,7 +118,7 @@ function App() {
           <Route exact path="/liveposts" element={<LivePosts />} />
           <Route exact path="/myposts" element={<Myposts />} />
           <Route exact path="/groupTab/:id" element={<GroupTab />} />
-          
+          <Route exact path="/editgrp" element={<EditGroup />} />
         </Routes>
         <Footer />
       </Router>

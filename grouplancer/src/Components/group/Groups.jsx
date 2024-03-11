@@ -3,7 +3,15 @@ import { useUser } from "../../context/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+} from "@mui/material";
+import CreateGroup from "./CreateGroup";
+import EditGroup from "./EditGroup";
 const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const [credentials, setCredentials] = useState({ email: "" });
   const navigate = useNavigate();
@@ -14,7 +22,14 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const handleRating = (starCount) => {
     setRating(starCount);
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   const inviteMember = async () => {
     try {
       const authToken = localStorage.getItem("auth-token");
@@ -129,6 +144,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
               type="submit"
               className="btn btn-primary"
               style={{ marginBottom: "3vh" }}
+              onClick={handleOpenModal}
 
             >
               Edit
@@ -250,6 +266,15 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
           </div>
         </div>
       </div>
+      <Dialog open={isModalOpen} onClose={handleCloseModal} >
+        <DialogTitle>{projName}</DialogTitle>
+        <DialogContent>
+          <EditGroup />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModal}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
