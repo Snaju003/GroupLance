@@ -3,15 +3,17 @@ import { useUser } from "../../context/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import Groups from "./Groups";
+import Livepost from "../Posts/Livepost";
 
 const GroupTab = () => {
-    const [credentials, setCredentials] = useState({ email: "" });
     const [groupDetails, setGroupDetails] = useState({});
     const [members, setMembers] = useState([]);
     const navigate = useNavigate();
     const { currentUser } = useUser();
     const { id } = useParams();
     const [posts, setPosts] = useState()
+    const color = "#dfdffb";
+    const groupImage = "/creategrp.jpg";
 
     useEffect(() => {
         const fetchData = async () => {
@@ -53,8 +55,8 @@ const GroupTab = () => {
                     }
                 );
                 const data = await response.json();
-                console.log(data)
-                setPosts(data)
+                console.log(data.tweets)
+                setPosts(data.tweets)
             } catch (error) {
                 console.error(error);
             }
@@ -81,13 +83,23 @@ const GroupTab = () => {
                                 </Nav>
                                 <Tab.Content id="slideInUp">
                                     <Tab.Pane eventKey="first">
-                                        <Groups grpName={groupDetails?.gName}  />
+                                        <Groups grpName={groupDetails?.gName} grpLeader={groupDetails?.leader} projName={groupDetails?.projName} grpDesc={groupDetails?.gDesc} gMembers={members} />
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="second">
+                                        <div className="container">
+                                            <div className="container row" style={{ flexDirection: "column", display: "flex", }}>
+                                                {
+                                                    posts?.map(({ groupId, content }) => {
+                                                        return (
+                                                            <div class="col-md-3 mb-3" style={{ width: "100%", height: "100%" }} >
+                                                                <Livepost groupName={groupId.gName} postdesc={content} color={color} groupImage={groupImage}/>
+                                                            </div>
+                                                        )
+                                                    })
+                                                }
+                                            </div>
+                                        </div>
                                     </Tab.Pane>
-                                    {/* <Tab.Pane eventKey="fourth">
-                                        <GroupsInvite />
-                                    </Tab.Pane> */}
                                 </Tab.Content>
                             </Tab.Container>
 

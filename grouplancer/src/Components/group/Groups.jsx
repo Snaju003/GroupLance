@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const Groups = () => {
+const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
   const [credentials, setCredentials] = useState({ email: "" });
   const [groupDetails, setGroupDetails] = useState({});
   const [members, setMembers] = useState([]);
@@ -139,9 +139,9 @@ const Groups = () => {
         }}
       >
         <h1 className="text-center my-4" style={{ color: "#ffff", margin: "auto" }}>
-          {groupDetails?.gName}
+          {grpName}
         </h1>
-        {(groupDetails?.leader === currentUser?._id) && (
+        {(grpLeader === currentUser?._id) && (
           <button
             className="btn btn-primary"
             type="submit"
@@ -170,8 +170,8 @@ const Groups = () => {
             paddingTop: "10px",
           }}
         >
-          <p style={{ fontSize: "25px" }}>Name:{groupDetails?.projName} </p>
-          <p style={{ fontSize: "25px" }}>Description: {groupDetails?.gDesc}</p>
+          <p style={{ fontSize: "25px" }}>Name:{projName} </p>
+          <p style={{ fontSize: "25px" }}>Description: {grpDesc}</p>
           <div
             style={{
               display: "flex",
@@ -179,7 +179,7 @@ const Groups = () => {
               alignItems: "center",
             }}
           >
-            {(groupDetails?.leader === currentUser?._id) && (<button
+            {(grpLeader === currentUser?._id) && (<button
               type="submit"
               className="btn btn-primary"
               style={{ marginBottom: "3vh" }}
@@ -204,7 +204,7 @@ const Groups = () => {
       </div>
       <div className="container my-4" display="flex" alignItems="center">
         <div className="row">
-          {members.map(({ _id, name, email }) => (
+          {gMembers?.map(({ _id, name, email }) => (
             <div className="col-sm-4" key={_id}>
               <div
                 className="card"
@@ -252,7 +252,7 @@ const Groups = () => {
                       Rated: {rating} stars
                     </span>
                   </div>)}
-                  {(groupDetails?.leader === currentUser?._id && _id !== currentUser?._id) && (<button
+                  {(grpLeader === currentUser?._id && _id !== currentUser?._id) && (<button
                     type="submit"
                     className="btn btn-primary"
                     onClick={removeMember(_id)}
@@ -265,7 +265,7 @@ const Groups = () => {
             </div>
           ))}
           <div class="col-sm-4">
-            {(groupDetails?.leader === currentUser?._id) && (<div
+            {(grpLeader === currentUser?._id) && (<div
               class="card"
               style={{
                 marginTop: "5%",
@@ -301,13 +301,6 @@ const Groups = () => {
                 </button>
               </div>
             </div>)}
-            {/* {
-              posts.map(() => {
-                return(
-
-                )
-              })
-            } */}
           </div>
         </div>
       </div>

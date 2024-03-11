@@ -11,7 +11,7 @@ const JoinedGroup = ({ color, id, name, desc }) => {
                     <h5 className="card-title">{name}</h5>
                     <p className="card-text">{desc}</p>
                     <button className='button-48'>
-                    <Link to={`/groups/${id}`} style={{textDecoration :"none", color: "white", fontWeight: "700"}} >
+                    <Link to={`/groupTab/${id}`} style={{textDecoration :"none", color: "white", fontWeight: "700"}} >
                         <span> View Group</span>
                         
                         </Link>

@@ -107,7 +107,7 @@ function App() {
           <Route exact path='/chatbox' element={<ChatBox />} />
           <Route exact path='/sidebar' element={<Sidebar />} />
           <Route exact path='/userAccount' element={<UserAccounts />} />
-          <Route exact path='/groups/:id' element={<Groups />} />
+          <Route exact path='/groups' element={<Groups />} />
           <Route exact path='/sidebar_ranking' element={<Sidebar_ranking />} />
           <Route exact path='/liveside' element={<LiveSide />} />
           <Route exact path="/posts" element={<Post />} />
@@ -116,7 +116,7 @@ function App() {
           <Route exact path="/postbar" element={<Postbar />} />
           <Route exact path="/liveposts" element={<LivePosts />} />
           <Route exact path="/myposts" element={<Myposts />} />
-          <Route exact path="/groupTab" element={<GroupTab />} />
+          <Route exact path="/groupTab/:id" element={<GroupTab />} />
           
         </Routes>
         <Footer />
