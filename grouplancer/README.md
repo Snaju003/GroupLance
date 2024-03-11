@@ -172,3 +172,4 @@ pass auth token
 
 URL: localhost:8080/api/tweet/get-posts/:id(pass id here) (GET Request)
 pass auth token
+Done

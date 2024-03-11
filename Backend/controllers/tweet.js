@@ -64,7 +64,7 @@ const createTweet = async (req, res) => {
     }
 }
 
-const deleteTweet = async (res, req) => {
+const deleteTweet = async (req, res) => {
     try {
         const {
             groupId,

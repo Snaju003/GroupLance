@@ -18,57 +18,6 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
     setRating(starCount);
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const authToken = localStorage.getItem("auth-token");
-  //       const response = await fetch(
-  //         `http://localhost:8080/api/group/get-group-details/${id}`,
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             "auth-token": authToken,
-  //           },
-  //         }
-  //       );
-  //       const data = await response.json();
-  //       console.log(data.group);
-  //       setGroupDetails(data.group);
-  //       setMembers(data.group.members);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [currentUser, navigate, id]);
-
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     try {
-  //       const authToken = localStorage.getItem("auth-token");
-  //       const response = await fetch(
-  //         `http://localhost:8080/api/tweet/get-posts/${id}`,
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             "auth-token": authToken,
-  //           },
-  //         }
-  //       );
-  //       const data = await response.json();
-  //       console.log(data)
-  //       setPosts(data)
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  //   fetchPosts()
-  // }
-  //   , [id])
-
-
   const inviteMember = async () => {
     try {
       const authToken = localStorage.getItem("auth-token");
