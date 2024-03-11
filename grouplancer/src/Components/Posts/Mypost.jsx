@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import { Container, Row, Col, Form } from "react-bootstrap";
 function Mypost(props) {
   const theme = useTheme();
   const { color, groupName, groupImage, postdesc, groupId, tweetId } = props;
@@ -40,6 +41,21 @@ function Mypost(props) {
     console.log(json)
     navigate("/")
   }
+
+  // const ratingPost = async (e) => {
+  //   e.preventDefault();
+  //   const response = await fetch("http://localhost:8080/api/user/rate-user", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "auth-token": localStorage.getItem('auth-token'),
+  //     },
+  //     body: JSON.stringify({ rate: rating == 0? 1 : rating }),
+  //   });
+  //   const json = await response.json();
+  //   console.log(json)
+  //   console.log(rating)
+  // }
 
   const handleRating = (starCount) => {
     setRating(starCount);
@@ -103,8 +119,24 @@ function Mypost(props) {
       Edit
     </Typography>
     
-    <TextField id="outlined-basic" label="Change Description" variant="outlined" />
-    <Button variant="outlined" color="error" style={{translate:"4rem 3rem"}}
+    <TextField id="outlined-basic" label="Change Description" variant="outlined" style={{marginBottom:"2rem", fontFamily: "Arial"}} />
+    <Typography id="modal-modal-title" variant="h6" component="h2" style={{marginBottom:"1rem"}}>
+      Add image
+    </Typography>
+    <Row className="px-1" >
+                    <Form.Group as={Col}>
+                      <Form.Control
+                        type="file"
+                        placeholder="Upload Media"
+                        // onChange={handleChange}
+                        name="media"
+                        accept="image/*, video/*"
+                        required
+                        style={{fontFamily:"Arial"}}
+                      />
+                    </Form.Group>
+                  </Row>
+    <Button variant="outlined" color="error" style={{translate: "17rem 1.5rem"}}
     onClick={handleClose}
     >
   Close
@@ -130,13 +162,15 @@ function Mypost(props) {
             {[1, 2, 3, 4, 5].map((star) => (
               <IconButton
                 key={star}
-                onClick={() => handleRating(star)}
+                onClick={(e) => {
+                  handleRating(star);
+                }}
                 color={star <= rating ? "warning" : "inherit"}
               >
                 <StarIcon />
               </IconButton>
             ))}
-            <Typography variant="body1" style={{ color: "black" }}>
+            <Typography variant="body1" style={{ color: "black" }} >
               Rated: {rating} stars
             </Typography>
 

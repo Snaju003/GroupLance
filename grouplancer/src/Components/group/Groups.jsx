@@ -3,6 +3,7 @@ import { useUser } from "../../context/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import EditGroup from "./EditGroup";
 import {
   Dialog,
   DialogTitle,
@@ -10,8 +11,6 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import CreateGroup from "./CreateGroup";
-import EditGroup from "./EditGroup";
 const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const [credentials, setCredentials] = useState({ email: "" });
   const navigate = useNavigate();
@@ -27,9 +26,26 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const ratingUser = async (e) => {
+      e.preventDefault();
+      const response = await fetch("http://localhost:8080/api/user/rate-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('auth-token'),
+        },
+        body: JSON.stringify({ rate: rating == 0? 1 : rating }),
+      });
+      const json = await response.json();
+      console.log(json)
+      console.log(rating)
+    }
+
   const inviteMember = async () => {
     try {
       const authToken = localStorage.getItem("auth-token");
@@ -90,6 +106,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+  
   return (
     <>
       <div
@@ -207,7 +224,10 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
                           cursor: "pointer",
                           marginRight: "5px",
                         }}
-                        onClick={() => handleRating(star)}
+                        onClick={(e) => {
+                          handleRating(star);
+                          ratingUser(e);
+                        }}
                       />
                     ))}
                     <span style={{ marginLeft: "1rem", color: "white" }}>
