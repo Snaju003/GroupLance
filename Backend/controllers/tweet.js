@@ -1,5 +1,6 @@
 const TweetModel = require("../models/Tweet");
 const GroupModel = require("../models/Group");
+const mongoose = require("mongoose");
 
 const createTweet = async (req, res) => {
     try {
@@ -64,7 +65,7 @@ const createTweet = async (req, res) => {
     }
 }
 
-const deleteTweet = async (res, req) => {
+const deleteTweet = async (req, res) => {
     try {
         const {
             groupId,
@@ -76,8 +77,8 @@ const deleteTweet = async (res, req) => {
                 message: 'Please provide required fields'
             });
         }
-        const existingGroup = await GroupModel.findById({ groupId });
-        const existingTweet = await TweetModel.findById({ tweetId });
+        const existingGroup = await GroupModel.findById(groupId);
+        const existingTweet = await TweetModel.findById(tweetId);
         if (!existingTweet || !existingGroup) {
             return res.status(400).json({
                 success: false,
@@ -142,7 +143,7 @@ const getPosts = async (req, res) => {
                 select: 'gName',
             })
             .sort({ createdAt: -1 });
-            console.log(posts)
+        console.log(posts)
         return res.status(200).json({
             success: true,
             message: `All Posts Fetched`,

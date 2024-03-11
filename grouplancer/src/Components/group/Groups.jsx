@@ -4,70 +4,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
+const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const [credentials, setCredentials] = useState({ email: "" });
-  const [groupDetails, setGroupDetails] = useState({});
-  const [members, setMembers] = useState([]);
   const navigate = useNavigate();
   const { currentUser } = useUser();
   const { id } = useParams();
-  const [posts, setPosts] = useState()
   const [rating, setRating] = useState(0);
 
   const handleRating = (starCount) => {
     setRating(starCount);
   };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const authToken = localStorage.getItem("auth-token");
-  //       const response = await fetch(
-  //         `http://localhost:8080/api/group/get-group-details/${id}`,
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             "auth-token": authToken,
-  //           },
-  //         }
-  //       );
-  //       const data = await response.json();
-  //       console.log(data.group);
-  //       setGroupDetails(data.group);
-  //       setMembers(data.group.members);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [currentUser, navigate, id]);
-
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     try {
-  //       const authToken = localStorage.getItem("auth-token");
-  //       const response = await fetch(
-  //         `http://localhost:8080/api/tweet/get-posts/${id}`,
-  //         {
-  //           method: "GET",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             "auth-token": authToken,
-  //           },
-  //         }
-  //       );
-  //       const data = await response.json();
-  //       console.log(data)
-  //       setPosts(data)
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  //   fetchPosts()
-  // }
-  //   , [id])
-
 
   const inviteMember = async () => {
     try {
@@ -85,8 +31,8 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
             invitationLink: "http://localhost:3000/groupinvite",
             group: {
               id: id,
-              name: groupDetails.gName,
-              desc: groupDetails.gDesc,
+              name: grpName,
+              desc: grpDesc,
             },
             inviterName: currentUser,
           }),
@@ -106,7 +52,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('auth-token'),
       },
-      body: JSON.stringify({ groupId: groupDetails._id }),
+      body: JSON.stringify({ groupId: groupId }),
     });
     const json = await response.json();
     console.log(json)
@@ -120,7 +66,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('auth-token'),
       },
-      body: JSON.stringify({ userId: id, groupId: groupDetails._id }),
+      body: JSON.stringify({ userId: id, groupId: groupId }),
     });
     const json = await response.json();
     console.log(json)
@@ -255,7 +201,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
                   {(grpLeader === currentUser?._id && _id !== currentUser?._id) && (<button
                     type="submit"
                     className="btn btn-primary"
-                    onClick={removeMember(_id)}
+                    onClick={() => removeMember(_id)}
                     style={{ marginTop: "3vh" }}
                   >
                     Remove

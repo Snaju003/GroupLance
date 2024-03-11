@@ -53,10 +53,10 @@ function Myposts() {
       <div className="container">
         <div className="container row" style={{ flexDirection: "column-reverse", display: "flex", }}>
           {
-            posts && posts.map(({ groupId, content }) => {
+            posts && posts.map(({ groupId, content,_id }) => {
               return (
                 <div class="col-md-3 mb-3" style={{ width: "100%", height: "100%" }} >
-                  <Mypost groupName={groupId.gName} postdesc={content} groupImage={groupImage} color={color} />
+                  <Mypost groupName={groupId.gName} groupId={groupId._id} tweetId={_id} postdesc={content} groupImage={groupImage} color={color} />
                 </div>
               )
             })

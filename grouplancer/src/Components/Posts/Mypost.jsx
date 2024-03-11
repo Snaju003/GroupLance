@@ -16,10 +16,28 @@ import Button from "@mui/material/Button";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
+import { useNavigate } from "react-router-dom";
+
 function Mypost(props) {
   const theme = useTheme();
-  const { color, groupName, groupImage, postdesc } = props;
+  const { color, groupName, groupImage, postdesc, groupId, tweetId } = props;
   const [rating, setRating] = useState(0);
+  const navigate = useNavigate()
+
+  const deletePost = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:8080/api/tweet/delete-post", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem('auth-token'),
+      },
+      body: JSON.stringify({ groupId: groupId, tweetId: tweetId }),
+    });
+    const json = await response.json();
+    console.log(json)
+    navigate("/")
+  }
 
   const handleRating = (starCount) => {
     setRating(starCount);
@@ -91,7 +109,7 @@ function Mypost(props) {
               <Button variant="contained" endIcon={<SendIcon />}>
                 Share
               </Button>
-              <Button variant="outlined" color="error">
+              <Button variant="outlined" color="error" onClick={deletePost}>
                 Delete
               </Button>
 

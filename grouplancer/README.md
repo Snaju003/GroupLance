@@ -167,8 +167,10 @@ pass auth token
   "groupId":"<group id>",
   "tweetId":"<tweet id>"
 }
+Done
 
 # Fetch posts
 
 URL: localhost:8080/api/tweet/get-posts/:id(pass id here) (GET Request)
 pass auth token
+Done
