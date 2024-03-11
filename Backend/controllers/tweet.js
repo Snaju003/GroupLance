@@ -77,16 +77,16 @@ const deleteTweet = async (req, res) => {
                 message: 'Please provide required fields'
             });
         }
-        const existingGroup = await GroupModel.findById({ groupId });
-        const existingTweet = await TweetModel.findById({ tweetId });
+        const existingGroup = await GroupModel.findById(groupId);
+        const existingTweet = await TweetModel.findById(tweetId);
         if (!existingTweet || !existingGroup) {
             return res.status(400).json({
                 success: false,
                 message: 'No such tweet or group exists'
             });
         }
-        await TweetModel.findByIdAndDelete(mongoose.Types.ObjectId(tweetId));
-        await GroupModel.findByIdAndUpdate(mongoose.Types.ObjectId(groupId), { $pull: { tweets: tweetId } });
+        await TweetModel.findByIdAndDelete(tweetId);
+        await GroupModel.findByIdAndUpdate(groupId, { $pull: { tweets: tweetId } });
         return res.status(200).json({
             success: true,
             message: 'Tweet removed from the group successfully'
