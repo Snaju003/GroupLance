@@ -4,13 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-const Groups = () => {
+const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers}) => {
   const [credentials, setCredentials] = useState({ email: "" });
   const [groupDetails, setGroupDetails] = useState({});
   const [members, setMembers] = useState([]);
   const navigate = useNavigate();
   const { currentUser } = useUser();
-  const { id, idPos } = useParams();
+  const { id } = useParams();
   const [posts, setPosts] = useState()
   const [rating, setRating] = useState(0);
 
@@ -18,55 +18,55 @@ const Groups = () => {
     setRating(starCount);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const authToken = localStorage.getItem("auth-token");
-        const response = await fetch(
-          `http://localhost:8080/api/group/get-group-details/${id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              "auth-token": authToken,
-            },
-          }
-        );
-        const data = await response.json();
-        console.log(data.group);
-        setGroupDetails(data.group);
-        setMembers(data.group.members);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
-  }, [currentUser, navigate, id]);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const authToken = localStorage.getItem("auth-token");
+  //       const response = await fetch(
+  //         `http://localhost:8080/api/group/get-group-details/${id}`,
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             "auth-token": authToken,
+  //           },
+  //         }
+  //       );
+  //       const data = await response.json();
+  //       console.log(data.group);
+  //       setGroupDetails(data.group);
+  //       setMembers(data.group.members);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [currentUser, navigate, id]);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const authToken = localStorage.getItem("auth-token");
-        const response = await fetch(
-          `http://localhost:8080/api/tweet/get-posts/${idPos}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              "auth-token": authToken,
-            },
-          }
-        );
-        const data = await response.json();
-        console.log(data)
-        setPosts(data)
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    fetchPosts()
-  }
-    , [idPos])
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     try {
+  //       const authToken = localStorage.getItem("auth-token");
+  //       const response = await fetch(
+  //         `http://localhost:8080/api/tweet/get-posts/${id}`,
+  //         {
+  //           method: "GET",
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             "auth-token": authToken,
+  //           },
+  //         }
+  //       );
+  //       const data = await response.json();
+  //       console.log(data)
+  //       setPosts(data)
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  //   fetchPosts()
+  // }
+  //   , [id])
 
 
   const inviteMember = async () => {
@@ -139,9 +139,9 @@ const Groups = () => {
         }}
       >
         <h1 className="text-center my-4" style={{ color: "#ffff", margin: "auto" }}>
-          {groupDetails.gName}
+          {grpName}
         </h1>
-        {(groupDetails.leader === currentUser._id) && (
+        {(grpLeader === currentUser?._id) && (
           <button
             className="btn btn-primary"
             type="submit"
@@ -149,7 +149,8 @@ const Groups = () => {
             style={{
               color: "white",
               padding: "10px",
-              marginRight: "1rem"
+              marginRight: "1rem",
+              backgroundColor: "#cc0000"
             }}
           >
             Delete Group
@@ -157,18 +158,6 @@ const Groups = () => {
         )}
       </div>
 
-      <div style={{ alignItems: "center" }}>
-        <h1
-          style={{
-            color: "#ffff",
-            paddingRight: "70vw",
-            textAlign: "center",
-          }}
-        >
-          {" "}
-          Groups Details
-        </h1>
-      </div>
       <div className="container my-4" display="flex" alignItems="center">
         <div
           style={{
@@ -181,8 +170,8 @@ const Groups = () => {
             paddingTop: "10px",
           }}
         >
-          <p style={{ fontSize: "25px" }}>Name:{groupDetails.projName} </p>
-          <p style={{ fontSize: "25px" }}>Description: {groupDetails.gDesc}</p>
+          <p style={{ fontSize: "25px" }}>Name:{projName} </p>
+          <p style={{ fontSize: "25px" }}>Description: {grpDesc}</p>
           <div
             style={{
               display: "flex",
@@ -190,7 +179,7 @@ const Groups = () => {
               alignItems: "center",
             }}
           >
-            {(groupDetails.leader === currentUser._id) && (<button
+            {(grpLeader === currentUser?._id) && (<button
               type="submit"
               className="btn btn-primary"
               style={{ marginBottom: "3vh" }}
@@ -215,7 +204,7 @@ const Groups = () => {
       </div>
       <div className="container my-4" display="flex" alignItems="center">
         <div className="row">
-          {members.map(({ _id, name, email }) => (
+          {gMembers?.map(({ _id, name, email }) => (
             <div className="col-sm-4" key={_id}>
               <div
                 className="card"
@@ -246,7 +235,7 @@ const Groups = () => {
                   />
                   <h5 className="card-title">{name}</h5>
                   <p className="card-text">{email}</p>
-                  {(_id !== currentUser._id) && (<div style={{ display: "flex", marginRight: "1rem" }}>
+                  {(_id !== currentUser?._id) && (<div style={{ display: "flex", marginRight: "1rem" }}>
                     {[1, 2, 3, 4, 5].map((star) => (
                       <FontAwesomeIcon
                         key={star}
@@ -263,7 +252,7 @@ const Groups = () => {
                       Rated: {rating} stars
                     </span>
                   </div>)}
-                  {(groupDetails.leader === currentUser._id && _id !== currentUser._id) && (<button
+                  {(grpLeader === currentUser?._id && _id !== currentUser?._id) && (<button
                     type="submit"
                     className="btn btn-primary"
                     onClick={removeMember(_id)}
@@ -276,7 +265,7 @@ const Groups = () => {
             </div>
           ))}
           <div class="col-sm-4">
-            {(groupDetails.leader === currentUser._id) && (<div
+            {(grpLeader === currentUser?._id) && (<div
               class="card"
               style={{
                 marginTop: "5%",

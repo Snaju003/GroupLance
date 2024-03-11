@@ -99,10 +99,10 @@ const deleteTweet = async (res, req) => {
     }
 }
 
-const getAllTweets = async (req, res) => {
+const getAllTweetsBasedOnGroup = async (req, res) => {
     try {
         const groupId = req.params.id;
-        if (groupId) {
+        if (!groupId) {
             return res.status(400).json({
                 success: false,
                 message: 'Group id not provided'
@@ -133,8 +133,29 @@ const getAllTweets = async (req, res) => {
     }
 }
 
+const getPosts = async (req, res) => {
+    try {
+        const posts = await TweetModel
+            .find({})
+            .populate({
+                path: 'groupId',
+                select: 'gName',
+            })
+            .sort({ createdAt: -1 });
+            console.log(posts)
+        return res.status(200).json({
+            success: true,
+            message: `All Posts Fetched`,
+            posts
+        });
+    } catch (error) {
+
+    }
+}
+
 module.exports = {
     createTweet,
     deleteTweet,
-    getAllTweets
+    getAllTweetsBasedOnGroup,
+    getPosts,
 };

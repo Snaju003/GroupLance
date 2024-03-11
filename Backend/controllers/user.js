@@ -114,10 +114,36 @@ const myPosts = async (req, res) => {
     }
 }
 
+const rateUser = async (req, res) => {
+    try {
+        const { rate } = req.body;
+        const userId = req.user;
+        const user = await UserModel.findById(userId);
+        if (!user) {
+            return res.status(400).json({
+                success: false,
+                message: 'No user found'
+            });
+        }
+        const updatedUser = await UserModel.findByIdAndUpdate(userId, {
+            $set: { rate: rate }
+        });
+        console.log(updatedUser);
+        return res.status(200).json({
+            success: true,
+            message: `User rated`,
+            updatedUser,
+        });
+    } catch (error) {
+        return res.status(500).send('Internal server occured');
+    }
+}
+
 module.exports = {
     getUser,
     getJoinedGroups,
     getUserAccount,
     ownedGroup,
-    myPosts
+    myPosts,
+    rateUser,
 };

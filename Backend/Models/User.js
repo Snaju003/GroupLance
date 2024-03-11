@@ -61,7 +61,8 @@ const UserSchema = new Schema({
     skills: [{ type: String }],
     workExperience: [{ type: WorkExperienceSchema }],
     education: [{ type: EducationSchema }],
-}, { timestamps: true })
+    rate: { type: Number },
+}, { timestamps: true });
 
 // Sign Access Token
 UserSchema.methods.SignAccessToken = function () {
