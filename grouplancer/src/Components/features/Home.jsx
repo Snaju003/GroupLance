@@ -117,7 +117,7 @@ const Home = (props) => {
         </div> */}
         { !currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
 
-        <div style={{display:"flex",marginLeft:"80px",gap:"30px"}}>
+        <div style={{display:"flex",marginLeft:"80px",gap:"30px",marginTop:"130px"}}>
           <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{borderRadius:"30px",marginnLeft:"80px",width:"800px",height:"600px"}}  alt="gif"></video>
           <div style={{color:"white",marginTop:"70px",height:"600px",padding:"30px"}}>
             <h1 style={{fontSize:"65px",fontWeight:"bold"}}>Divide
