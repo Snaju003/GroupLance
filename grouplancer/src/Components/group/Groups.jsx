@@ -31,7 +31,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
     setIsModalOpen(false);
   };
 
-  const ratingUser = async (e) => {
+  const ratingUser = async (e,_id) => {
       e.preventDefault();
       const response = await fetch("http://localhost:8080/api/user/rate-user", {
         method: "POST",
@@ -39,7 +39,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
           "Content-Type": "application/json",
           "auth-token": localStorage.getItem('auth-token'),
         },
-        body: JSON.stringify({ rate: rating == 0? 1 : rating }),
+        body: JSON.stringify({ rate: rating == 0? 1 : rating, userId: _id }),
       });
       const json = await response.json();
       console.log(json)
@@ -226,7 +226,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
                         }}
                         onClick={(e) => {
                           handleRating(star);
-                          ratingUser(e);
+                          ratingUser(e,_id);
                         }}
                       />
                     ))}
