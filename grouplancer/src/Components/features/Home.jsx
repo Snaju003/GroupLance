@@ -115,7 +115,7 @@ const Home = (props) => {
             </div>
           </div>
         </div> */}
-        {!currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
+        
 
         <div style={{ display: "flex",  gap: "30px", marginTop: "70px" }}>
           <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius:"20px",marginLeft: "80px", width: "700px", height: "500px" }} alt="gif"></video>
@@ -148,7 +148,7 @@ const Home = (props) => {
               </h1>
           </div>
         </div>
-
+        {!currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
         < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover" }}>
           <div className="subscription" style={{ display: "flex" }} >
             <div className="card-active" style={{ borderRadius: "10px" }}>
