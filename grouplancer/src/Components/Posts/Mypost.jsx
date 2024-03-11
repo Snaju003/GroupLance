@@ -18,6 +18,9 @@ import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 
+import Modal from '@mui/material/Modal';
+import TextField from '@mui/material/TextField';
+import { Container, Row, Col, Form } from "react-bootstrap";
 function Mypost(props) {
   const theme = useTheme();
   const { color, groupName, groupImage, postdesc, groupId, tweetId } = props;
@@ -39,6 +42,21 @@ function Mypost(props) {
     navigate("/")
   }
 
+  // const ratingPost = async (e) => {
+  //   e.preventDefault();
+  //   const response = await fetch("http://localhost:8080/api/user/rate-user", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "auth-token": localStorage.getItem('auth-token'),
+  //     },
+  //     body: JSON.stringify({ rate: rating == 0? 1 : rating }),
+  //   });
+  //   const json = await response.json();
+  //   console.log(json)
+  //   console.log(rating)
+  // }
+
   const handleRating = (starCount) => {
     setRating(starCount);
   };
@@ -51,6 +69,23 @@ function Mypost(props) {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  // const [showModal, setShowModal] = useState(false);
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+  
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
   return (
     <>
       <Card sx={{ display: "flex", maxWidth: "100%" }}>
@@ -68,9 +103,48 @@ function Mypost(props) {
           />
         )}
         <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
-          <Button style={{width:"7rem",translate:"35rem 2rem"}} variant="contained" disableElevation>
-            Edit
+          <Button style={{display: "flex",width:"7rem",translate:"35rem 2rem"}} variant="contained" disableElevation 
+          onClick={handleOpen}
+          >
+             Edit
           </Button>
+          <Modal
+  open={open}
+  onClose={handleClose}
+  aria-labelledby="modal-modal-title"
+  aria-describedby="modal-modal-description"
+>
+  <Box sx={style}>
+    <Typography id="modal-modal-title" variant="h6" component="h2" style={{marginBottom:"1rem"}}>
+      Edit
+    </Typography>
+    
+    <TextField id="outlined-basic" label="Change Description" variant="outlined" style={{marginBottom:"2rem", fontFamily: "Arial"}} />
+    <Typography id="modal-modal-title" variant="h6" component="h2" style={{marginBottom:"1rem"}}>
+      Add image
+    </Typography>
+    <Row className="px-1" >
+                    <Form.Group as={Col}>
+                      <Form.Control
+                        type="file"
+                        placeholder="Upload Media"
+                        // onChange={handleChange}
+                        name="media"
+                        accept="image/*, video/*"
+                        required
+                        style={{fontFamily:"Arial"}}
+                      />
+                    </Form.Group>
+                  </Row>
+    <Button variant="outlined" color="error" style={{translate: "17rem 1.5rem"}}
+    onClick={handleClose}
+    >
+  Close
+</Button>
+    
+   
+  </Box>
+</Modal>
           <CardContent sx={{ flex: "1 0 auto" }}>
             <Typography component="div" variant="h5">
               {groupName}
@@ -88,13 +162,15 @@ function Mypost(props) {
             {[1, 2, 3, 4, 5].map((star) => (
               <IconButton
                 key={star}
-                onClick={() => handleRating(star)}
+                onClick={(e) => {
+                  handleRating(star);
+                }}
                 color={star <= rating ? "warning" : "inherit"}
               >
                 <StarIcon />
               </IconButton>
             ))}
-            <Typography variant="body1" style={{ color: "black" }}>
+            <Typography variant="body1" style={{ color: "black" }} >
               Rated: {rating} stars
             </Typography>
 

@@ -3,7 +3,14 @@ import { useUser } from "../../context/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-
+import EditGroup from "./EditGroup";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+} from "@mui/material";
 const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const [credentials, setCredentials] = useState({ email: "" });
   const navigate = useNavigate();
@@ -14,7 +21,15 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const handleRating = (starCount) => {
     setRating(starCount);
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   const inviteMember = async () => {
     try {
       const authToken = localStorage.getItem("auth-token");
@@ -75,6 +90,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+  
   return (
     <>
       <div
@@ -129,6 +145,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
               type="submit"
               className="btn btn-primary"
               style={{ marginBottom: "3vh" }}
+              onClick={handleOpenModal}
 
             >
               Edit
@@ -191,7 +208,10 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
                           cursor: "pointer",
                           marginRight: "5px",
                         }}
-                        onClick={() => handleRating(star)}
+                        onClick={(e) => {
+                          handleRating(star);
+                          ratingUser(e);
+                        }}
                       />
                     ))}
                     <span style={{ marginLeft: "1rem", color: "white" }}>
@@ -250,6 +270,15 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
           </div>
         </div>
       </div>
+      <Dialog open={isModalOpen} onClose={handleCloseModal} >
+        <DialogTitle>{projName}</DialogTitle>
+        <DialogContent>
+          <EditGroup />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseModal}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
