@@ -43,7 +43,7 @@ const LiveGroups = () => {
       {/* <h1 className="text-center my-4" style={{ color: "#ffff" }}>
         Live Groups
       </h1> */}
-      <h1 className=" my-4" style={{ color: "#ffff" }}>
+      <h1 className=" my-4" style={{ color: "#ffff", marginLeft:"60px",fontWeight:"bold" }}>
         Live Groups
       </h1>
       <div className="container">

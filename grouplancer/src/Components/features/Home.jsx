@@ -117,8 +117,8 @@ const Home = (props) => {
         </div> */}
         {!currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
 
-        <div style={{ display: "flex", marginLeft: "80px", gap: "30px", marginTop: "70px" }}>
-          <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "30px", width: "700px", height: "500px" }} alt="gif"></video>
+        <div style={{ display: "flex",  gap: "30px", marginTop: "70px" }}>
+          <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius:"20px",marginLeft: "80px", width: "700px", height: "500px" }} alt="gif"></video>
           <div style={{ color: "white", marginTop: "40px", height: "600px", padding: "30px" }}>
             <h1 style={{ fontSize: "65px", fontWeight: "bold" }}>Divide
               <br />the Tasks
@@ -127,19 +127,19 @@ const Home = (props) => {
               <br />the Success</h1>
           </div>
         </div>
-        <div style={{ display: "flex", marginLeft: "80px", gap: "5px", marginTop: "5px" }}>
+        <div style={{ display: "flex", gap: "30px", marginTop: "5px",marginLeft:"150px" }}>
 
-          <div style={{ color: "white", marginTop: "20px", height: "600px", padding: "30px",marginLeft:"80px" }}>
-            <h1 style={{ fontSize: "65px", fontWeight: "bold" }}>Together
+          <div style={{ color: "white", marginTop: "20px", height: "600px", padding: "30px",marginLeft:"100px" }}>
+            <h1 style={{ fontSize: "65px", fontWeight: "bold" ,Color:"linear-gradient(#ffff,#ghrfd)"}}>Together
               
               <br />We are
               <br />Stronger
               </h1>
           </div>
-          <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: "50px",  width: "700px", height: "500px" }} alt="gif"></video>
+          <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: "50px",  width: "800px", height: "500px" }} alt="gif"></video>
         </div>
-        <div style={{ display: "flex", marginLeft: "80px", gap: "30px", marginTop: "5px" }}>
-          <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "30px", width: "700px", height: "500px" }} alt="gif"></video>
+        <div style={{ display: "flex", gap: "30px", marginTop: "5px" }}>
+          <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "30px", width: "700px", height: "500px",marginLeft:"80px" }} alt="gif"></video>
           <div style={{ color: "white", marginTop: "40px", height: "600px", padding: "30px" }}>
             <h1 style={{ fontSize: "65px", fontWeight: "bold" }}>Collaboration
               <br />is the
