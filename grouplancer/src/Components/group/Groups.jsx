@@ -3,7 +3,14 @@ import { useUser } from "../../context/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-
+import EditGroup from "./EditGroup";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+} from "@mui/material";
 const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const [credentials, setCredentials] = useState({ email: "" });
   const navigate = useNavigate();
@@ -14,7 +21,15 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const handleRating = (starCount) => {
     setRating(starCount);
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   const inviteMember = async () => {
     try {
       const authToken = localStorage.getItem("auth-token");
