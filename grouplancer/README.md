@@ -167,6 +167,7 @@ pass auth token
   "groupId":"<group id>",
   "tweetId":"<tweet id>"
 }
+Done
 
 # Fetch posts
 

@@ -23,7 +23,6 @@ function Mypost(props) {
   const { color, groupName, groupImage, postdesc, groupId, tweetId } = props;
   const [rating, setRating] = useState(0);
   const navigate = useNavigate()
-  console.log("GrpId: ",groupId,"TwId: ",tweetId)
 
   const deletePost = async (e) => {
     e.preventDefault();

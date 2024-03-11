@@ -83,7 +83,7 @@ const GroupTab = () => {
                                 </Nav>
                                 <Tab.Content id="slideInUp">
                                     <Tab.Pane eventKey="first">
-                                        <Groups grpName={groupDetails?.gName} grpLeader={groupDetails?.leader} projName={groupDetails?.projName} grpDesc={groupDetails?.gDesc} gMembers={members} />
+                                        <Groups grpName={groupDetails?.gName} grpLeader={groupDetails?.leader} projName={groupDetails?.projName} grpDesc={groupDetails?.gDesc} gMembers={members} groupId={id} />
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="second">
                                         <div className="container">
