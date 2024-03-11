@@ -18,35 +18,35 @@ const AboutUs = (props) => {
   const { bgcolor } = props;
   return (
     <>
-      <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop: "100px",fontWeight:"bold"}}>
-      Welcome To Grouplancer!!!!
+      <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop: "100px", fontWeight: "bold" }}>
+        Welcome To Grouplancer!!!!
       </h1>
 
       <div className="container my-4" display="flex" alignitems="center">
         <div className="row">
-        <h2 className="heading"
-                style={{
-                  color: "#ffff",
-                  textAlign: "center",
-                }}
-              >
-                {" "}
-                
-              </h2>
-          <div className="hero-image" style={{display:"flex",gap:"30px",marginBottom:"20px"}}>
-          
-            <div style={{paddingLeft:"10px",width:"500px"}}>
-              
+          <h2 className="heading"
+            style={{
+              color: "#ffff",
+              textAlign: "center",
+            }}
+          >
+            {" "}
+
+          </h2>
+          <div className="hero-image" style={{ display: "flex", gap: "30px", marginBottom: "20px" }}>
+
+            <div style={{ paddingLeft: "10px", width: "500px" }}>
+
 
               <p className="des"
                 style={{
                   color: "black",
-                  width: "100%",height:"640px",
+                  width: "100%", height: "640px",
                   paddingTop: "50px",
                   padding: "20px",
                   textAlign: "justify"
-                  ,background:"linear-gradient(#0492c2 ,#fec5e5)",
-                  borderRadius:"20px",fontWeight:"bold"
+                  , background: "linear-gradient(#0492c2 ,#fec5e5)",
+                  borderRadius: "20px", fontWeight: "bold"
                 }}
               >
                 Welcome to GroupLancer, your go-to platform for connecting skilled freelancers with businesses and organizations seeking top-notch talent for group projects.
@@ -57,40 +57,40 @@ const AboutUs = (props) => {
                 Our mission at GroupLancer is to empower freelancers and businesses alike by providing a dynamic platform where collaboration thrives. We strive to foster a community where individuals can leverage their diverse skills and experiences to deliver exceptional outcomes for our clients.
                 work in groups and enhance your knowledge.so why wait create
                 your own group and start collaborating.GroupLancer simplifies the process of finding and forming freelance teams. Businesses can post their project requirements, and our platform matches them with skilled freelancers who possess the necessary expertise. Freelancers can join forces, form groups tailored to project needs, and collectively bid on projects.</p>
-                
+
             </div>
             <video src="./ezgif-6-0fa881e524.mp4" autoPlay loop muted style={{ width: "800px", height: "600px", borderRadius: "30px", marginTop: "20px" }} alt="video" />
           </div>
         </div>
-        <div style={{ justifyItems: "center", display: "flex", gap: "30px", marginTop: "30px",marginBottom:"30px" }}>
+        <div style={{ justifyItems: "center", display: "flex", gap: "30px", marginTop: "30px", marginBottom: "30px" }}>
           <img src="./aboutUs.jpg" style={{ width: "600px", height: "570px", borderRadius: "20px", marginLeft: "10px", marginTop: "60px" }} alt="image" />
-         <div style={{padding:"20px 40px 20px 20px",height:"600px",marginBottom:"80px"}}> <p
-                  style={{
-                    color: "black",
-                    width: "100%",
-                   
-                    padding: "20px 40px 20px 20px",
-                    textAlign: "justify"
-                    ,background:"linear-gradient(#0492c2 ,#fec5e5)",
-                  borderRadius:"20px"
-                  }}
-                >
+          <div style={{ padding: "20px 40px 20px 20px", height: "600px", marginBottom: "80px" }}> <p
+            style={{
+              color: "black",
+              width: "100%",
 
-                
-
-               <h3 style={{fontWeight:"bold",marginTop:"15px",marginLeft:"30px"}}> Why Choose GroupLancer?</h3>
-              <ul style={{marginTop:"25px"}}>
-                <li><p style={{fontWeight:"bold"}}>Efficiency:</p> Save time and resources by tapping into a network of pre-vetted freelancers ready to collaborate on your project.</li>
-
-               <li><p style={{fontWeight:"bold"}}>Diverse Talent:</p> Access a vast pool of freelancers with diverse skills and backgrounds, ensuring that your project receives comprehensive expertise.</li> 
-
-                <li><p style={{fontWeight:"bold"}}>Cost-Effective Solutions:</p> Our platform enables businesses to find cost-effective solutions by leveraging the collective talents of freelance teams.</li>
-
-                <li><p style={{fontWeight:"bold"}}>Transparent Communication:</p> We prioritize transparent communication throughout the project lifecycle, fostering trust and accountability among team members.</li>
+              padding: "20px 40px 20px 20px",
+              textAlign: "justify"
+              , background: "linear-gradient(#0492c2 ,#fec5e5)",
+              borderRadius: "20px"
+            }}
+          >
 
 
-               <p> Whether you're a freelancer looking to expand your network or a business in need of specialized talent, GroupLancer is your solution. Join our vibrant community today and experience the power of collaborative freelancing. Together, we can turn your projects into success stories.</p>
-                </ul>
+
+            <h3 style={{ fontWeight: "bold", marginTop: "15px", marginLeft: "30px" }}> Why Choose GroupLancer?</h3>
+            <ul style={{ marginTop: "25px" }}>
+              <li><p style={{ fontWeight: "bold" }}>Efficiency:</p> Save time and resources by tapping into a network of pre-vetted freelancers ready to collaborate on your project.</li>
+
+              <li><p style={{ fontWeight: "bold" }}>Diverse Talent:</p> Access a vast pool of freelancers with diverse skills and backgrounds, ensuring that your project receives comprehensive expertise.</li>
+
+              <li><p style={{ fontWeight: "bold" }}>Cost-Effective Solutions:</p> Our platform enables businesses to find cost-effective solutions by leveraging the collective talents of freelance teams.</li>
+
+              <li><p style={{ fontWeight: "bold" }}>Transparent Communication:</p> We prioritize transparent communication throughout the project lifecycle, fostering trust and accountability among team members.</li>
+
+
+              <p> Whether you're a freelancer looking to expand your network or a business in need of specialized talent, GroupLancer is your solution. Join our vibrant community today and experience the power of collaborative freelancing. Together, we can turn your projects into success stories.</p>
+            </ul>
           </p>
           </div>
         </div>
@@ -184,7 +184,7 @@ const AboutUs = (props) => {
               </div>
             </div>
           </div>
-              </div>*/}
+              </div>
         <div className="row" style={{ width: "100%", display: "flex", gap: "2rem", flexWrap: "wrap", marginLeft: "3.5rem" }}>
 
           <div className="col-sm-4" style={{ width: "30%" }}>
@@ -403,6 +403,52 @@ const AboutUs = (props) => {
                 </div>
             </div>
             </div>*/}
+        <div style={{ display: "flex", gap: "100px", margin: "80px 90px 50px 90px" }}>
+          <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./aboutUs.jpg" alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Dibakar Banerjee</h5>
+              <a href="#" class="btn btn-primary">Follow me</a>
+            </div>
+          </div>
+          <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./creategrp.jpg" alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Subhadeep Dhar</h5>
+              <a href="#" class="btn btn-primary">Follow me</a>
+            </div>
+          </div>
+          <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./creategrp.jpg" alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Pratyush Pal</h5>
+              <a href="#" class="btn btn-primary">Follow me</a>
+            </div>
+          </div>
+        </div>
+        <div style={{ display: "flex", gap: "100px", margin: "40px 90px 40px 90px" }}>
+          <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./aboutUs.jpg" alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Soumyaraj Sarkar</h5>
+              <a href="#" class="btn btn-primary">Follow me</a>
+            </div>
+          </div>
+          <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./creategrp.jpg" alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Romit Guha</h5>
+              <a href="#" class="btn btn-primary">Follow me</a>
+            </div>
+          </div>
+          <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./creategrp.jpg" alt="Card image cap" />
+            <div class="card-body">
+              <h5 class="card-title">Shreedatri Saha</h5>
+              <a href="#" class="btn btn-primary">Follow me</a>
+            </div>
+          </div>
+        </div>
       </div>
       <style>
         {`
