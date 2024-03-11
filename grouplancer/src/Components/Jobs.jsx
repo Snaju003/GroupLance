@@ -33,8 +33,8 @@ import Select from 'react-select';
   
   
   return(
-    <div>
-      <h5>Domains</h5>
+    <div style={{margin:"50px"}}>
+      <h2 style={{fontWeight:"bold",color:"white",margin:"20px 50px 20px 50px"}}>Domains</h2>
       <Select 
       options={options}
       text={selectedOptions}
