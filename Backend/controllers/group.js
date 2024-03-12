@@ -3,6 +3,7 @@ const UserModel = require("../models/User");
 const ejs = require('ejs');
 const path = require('path');
 const sendMail = require("../utils/sendmail");
+const TweetModel = require("../models/Tweet");
 
 
 const createGroup = async (req, res) => {
@@ -450,6 +451,10 @@ const deleteGroup = async (req, res) => {
             await UserModel.findByIdAndUpdate(existsGroup.members[i].toString(), { $pull: { groups: groupId } });
         }
         await GroupModel.findByIdAndDelete(groupId);
+        const posts = await TweetModel.find({ groupId: groupId });
+        for (let i = 0; i < posts.length; i++) {
+            await TweetModel.findByIdAndDelete(posts[i]._id);
+        }
         return res.status(200).json({
             success: true,
             message: 'Group Deleted Successfully'
