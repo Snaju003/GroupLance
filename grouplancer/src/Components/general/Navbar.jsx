@@ -16,6 +16,7 @@ import { Link } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import SearchIcon from '@mui/icons-material/Search';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -182,6 +183,7 @@ const NavBar = () => {
                                 </Typography>
                             </MenuItem>
                         </Menu>
+
                     </Box>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         <Button
@@ -226,8 +228,18 @@ const NavBar = () => {
                         >
                             <Link href="/postbar" style={{ color: "white", textDecoration: "none" }}>Posts</Link>
                         </Button>
+
+
+
                     </Box>
-                    <Search style={{marginRight: "6rem"}}>
+                    <Link href="/noti">
+                    <NotificationsIcon style={{color:"white",marginRight:"1rem"}}>
+                           
+                           </NotificationsIcon>
+
+                    </Link>
+                   
+                    <Search style={{ marginRight: "6rem" }}>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
@@ -240,6 +252,7 @@ const NavBar = () => {
                         currentUser ?
                             <Box sx={{ flexGrow: 0, marginLeft: "2rem" }}>
                                 <Tooltip title="Open settings">
+
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                         <img alt="Profile Picture" src="./default-user.jpg" style={{ height: "10vh", width: "10vh" }} />
                                     </IconButton>
