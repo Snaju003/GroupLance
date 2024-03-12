@@ -99,6 +99,42 @@ const deleteTweet = async (req, res) => {
     }
 }
 
+const editTweet = async (req, res) => {
+    try {
+        const { content } = req.body;
+        const tweetId = req.params.id;
+        if (!content || !tweetId) {
+            return res.status(400).json({
+                success: false,
+                message: `content or tweetId not provided`
+            });
+        }
+
+        const existsTweet = await TweetModel.findById(tweetId);
+        if (!existsTweet) {
+            return res.status(400).json({
+                success: false,
+                message: `Tweet don't exists`
+            });
+        }
+
+        const updatedTweet = await TweetModel.findByIdAndUpdate(tweetId, {
+            $set: { content: content }
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: `Tweet updated`,
+            updatedTweet
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: `Internal server error`
+        });
+    }
+}
+
 const getAllTweetsBasedOnGroup = async (req, res) => {
     try {
         const groupId = req.params.id;
@@ -153,9 +189,45 @@ const getPosts = async (req, res) => {
     }
 }
 
+const ratePost = async (req, res) => {
+    try {
+        const { userId, rate } = req.body;
+        const tweetId = req.params.id;
+        const existingTweet = await TweetModel.findById(tweetId);
+        if (!existingTweet) {
+            return res.status(400).json({
+                success: false,
+                message: `Tweet doesn't exists`
+            });
+        }
+
+        const updatedData = {
+            ratedUser: userId,
+            rate: rate
+        };
+
+        const updatedTweet = await TweetModel.findByIdAndUpdate(tweetId, {
+            $push: { rating: updatedData }
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: `Tweet rated`,
+            updatedTweet
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: `Internal server error`
+        });
+    }
+}
+
 module.exports = {
     createTweet,
     deleteTweet,
     getAllTweetsBasedOnGroup,
     getPosts,
+    ratePost,
+    editTweet,
 };

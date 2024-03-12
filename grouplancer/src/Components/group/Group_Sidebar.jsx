@@ -92,7 +92,7 @@ const GroupTab = () => {
                                                     posts?.map(({ groupId, content }) => {
                                                         return (
                                                             <div class="col-md-3 mb-3" style={{ width: "100%", height: "100%" }} >
-                                                                <Livepost groupName={groupId.gName} postdesc={content} color={color} groupImage={groupImage}/>
+                                                                <Livepost groupName={groupId.gName} postdesc={content} color={color} groupImage={groupImage} />
                                                             </div>
                                                         )
                                                     })
