@@ -59,7 +59,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
           },
           body: JSON.stringify({
             invitedUserMail: credentials.email,
-            invitationLink: "http://localhost:3000/groupinvite",
+            invitationLink: "http://localhost:3000/sidebar",
             group: {
               id: id,
               name: grpName,
@@ -70,6 +70,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
         }
       );
       const data = await response.json();
+      console.log(data)
     } catch (error) {
       console.error(error);
     }
