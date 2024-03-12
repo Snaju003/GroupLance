@@ -5,7 +5,8 @@ const {
     deleteTweet,
     getAllTweetsBasedOnGroup,
     getPosts,
-    ratePost
+    ratePost,
+    editTweet
 } = require('../controllers/tweet');
 const upload = require("../database/fileUpload");
 
@@ -16,5 +17,6 @@ tweetRouter.delete('/delete-post', fetchUser, deleteTweet);
 tweetRouter.get('/get-posts/:id', fetchUser, getAllTweetsBasedOnGroup);
 tweetRouter.get('/get-all-posts', getPosts);
 tweetRouter.put('/rate-post/:id', fetchUser, ratePost);
+tweetRouter.put('/update-post/:id', fetchUser, editTweet);
 
 module.exports = tweetRouter;

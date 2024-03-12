@@ -99,6 +99,42 @@ const deleteTweet = async (req, res) => {
     }
 }
 
+const editTweet = async (req, res) => {
+    try {
+        const { content } = req.body;
+        const tweetId = req.params.id;
+        if (!content || !tweetId) {
+            return res.status(400).json({
+                success: false,
+                message: `content or tweetId not provided`
+            });
+        }
+
+        const existsTweet = await TweetModel.findById(tweetId);
+        if (!existsTweet) {
+            return res.status(400).json({
+                success: false,
+                message: `Tweet don't exists`
+            });
+        }
+
+        const updatedTweet = await TweetModel.findByIdAndUpdate(tweetId, {
+            $set: { content: content }
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: `Tweet updated`,
+            updatedTweet
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: `Internal server error`
+        });
+    }
+}
+
 const getAllTweetsBasedOnGroup = async (req, res) => {
     try {
         const groupId = req.params.id;
@@ -193,4 +229,5 @@ module.exports = {
     getAllTweetsBasedOnGroup,
     getPosts,
     ratePost,
+    editTweet,
 };
