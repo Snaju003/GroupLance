@@ -21,11 +21,11 @@ const TweetSchema = new Schema({
     file: {
         type: String,
     },
-    likes:
+    rating:
         [
             {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: 'group'
+                ratedUser: { type: mongoose.Schema.Types.ObjectId, ref: 'user' },
+                rate: Number,
             }
         ],
     retweets:
