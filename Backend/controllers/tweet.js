@@ -1,6 +1,5 @@
 const TweetModel = require("../models/Tweet");
 const GroupModel = require("../models/Group");
-const mongoose = require("mongoose");
 
 const createTweet = async (req, res) => {
     try {
@@ -150,7 +149,7 @@ const getPosts = async (req, res) => {
             posts
         });
     } catch (error) {
-
+        return res.status(500).json({ success: false, message: `Internal server error` });
     }
 }
 

@@ -26,7 +26,12 @@ const io = new Server(server, {
     }
 });
 
-
+io.on("connection",(socket)=>{
+    console.log(`User connected: ${socket.id}`);
+    socket.on("send_message",(data)=>{
+        console.log(data);
+    });
+})
 
 server.listen(9000, () => {
     console.log(`Socket server is running at port 9000`);
