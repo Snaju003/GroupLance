@@ -17,15 +17,35 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
-
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { Container, Row, Col, Form } from "react-bootstrap";
+
 function Mypost(props) {
   const theme = useTheme();
   const { color, groupName, groupImage, postdesc, groupId, tweetId } = props;
   const [rating, setRating] = useState(0);
   const navigate = useNavigate()
+  const [editText, setEditText] = useState("")
+
+  const updatePost = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await fetch(`http://localhost:8080/api/tweet/update-post/${tweetId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('auth-token'),
+        },
+        body: JSON.stringify({ content: editText }),
+      });
+      const json = await response.json();
+      console.log(json)
+      navigate("/postbar")
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const deletePost = async (e) => {
     e.preventDefault();
@@ -42,21 +62,6 @@ function Mypost(props) {
     navigate("/")
   }
 
-  // const ratingPost = async (e) => {
-  //   e.preventDefault();
-  //   const response = await fetch("http://localhost:8080/api/user/rate-user", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "auth-token": localStorage.getItem('auth-token'),
-  //     },
-  //     body: JSON.stringify({ rate: rating == 0? 1 : rating }),
-  //   });
-  //   const json = await response.json();
-  //   console.log(json)
-  //   console.log(rating)
-  // }
-
   const handleRating = (starCount) => {
     setRating(starCount);
   };
@@ -69,6 +74,10 @@ function Mypost(props) {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
+  const onchange = (e) => {
+    setEditText(e.target.value)
+  }
 
   // const [showModal, setShowModal] = useState(false);
   const style = {
@@ -163,7 +172,7 @@ function Mypost(props) {
                     Edit
                   </Typography>
 
-                  <TextField id="outlined-basic" label="Change Description" variant="outlined" style={{ marginBottom: "2rem", fontFamily: "Arial" }} />
+                  <TextField id="outlined-basic" label="Change Description" variant="outlined" style={{ marginBottom: "2rem", fontFamily: "Arial" }} onChange={onchange} />
                   <Typography id="modal-modal-title" variant="h6" component="h2" style={{ marginBottom: "1rem" }}>
                     Add image
                   </Typography>
@@ -180,7 +189,15 @@ function Mypost(props) {
                       />
                     </Form.Group>
                   </Row>
-                  <Button variant="outlined" color="error" style={{ translate: "17rem 1.5rem" }}
+                  <Button variant="contained" style={{ translate: "11rem 1.5rem" }}
+                    onClick={(e) => {
+                      handleClose();
+                      updatePost(e);
+                    }}
+                  >
+                    Save
+                  </Button>
+                  <Button variant="outlined" color="error" style={{ translate: "12rem 1.5rem" }}
                     onClick={handleClose}
                   >
                     Close

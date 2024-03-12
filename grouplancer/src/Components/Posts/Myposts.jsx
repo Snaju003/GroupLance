@@ -31,7 +31,6 @@ function Myposts() {
         const data = await response.json();
         setPosts(data.posts);
         console.log(data);
-        console.log(authToken)
       } catch (error) {
         console.error(error);
       }

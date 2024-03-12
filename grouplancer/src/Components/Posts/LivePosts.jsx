@@ -38,10 +38,10 @@ function Liveposts() {
       <div className="container">
         <div className="container row" style={{ flexDirection: "column" , display:"flex",}}>
         {
-            posts && posts?.map(({ groupId, content }) => {
+            posts && posts?.map(({ groupId, content, _id }) => {
               return (
                 <div class="col-md-3 mb-3" style={{ width: "100%", height: "100%" }} >
-                  <Livepost groupName={groupId.gName} postdesc={content} groupImage={groupImage} color={color} />
+                  <Livepost groupName={groupId.gName} postdesc={content} groupImage={groupImage} color={color} tweetId={_id} groupId={groupId._id} />
                 </div>
               )
             })

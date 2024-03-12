@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import {
   Dialog,
@@ -16,11 +16,32 @@ import Button from "@mui/material/Button";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
+import { useUser } from "../../context/UserContext";
 
 function Livepost(props) {
   const theme = useTheme();
-  const { color, groupName, groupImage, postdesc } = props;
+  const { color, groupName, groupImage, postdesc, groupId, tweetId } = props;
   const [rating, setRating] = useState(0);
+  const { currentUser } = useUser();
+
+  const ratingPost = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await fetch(`http://localhost:8080/api/tweet/rate-post/${tweetId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('auth-token'),
+        },
+        body: JSON.stringify({ rate: rating == 0 ? 1 : rating, userId: currentUser }),
+      });
+      const json = await response.json();
+      console.log(json)
+      console.log(rating)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const handleRating = (starCount) => {
     setRating(starCount);
@@ -67,7 +88,10 @@ function Livepost(props) {
             {[1, 2, 3, 4, 5].map((star) => (
               <IconButton
                 key={star}
-                onClick={() => handleRating(star)}
+                onClick={(e) => {
+                  handleRating(star);
+                  ratingPost(e);
+                }}
                 color={star <= rating ? "warning" : "inherit"}
               >
                 <StarIcon />
