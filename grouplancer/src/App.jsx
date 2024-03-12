@@ -32,7 +32,7 @@ import LivePosts from './Components/Posts/LivePosts';
 import Myposts from './Components/Posts/Myposts';
 import GroupTab from './Components/group/Group_Sidebar';
 import EditGroup from './Components/group/EditGroup';
-
+import Notification from './Components/notification/Notification';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -119,6 +119,7 @@ function App() {
           <Route exact path="/myposts" element={<Myposts />} />
           <Route exact path="/groupTab/:id" element={<GroupTab />} />
           <Route exact path="/editgrp" element={<EditGroup />} />
+          <Route exact path="/noti" element={<Notification />} />
         </Routes>
         <Footer />
       </Router>
