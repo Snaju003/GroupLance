@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import ChatHeader from './ChatHeader';
 import ContactList from './ContactList';
 import Chat from './Chat';
-
+import ChatHeader from './ChatHeader';
 const ChatBox = () => {
   const [selectedGroup, setSelectedGroup] = useState(null);
 

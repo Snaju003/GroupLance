@@ -119,7 +119,7 @@ function App() {
           <Route exact path="/myposts" element={<Myposts />} />
           <Route exact path="/groupTab/:id" element={<GroupTab />} />
           <Route exact path="/editgrp" element={<EditGroup />} />
-          <Route exact path="/noti" element={<Notification />} />
+          <Route exact path="/notify" element={<Notification />} />
         </Routes>
         <Footer />
       </Router>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { TextField, Button, Paper } from "@mui/material";
 import "./Chat.css"; // Import your CSS file
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:9000");
@@ -24,7 +25,11 @@ const Chat = ({ groupName }) => {
   return (
     <>
       <div className="chat-container">
-        <div className="message-container" style={{ borderRadius: "20px", backgroundImage: "url(./chat.jpg)" }}>
+       
+      <h1 className="text-center my-4" style={{ color: "#ffff" }}>
+        {groupName}
+      </h1>
+        <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", backgroundImage: "url(./chat.jpg)" }}>
           {messages.map((message, index) => (
             <div
               key={index}
@@ -33,19 +38,22 @@ const Chat = ({ groupName }) => {
               <strong>{message.sender}:</strong> {message.text}
             </div>
           ))}
-        </div>
+        </Paper>
         <div className="input-container">
-          <input
+          <TextField
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type your message..."
+            variant="outlined"
             className="input-field"
             style={{ borderRadius: "20px" }}
+
           />
-          <button onClick={handleSendMessage} className="button-48" style={{ height: "5vh", lineHeight: "0em" }}>
+         
+          <Button onClick={handleSendMessage} variant="contained" style={{ height: "5vh", lineHeight: "0em" }}>
             <span>Send</span>
-          </button>
+          </Button>
         </div>
       </div>
     </>
