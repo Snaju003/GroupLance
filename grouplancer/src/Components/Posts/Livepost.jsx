@@ -36,7 +36,7 @@ function Livepost(props) {
   };
   return (
     <>
-      <Card sx={{ display: "flex", maxWidth: "100%" }}>
+      <Card sx={{ display: "flex", maxWidth: "80%", borderRadius: "20px" }}>
         {groupImage && groupImage.trim() !== "" && (
           <CardMedia
             component="img"
@@ -52,7 +52,7 @@ function Livepost(props) {
         )}
         <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
           <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography component="div" variant="h5">
+            <Typography component="div" variant="h5" marginTop={5} style={{}}>
               {groupName}
             </Typography>
             <Typography
@@ -63,7 +63,7 @@ function Livepost(props) {
               {postdesc}
             </Typography>
           </CardContent>
-          <Box display="flex" alignItems="center" marginBottom={15}>
+          <Box display="flex" alignItems="center" marginBottom={3}>
             {[1, 2, 3, 4, 5].map((star) => (
               <IconButton
                 key={star}
@@ -76,7 +76,9 @@ function Livepost(props) {
             <Typography variant="body1" style={{ color: "black" }}>
               Rated: {rating} stars
             </Typography>
-            <Stack direction="row" spacing={2} style={{margin: 'auto'}}>
+          </Box>
+          <Box display="flex" alignItems="center" marginBottom={10} >
+            <Stack direction="row" spacing={2} >
               <Button
                 variant="outlined"
                 onClick={handleCommentClick}
