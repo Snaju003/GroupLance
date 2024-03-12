@@ -232,7 +232,7 @@ const NavBar = () => {
 
 
                     </Box>
-                    <Link href="/noti">
+                    <Link href="/notify">
                     <NotificationsIcon style={{color:"white",marginRight:"1rem"}}>
                            
                            </NotificationsIcon>
