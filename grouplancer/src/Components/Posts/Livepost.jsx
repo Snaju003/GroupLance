@@ -36,7 +36,7 @@ function Livepost(props) {
   };
   return (
     <>
-      <Card sx={{ display: "flex", maxWidth: "80%", borderRadius: "20px" }}>
+      <Card sx={{ display: "flex", maxWidth: "80%", borderRadius: "20px", marginLeft: "9rem" }}>
         {groupImage && groupImage.trim() !== "" && (
           <CardMedia
             component="img"
