@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import React, { useState } from "react";
 import { TextField, Button, Paper } from "@mui/material";
 import "./Chat.css"; // Import your CSS file
 import io from "socket.io-client";
@@ -26,7 +25,7 @@ const Chat = ({ groupName }) => {
   return (
     <>
       <div className="chat-container">
-        <div className="message-container" style={{ borderRadius: "20px", backgroundImage: "url(./chat.jpg)" }}>
+       
       <h1 className="text-center my-4" style={{ color: "#ffff" }}>
         {groupName}
       </h1>
@@ -49,11 +48,9 @@ const Chat = ({ groupName }) => {
             variant="outlined"
             className="input-field"
             style={{ borderRadius: "20px" }}
-            style={{ borderRadius: "20px" }}
+
           />
-          <button onClick={handleSendMessage} className="button-48" style={{ height: "5vh", lineHeight: "0em" }}>
-            <span>Send</span>
-          </button>
+         
           <Button onClick={handleSendMessage} variant="contained" style={{ height: "5vh", lineHeight: "0em" }}>
             <span>Send</span>
           </Button>
