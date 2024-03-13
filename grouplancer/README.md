@@ -174,3 +174,41 @@ Done
 URL: localhost:8080/api/tweet/get-posts/:id(pass id here) (GET Request)
 pass auth token
 Done
+
+
+
+
+
+const WorkExperienceSchema = new Schema({
+    companyName: {
+        type: String,
+        required: true,
+    },
+    duration: {
+        type: String,
+        required: true,
+    },
+    startDate: {
+        type: Schema.Types.Mixed,
+    },
+    endDate: {
+        type: Schema.Types.Mixed,
+    },
+}, { timestamps: true });
+
+const EducationSchema = new Schema({
+    institutionName: {
+        type: String,
+        required: true,
+    },
+    duration: {
+        type: String,
+        required: true,
+    },
+    startDate: {
+        type: Schema.Types.Mixed,
+    },
+    endDate: {
+        type: Schema.Types.Mixed,
+    },
+}, { timestamps: true });
