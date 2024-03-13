@@ -11,6 +11,7 @@ const MyGroup = ({ color, data }) => {
                     <Link to={`/groupTab/${data._id}`} className="btn btn-primary">View Group</Link>
                 </div>
             </div>
+            
         </>
     )
 }
