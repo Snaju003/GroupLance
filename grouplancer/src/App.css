@@ -14,10 +14,9 @@ body {
 
 .App {
   background: linear-gradient(
-    106.37deg,
-    #2879af 29.63%,
-    #253aa1 51.55%,
-    #0e065a 90.85%
+    #080234,
+    #3048c3,
+    #080234
   );
 }
 
@@ -91,13 +90,8 @@ section {
   display: flex;
 }
 
-.cards {
-    background: linear-gradient(
-    #080234,
-    #3048c3,
-    #080234
-  );
-}
+
+
 
 /* #heading {
   padding: 10px;
