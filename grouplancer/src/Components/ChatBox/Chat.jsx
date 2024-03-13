@@ -47,11 +47,11 @@ const Chat = ({ groupName }) => {
             placeholder="Type your message..."
             
             className="input-field"
-            style={{ borderRadius: "0px",outline:"none" }}
+            style={{ borderRadius: "0px",outline:"none",border:"none" }}
 
           />
          
-          <Button onClick={handleSendMessage} variant="contained" style={{ height: "5vh", lineHeight: "0em" }}>
+          <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em",bordereRadius:"none" }}>
             <span>Send</span>
           </Button>
         </div>
