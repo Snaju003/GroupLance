@@ -89,18 +89,22 @@ const createGroup = async (req, res) => {
                 template: 'create_group_mail.ejs',
                 data: mailData
             });
-
-            return res.status(200).json({
-                success: true,
-                message: `New group created. Group creation mail sent to ${leaderName.email}`,
-                newGroup,
-            });
         } catch (error) {
             return res.status(401).json({
                 success: false,
                 message: 'Failed to send message'
             });
         }
+
+        const newConversation = await ConversationModel.create({
+            userIds: [leader]
+        })
+
+        return res.status(200).json({
+            success: true,
+            message: `New group created. Group creation mail sent to ${leaderName.email}`,
+            newGroup,
+        });
     } catch (error) {
         console.log(error);
         res.status(500).json({

@@ -200,7 +200,7 @@ const ratePost = async (req, res) => {
                 message: `Tweet doesn't exists`
             });
         }
-
+        existingData = existingTweet.rating;
         const updatedData = {
             ratedUser: userId,
             rate: rate
