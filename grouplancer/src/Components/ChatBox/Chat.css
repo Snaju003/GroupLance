@@ -21,6 +21,7 @@
     flex-grow: 1;
     scrollbar-width: thin;
     scrollbar-color: transparent transparent; 
+    margin-right: 10px;
   }
   
   .message {
@@ -37,7 +38,7 @@
   }
   
   .other-message {
-    text-align: right;
+    text-align: left;
     background-color: #e0e0e0;
   }
   
@@ -45,18 +46,20 @@
     display: flex;
     align-items: center;
     margin-top: 10px;
+    border-radius: 0;
+    
   }
   
   .input-field {
-    flex-grow: 1;
+  
     background-color: #eee;
     border: none;
-    margin: 8px 0;
+    margin: 0px 0;
     padding: 10px 15px;
     font-size: 13px;
-    border-radius: 8px;
+   
     width: 100%;
-    outline: none;
+  
   }
   
   .send-button {
