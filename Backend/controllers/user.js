@@ -175,7 +175,7 @@ const editUSer = async (req, res) => {
         education: education,
         workExperience: workExp,
       },
-    }).select("-password");
+    });
     return res.status(200).json({
       success: true,
       message: `User updated`,
