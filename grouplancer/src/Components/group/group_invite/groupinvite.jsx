@@ -1,6 +1,8 @@
 import React from "react";
-
+import {useUser} from "../../../context/UserContext";
 const GroupInvite = ({ color, title, description, id, canJoin }) => {
+  const {currentUser}=useUser();
+  console.log(currentUser);
   const liveGroup = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:8080/api/group/join-group", {
