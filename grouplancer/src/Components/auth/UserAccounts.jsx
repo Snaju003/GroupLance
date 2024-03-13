@@ -23,6 +23,7 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  display:"flex"
 };
 
 const UserAccounts = () => {
@@ -97,14 +98,15 @@ const UserAccounts = () => {
 
   return (
     <>
-      <div className="row" style={{ margin: "10vh 8vw" }}>
+      <div className="row" style={{ margin: "5vh 8vw" }}>
+        
         <div className="col-sm-6">
           <div
             className="card"
             style={{
               backdropFilter: "blur(5px)",
               width: "600px",
-              height: "700px",
+              height: "100%",
               borderRadius: "20px",
             }}
           >
@@ -115,8 +117,8 @@ const UserAccounts = () => {
                 style={{
                   marginRight: "20px",
                   marginLeft: "220px",
-                  height: "190px",
-                  width: "190px",
+                  height: "150px",
+                  width: "150px",
                   margin: "7px 20px 80px 20px",
                 }}
               />
@@ -134,77 +136,21 @@ const UserAccounts = () => {
                   <Box sx={style}>
                     <div
                       style={{
+                        width:"100%",
                         justifyContent: "space-between",
                         padding: "1vh",
                       }}
                     >
-                      <Autocomplete
-                        multiple
-                        id="tags-outlined"
-                        options={names}
-                        getOptionLabel={(option) => option}
-                        filterSelectedOptions
-                        onChange={(event, newValue) =>
-                          setSkillsList(newValue)
-                        }
-                        renderInput={(params) => (
-                          <TextField
-                            {...params}
-                            label="Skills"
-                            placeholder="Add"
-                          />
-                        )}
-                      />
+                      <TextField 
+                      label="Name"
+                      style={{width:"100%"}}
+                      ></TextField>
                     </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        padding: "1vh",
-                      }}
-                    >
-                      <TextField
-                        id="standard-basic"
-                        label="Education"
-                        variant="standard"
-                        value={education}
-                        onChange={(e) => setEducation(e.target.value)}
-                        sx={{ width: "100%" }}
-                      />
-                      <Fab
-                        color="primary"
-                        aria-label="add"
-                        onClick={handleAddEducation}
-                      >
-                        <AddIcon />
-                      </Fab>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        padding: "1vh",
-                      }}
-                    >
-                      <TextField
-                        id="standard-basic"
-                        label="Work Experience"
-                        variant="standard"
-                        value={WorkExp}
-                        onChange={(e) => setWorkExp(e.target.value)}
-                        sx={{ width: "100%" }}
-                      />
-                      <Fab
-                        color="primary"
-                        aria-label="add"
-                        onClick={handleAddWorkExp}
-                      >
-                        <AddIcon />
-                      </Fab>
-                    </div>
+                    <Button>Submit</Button>
                   </Box>
                 </Modal>
               </div>
+              
             </div>
             <ul
               style={{
@@ -213,11 +159,8 @@ const UserAccounts = () => {
                 listStyle: "none",
               }}
             >
-              <li>
+              <li >
                 <h4>Rankings:</h4>
-                <ul>
-
-                </ul>
               </li>
               <li>
                 <h4>Skills:</h4>
@@ -227,8 +170,9 @@ const UserAccounts = () => {
                   ))}
                 </ul>
               </li>
-              <li>
+              <li style={{display:"flex",justifyContent:"space-between"}}>
                 <h4>Education:</h4>
+                <Button variant="contained"> Add<AddIcon/></Button>
                 <ul>
                   {educationList.map((edu, index) => (
                     <li key={index}>{edu}</li>
