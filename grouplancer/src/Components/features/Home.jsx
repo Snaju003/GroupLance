@@ -22,6 +22,7 @@ const Home = (props) => {
 
   return (
     <div>
+      <div style={{display:"flex",gap:"3rem"}}>
       <div className="frontimage">
         <p
           style={{
@@ -56,6 +57,8 @@ const Home = (props) => {
         <button type="submit" className="community" onChange={handleClick} style={{ marginLeft: "100px", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
           Join the community
         </button>
+        </div>
+        <video src="./front.mp4" autoPlay loop muted style={{  width: "50rem", height: "35rem",marginLeft:"4rem",marginTop:"7rem" }} alt="gif"></video>
       </div>
       <div className="cards">
         <div>
