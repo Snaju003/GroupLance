@@ -27,7 +27,7 @@ body {
 }
 
 .frontimage {
-  background-image: url("../public/frontpage_image.jpg");
+  
   height: 1000px;
   background-repeat: no-repeat;
   background-size: contain;
