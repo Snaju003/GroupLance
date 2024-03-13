@@ -29,7 +29,7 @@ const Chat = ({ groupName }) => {
       <h1 className="text-center my-4" style={{ color: "#ffff" }}>
         {groupName}
       </h1>
-        <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", backgroundImage: "url(./chat.jpg)" }}>
+        <Paper elevation={3} className="message-container" style={{ borderRadius: "20px",background:"transparent"}}>
           {messages.map((message, index) => (
             <div
               key={index}
@@ -39,19 +39,19 @@ const Chat = ({ groupName }) => {
             </div>
           ))}
         </Paper>
-        <div className="input-container">
+        <div className="input-container" style={{ borderRadius: "0px",outline:"none" }}>
           <TextField
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
             placeholder="Type your message..."
-            variant="outlined"
+            
             className="input-field"
-            style={{ borderRadius: "20px" }}
+            style={{ borderRadius: "0px",outline:"none",border:"none" }}
 
           />
          
-          <Button onClick={handleSendMessage} variant="contained" style={{ height: "5vh", lineHeight: "0em" }}>
+          <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em",bordereRadius:"none" }}>
             <span>Send</span>
           </Button>
         </div>
