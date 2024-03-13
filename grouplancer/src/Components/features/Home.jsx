@@ -22,43 +22,47 @@ const Home = (props) => {
 
   return (
     <div>
-      <div style={{display:"flex",gap:"3rem"}}>
-      <div className="frontimage">
-        <p
-          style={{
-            width: "400px",
-            color: "white",
-            fontSize: "30px",
-            marginLeft: "100px",
-            paddingTop: "120px",
-            marginBottom: "-180px",
-            fontWeight: "bold",
-          }}
-        >
-          Find and Connect with like-minded individuals and create or join groups effortlessly, online.
-        </p>
-        <div
-          style={{
-            color: "white",
-            width: "400px",
-            marginLeft: "100px",
-            paddingTop: "200px",
-            textAlign: "justify",
-          }}
-        >
-          <ul>
-            <li>Endless Group Possibilities, One Click Away</li>
-            <li>Free Sign-Up, No Hidden Costs</li>
-            <li>Pay For Premium Features </li>
-            <li>Secure, Global Community Connections</li>
-            <li>Chat And Connect With Others</li>
-          </ul>
+      <div style={{ display: "flex" }}>                                       
+        <div style={{ display: "flex", gap: "3rem" }}>
+          <div className="frontimage">
+            <p
+              style={{
+                width: "400px",
+                color: "white",
+                fontSize: "30px",
+                marginLeft: "100px",
+                paddingTop: "120px",
+                marginBottom: "-180px",
+                fontWeight: "bold",
+              }}
+            >
+              Find and Connect with like-minded individuals and create or join groups effortlessly, online.
+            </p>
+            <div
+              style={{
+                color: "white",
+                width: "400px",
+                marginLeft: "100px",
+                paddingTop: "200px",
+                textAlign: "justify",
+              }}
+            >
+              <ul>
+                <li>Endless Group Possibilities, One Click Away</li>
+                <li>Free Sign-Up, No Hidden Costs</li>
+                <li>Pay For Premium Features </li>
+                <li>Secure, Global Community Connections</li>
+                <li>Chat And Connect With Others</li>
+              </ul>
+            </div>
+            <button type="submit" className="community" onChange={handleClick} style={{ marginLeft: "100px", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
+              Join the community
+            </button>
+          </div>
+          <div style={{ display: "flex" }}>
+            <video src="./front.mp4" autoPlay loop muted style={{ width: "50rem", height: "35rem", marginLeft: "4rem", marginTop: "7rem" }} alt="gif"></video>
+          </div>
         </div>
-        <button type="submit" className="community" onChange={handleClick} style={{ marginLeft: "100px", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
-          Join the community
-        </button>
-        </div>
-        <video src="./front.mp4" autoPlay loop muted style={{  width: "50rem", height: "35rem",marginLeft:"4rem",marginTop:"7rem" }} alt="gif"></video>
       </div>
       <div className="cards">
         <div>
@@ -118,10 +122,10 @@ const Home = (props) => {
             </div>
           </div>
         </div> */}
-        
 
-        <div style={{ display: "flex",  gap: "30px", marginTop: "70px" }}>
-          <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius:"20px",marginLeft: "80px", width: "700px", height: "500px" }} alt="gif"></video>
+
+        <div style={{ display: "flex", gap: "30px", marginTop: "70px" }}>
+          <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "20px", marginLeft: "80px", width: "700px", height: "500px" }} alt="gif"></video>
           <div style={{ color: "white", marginTop: "40px", height: "600px", padding: "30px" }}>
             <h1 style={{ fontSize: "65px", fontWeight: "bold" }}>Divide
               <br />the Tasks
@@ -130,25 +134,25 @@ const Home = (props) => {
               <br />the Success</h1>
           </div>
         </div>
-        <div style={{ display: "flex", gap: "30px", marginTop: "5px",marginLeft:"150px" }}>
+        <div style={{ display: "flex", gap: "30px", marginTop: "5px", marginLeft: "150px" }}>
 
-          <div style={{ color: "white", marginTop: "20px", height: "600px", padding: "30px",marginLeft:"100px" }}>
-            <h1 style={{ fontSize: "65px", fontWeight: "bold" ,Color:"linear-gradient(#ffff,#ghrfd)"}}>Together
-              
+          <div style={{ color: "white", marginTop: "20px", height: "600px", padding: "30px", marginLeft: "100px" }}>
+            <h1 style={{ fontSize: "65px", fontWeight: "bold", Color: "linear-gradient(#ffff,#ghrfd)" }}>Together
+
               <br />We are
               <br />Stronger
-              </h1>
+            </h1>
           </div>
-          <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: "50px",  width: "800px", height: "500px" }} alt="gif"></video>
+          <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: "50px", width: "800px", height: "500px" }} alt="gif"></video>
         </div>
         <div style={{ display: "flex", gap: "30px", marginTop: "5px" }}>
-          <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "30px", width: "700px", height: "500px",marginLeft:"80px" }} alt="gif"></video>
+          <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "30px", width: "700px", height: "500px", marginLeft: "80px" }} alt="gif"></video>
           <div style={{ color: "white", marginTop: "40px", height: "600px", padding: "30px" }}>
             <h1 style={{ fontSize: "65px", fontWeight: "bold" }}>Collaboration
               <br />is the
-              <br />Key 
+              <br />Key
               <br />to Success
-              </h1>
+            </h1>
           </div>
         </div>
         {!currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
