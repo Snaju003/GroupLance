@@ -196,4 +196,5 @@ module.exports = {
   ownedGroup,
   myPosts,
   rateUser,
+  editUSer,
 };
