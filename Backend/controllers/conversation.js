@@ -8,3 +8,7 @@ export const sendMessage = (req, res) => {
         });
     }
 }
+
+module.exports={
+    sendMessage,
+}
