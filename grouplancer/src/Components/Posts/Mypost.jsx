@@ -17,15 +17,35 @@ import AddCommentIcon from '@mui/icons-material/AddComment';
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
-
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { Container, Row, Col, Form } from "react-bootstrap";
+
 function Mypost(props) {
   const theme = useTheme();
   const { color, groupName, groupImage, postdesc, groupId, tweetId } = props;
   const [rating, setRating] = useState(0);
   const navigate = useNavigate()
+  const [editText, setEditText] = useState("")
+
+  const updatePost = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await fetch(`http://localhost:8080/api/tweet/update-post/${tweetId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('auth-token'),
+        },
+        body: JSON.stringify({ content: editText }),
+      });
+      const json = await response.json();
+      console.log(json)
+      navigate("/postbar")
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const deletePost = async (e) => {
     e.preventDefault();
@@ -42,21 +62,6 @@ function Mypost(props) {
     navigate("/")
   }
 
-  // const ratingPost = async (e) => {
-  //   e.preventDefault();
-  //   const response = await fetch("http://localhost:8080/api/user/rate-user", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "auth-token": localStorage.getItem('auth-token'),
-  //     },
-  //     body: JSON.stringify({ rate: rating == 0? 1 : rating }),
-  //   });
-  //   const json = await response.json();
-  //   console.log(json)
-  //   console.log(rating)
-  // }
-
   const handleRating = (starCount) => {
     setRating(starCount);
   };
@@ -70,6 +75,10 @@ function Mypost(props) {
     setIsModalOpen(false);
   };
 
+  const onchange = (e) => {
+    setEditText(e.target.value)
+  }
+
   // const [showModal, setShowModal] = useState(false);
   const style = {
     position: 'absolute',
@@ -82,13 +91,13 @@ function Mypost(props) {
     boxShadow: 24,
     p: 4,
   };
-  
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   return (
     <>
-      <Card sx={{ display: "flex", maxWidth: "100%" }}>
+      <Card sx={{ display: "flex", maxWidth: "80%", borderRadius: "20px", marginLeft: "9rem" }}>
         {groupImage && groupImage.trim() !== "" && (
           <CardMedia
             component="img"
@@ -102,49 +111,7 @@ function Mypost(props) {
             alt="Group Image"
           />
         )}
-        <Box sx={{ display: "flex", flexDirection: "column", width: "100%" }}>
-          <Button style={{display: "flex",width:"7rem",translate:"35rem 2rem"}} variant="contained" disableElevation 
-          onClick={handleOpen}
-          >
-             Edit
-          </Button>
-          <Modal
-  open={open}
-  onClose={handleClose}
-  aria-labelledby="modal-modal-title"
-  aria-describedby="modal-modal-description"
->
-  <Box sx={style}>
-    <Typography id="modal-modal-title" variant="h6" component="h2" style={{marginBottom:"1rem"}}>
-      Edit
-    </Typography>
-    
-    <TextField id="outlined-basic" label="Change Description" variant="outlined" style={{marginBottom:"2rem", fontFamily: "Arial"}} />
-    <Typography id="modal-modal-title" variant="h6" component="h2" style={{marginBottom:"1rem"}}>
-      Add image
-    </Typography>
-    <Row className="px-1" >
-                    <Form.Group as={Col}>
-                      <Form.Control
-                        type="file"
-                        placeholder="Upload Media"
-                        // onChange={handleChange}
-                        name="media"
-                        accept="image/*, video/*"
-                        required
-                        style={{fontFamily:"Arial"}}
-                      />
-                    </Form.Group>
-                  </Row>
-    <Button variant="outlined" color="error" style={{translate: "17rem 1.5rem"}}
-    onClick={handleClose}
-    >
-  Close
-</Button>
-    
-   
-  </Box>
-</Modal>
+        <Box sx={{ display: "flex", flexDirection: "column", width: "100%", marginTop: "2rem" }}>
           <CardContent sx={{ flex: "1 0 auto" }}>
             <Typography component="div" variant="h5">
               {groupName}
@@ -157,7 +124,7 @@ function Mypost(props) {
               {postdesc}
             </Typography>
           </CardContent>
-          <Box display="flex" alignItems="center" marginBottom={15}>
+          <Box display="flex" alignItems="center" marginBottom={5}>
 
             {[1, 2, 3, 4, 5].map((star) => (
               <IconButton
@@ -173,8 +140,9 @@ function Mypost(props) {
             <Typography variant="body1" style={{ color: "black" }} >
               Rated: {rating} stars
             </Typography>
-
-            <Stack direction="row" spacing={2} style={{ margin: 'auto' }}>
+          </Box>
+          <Box display="flex" alignItems="center" marginBottom={10} >
+            <Stack direction="row" spacing={2} >
               <Button
                 variant="outlined"
                 onClick={handleCommentClick}
@@ -188,7 +156,54 @@ function Mypost(props) {
               <Button variant="outlined" color="error" onClick={deletePost}>
                 Delete
               </Button>
+              <Button style={{ display: "flex", width: "7rem" }} variant="contained" disableElevation
+                onClick={handleOpen}
+              >
+                Edit
+              </Button>
+              <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={style}>
+                  <Typography id="modal-modal-title" variant="h6" component="h2" style={{ marginBottom: "1rem" }}>
+                    Edit
+                  </Typography>
 
+                  <TextField id="outlined-basic" label="Change Description" variant="outlined" style={{ marginBottom: "2rem", fontFamily: "Arial" }} onChange={onchange} />
+                  <Typography id="modal-modal-title" variant="h6" component="h2" style={{ marginBottom: "1rem" }}>
+                    Add image
+                  </Typography>
+                  <Row className="px-1" >
+                    <Form.Group as={Col}>
+                      <Form.Control
+                        type="file"
+                        placeholder="Upload Media"
+                        // onChange={handleChange}
+                        name="media"
+                        accept="image/*, video/*"
+                        required
+                        style={{ fontFamily: "Arial" }}
+                      />
+                    </Form.Group>
+                  </Row>
+                  <Button variant="contained" style={{ translate: "11rem 1.5rem" }}
+                    onClick={(e) => {
+                      handleClose();
+                      updatePost(e);
+                    }}
+                  >
+                    Save
+                  </Button>
+                  <Button variant="outlined" color="error" style={{ translate: "12rem 1.5rem" }}
+                    onClick={handleClose}
+                  >
+                    Close
+                  </Button>
+                </Box>
+              </Modal>
             </Stack>
           </Box>
         </Box>

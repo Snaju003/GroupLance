@@ -3,16 +3,14 @@ import Livepost from './Livepost';
 
 
 function Liveposts() {
-    const title = "kalo Romit";
-    const description = "he root layout is defined at the top level of the app directory and applies to all routes. This layout is required and must contain html and body tags, allowing you to modify the initial HTML returned from the server.";
     const groupImage = "/creategrp.jpg";
     const color = "#dfdffb";
     const [posts, setPosts] = useState();
     
     useEffect(() => {
-    const authToken = localStorage.getItem("auth-token");
     const fetchPost = async () => {
       try {
+        const authToken = localStorage.getItem("auth-token");
         const response = await fetch(
           `http://localhost:8080/api/tweet/get-all-posts`,
           {
@@ -40,10 +38,10 @@ function Liveposts() {
       <div className="container">
         <div className="container row" style={{ flexDirection: "column" , display:"flex",}}>
         {
-            posts && posts?.map(({ groupId, content }) => {
+            posts && posts?.map(({ groupId, content, _id }) => {
               return (
                 <div class="col-md-3 mb-3" style={{ width: "100%", height: "100%" }} >
-                  <Livepost groupName={groupId.gName} postdesc={content} groupImage={groupImage} color={color} />
+                  <Livepost groupName={groupId.gName} postdesc={content} groupImage={groupImage} color={color} tweetId={_id} groupId={groupId._id} />
                 </div>
               )
             })
