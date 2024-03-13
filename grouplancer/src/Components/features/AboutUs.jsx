@@ -18,7 +18,7 @@ const AboutUs = (props) => {
   const { bgcolor } = props;
   return (
     <>
-      <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop: "100px", fontWeight: "bold" }}>
+      <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop: "5rem", fontWeight: "bold" }}>
         Welcome To Grouplancer!!!!
       </h1>
 
@@ -33,9 +33,9 @@ const AboutUs = (props) => {
             {" "}
 
           </h2>
-          <div className="hero-image" style={{ display: "flex", gap: "30px", marginBottom: "20px" }}>
+          <div className="hero-image" style={{ display: "flex", gap: "3rem", marginBottom: "20px" }}>
 
-            <div style={{ paddingLeft: "10px", width: "500px" }}>
+            <div style={{ paddingLeft: "3rem", width: "50rem" }}>
 
 
               <p className="des"
@@ -55,16 +55,14 @@ const AboutUs = (props) => {
 
 
                 Our mission at GroupLancer is to empower freelancers and businesses alike by providing a dynamic platform where collaboration thrives. We strive to foster a community where individuals can leverage their diverse skills and experiences to deliver exceptional outcomes for our clients.
-                work in groups and enhance your knowledge.so why wait create
-                your own group and start collaborating.GroupLancer simplifies the process of finding and forming freelance teams. Businesses can post their project requirements, and our platform matches them with skilled freelancers who possess the necessary expertise. Freelancers can join forces, form groups tailored to project needs, and collectively bid on projects.</p>
-
+                work in groups and enhance your knowledge.so why wait....</p>
             </div>
             <video src="./ezgif-6-0fa881e524.mp4" autoPlay loop muted style={{ width: "800px", height: "600px", borderRadius: "30px", marginTop: "20px" }} alt="video" />
           </div>
         </div>
-        <div style={{ justifyItems: "center", display: "flex", gap: "30px", marginTop: "30px", marginBottom: "30px" }}>
-          <img src="./aboutUs.jpg" style={{ width: "600px", height: "570px", borderRadius: "20px", marginLeft: "10px", marginTop: "60px" }} alt="image" />
-          <div style={{ padding: "20px 40px 20px 20px", height: "600px", marginBottom: "80px" }}> <p
+        <div style={{ justifyItems: "center", display: "flex", gap: "3rem", marginTop: "3rem", marginBottom: "3rem" }}>
+          <img src="./aboutUs.jpg" style={{ width: "40rem", height: "40rem", borderRadius: "20px", marginLeft: "1rem", marginTop: "6rem" }} alt="image" />
+          <div style={{ padding: "20px 40px 20px 20px", height: "50rem", marginBottom: "8rem" }}> <p
             style={{
               color: "black",
               width: "100%",

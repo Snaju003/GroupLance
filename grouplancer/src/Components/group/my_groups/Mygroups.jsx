@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MyGroup from './Mygroup';
 import { useUser } from "../../../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const MyGroups = () => {
     const color = "#dfdffb";
@@ -52,6 +53,19 @@ const MyGroups = () => {
                     }
                 </div>
             </div>
+            <div className="card" style={{ backgroundColor: color, width:"20rem" }}>
+                <div className="card-body"style={{}}>
+                    {/* <h5 className="card-title">{name}</h5> */}
+                    <p className="card-text" style={{fontWeight:"500px",fontSize:"2rem",marginLeft:"1rem"}}>Create a group</p>
+                    <button className='button-48' style={{translate:"4rem"}}>
+                    <Link to='/creategroup' style={{textDecoration :"none", color: "white", fontWeight: "700"}} >
+                        <span> Create</span>
+                        
+                        </Link>
+                    </button>
+                    
+                </div>
+            </div >
         </>
     )
 }

@@ -20,8 +20,8 @@ const ContactList = ({ onGroupClick }) => {
   return (
     <>
       <div style={{ display: "flex", border: "solid blue", backgroundColor: "white", borderRadius: "10px" }}>
-        <img src="./profile.jpg" alt="picture" style={{ marginLeft: "10px", marginRight: "10px" }} />
-        <h3>My Group</h3>
+        <img src="./default-user.jpg" alt="picture" style={{ marginLeft: "10px", marginRight: "10px" }} />
+        <h3 style={{padding:"20px"}}>My Group</h3>
       </div>
       <h3 className="text-center my-4" style={{ color: '#ffff' }}>
         My connections
@@ -36,7 +36,7 @@ const ContactList = ({ onGroupClick }) => {
       <ul className="list-group" style={{ opacity: "0.7", borderRadius: "10px" }}>
         {contacts.map((contact) => (
           <li key={contact.id} className="list-group-item" style={{ paddingLeft: "10px" }} onClick={() => onGroupClick(contact)}>
-            <img src="./profile.jpg" alt="picture" style={{ marginLeft: "10px", marginRight: "20px" }} />
+            <img src="./default-user.jpg" alt="picture" style={{ marginLeft: "10px", marginRight: "20px" }} />
             <strong>{contact.name}</strong>
             <br />
           </li>

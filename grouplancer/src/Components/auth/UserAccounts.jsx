@@ -32,20 +32,44 @@ const UserAccounts = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleLogout = async () => {
-    const authToken = localStorage.getItem("auth-token");
-    await fetch("http://localhost:8080/api/auth/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": authToken,
-      },
-    });
-    logout();
-    localStorage.setItem("auth-token", "");
-    localStorage.setItem("refresh-token", "");
-    navigate("/");
+  const [WorkExp, setWorkExp] = useState("");
+  const [WorkExpList, setWorkExpList] = useState([]);
+  const [skillsList, setSkillsList] = useState([]);
+
+  const handleAddWorkExp = () => {
+    if (WorkExp.trim() !== "") {
+      setWorkExpList([...WorkExpList, WorkExp]);
+      setWorkExp("");
+    }
   };
+  const [education, setEducation] = useState("");
+  const [educationList, setEducationList] = useState([]);
+  const handleAddEducation = () => {
+    if (education.trim() !== "") {
+      setEducationList([...educationList, education]);
+      setEducation("");
+    }
+  };
+
+
+  const updateUser = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await fetch(`http://localhost:8080/api/user/update-user`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('auth-token'),
+        },
+        body: JSON.stringify({ education: educationList, workExp: WorkExpList, skills: skillsList }),
+      });
+      const json = await response.json();
+      console.log(json)
+      navigate("/userAccount")
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -70,45 +94,6 @@ const UserAccounts = () => {
     fetchUserData();
   }, [currentUser, navigate]);
 
-  const deactivateUser = async (e) => {
-    e.preventDefault();
-    const response = await fetch(
-      "http://localhost:8080/api/auth/deactivate-user",
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("auth-token"),
-        },
-      }
-    );
-    const json = await response.json();
-    console.log(json);
-    logout();
-    navigate("/");
-  };
-
-  const [education, setEducation] = useState("");
-  const [educationList, setEducationList] = useState([]);
-  const handleAddEducation = () => {
-    if (education.trim() !== "") {
-      setEducationList([...educationList, education]);
-      setEducation("");
-    }
-  };
-
-  const [WorkExp, setWorkExp] = useState("");
-  const [WorkExpList, setWorkExpList] = useState([]);
-  const handleAddWorkExp = () => {
-    if (WorkExp.trim() !== "") {
-      setWorkExpList([...WorkExpList, WorkExp]);
-      setWorkExp("");
-    }
-  };
-
-  const [skillsList, setSkillsList] = useState([]);
-
-  
 
   return (
     <>
@@ -231,7 +216,7 @@ const UserAccounts = () => {
               <li>
                 <h4>Rankings:</h4>
                 <ul>
-                  
+
                 </ul>
               </li>
               <li>

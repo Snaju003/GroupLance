@@ -37,7 +37,7 @@ const Footer = () => {
                 </footer>
                 <footer className="bottom">
                     <div className="legal">
-                        <span> © 2023 All rights reserved </span>
+                        <span> © 2024 All rights reserved </span>
                         <Link to={`/`}>License</Link>
                         <Link to={`/`}>Terms</Link>
                         <Link to={`/`}>Privacy</Link>
