@@ -2,21 +2,22 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const ConversationSchema = new Schema({
-        userid:
-        [ {
+    userIds:
+        [{
             type: mongoose.Schema.Types.ObjectId,
-            require : true,
+            require: true,
             ref: 'user'
         }],
-        lastmessage:
-        {
-            type : String,
-            required : true
-        }
+    lastmessage:
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'message',
+        // required: true
+    }
 
-},{ timestamps: true })
+}, { timestamps: true })
 
-const ConversationModel = mongoose.model('conversation',ConversationSchema)
+const ConversationModel = mongoose.model('conversation', ConversationSchema)
 ConversationModel.createIndexes();
 
 module.exports = ConversationModel;
