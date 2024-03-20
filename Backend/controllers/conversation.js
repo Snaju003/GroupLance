@@ -1,4 +1,4 @@
-import ConversationModel from "../models/Conversation";
+const ConversationModel = require("../models/Conversation");
 import MessageModel from "../models/Message";
 
 export const createConversation = async (req, res) => {
