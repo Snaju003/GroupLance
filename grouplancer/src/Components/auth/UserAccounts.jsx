@@ -32,7 +32,7 @@ const UserAccounts = () => {
   const [eduopen, seteduOpen] = useState(false);
   const [workopen, setworkOpen] = useState(false);
   const [WorkExp, setWorkExp] = useState([]);
-  const [skillsList, setSkillsList] = useState([]);
+
   const [institutionName, setInstitutionName] = useState("");
   const [duration, setDuration] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -42,7 +42,7 @@ const UserAccounts = () => {
   const [compstartDate, setcompStartDate] = useState("");
   const [compendDate, setcompEndDate] = useState("");
   const [educationList, setEducationList] = useState([]);
-  const [newSkill, setNewSkill] = useState("");
+
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -81,15 +81,18 @@ const UserAccounts = () => {
     setcompEndDate("");
     handleworkClose();
   };
+
+  const [skillsList, setSkillsList] = useState([]);
+  const [newSkill, setNewSkill] = useState("");
   const handleAddSkills = () => {
-   
     if (newSkill !== "") {
       setSkillsList([...skillsList, newSkill]);
-      setNewSkill(""); 
+      setNewSkill(""); // Clear the input field after adding the skill
     }
     handleSkillClose();
   };
   
+
   const updateUser = async (e) => {
     try {
       e.preventDefault();
@@ -207,11 +210,13 @@ const UserAccounts = () => {
                           options={names.sort()}
                           getOptionLabel={(option) => option}
                           filterSelectedOptions
+                          value={skillsList}
+                          onChange={(event, newValue) => setSkillsList(newValue)} 
                           renderInput={(params) => (
-                            <TextField {...params} label="Skills" placeholder="Add" value={newSkill}
-                            onChange={(e) => setNewSkill(e.target.value)}/>
+                            <TextField {...params} label="Skills" placeholder="Add" />
                           )}
                         />
+
                         <Button onClick={handleAddSkills} style={{ margin: "auto" }}>Submit</Button>
                       </Box>
                     </Modal>
@@ -300,7 +305,7 @@ const UserAccounts = () => {
                 </Typography>
                 <List>
                   <ListItem>
-                    
+
                     <Button variant="contained" onClick={handleworkOpen}>
                       Add <AddIcon />
                     </Button>
