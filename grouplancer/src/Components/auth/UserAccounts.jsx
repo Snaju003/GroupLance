@@ -192,9 +192,9 @@ const UserAccounts = () => {
           </Box>
           <Box display="flex" flexDirection="column" gap={1}>
 
-            <Card sx={{ width: "40vw", borderRadius: "1rem" }}>
-              <CardContent>
-                <Typography variant="h5" component="div" gutterBottom>
+            <Card sx={{ width: "40vw", borderRadius: "1rem"}}>
+              <CardContent style={{display:"flex", justifyContent:"space-between"}}>
+                <Typography variant="h5" component="div" gutterBottom style={{width:"fit-content"}}>
                   Skills
                 </Typography>
                 <List>
@@ -220,9 +220,9 @@ const UserAccounts = () => {
                         <Button onClick={handleAddSkills} style={{ margin: "auto" }}>Submit</Button>
                       </Box>
                     </Modal>
-                    <List>
+                    <List style={{marginLeft:"2rem", display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
                       {skillsList.map((skill, index) => (
-                        <ListItem key={index}>
+                        <ListItem key={index} style={{backgroundColor:"#dedad9",border:"2px solid white", borderRadius:"1rem", backdropFilter:"blur(10px)", display:"block", width:"fit-content"}}>
                           <ListItemText primary={skill} />
                         </ListItem>
                       ))}
