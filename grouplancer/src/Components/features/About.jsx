@@ -69,7 +69,7 @@ const About = (props) => {
         </section>
       </div>
       <br/> */}
-      <section className="carouselCards">
+      <section className="carouselCards" style={{ backgroundImage: "linear-gradient(#012a4a,#82eefd,#add8e6)" }}>
         <div className="container">
             <div className="row">
                 <div className="col-12">
