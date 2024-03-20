@@ -22,16 +22,15 @@ const Home = (props) => {
   return (
     <div>
       <div style={{ display: "flex" }}>
-        <div style={{ display: "flex", gap: "3rem" }}>
-          <div className="frontimage">
+        <div style={{ display: "flex", gap: "2.5rem" }}>
+          <div className="frontimage" style={{ padding: "3rem" }}>
             <p
               style={{
                 width: "400px",
                 color: "white",
                 fontSize: "30px",
-                marginLeft: "100px",
-                paddingTop: "120px",
-                marginBottom: "-180px",
+                margin: "auto",
+                marginTop: "6rem",
                 fontWeight: "bold",
               }}
             >
@@ -41,8 +40,8 @@ const Home = (props) => {
               style={{
                 color: "white",
                 width: "400px",
-                marginLeft: "100px",
-                paddingTop: "200px",
+                margin: "auto",
+                paddingTop: "1rem",
                 textAlign: "justify",
               }}
             >
@@ -54,12 +53,12 @@ const Home = (props) => {
                 <li>Chat And Connect With Others</li>
               </ul>
             </div>
-            <button type="submit" className="community" onChange={handleClick} style={{ marginLeft: "100px", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
+            <button type="submit" className="community" onChange={handleClick} style={{ margin: "auto", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
               Join the community
             </button>
           </div>
           <div style={{ display: "flex" }}>
-            <video src="./front.mp4" autoPlay loop muted style={{ width: "50rem", height: "35rem", marginLeft: "4rem", marginTop: "7rem" }} alt="gif"></video>
+            <video src="./front.mp4" autoPlay loop muted style={{ width: "60vw", height: "100vh", borderRadius: "20rem" }} alt="gif"></video>
           </div>
         </div>
       </div>
@@ -67,95 +66,48 @@ const Home = (props) => {
         <div>
           <About cardcolor={cardcolor} />
         </div>
-        {/* <div className="row">
-          <div className="col-sm-4" style={{ paddingLeft: "250px", alignItems: "center", borerRadius: "20px" }}>
-            <div className="card" style={{ backgroundImage: "linear-gradient(to right , #b0fc38, #ffff", width: "300px", height: "400px", backgroundColor: "white", borderColor: "green", boxShadow: "0 0 5px 5px" }}>
 
-              <img src="./free-tag-icon-business-bicolor-260nw-286152590.jpg" alt="icon" style={{ marginLeft: "85px", marginTop: "10px" }} />
-              <h3 style={{ paddingLeft: "70px", paddingBottom: "5px", paddingTop: "10px" }}>Try for free</h3>
-              <ul style={{ marginBottom: "40px", marginTop: "30px", marginLeft: "20px" }} >
-                <li style={{}}>Ad free</li>
-                <li>Create only one group</li>
-                <li>Create groups of only specified size</li>
 
-              </ul>
-              <button type="button" className="btn btn-outline-primary" style={{ color: "white", backgroundColor: "green", width: "140px", height: "50px", borderRadius: "10px", marginBottom: "300px", marginLeft: "70px" }}>free</button>
+        <div className="first" style={{ backgroundImage: "linear-gradient(#03045e,#82eefd)" }}>
+          <div style={{ display: "flex", gap: "0.3rem" }}>
+            <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: " 10rem 10rem 40rem 40rem", width: "60vw", height: "80vh", margin: "7rem 0rem 7rem 1rem" }} alt="gif"></video>
+            <div style={{ color: "white", margin: "10rem 2rem 5rem 1rem", height: "70vh", textAlign: "center" }}>
+              <h1 style={{ fontSize: "4.6rem", fontWeight: "bold" }}>Divide
+                <br />the Tasks
+                <br />and
+                <br />Multiply
+                <br />the Success</h1>
             </div>
-            <div className="card-body">
-
-            </div>
-          </div>
-          <div className="col-sm-4" style={{ paddingLeft: "130px", alignItems: "center", borerRadius: "20px" }}>
-            <div className="card" style={{ backgroundImage: "linear-gradient(to right , #dcb951, #ffff", width: "300px", height: "400px", borerRadius: "20px", boxShadow: "0 0 5px 5px" }}>
-
-              <img src="./Premium-Icon-600x600-1.png" alt="icon" style={{ marginLeft: "85px", width: "120px", height: "120px", marginTop: "2px" }} />
-              <h3 style={{ paddingLeft: "50px", paddingBottom: "5px", paddingTop: "10px" }}>Just for 700/-</h3>
-              <ul style={{ marginBottom: "40px", marginTop: "20px", marginLeft: "20px" }} >
-                <li style={{ listStyle: "inherit" }}>Ad free</li>
-                <li>Create multiple groups</li>
-                <li>Create groups of any size</li>
-
-              </ul>
-              <button type="button" className="btn btn-outline-primary" style={{ color: "white", backgroundColor: "brown", width: "140px", height: "50px", borderRadius: "10px", marginBottom: "300px", marginLeft: "70px" }}>premium</button>
-            </div>
-            <div className="card-body">
-
-            </div>
-          </div>
-          <div className="col-sm-4" style={{ paddingRight: "250px", alignItems: "center", borerRadius: "20px" }}>
-            <div className="card" style={{ backgroundImage: "linear-gradient(to right , #d3af37,#ffff", width: "300px", height: "400px", borerRadius: "20px", boxShadow: "0 0 5px 5px" }}>
-
-              <img src="./deluxe-gold-label-vector-2274967.jpg" alt="icon" style={{ marginLeft: "90px", marginTop: "15px" }} />
-              <h3 style={{ paddingLeft: "50px", paddingBottom: "5px", paddingTop: "10px" }}>Just for 1000/-</h3>
-              <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px" }} >
-                <li style={{ listStyle: "inherit" }}>Ad free</li>
-                <li>Create multiple groups</li>
-                <li>Create groups of any size</li>
-                <li>Invite top users to your group</li>
-                <li>Send requests to top users</li>
-              </ul>
-              <button type="button" className="button-48" style={{ color: "white", backgroundColor: "#3d300c", width: "140px", height: "40px", borderRadius: "10px", marginTop: "0px", marginLeft: "80px", justifyContent: "center" }}>deluxe</button>
-            </div>
-            <div className="card-body">
-
-            </div>
-          </div>
-        </div> */}
-
-
-        <div style={{ display: "flex", gap: "30px", marginTop: "70px" }}>
-          <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "20px", marginLeft: "80px", width: "700px", height: "500px" }} alt="gif"></video>
-          <div style={{ color: "white", marginTop: "40px", height: "600px", padding: "30px" }}>
-            <h1 style={{ fontSize: "65px", fontWeight: "bold" }}>Divide
-              <br />the Tasks
-              <br />and
-              <br />Multiply
-              <br />the Success</h1>
           </div>
         </div>
-        <div style={{ display: "flex", gap: "30px", marginTop: "5px", marginLeft: "150px" }}>
+        <div className="second" style={{ backgroundImage: "linear-gradient(#012a4a,#82eefd)" }}>
+          <div style={{ display: "flex", gap: "0.01rem" }}>
 
-          <div style={{ color: "white", marginTop: "20px", height: "600px", padding: "30px", marginLeft: "100px" }}>
-            <h1 style={{ fontSize: "65px", fontWeight: "bold", Color: "linear-gradient(#ffff,#ghrfd)" }}>Together
+            <div style={{ color: "white", margin: "14rem 8rem 5rem 7rem", height: "70vh", textAlign: "center" }}>
+              <h1 style={{ fontSize: "4.6rem", fontWeight: "bold" }}>Together
 
-              <br />We are
-              <br />Stronger
-            </h1>
+                <br />We are
+                <br />Stronger
+              </h1>
+            </div>
+            <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "100rem 5rem 5rem 100rem", width: "70vw", height: "80vh", margin: "7rem 15rem 7rem 5rem" }} alt="gif"></video>
           </div>
-          <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: "50px", width: "800px", height: "500px" }} alt="gif"></video>
         </div>
-        <div style={{ display: "flex", gap: "30px", marginTop: "5px" }}>
-          <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "30px", width: "700px", height: "500px", marginLeft: "80px" }} alt="gif"></video>
-          <div style={{ color: "white", marginTop: "40px", height: "600px", padding: "30px" }}>
-            <h1 style={{ fontSize: "65px", fontWeight: "bold" }}>Collaboration
-              <br />is the
-              <br />Key
-              <br />to Success
-            </h1>
+        <div className="third" style={{ backgroundImage: "linear-gradient(#41424c,#82eefd)" }}>
+          <div style={{ display: "flex", gap: "0.1rem" }}>
+            <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "5rem 100rem 100rem 5rem", width: "70vw", height: "80vh", margin: "5rem 0.1rem 3rem 5rem" }} alt="gif"></video>
+            <div style={{ color: "white", margin: "10rem 6rem 5rem 5rem", height: "70vh", textAlign: "center" }}>
+              <h1 style={{ fontSize: "4.6rem", fontWeight: "bold" }}>Collaboration
+                <br />is the
+                <br />Key
+                <br />to Success
+              </h1>
+            </div>
           </div>
         </div>
         {!currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
-        < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover" }}>
+        <h1 style={{textAlign:"center",fontWeight:"bold",color:"white",margin:"3rem"}}> Check out our subscription plans </h1>
+        < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover",backgroundImage:"url()" }}>
           <div className="subscription" style={{ display: "flex" }} >
             <div className="card-active" style={{ borderRadius: "10px" }}>
               <div className="space" style={{ display: "flex" }}>
@@ -180,57 +132,61 @@ const Home = (props) => {
               <div className="backdrop"></div>
             </div>
           </div>
-          <div className="subscription" style={{ display: "flex" }} >
-            <div className="card-active" style={{ borderRadius: "10px" }}>
-              <div className="space" style={{ display: "flex" }}>
-                <img className="payment" src="./prem.avif" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
-                <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center", alignItems: "center", padding: "10px" }}>
-                  <span className="text">Subscribe</span>
-                </button>
+          
+          
+            
+            <div className="subscription" >
+              <div className="card-active" style={{ borderRadius: "10px" }}>
+                <div className="space" style={{ display: "flex" }}>
+                  <img className="payment" src="./prem.avif" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
+                  <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center", alignItems: "center", padding: "10px" }}>
+                    <span className="text">Subscribe</span>
+                  </button>
 
+                </div>
+                <h6 style={{ opacity: "0.7", margin: "30px 30px 10px 30px", color: "white" }}>Enjoy premium features just at Rs.800 </h6>
+                <div className="card-content">
+
+                  <h4 style={{ color: "white", padding: "10px 30px 30px 30px", position: "sticky", lineHeight: "1em" }}>PREMIUM SUBSCRIPTION </h4>
+                  <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
+                    <li style={{ listStyle: "inherit" }}>Ad free</li>
+                    <li>Create multiple groups</li>
+                    <li>Create groups of any size</li>
+
+                  </ul>
+
+                </div>
+                <div className="backdrop"></div>
               </div>
-              <h6 style={{ opacity: "0.7", margin: "30px 30px 10px 30px", color: "white" }}>Enjoy premium features just at Rs.800 </h6>
-              <div className="card-content">
-
-                <h4 style={{ color: "white", padding: "10px 30px 30px 30px", position: "sticky", lineHeight: "1em" }}>PREMIUM SUBSCRIPTION </h4>
-                <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
-                  <li style={{ listStyle: "inherit" }}>Ad free</li>
-                  <li>Create multiple groups</li>
-                  <li>Create groups of any size</li>
-
-                </ul>
-
-              </div>
-              <div className="backdrop"></div>
             </div>
-          </div>
-          <div className="subscription" style={{ display: "flex" }} >
-            <div className="card-active" style={{ borderRadius: "10px" }}>
-              <div className="space" style={{ display: "flex" }}>
-                <img className="payment" src="./deluxe2.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
-                <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center", alignItems: "center", padding: "10px" }}>
-                  <span className="text">Subscribe</span>
-                </button>
+            <div className="subscription">
+              <div className="card-active" style={{ borderRadius: "10px" }}>
+                <div className="space" style={{ display: "flex" }}>
+                  <img className="payment" src="./deluxe2.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
+                  <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center", alignItems: "center", padding: "10px" }}>
+                    <span className="text">Subscribe</span>
+                  </button>
 
+                </div>
+                <h6 style={{ opacity: "0.7", margin: "30px 40px 10px 30px", color: "white" }}>Enjoy deluxe features just at Rs.1500 </h6>
+                <div className="card-content">
+
+                  <h4 style={{ color: "white", padding: "10px 40px 40px 40px", position: "sticky", lineHeight: "1em" }}>DELUXE SUBSCRIPTION </h4>
+                  <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
+                    <li style={{ listStyle: "inherit" }}>Ad free</li>
+                    <li>Create multiple groups</li>
+                    <li>Create groups of any size</li>
+                    <li>Invite top users to your group</li>
+                    <li>Send requests to top users</li>
+                  </ul>
+
+                </div>
+                <div className="backdrop"></div>
               </div>
-              <h6 style={{ opacity: "0.7", margin: "30px 40px 10px 30px", color: "white" }}>Enjoy deluxe features just at Rs.1500 </h6>
-              <div className="card-content">
-
-                <h4 style={{ color: "white", padding: "10px 40px 40px 40px", position: "sticky", lineHeight: "1em" }}>DELUXE SUBSCRIPTION </h4>
-                <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
-                  <li style={{ listStyle: "inherit" }}>Ad free</li>
-                  <li>Create multiple groups</li>
-                  <li>Create groups of any size</li>
-                  <li>Invite top users to your group</li>
-                  <li>Send requests to top users</li>
-                </ul>
-
-              </div>
-              <div className="backdrop"></div>
             </div>
           </div>
         </div>
-      </div>
+      
     </div>
 
   );
