@@ -4,9 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { Col, Row, Container, Form } from "react-bootstrap";
 
 const CreateGroup = () => {
-  const [domain, setDomain] = useState("General");
-  const [gType, setGType] = useState("Public");
-  const [whoCanJoin, setWhoCanJoin] = useState("Anyone can join");
   const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: "", groupType: "", whoCanJoin: "", groupMembers: "" });
   const { currentUser } = useUser();
   const navigate = useNavigate();
@@ -116,8 +113,8 @@ const CreateGroup = () => {
                 </Col>
               </form>
               <div className="boximage" style={{gap:"6rem"}}>
-              <img src="./creategrp.jpg" alt="image" style={{ borderRadius:"30px 30px 0px 0px",height:"400px",width:"450px"}}/>
-              <img src="./creategrp3.avif" alt="image" style={{ borderRadius:"0px 0px 30px 30px",height:"400px",width:"450px"}}/>
+              <img src="./creategrp.jpg" alt="goru" style={{ borderRadius:"30px 30px 0px 0px",height:"400px",width:"450px"}}/>
+              <img src="./creategrp3.avif" alt="goru" style={{ borderRadius:"0px 0px 30px 30px",height:"400px",width:"450px"}}/>
               </div>
             </Col>
           </Row>

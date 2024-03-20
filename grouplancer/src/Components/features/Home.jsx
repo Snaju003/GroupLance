@@ -2,7 +2,6 @@ import React from "react";
 import About from "./About";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
 import Signup from "../auth/Signup";
 
 const Home = (props) => {
@@ -22,7 +21,7 @@ const Home = (props) => {
 
   return (
     <div>
-      <div style={{ display: "flex" }}>                                       
+      <div style={{ display: "flex" }}>
         <div style={{ display: "flex", gap: "3rem" }}>
           <div className="frontimage">
             <p
