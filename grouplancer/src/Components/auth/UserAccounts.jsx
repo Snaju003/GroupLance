@@ -31,13 +31,16 @@ const UserAccounts = () => {
   const [skillopen, setskillOpen] = useState(false);
   const [eduopen, seteduOpen] = useState(false);
   const [workopen, setworkOpen] = useState(false);
-  const [WorkExp, setWorkExp] = useState("");
-  const [WorkExpList, setWorkExpList] = useState([]);
+  const [WorkExp, setWorkExp] = useState([]);
   const [skillsList, setSkillsList] = useState([]);
   const [institutionName, setInstitutionName] = useState("");
   const [duration, setDuration] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [companyname, setcompanyname] = useState("");
+  const [compduration, setcompDuration] = useState("");
+  const [compstartDate, setcompStartDate] = useState("");
+  const [compendDate, setcompEndDate] = useState("");
   const [educationList, setEducationList] = useState([]);
   const [newSkill, setNewSkill] = useState("");
 
@@ -49,12 +52,6 @@ const UserAccounts = () => {
   const handleeduClose = () => seteduOpen(false);
   const handleworkOpen = () => setworkOpen(true);
   const handleworkClose = () => setworkOpen(false);
-  const handleAddWorkExp = () => {
-    if (WorkExp.trim() !== "") {
-      setWorkExpList([...WorkExpList, WorkExp]);
-      setWorkExp("");
-    }
-  };
 
   const handleAddEducation = () => {
     const newEducation = {
@@ -69,6 +66,20 @@ const UserAccounts = () => {
     setStartDate("");
     setEndDate("");
     handleeduClose();
+  };
+  const handleWorkEducation = () => {
+    const newWork = {
+      companyname,
+      compduration,
+      compstartDate,
+      compendDate
+    };
+    setWorkExp([...WorkExp, newWork]);
+    setcompanyname("");
+    setcompDuration("");
+    setcompStartDate("");
+    setcompEndDate("");
+    handleworkClose();
   };
   const handleAddSkills = () => {
    
@@ -88,7 +99,7 @@ const UserAccounts = () => {
           "Content-Type": "application/json",
           "auth-token": localStorage.getItem('auth-token'),
         },
-        body: JSON.stringify({ education: educationList, workExp: WorkExpList, skills: skillsList }),
+        body: JSON.stringify({ education: educationList, workExp: WorkExp, skills: skillsList }),
       });
       const json = await response.json();
       console.log(json);
@@ -295,14 +306,52 @@ const UserAccounts = () => {
                     </Button>
                     <Modal open={workopen} onClose={handleworkClose}>
                       <Box sx={{ ...style, width: 400 }}>
-                        <TextField label="Name" fullWidth />
-                        <Button onClick={handleworkClose} style={{ margin: "auto" }}>Submit</Button>
+                        <TextField
+                          label="Company Name"
+                          fullWidth
+                          required
+                          value={companyname}
+                          onChange={(e) => setcompanyname(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="Duration"
+                          fullWidth
+                          required
+                          value={compduration}
+                          onChange={(e) => setcompDuration(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="Start Date"
+                          fullWidth
+                          required
+                          type="date"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          value={compstartDate}
+                          onChange={(e) => setcompStartDate(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="End Date"
+                          fullWidth
+                          required
+                          type="date"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          value={compendDate}
+                          onChange={(e) => setcompEndDate(e.target.value)}
+                        />
+                        <Button onClick={handleWorkEducation} style={{ marginTop: "1rem" }}>Submit</Button>
                       </Box>
                     </Modal>
                     <List>
-                      {WorkExpList.map((work, index) => (
+                      {WorkExp.map((work, index) => (
                         <ListItem key={index}>
-                          <ListItemText primary={work} />
+                          <ListItemText primary={work.companyname} />
                         </ListItem>
                       ))}
                     </List>
