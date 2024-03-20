@@ -39,6 +39,7 @@ const UserAccounts = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [educationList, setEducationList] = useState([]);
+  const [newSkill, setNewSkill] = useState("");
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -69,7 +70,15 @@ const UserAccounts = () => {
     setEndDate("");
     handleeduClose();
   };
-
+  const handleAddSkills = () => {
+   
+    if (newSkill !== "") {
+      setSkillsList([...skillsList, newSkill]);
+      setNewSkill(""); 
+    }
+    handleSkillClose();
+  };
+  
   const updateUser = async (e) => {
     try {
       e.preventDefault();
@@ -167,123 +176,142 @@ const UserAccounts = () => {
 
             </Card>
           </Box>
-          <Card sx={{ width: "40vw", borderRadius: "1rem" }}>
-            <CardContent>
-              <Typography variant="h5" component="div" gutterBottom>
-                User Details
-              </Typography>
-              <List>
+          <Box display="flex" flexDirection="column" gap={1}>
 
-                <ListItem>
-                  <ListItemText primary="Skills:" />
-                  <Button variant="contained" onClick={handleSkillOpen}>
-                    Add <AddIcon />
-                  </Button>
-                  <Modal open={skillopen} onClose={handleSkillClose}>
-                    <Box sx={{ ...style, width: 400 }}>
-                      <Autocomplete
-                        multiple
-                        id="tags-outlined"
-                        options={names.sort()}
-                        getOptionLabel={(option) => option}
-                        filterSelectedOptions
-                        renderInput={(params) => (
-                          <TextField {...params} label="Skills" placeholder="Add" />
-                        )}
-                      />
-                      <Button onClick={handleSkillClose} style={{ margin: "auto" }}>Submit</Button>
-                    </Box>
+            <Card sx={{ width: "40vw", borderRadius: "1rem" }}>
+              <CardContent>
+                <Typography variant="h5" component="div" gutterBottom>
+                  Skills
+                </Typography>
+                <List>
+                  <ListItem>
+                    <Button variant="contained" onClick={handleSkillOpen}>
+                      Add <AddIcon />
+                    </Button>
+                    <Modal open={skillopen} onClose={handleSkillClose}>
+                      <Box sx={{ ...style, width: 400 }}>
+                        <Autocomplete
+                          multiple
+                          id="tags-outlined"
+                          options={names.sort()}
+                          getOptionLabel={(option) => option}
+                          filterSelectedOptions
+                          renderInput={(params) => (
+                            <TextField {...params} label="Skills" placeholder="Add" value={newSkill}
+                            onChange={(e) => setNewSkill(e.target.value)}/>
+                          )}
+                        />
+                        <Button onClick={handleAddSkills} style={{ margin: "auto" }}>Submit</Button>
+                      </Box>
+                    </Modal>
+                    <List>
+                      {skillsList.map((skill, index) => (
+                        <ListItem key={index}>
+                          <ListItemText primary={skill} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </ListItem>
+                </List>
+              </CardContent>
+            </Card>
 
-                  </Modal>
-                  <List>
-                    {skillsList.map((skill, index) => (
-                      <ListItem key={index}>
-                        <ListItemText primary={skill} />
-                      </ListItem>
-                    ))}
-                  </List>
-                </ListItem>
-                <ListItem>
-                  <ListItemText primary="Education:" />
-                  <Button variant="contained" onClick={handleeduOpen}>
-                    Add <AddIcon />
-                  </Button>
-                  <Modal open={eduopen} onClose={handleeduClose}>
-                    <Box sx={style}>
-                      <TextField
-                        label="Institution Name"
-                        fullWidth
-                        required
-                        value={institutionName}
-                        onChange={(e) => setInstitutionName(e.target.value)}
-                        style={{ marginBottom: "2vh" }}
-                      />
-                      <TextField
-                        label="Duration"
-                        fullWidth
-                        required
-                        value={duration}
-                        onChange={(e) => setDuration(e.target.value)}
-                        style={{ marginBottom: "2vh" }}
-                      />
-                      <TextField
-                        label="Start Date"
-                        fullWidth
-                        required
-                        type="date"
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                        value={startDate}
-                        onChange={(e) => setStartDate(e.target.value)}
-                        style={{ marginBottom: "2vh" }}
-                      />
-                      <TextField
-                        label="End Date"
-                        fullWidth
-                        required
-                        type="date"
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                        value={endDate}
-                        onChange={(e) => setEndDate(e.target.value)}
-                      />
-                      <Button onClick={handleAddEducation} style={{ marginTop: "1rem" }}>Submit</Button>
-                    </Box>
-                  </Modal>
+            <Card sx={{ width: "40vw", borderRadius: "1rem" }}>
+              <CardContent>
+                <Typography variant="h5" component="div" gutterBottom>
+                  Education
+                </Typography>
+                <List>
+                  <ListItem>
+                    <Button variant="contained" onClick={handleeduOpen}>
+                      Add <AddIcon />
+                    </Button>
+                    <Modal open={eduopen} onClose={handleeduClose}>
+                      <Box sx={{ ...style, width: 400 }}>
+                        <TextField
+                          label="Institution Name"
+                          fullWidth
+                          required
+                          value={institutionName}
+                          onChange={(e) => setInstitutionName(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="Duration"
+                          fullWidth
+                          required
+                          value={duration}
+                          onChange={(e) => setDuration(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="Start Date"
+                          fullWidth
+                          required
+                          type="date"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          value={startDate}
+                          onChange={(e) => setStartDate(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="End Date"
+                          fullWidth
+                          required
+                          type="date"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          value={endDate}
+                          onChange={(e) => setEndDate(e.target.value)}
+                        />
+                        <Button onClick={handleAddEducation} style={{ marginTop: "1rem" }}>Submit</Button>
+                      </Box>
+                    </Modal>
+                    <List>
+                      {educationList.map((edu, index) => (
+                        <ListItem key={index}>
+                          <ListItemText primary={edu.institutionName} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </ListItem>
+                </List>
+              </CardContent>
+            </Card>
 
-                  <List>
-                    {educationList.map((edu, index) => (
-                      <ListItem key={index}>
-                        <ListItemText primary={edu.institutionName} />
-                      </ListItem>
-                    ))}
-                  </List>
-                </ListItem>
-                <ListItem>
-                  <ListItemText primary="Work Experience:" />
-                  <Button variant="contained" onClick={handleworkOpen}>
-                    Add <AddIcon />
-                  </Button>
-                  <Modal open={workopen} onClose={handleworkClose}>
-                    <Box sx={{ ...style, width: 400 }}>
-                      <TextField label="Name" fullWidth />
-                      <Button onClick={handleworkClose} style={{ margin: "auto" }}>Submit</Button>
-                    </Box>
+            <Card sx={{ width: "40vw", borderRadius: "1rem" }}>
+              <CardContent>
+                <Typography variant="h5" component="div" gutterBottom>
+                  Work Experience
+                </Typography>
+                <List>
+                  <ListItem>
+                    
+                    <Button variant="contained" onClick={handleworkOpen}>
+                      Add <AddIcon />
+                    </Button>
+                    <Modal open={workopen} onClose={handleworkClose}>
+                      <Box sx={{ ...style, width: 400 }}>
+                        <TextField label="Name" fullWidth />
+                        <Button onClick={handleworkClose} style={{ margin: "auto" }}>Submit</Button>
+                      </Box>
+                    </Modal>
+                    <List>
+                      {WorkExpList.map((work, index) => (
+                        <ListItem key={index}>
+                          <ListItemText primary={work} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </ListItem>
+                </List>
+              </CardContent>
+            </Card>
+          </Box>
 
-                  </Modal>
-                  <List>
-                    {WorkExpList.map((work, index) => (
-                      <ListItem key={index}>
-                        <ListItemText primary={work} />
-                      </ListItem>
-                    ))}
-                  </List>
-                </ListItem>
-              </List>
-            </CardContent>
-          </Card>
         </Box>
       </Box>
     </>
