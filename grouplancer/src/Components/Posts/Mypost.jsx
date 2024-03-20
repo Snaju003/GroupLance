@@ -172,7 +172,7 @@ function Mypost(props) {
                     Edit
                   </Typography>
 
-                  <TextField id="outlined-basic" label="Change Description" variant="outlined" style={{ marginBottom: "2rem", fontFamily: "Arial" }} onChange={onchange} />
+                  <TextField id="outlined-basic" label="Change Description" variant="outlined" style={{ marginBottom: "2rem", fontFamily: "Arial", width: "100%" }} onChange={onchange} />
                   <Typography id="modal-modal-title" variant="h6" component="h2" style={{ marginBottom: "1rem" }}>
                     Add image
                   </Typography>
@@ -185,11 +185,12 @@ function Mypost(props) {
                         name="media"
                         accept="image/*, video/*"
                         required
-                        style={{ fontFamily: "Arial" }}
+                        style={{ fontFamily: "Arial", height:"2.5rem" }}
                       />
                     </Form.Group>
                   </Row>
-                  <Button variant="contained" style={{ translate: "11rem 1.5rem" }}
+                  <div style={{marginTop:"2rem",display:"flex", gap:"0.5rem", translate:"5.6rem"}}>
+                  <Button variant="contained" style={{ }}
                     onClick={(e) => {
                       handleClose();
                       updatePost(e);
@@ -197,11 +198,13 @@ function Mypost(props) {
                   >
                     Save
                   </Button>
-                  <Button variant="outlined" color="error" style={{ translate: "12rem 1.5rem" }}
+                  <Button variant="outlined" color="error" style={{ }}
                     onClick={handleClose}
                   >
                     Close
                   </Button>
+                  </div>
+               
                 </Box>
               </Modal>
             </Stack>
