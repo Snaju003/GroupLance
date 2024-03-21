@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import About from "./About";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import Signup from "../auth/Signup";
+import AOS from 'aos';
+import "aos/dist/aos.css";
+
 
 const Home = (props) => {
   // const { bgcolor } = props;
@@ -19,6 +22,11 @@ const Home = (props) => {
     }
   }
 
+ 
+    useEffect(()=>{
+      AOS.init({duration: 2000});
+    },[])
+  
   return (
     <div>
       <div style={{ display: "flex" ,marginBottom:"0rem"}}>
@@ -69,11 +77,11 @@ const Home = (props) => {
         </div>
 
 
-        <div className="first" style={{ backgroundImage: "linear-gradient(#0492c2,#080234)" }}>
-          <div style={{ display: "flex", gap: "1rem" }}>
-            <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: " 5rem 5rem 40rem 40rem", width: "50vw", height: "60vh", margin: "0rem 0rem 0rem 4rem" }} alt="gif"></video>
-            <div style={{ color: "white", margin: "1.5rem 2rem 0rem 1rem", height: "70vh", textAlign: "center" }}>
-              <h1 style={{ fontSize: "3.6rem", fontWeight: "bold" }}>Divide
+        <div className="first" style={{ backgroundImage:"linear-gradient(#0492c2,#080234)" ,borderRadius:"4rem",height:"120vh"}}>
+          <div style={{ display: "flex", gap: "0.3rem" }}>
+            <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: " 10rem 10rem 40rem 40rem", width: "60vw", height: "80vh", margin: "7rem 0rem 7rem 1rem" }} alt="gif"></video>
+            <div style={{ color: "white", margin: "10rem 2rem 5rem 1rem", height: "70vh", textAlign: "center" }}>
+              <h1 style={{ fontSize: "4.6rem", fontWeight: "bold" }}>Divide
                 <br />the Tasks
                 <br />and
                 <br />Multiply
