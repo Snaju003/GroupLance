@@ -22,7 +22,7 @@ const Home = (props) => {
   return (
     <div>
       <div style={{ display: "flex" }}>
-        <div style={{ display: "flex", gap: "2.5rem" }}>
+        <div style={{ display: "flex", gap: "2.5rem",marginTop:"0rem" }}>
           <div className="frontimage" style={{ padding: "3rem" }}>
             <p
               style={{
@@ -30,7 +30,7 @@ const Home = (props) => {
                 color: "white",
                 fontSize: "30px",
                 margin: "auto",
-                marginTop: "6rem",
+                marginTop: "2rem",
                 fontWeight: "bold",
               }}
             >
@@ -53,12 +53,12 @@ const Home = (props) => {
                 <li>Chat And Connect With Others</li>
               </ul>
             </div>
-            <button type="submit" className="community" onChange={handleClick} style={{ margin: "auto", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
+            <button type="submit" className="community" onChange={handleClick} style={{ margin: "2rem 0rem 1rem 1rem", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
               Join the community
             </button>
           </div>
-          <div style={{ display: "flex" }}>
-            <video src="./front.mp4" autoPlay loop muted style={{ width: "60vw", height: "100vh", borderRadius: "20rem" }} alt="gif"></video>
+          <div style={{ display: "flex"}}>
+            <video src="./front.mp4" autoPlay loop muted style={{ width: "60vw", height: "100vh", borderRadius: "20rem",marginTop:"0rem" }} alt="gif"></video>
           </div>
         </div>
       </div>
@@ -68,7 +68,7 @@ const Home = (props) => {
         </div>
 
 
-        <div className="first" style={{ backgroundImage: "linear-gradient(#03045e,#82eefd)" }}>
+        <div className="first" style={{ backgroundImage:"linear-gradient(#0492c2,#080234)" ,borderRadius:"4rem",height:"120vh"}}>
           <div style={{ display: "flex", gap: "0.3rem" }}>
             <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: " 10rem 10rem 40rem 40rem", width: "60vw", height: "80vh", margin: "7rem 0rem 7rem 1rem" }} alt="gif"></video>
             <div style={{ color: "white", margin: "10rem 2rem 5rem 1rem", height: "70vh", textAlign: "center" }}>
@@ -80,7 +80,7 @@ const Home = (props) => {
             </div>
           </div>
         </div>
-        <div className="second" style={{ backgroundImage: "linear-gradient(#012a4a,#82eefd)" }}>
+        <div className="second" style={{ backgroundImage: "linear-gradient(#012a4a,#82eefd)" ,borderRadius:"4rem"}}>
           <div style={{ display: "flex", gap: "0.01rem" }}>
 
             <div style={{ color: "white", margin: "14rem 8rem 5rem 7rem", height: "70vh", textAlign: "center" }}>
@@ -93,7 +93,7 @@ const Home = (props) => {
             <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "100rem 5rem 5rem 100rem", width: "70vw", height: "80vh", margin: "7rem 15rem 7rem 5rem" }} alt="gif"></video>
           </div>
         </div>
-        <div className="third" style={{ backgroundImage: "linear-gradient(#41424c,#82eefd)" }}>
+        <div className="third" style={{ backgroundImage: "linear-gradient(#41424c,#080234)",boxShadow:"#080234",borderRadius:"4rem" }}>
           <div style={{ display: "flex", gap: "0.1rem" }}>
             <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "5rem 100rem 100rem 5rem", width: "70vw", height: "80vh", margin: "5rem 0.1rem 3rem 5rem" }} alt="gif"></video>
             <div style={{ color: "white", margin: "10rem 6rem 5rem 5rem", height: "70vh", textAlign: "center" }}>
