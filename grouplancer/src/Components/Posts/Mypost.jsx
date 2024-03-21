@@ -20,6 +20,10 @@ import { useNavigate } from "react-router-dom";
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import { Container, Row, Col, Form } from "react-bootstrap";
+import MoreIcon from '@mui/icons-material/MoreVert';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 
 function Mypost(props) {
   const theme = useTheme();
@@ -27,6 +31,7 @@ function Mypost(props) {
   const [rating, setRating] = useState(0);
   const navigate = useNavigate()
   const [editText, setEditText] = useState("")
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const updatePost = async (e) => {
     try {
@@ -79,6 +84,14 @@ function Mypost(props) {
     setEditText(e.target.value)
   }
 
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
   // const [showModal, setShowModal] = useState(false);
   const style = {
     position: 'absolute',
@@ -112,20 +125,101 @@ function Mypost(props) {
           />
         )}
         <Box sx={{ display: "flex", flexDirection: "column", width: "100%", marginTop: "2rem" }}>
-          <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography component="div" variant="h5">
-              {groupName}
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
+          <div style={{display: "flex", marginBottom: "5rem", marginTop: "2rem"}}>
+            <CardContent sx={{ flex: "1 0 auto" }}>
+              <Typography component="div" variant="h5">
+                {groupName}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                color="text.secondary"
+                component="div"
+              >
+                {postdesc}
+              </Typography>
+            </CardContent>
+            <Tooltip title="Open settings">
+              <IconButton
+                size="large"
+                aria-label="display more actions"
+                edge="end"
+                color="inherit"
+                onClick={handleOpenUserMenu}
+                style={{marginRight: "2rem"}}
+              >
+                <MoreIcon />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: '45px' }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
             >
-              {postdesc}
-            </Typography>
-          </CardContent>
-          <Box display="flex" alignItems="center" marginBottom={5}>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography><Button style={{ color: "black", textDecoration: "none" }} >Edit</Button></Typography>
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2" style={{ marginBottom: "1rem" }}>
+                      Edit
+                    </Typography>
 
+                    <TextField id="outlined-basic" label="Change Description" variant="outlined" style={{ marginBottom: "2rem", fontFamily: "Arial", width: "100%" }} onChange={onchange} />
+                    <Typography id="modal-modal-title" variant="h6" component="h2" style={{ marginBottom: "1rem" }}>
+                      Add image
+                    </Typography>
+                    <Row className="px-1" >
+                      <Form.Group as={Col}>
+                        <Form.Control
+                          type="file"
+                          placeholder="Upload Media"
+                          // onChange={handleChange}
+                          name="media"
+                          accept="image/*, video/*"
+                          required
+                          style={{ fontFamily: "Arial", height: "2.5rem" }}
+                        />
+                      </Form.Group>
+                    </Row>
+                    <div style={{ marginTop: "2rem", display: "flex", gap: "0.5rem", translate: "5.6rem" }}>
+                      <Button variant="contained" style={{}}
+                        onClick={(e) => {
+                          handleClose();
+                          updatePost(e);
+                        }}
+                      >
+                        Save
+                      </Button>
+                      <Button variant="outlined" color="error" style={{}}
+                        onClick={handleClose}
+                      >
+                        Close
+                      </Button>
+                    </div>
+                  </Box>
+                </Modal>
+              </MenuItem>
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography><Button style={{ color: "black", textDecoration: "none" }} onClick={deletePost}>Delete</Button></Typography>
+              </MenuItem>
+            </Menu>
+          </div>
+          <Box display="flex" alignItems="center" marginBottom={5}>
             {[1, 2, 3, 4, 5].map((star) => (
               <IconButton
                 key={star}
@@ -153,60 +247,6 @@ function Mypost(props) {
               <Button variant="contained" endIcon={<SendIcon />}>
                 Share
               </Button>
-              <Button variant="outlined" color="error" onClick={deletePost}>
-                Delete
-              </Button>
-              <Button style={{ display: "flex", width: "7rem" }} variant="contained" disableElevation
-                onClick={handleOpen}
-              >
-                Edit
-              </Button>
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <Typography id="modal-modal-title" variant="h6" component="h2" style={{ marginBottom: "1rem" }}>
-                    Edit
-                  </Typography>
-
-                  <TextField id="outlined-basic" label="Change Description" variant="outlined" style={{ marginBottom: "2rem", fontFamily: "Arial", width: "100%" }} onChange={onchange} />
-                  <Typography id="modal-modal-title" variant="h6" component="h2" style={{ marginBottom: "1rem" }}>
-                    Add image
-                  </Typography>
-                  <Row className="px-1" >
-                    <Form.Group as={Col}>
-                      <Form.Control
-                        type="file"
-                        placeholder="Upload Media"
-                        // onChange={handleChange}
-                        name="media"
-                        accept="image/*, video/*"
-                        required
-                        style={{ fontFamily: "Arial", height:"2.5rem" }}
-                      />
-                    </Form.Group>
-                  </Row>
-                  <div style={{marginTop:"2rem",display:"flex", gap:"0.5rem", translate:"5.6rem"}}>
-                  <Button variant="contained" style={{ }}
-                    onClick={(e) => {
-                      handleClose();
-                      updatePost(e);
-                    }}
-                  >
-                    Save
-                  </Button>
-                  <Button variant="outlined" color="error" style={{ }}
-                    onClick={handleClose}
-                  >
-                    Close
-                  </Button>
-                  </div>
-               
-                </Box>
-              </Modal>
             </Stack>
           </Box>
         </Box>

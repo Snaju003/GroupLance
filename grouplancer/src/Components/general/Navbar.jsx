@@ -13,7 +13,6 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import InputBase from '@mui/material/InputBase';
 import { Link } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
@@ -64,7 +63,6 @@ const NavBar = () => {
             },
         },
     }));
-
 
     const handleLogout = async () => {
         const authToken = localStorage.getItem("auth-token");
@@ -252,9 +250,8 @@ const NavBar = () => {
                         currentUser ?
                             <Box sx={{ flexGrow: 0, marginLeft: "2rem" }}>
                                 <Tooltip title="Open settings">
-
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <img alt="Profile Picture" src="./default-user.jpg" style={{ height: "10vh", width: "10vh" }} />
+                                        <img alt='default-user' src="./default-user.jpg" style={{ height: "10vh", width: "10vh" }} />
                                     </IconButton>
                                 </Tooltip>
                                 <Menu
