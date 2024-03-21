@@ -212,3 +212,25 @@ const EducationSchema = new Schema({
         type: Schema.Types.Mixed,
     },
 }, { timestamps: true });
+
+
+# Send message <POST>
+/conversation/create-conversation
+pass auth-token
+body:
+{
+  chatId, message, senderId
+}
+
+# Delete Message <DELETE>
+/conversation/delete-message/:id<message_id>
+pass auth-token
+
+# Fetch all chats of one conversation <GET>
+/conversation/get-all-messages/:id<conversation_id>
+pass auth-token
+
+# fetch all conversations belongs to a user <GET>
+/conversation/get-all-conversations
+pass auth-token
+

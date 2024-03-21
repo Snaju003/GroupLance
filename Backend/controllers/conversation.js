@@ -88,7 +88,72 @@ const deleteMessage = async (req, res) => {
     }
 }
 
+const fetchAllMessages = async (req, res) => {
+    try {
+        const chatId = req.params.id;
+        const user = req.user;
+        if (!req.user) {
+            return res.status(400).json({
+                message: `Not accessed`
+            });
+        }
+
+        const existsChat = await ConversationModel.findOne({
+            _id: chatId,
+            userIds: user.id
+        });
+
+        if (!existsChat) {
+            return res.status(400).json({
+                success: false,
+                message: `No chat exists`
+            });
+        }
+
+        const allMessages = await MessageModel.find({ conversationId: chatId });
+        if (!allMessages) {
+            return res.status(400).json({
+                message: `No messages yet`
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: `All messages fetched`,
+            allMessages,
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: `Internal server error`
+        });
+    }
+}
+
+const getAllConversations = async (req, res) => {
+    const userId = req.user.id;
+
+    if (!userId) {
+        return res.status(400).json({
+            message: `Not accessed`
+        });
+    }
+
+    try {
+        const conversations = await ConversationModel.find({
+            userIds: userId
+        });
+        return res.status(200).json(conversations);
+    } catch (err) {
+        return res.status(500).json({
+            message: `Error retrieving conversations: ${err.message}`
+        });
+    }
+};
+
 module.exports = {
     sendMessage,
     deleteMessage,
+    fetchAllMessages,
+    getAllConversations,
 }
