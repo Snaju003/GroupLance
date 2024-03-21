@@ -24,7 +24,10 @@ const MessageSchema = new Schema({
     {
         type: String,
         require: true,
-    }
+    },
+    isDeleted: {
+        type: Boolean
+    },
 }, { timestamps: true })
 
 const MessageModel = mongoose.model('message', MessageSchema);

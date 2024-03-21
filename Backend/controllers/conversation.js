@@ -1,34 +1,34 @@
 const ConversationModel = require("../models/Conversation");
-import MessageModel from "../models/Message";
+const MessageModel = require("../models/Message");
 
-export const createConversation = async (req, res) => {
-    try {
-        const { userIds } = req.body;
-        if (!userIds) {
-            return res.status(400).json({
-                success: false,
-                message: `User Ids required`
-            });
-        }
-        const newConversation = await ConversationModel.create({
-            userIds: userIds
-        });
+// const createConversation = async (req, res) => {
+//     try {
+//         const { userIds } = req.body;
+//         if (!userIds) {
+//             return res.status(400).json({
+//                 success: false,
+//                 message: `User Ids required`
+//             });
+//         }
+//         const newConversation = await ConversationModel.create({
+//             userIds: userIds
+//         });
 
-        return res.status(200).json({
-            success: true,
-            message: `Conversation created`,
-            newConversation,
-        });
+//         return res.status(200).json({
+//             success: true,
+//             message: `Conversation created`,
+//             newConversation,
+//         });
 
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: `Conversation Created`
-        });
-    }
-}
+//     } catch (error) {
+//         return res.status(500).json({
+//             success: false,
+//             message: `Conversation Created`
+//         });
+//     }
+// }
 
-export const sendMessage = async (req, res) => {
+const sendMessage = async (req, res) => {
     try {
         const { chatId, message, senderId } = req.body;
         const existingConversation = await ConversationModel.findById(chatId);
@@ -49,6 +49,7 @@ export const sendMessage = async (req, res) => {
             senderId: senderId,
             message: message,
             conversationId: updatedConversation._id,
+            isDeleted: false
         });
 
         return res.status(200).json({
@@ -64,6 +65,30 @@ export const sendMessage = async (req, res) => {
     }
 }
 
+const deleteMessage = async (req, res) => {
+    try {
+        const { chatId } = req.body;
+        const messageId = req.params.id;
+        const updatedMessage = await MessageModel.findByIdAndUpdate(messageId, {
+            $set: {
+                isDeleted: true
+            }
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: 'Message updated',
+            updatedMessage
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: `Internal server error`
+        });
+    }
+}
+
 module.exports = {
     sendMessage,
+    deleteMessage,
 }
