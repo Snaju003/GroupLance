@@ -33,6 +33,7 @@ import Myposts from './Components/Posts/Myposts';
 import GroupTab from './Components/group/Group_Sidebar';
 import EditGroup from './Components/group/EditGroup';
 import Notification from './Components/notification/Notification';
+import Logsign from './Components/auth/Logsign';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -120,6 +121,7 @@ function App() {
           <Route exact path="/groupTab/:id" element={<GroupTab />} />
           <Route exact path="/editgrp" element={<EditGroup />} />
           <Route exact path="/notify" element={<Notification />} />
+          <Route exact path="/logsig" element={<Logsign />} />
         </Routes>
         <Footer />
       </Router>
