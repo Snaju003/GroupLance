@@ -69,11 +69,11 @@ const Home = (props) => {
         </div>
 
 
-        <div className="first" style={{ backgroundImage: "linear-gradient(#0492c2,#080234)", height: "90vh" }}>
-          <div style={{ display: "flex", gap: "0.3rem" }}>
-            <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: " 10rem 10rem 40rem 40rem", width: "60vw", height: "80vh", margin: "7rem 0rem 7rem 1rem" }} alt="gif"></video>
-            <div style={{ color: "white", margin: "10rem 2rem 5rem 1rem", height: "70vh", textAlign: "center" }}>
-              <h1 style={{ fontSize: "4.6rem", fontWeight: "bold" }}>Divide
+        <div className="first" style={{ backgroundImage: "linear-gradient(#0492c2,#080234)" }}>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: " 5rem 5rem 40rem 40rem", width: "50vw", height: "60vh", margin: "0rem 0rem 0rem 4rem" }} alt="gif"></video>
+            <div style={{ color: "white", margin: "1.5rem 2rem 0rem 1rem", height: "70vh", textAlign: "center" }}>
+              <h1 style={{ fontSize: "3.6rem", fontWeight: "bold" }}>Divide
                 <br />the Tasks
                 <br />and
                 <br />Multiply
@@ -84,21 +84,21 @@ const Home = (props) => {
         <div className="second" style={{ backgroundImage: "linear-gradient(#080234,#41424c)" }}>
           <div style={{ display: "flex", gap: "0.01rem" }}>
 
-            <div style={{ color: "white", margin: "14rem 8rem 5rem 7rem", height: "70vh", textAlign: "center" }}>
-              <h1 style={{ fontSize: "4.6rem", fontWeight: "bold" }}>Together
+            <div style={{ color: "white", margin: "0rem 4rem 0rem 10rem", height: "70vh", textAlign: "center" }}>
+              <h1 style={{ fontSize: "3.6rem", fontWeight: "bold" }}>Together
 
                 <br />We are
                 <br />Stronger
               </h1>
             </div>
-            <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "100rem 5rem 5rem 100rem", width: "70vw", height: "80vh", margin: "7rem 15rem 7rem 5rem" }} alt="gif"></video>
+            <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "100rem 5rem 5rem 100rem", width: "50vw", height: "60vh", margin: "0rem 24rem 0rem 5rem" }} alt="gif"></video>
           </div>
         </div>
         <div className="third" style={{ backgroundImage: "linear-gradient(#41424c,#3048c3)",marginTop:"0rem" }}>
           <div style={{ display: "flex", gap: "0.1rem" }}>
-            <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "5rem 100rem 100rem 5rem", width: "70vw", height: "80vh", margin: "5rem 0.1rem 3rem 5rem" }} alt="gif"></video>
-            <div style={{ color: "white", margin: "10rem 6rem 5rem 5rem", height: "70vh", textAlign: "center" }}>
-              <h1 style={{ fontSize: "4.6rem", fontWeight: "bold" }}>Collaboration
+            <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "20px", width: "50vw", height: "50vh"}} alt="gif"></video>
+            <div style={{ color: "white", margin: "1rem 6rem 1rem 2rem", height: "70vh", textAlign: "center" }}>
+              <h1 style={{ fontSize: "3.6rem", fontWeight: "bold" }}>Collaboration
                 <br />is the
                 <br />Key
                 <br />to Success
