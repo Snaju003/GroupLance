@@ -21,9 +21,9 @@ const Home = (props) => {
 
   return (
     <div>
-      <div style={{ display: "flex" }}>
-        <div style={{ display: "flex", gap: "2.5rem",marginTop:"0rem" }}>
-          <div className="frontimage" style={{ padding: "3rem" }}>
+      <div style={{ display: "flex" ,marginBottom:"0rem"}}>
+        <div style={{ display: "flex", gap: "2.5rem", marginTop: "0rem", backgroundImage: "linear-gradient(#3048c3,#0492c2)", backgroundSize: "cover" }}>
+          <div className="frontimage" style={{ marginLeft: "5rem" }}>
             <p
               style={{
                 width: "400px",
@@ -43,6 +43,7 @@ const Home = (props) => {
                 margin: "auto",
                 paddingTop: "1rem",
                 textAlign: "justify",
+
               }}
             >
               <ul>
@@ -57,8 +58,8 @@ const Home = (props) => {
               Join the community
             </button>
           </div>
-          <div style={{ display: "flex"}}>
-            <video src="./front.mp4" autoPlay loop muted style={{ width: "60vw", height: "100vh", borderRadius: "20rem",marginTop:"0rem" }} alt="gif"></video>
+          <div style={{ display: "flex" }}>
+            <video src="./front.mp4" autoPlay loop muted style={{ width: "60vw", height: "90vh", borderRadius: "20rem", marginTop: "0rem", marginRight: "3.8rem" }} alt="gif"></video>
           </div>
         </div>
       </div>
@@ -68,7 +69,7 @@ const Home = (props) => {
         </div>
 
 
-        <div className="first" style={{ backgroundImage:"linear-gradient(#0492c2,#080234)" ,borderRadius:"4rem",height:"120vh"}}>
+        <div className="first" style={{ backgroundImage: "linear-gradient(#0492c2,#080234)", height: "90vh" }}>
           <div style={{ display: "flex", gap: "0.3rem" }}>
             <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: " 10rem 10rem 40rem 40rem", width: "60vw", height: "80vh", margin: "7rem 0rem 7rem 1rem" }} alt="gif"></video>
             <div style={{ color: "white", margin: "10rem 2rem 5rem 1rem", height: "70vh", textAlign: "center" }}>
@@ -80,7 +81,7 @@ const Home = (props) => {
             </div>
           </div>
         </div>
-        <div className="second" style={{ backgroundImage: "linear-gradient(#012a4a,#82eefd)" ,borderRadius:"4rem"}}>
+        <div className="second" style={{ backgroundImage: "linear-gradient(#080234,#41424c)" }}>
           <div style={{ display: "flex", gap: "0.01rem" }}>
 
             <div style={{ color: "white", margin: "14rem 8rem 5rem 7rem", height: "70vh", textAlign: "center" }}>
@@ -93,7 +94,7 @@ const Home = (props) => {
             <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "100rem 5rem 5rem 100rem", width: "70vw", height: "80vh", margin: "7rem 15rem 7rem 5rem" }} alt="gif"></video>
           </div>
         </div>
-        <div className="third" style={{ backgroundImage: "linear-gradient(#41424c,#080234)",boxShadow:"#080234",borderRadius:"4rem" }}>
+        <div className="third" style={{ backgroundImage: "linear-gradient(#41424c,#3048c3)",marginTop:"0rem" }}>
           <div style={{ display: "flex", gap: "0.1rem" }}>
             <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "5rem 100rem 100rem 5rem", width: "70vw", height: "80vh", margin: "5rem 0.1rem 3rem 5rem" }} alt="gif"></video>
             <div style={{ color: "white", margin: "10rem 6rem 5rem 5rem", height: "70vh", textAlign: "center" }}>
@@ -106,35 +107,36 @@ const Home = (props) => {
           </div>
         </div>
         {!currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
-        <h1 style={{textAlign:"center",fontWeight:"bold",color:"white",margin:"3rem"}}> Check out our subscription plans </h1>
-        < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover",backgroundImage:"url()" }}>
-          <div className="subscription" style={{ display: "flex" }} >
-            <div className="card-active" style={{ borderRadius: "10px" }}>
-              <div className="space" style={{ display: "flex" }}>
-                <img className="payment" src="./free.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
-                <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center", alignItems: "center", padding: "10px" }}>
-                  <span className="text">Subscribe</span>
-                </button>
+        <div style={{ backgroundImage: "linear-gradient(#3048c3,#130950)" }}>
+          <h1 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}> Check out our subscription plans </h1>
+          < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover",}}>
+            <div className="subscription" style={{ display: "flex" }} >
+              <div className="card-active" style={{ borderRadius: "10px" }}>
+                <div className="space" style={{ display: "flex" }}>
+                  <img className="payment" src="./free.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
+                  <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center", alignItems: "center", padding: "10px" }}>
+                    <span className="text">Subscribe</span>
+                  </button>
 
+                </div>
+                <h6 style={{ opacity: "0.7", margin: "30px 40px 10px 30px", color: "white" }}>Try grouplancing for free</h6>
+                <div className="card-content">
+
+                  <h4 style={{ color: "white", padding: "10px 40px 40px 40px", position: "sticky", lineHeight: "1em" }}> NO SUBSCRIPTION </h4>
+                  <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
+                    <li style={{ listStyle: "inherit" }}>Ad free</li>
+                    <li>Create only one group</li>
+                    <li>Create group of only specified size</li>
+
+                  </ul>
+
+                </div>
+                <div className="backdrop"></div>
               </div>
-              <h6 style={{ opacity: "0.7", margin: "30px 40px 10px 30px", color: "white" }}>Try grouplancing for free</h6>
-              <div className="card-content">
-
-                <h4 style={{ color: "white", padding: "10px 40px 40px 40px", position: "sticky", lineHeight: "1em" }}> NO SUBSCRIPTION </h4>
-                <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
-                  <li style={{ listStyle: "inherit" }}>Ad free</li>
-                  <li>Create only one group</li>
-                  <li>Create group of only specified size</li>
-
-                </ul>
-
-              </div>
-              <div className="backdrop"></div>
             </div>
-          </div>
-          
-          
-            
+
+
+
             <div className="subscription" >
               <div className="card-active" style={{ borderRadius: "10px" }}>
                 <div className="space" style={{ display: "flex" }}>
@@ -186,7 +188,8 @@ const Home = (props) => {
             </div>
           </div>
         </div>
-      
+      </div>
+
     </div>
 
   );
