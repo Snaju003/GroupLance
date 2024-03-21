@@ -137,10 +137,13 @@ const UserAccounts = () => {
 
   return (
     <>
+    <div style={{padding:"2rem"}}>
+      <Box>
       <Typography variant="h2" component="div" className="text-center" color="white">
         Your Profile
       </Typography>
-      <Box display="flex" justifyContent="center" alignItems="center" height="80vh" marginTop="0.5vh" >
+      </Box>
+      <Box display="flex-wrap" justifyContent="center" alignItems="center" height="80vh" margin="auto" >
         <Box display="flex" flexDirection="row" gap={2}>
           <Box display="flex" flexDirection="column" gap={2}>
             <Card sx={{ width: "40vw", height: "30vh", borderRadius: "1rem" }}>
@@ -192,7 +195,7 @@ const UserAccounts = () => {
           </Box>
           <Box display="flex" flexDirection="column" gap={1}>
 
-            <Card sx={{ width: "40vw", borderRadius: "1rem"}}>
+            <Card sx={{ width: "40vw", borderRadius: "1rem",position:"inherit"}}>
               <CardContent style={{display:"flex", justifyContent:"space-between"}}>
                 <Typography variant="h5" component="div" gutterBottom style={{width:"fit-content"}}>
                   Skills
@@ -368,6 +371,7 @@ const UserAccounts = () => {
 
         </Box>
       </Box>
+      </div>
     </>
   );
 };
