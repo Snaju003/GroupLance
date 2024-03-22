@@ -25,8 +25,8 @@ const ContactList = ({ onGroupClick }) => {
                       }
                   );
                   const data = await response.json();
-                  console.log(data);
-                  setGroupData(data)
+                  console.log(data.conversations);
+                  setGroupData(data.conversations)
               } catch (error) {
                   console.error(error);
               }
