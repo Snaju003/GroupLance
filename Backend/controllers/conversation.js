@@ -133,11 +133,11 @@ const fetchAllMessages = async (req, res) => {
 const getAllConversations = async (req, res) => {
     const userId = req.user.id;
 
-    if (!userId) {
-        return res.status(400).json({
-            message: `Not accessed`
-        });
-    }
+    // if (!userId) {
+    //     return res.status(400).json({
+    //         message: `Not accessed`
+    //     });
+    // }
 
     try {
         const conversations = await ConversationModel.find({
