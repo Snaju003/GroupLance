@@ -116,7 +116,7 @@ const Home = (props) => {
           </div>
         </div>
         {!currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
-        <div data-aos="zoom-in" style={{  }}>
+        <div data-aos="fade-in" style={{  }}>
           <h1 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}> Check out our subscription plans </h1>
           < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover",}}>
             <div className="subscription" style={{ display: "flex" }} >
