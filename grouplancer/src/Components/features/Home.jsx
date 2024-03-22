@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import About from "./About";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import Signup from "../auth/Signup";
+import AOS from 'aos';
+import "aos/dist/aos.css";
+
 
 const Home = (props) => {
   // const { bgcolor } = props;
@@ -19,10 +22,15 @@ const Home = (props) => {
     }
   }
 
+ 
+    useEffect(()=>{
+      AOS.init({duration: 3000});
+    },[])
+  
   return (
     <div>
       <div style={{ display: "flex" ,marginBottom:"0rem"}}>
-        <div style={{ display: "flex", gap: "2.5rem", marginTop: "0rem", backgroundImage: "linear-gradient(#3048c3,#0492c2)", backgroundSize: "cover" }}>
+        <div style={{ display: "flex", gap: "2.5rem", marginTop: "0rem", backgroundSize: "cover" }}>
           <div className="frontimage" style={{ marginLeft: "5rem" }}>
             <p
               style={{
@@ -69,8 +77,8 @@ const Home = (props) => {
         </div>
 
 
-        <div className="first" style={{ backgroundImage: "linear-gradient(#0492c2,#080234)" }}>
-          <div style={{ display: "flex", gap: "1rem" }}>
+        <div data-aos="zoom-in-down" className="first" style={{ width:"100%" }}>
+          <div style={{ display: "flex", gap: "1rem",justifyContent:"center" }}>
             <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: " 5rem 5rem 40rem 40rem", width: "50vw", height: "60vh", margin: "0rem 0rem 0rem 4rem" }} alt="gif"></video>
             <div style={{ color: "white", margin: "1.5rem 2rem 0rem 1rem", height: "70vh", textAlign: "center" }}>
               <h1 style={{ fontSize: "3.6rem", fontWeight: "bold" }}>Divide
@@ -79,10 +87,10 @@ const Home = (props) => {
                 <br />Multiply
                 <br />the Success</h1>
             </div>
-          </div>
+         
         </div>
-        <div className="second" style={{ backgroundImage: "linear-gradient(#080234,#41424c)" }}>
-          <div style={{ display: "flex", gap: "0.01rem" }}>
+        <div className="second" style={{ width:"100%" }}>
+          <div style={{ display: "flex", gap: "1rem",justifyContent:"center" }}>
 
             <div style={{ color: "white", margin: "0rem 4rem 0rem 10rem", height: "70vh", textAlign: "center" }}>
               <h1 style={{ fontSize: "3.6rem", fontWeight: "bold" }}>Together
@@ -91,11 +99,12 @@ const Home = (props) => {
                 <br />Stronger
               </h1>
             </div>
-            <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "100rem 5rem 5rem 100rem", width: "50vw", height: "60vh", margin: "0rem 24rem 0rem 5rem" }} alt="gif"></video>
+            <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "100rem 5rem 5rem 100rem", width: "50vw", height: "60vh", margin: "0rem 0rem 0rem 0rem" }} alt="gif"></video>
           </div>
         </div>
-        <div className="third" style={{ backgroundImage: "linear-gradient(#41424c,#3048c3)",marginTop:"0rem" }}>
-          <div style={{ display: "flex", gap: "0.1rem" }}>
+        </div>
+        <div data-aos="zoom-in-down" className="third" style={{ width:"100%" }}>
+          <div style={{ display: "flex", gap: "0.1rem",justifyContent:"center" }}>
             <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "20px", width: "50vw", height: "50vh"}} alt="gif"></video>
             <div style={{ color: "white", margin: "1rem 6rem 1rem 2rem", height: "70vh", textAlign: "center" }}>
               <h1 style={{ fontSize: "3.6rem", fontWeight: "bold" }}>Collaboration
@@ -107,7 +116,7 @@ const Home = (props) => {
           </div>
         </div>
         {!currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
-        <div style={{ backgroundImage: "linear-gradient(#3048c3,#130950)" }}>
+        <div data-aos="fade-in" style={{  }}>
           <h1 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}> Check out our subscription plans </h1>
           < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover",}}>
             <div className="subscription" style={{ display: "flex" }} >

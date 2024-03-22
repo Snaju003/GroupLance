@@ -195,7 +195,7 @@ const UserAccounts = () => {
           </Box>
           <Box display="flex" flexDirection="column" gap={1}>
 
-            <Card sx={{ width: "40vw", borderRadius: "1rem",position:"inherit"}}>
+            <Card sx={{ width: "40vw", borderRadius: "1rem"}}>
               <CardContent style={{display:"flex", justifyContent:"space-between"}}>
                 <Typography variant="h5" component="div" gutterBottom style={{width:"fit-content"}}>
                   Skills
@@ -289,9 +289,9 @@ const UserAccounts = () => {
                         <Button onClick={handleAddEducation} style={{ marginTop: "1rem" }}>Submit</Button>
                       </Box>
                     </Modal>
-                    <List>
+                    <List style={{marginLeft:"2rem", display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
                       {educationList.map((edu, index) => (
-                        <ListItem key={index}>
+                        <ListItem key={index} style={{backgroundColor:"#dedad9",border:"2px solid white", borderRadius:"1rem", backdropFilter:"blur(10px)", display:"block", width:"fit-content"}}>
                           <ListItemText primary={edu.institutionName} />
                         </ListItem>
                       ))}
@@ -356,9 +356,9 @@ const UserAccounts = () => {
                         <Button onClick={handleWorkEducation} style={{ marginTop: "1rem" }}>Submit</Button>
                       </Box>
                     </Modal>
-                    <List>
+                    <List style={{marginLeft:"2rem", display:"flex", flexWrap:"wrap", flexDirection:"row"}}>
                       {WorkExp.map((work, index) => (
-                        <ListItem key={index}>
+                        <ListItem key={index} style={{backgroundColor:"#dedad9",border:"2px solid white", borderRadius:"1rem", backdropFilter:"blur(10px)", display:"block", width:"fit-content"}}>
                           <ListItemText primary={work.companyname} />
                         </ListItem>
                       ))}
