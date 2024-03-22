@@ -141,6 +141,9 @@ const getAllConversations = async (req, res) => {
     try {
         const fetchConversations = await ConversationModel.find({
             // userIds: userId
+        }).populate({
+            path: 'group',
+            select: 'gName'
         });
         const conversations = fetchConversations.filter((conv) => conv.userIds.includes(userId));
         return res.status(200).json({
