@@ -1,15 +1,40 @@
-import React, { useState } from 'react';
-
+import React, { useState,useEffect } from 'react';
+import { useUser } from "../../context/UserContext";
+import { useNavigate } from 'react-router-dom';
 const ContactList = ({ onGroupClick }) => {
   // Sample contacts
-  const contacts = [
-    { id: 1, name: 'Group1' },
-    { id: 2, name: 'Group2' },
-    { id: 3, name: 'Group3' },
-    { id: 4, name: 'Group4' },
-    { id: 5, name: 'Group5' },
-  ];
 
+  const [groupData, setGroupData] = useState([]);
+  const navigate = useNavigate()
+  const { currentUser } = useUser();
+  useEffect(() => {
+      // if (!currentUser)
+      //     navigate("/login")
+      // else {
+          const fetchJoinedGroup = async () => {
+              try {
+                  const authToken = localStorage.getItem("auth-token");
+                  const response = await fetch(
+                      `http://localhost:8080/api/conversation/get-all-conversations`,
+                      {
+                          method: "GET",
+                          headers: {
+                              "Content-Type": "application/json",
+                              "auth-token": authToken,
+                          },
+                      }
+                  );
+                  const data = await response.json();
+                  console.log(data);
+                  setGroupData(data)
+              } catch (error) {
+                  console.error(error);
+              }
+          }
+          fetchJoinedGroup()
+      }
+  //}
+  , [currentUser, navigate])
   const [searchInput, setSearchInput] = useState("");
 
   const handleChange = (e) => {
@@ -19,10 +44,10 @@ const ContactList = ({ onGroupClick }) => {
 
   return (
     <>
-      <div style={{ display: "flex", border: "solid blue", backgroundColor: "white", borderRadius: "10px" }}>
+      {/* <div style={{ display: "flex", border: "solid blue", backgroundColor: "white", borderRadius: "10px" }}>
         <img src="./default-user.jpg" alt="picture" style={{ marginLeft: "10px", marginRight: "10px" }} />
         <h3 style={{padding:"20px"}}>My Group</h3>
-      </div>
+      </div> */}
       <h3 className="text-center my-4" style={{ color: '#ffff' }}>
         My connections
       </h3>
@@ -34,10 +59,10 @@ const ContactList = ({ onGroupClick }) => {
         style={{ height: "50px", width: "320px", borderRadius: "10px" }}
       />
       <ul className="list-group" style={{ opacity: "0.7", borderRadius: "10px" }}>
-        {contacts.map((contact) => (
-          <li key={contact.id} className="list-group-item" style={{ paddingLeft: "10px" }} onClick={() => onGroupClick(contact)}>
+        {groupData&&groupData.map((gdata) => (
+          <li key={gdata._id} className="list-group-item" style={{ paddingLeft: "10px" }} onClick={() => onGroupClick(gdata)}>
             <img src="./default-user.jpg" alt="picture" style={{ marginLeft: "10px", marginRight: "20px" }} />
-            <strong>{contact.name}</strong>
+            <strong>{gdata.gName}</strong>
             <br />
           </li>
         ))}
