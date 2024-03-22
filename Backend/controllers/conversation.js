@@ -1,5 +1,6 @@
 const ConversationModel = require("../models/Conversation");
 const MessageModel = require("../models/Message");
+const mongoose = require('mongoose');
 
 // const createConversation = async (req, res) => {
 //     try {
