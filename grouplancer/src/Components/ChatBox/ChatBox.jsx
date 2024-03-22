@@ -18,7 +18,7 @@ const ChatBox = () => {
             <ContactList onGroupClick={handleGroupClick} />
           </div>
           <div style={{ flex: '3' }}>
-            {selectedGroup ? <Chat groupName={selectedGroup.group} groupid={selectedGroup._id} /> : <p>Select a group to start chatting.</p>}
+            {selectedGroup ? <Chat groupName={selectedGroup.group.gName} chatid={selectedGroup._id} /> : <p>Select a group to start chatting.</p>}
           </div>
         </div>
       </div>

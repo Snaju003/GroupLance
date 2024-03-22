@@ -58,6 +58,7 @@ const sendMessage = async (req, res) => {
             newMessage,
         });
     } catch (error) {
+        console.log(error)
         return res.status(500).json({
             success: false,
             message: `Internal server error`

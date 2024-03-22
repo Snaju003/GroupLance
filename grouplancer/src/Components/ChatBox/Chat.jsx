@@ -4,7 +4,7 @@ import "./Chat.css";
 
 import { useUser } from "../../context/UserContext";
 
-const Chat = ({ groupName, groupid }) => {
+const Chat = ({ groupName, chatid }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { currentUser } = useUser();
@@ -17,14 +17,14 @@ const Chat = ({ groupName, groupid }) => {
     
     try {
       const authToken = localStorage.getItem("auth-token");
-      const response = await fetch("http://localhost:8080/api/conversation/create-conversation", {
+      const response = await fetch("http://localhost:8080/api/conversation/send-message", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           "auth-token": authToken,
         },
         body: JSON.stringify({
-          chatId: groupid,
+          chatId: chatid,
           message: newMessage,
           senderId: currentUser._id,
         }),
