@@ -4,7 +4,7 @@ const ejs = require('ejs');
 const path = require('path');
 const sendMail = require("../utils/sendmail");
 const TweetModel = require("../models/Tweet");
-
+const ConversationModel = require("../models/Conversation")
 
 const createGroup = async (req, res) => {
     try {
@@ -97,7 +97,8 @@ const createGroup = async (req, res) => {
         }
 
         const newConversation = await ConversationModel.create({
-            userIds: [leader]
+            group: newGroup._id,
+            userIds: [leader],
         })
 
         return res.status(200).json({

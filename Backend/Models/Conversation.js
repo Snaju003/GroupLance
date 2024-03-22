@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const ConversationSchema = new Schema({
+    group: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'group',
+        require: true,
+    },
     userIds:
         [{
             type: mongoose.Schema.Types.ObjectId,
@@ -10,7 +15,7 @@ const ConversationSchema = new Schema({
         }],
     lastmessage:
     {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'message',
         // required: true
     }

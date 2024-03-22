@@ -282,8 +282,9 @@ const NavBar = () => {
 
                                 </Menu>
                             </Box> :
-                            <Button href="/#connect" style={{ borderRadius: "10px", backgroundColor: "white", height: "8vh", width: "20vh", color: "black", marginLeft: "-2rem" }}>Sign Up/Sign In</Button>
-                    }
+                            <Link href="/logsig">
+                            <Button style={{ borderRadius: "10px", backgroundColor: "white", height: "8vh", width: "20vh", color: "black", marginLeft: "-2rem" }}>Sign Up/Sign In</Button>
+                            </Link>  }
                 </Toolbar>
             </Container>
         </AppBar>

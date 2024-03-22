@@ -1,5 +1,6 @@
 const ConversationModel = require("../models/Conversation");
 const MessageModel = require("../models/Message");
+const mongoose = require('mongoose');
 
 // const createConversation = async (req, res) => {
 //     try {
@@ -31,6 +32,7 @@ const MessageModel = require("../models/Message");
 const sendMessage = async (req, res) => {
     try {
         const { chatId, message, senderId } = req.body;
+        // const conversationId = mongoose.Types.ObjectId(chatId);
         const existingConversation = await ConversationModel.findById(chatId);
         if (!existingConversation) {
             return res.status(400).json({
@@ -58,6 +60,7 @@ const sendMessage = async (req, res) => {
             newMessage,
         });
     } catch (error) {
+        console.log(error)
         return res.status(500).json({
             success: false,
             message: `Internal server error`
@@ -131,8 +134,7 @@ const fetchAllMessages = async (req, res) => {
 }
 
 const getAllConversations = async (req, res) => {
-    const userId = req.user.id;
-
+    const userId = req.user;
     if (!userId) {
         return res.status(400).json({
             message: `Not accessed`
@@ -140,10 +142,17 @@ const getAllConversations = async (req, res) => {
     }
 
     try {
-        const conversations = await ConversationModel.find({
-            userIds: userId
+        const fetchConversations = await ConversationModel.find({
+            // userIds: userId
+        }).populate({
+            path: 'group',
+            select: 'gName'
         });
-        return res.status(200).json(conversations);
+        const conversations = fetchConversations.filter((conv) => conv.userIds.includes(userId));
+        return res.status(200).json({
+            message: `Fetched`,
+            conversations
+        });
     } catch (err) {
         return res.status(500).json({
             message: `Error retrieving conversations: ${err.message}`
