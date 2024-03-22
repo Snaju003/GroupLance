@@ -23,6 +23,8 @@ export const names = [
     "Excel",
     "Tableau",
     "Power BI",
+    "Masturbation",
+    "Sex",
     "MATLAB",
     "SAS",
     "Database Management",
