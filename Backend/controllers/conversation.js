@@ -133,17 +133,21 @@ const fetchAllMessages = async (req, res) => {
 const getAllConversations = async (req, res) => {
     const userId = req.user.id;
 
-    // if (!userId) {
-    //     return res.status(400).json({
-    //         message: `Not accessed`
-    //     });
-    // }
+    if (!userId) {
+        return res.status(400).json({
+            message: `Not accessed`
+        });
+    }
 
     try {
-        const conversations = await ConversationModel.find({
+        const fetchConversations = await ConversationModel.find({
             userIds: userId
         });
-        return res.status(200).json(conversations);
+        const conversations = fetchConversations.filter((conv) => conv.userIds.includes(userId));
+        return res.status(200).json({
+            message: `Fetched`,
+            conversations
+        });
     } catch (err) {
         return res.status(500).json({
             message: `Error retrieving conversations: ${err.message}`
