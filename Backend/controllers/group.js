@@ -97,7 +97,8 @@ const createGroup = async (req, res) => {
         }
 
         const newConversation = await ConversationModel.create({
-            userIds: [leader]
+            group: newGroup._id,
+            userIds: [leader],
         })
 
         return res.status(200).json({
