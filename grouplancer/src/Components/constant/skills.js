@@ -25,6 +25,8 @@ export const names = [
     "Power BI",
     "Masturbation",
     "Sex",
+    "Child Porn",
+    "OnlyKids",
     "MATLAB",
     "SAS",
     "Database Management",
