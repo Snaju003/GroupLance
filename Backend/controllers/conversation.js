@@ -32,8 +32,8 @@ const mongoose = require('mongoose');
 const sendMessage = async (req, res) => {
     try {
         const { chatId, message, senderId } = req.body;
-        const conversationId = mongoose.Types.ObjectId(chatId);
-        const existingConversation = await ConversationModel.findById(conversationId);
+        // const conversationId = mongoose.Types.ObjectId(chatId);
+        const existingConversation = await ConversationModel.findById(chatId);
         if (!existingConversation) {
             return res.status(400).json({
                 success: false,
