@@ -131,8 +131,7 @@ const fetchAllMessages = async (req, res) => {
 }
 
 const getAllConversations = async (req, res) => {
-    const userId = req.user.id;
-
+    const userId = req.user;
     if (!userId) {
         return res.status(400).json({
             message: `Not accessed`
@@ -141,7 +140,7 @@ const getAllConversations = async (req, res) => {
 
     try {
         const fetchConversations = await ConversationModel.find({
-            userIds: userId
+            // userIds: userId
         });
         const conversations = fetchConversations.filter((conv) => conv.userIds.includes(userId));
         return res.status(200).json({

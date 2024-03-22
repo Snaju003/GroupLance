@@ -4,7 +4,7 @@ const ejs = require('ejs');
 const path = require('path');
 const sendMail = require("../utils/sendmail");
 const TweetModel = require("../models/Tweet");
-
+const ConversationModel = require("../models/Conversation")
 
 const createGroup = async (req, res) => {
     try {
