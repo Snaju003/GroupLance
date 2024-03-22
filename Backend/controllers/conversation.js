@@ -41,7 +41,7 @@ const sendMessage = async (req, res) => {
             });
         }
 
-        const updatedConversation = await ConversationModel.findByIdAndUpdate(conversationId, {
+        const updatedConversation = await ConversationModel.findByIdAndUpdate(chatId, {
             $set: {
                 lastmessage: message,
             }
