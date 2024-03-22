@@ -62,7 +62,7 @@ const ContactList = ({ onGroupClick }) => {
         {groupData&&groupData.map((gdata) => (
           <li key={gdata._id} className="list-group-item" style={{ paddingLeft: "10px" }} onClick={() => onGroupClick(gdata)}>
             <img src="./default-user.jpg" alt="picture" style={{ marginLeft: "10px", marginRight: "20px" }} />
-            <strong>{gdata.group}</strong>
+            <strong>{gdata.group.gName}</strong>
             <br />
           </li>
         ))}
