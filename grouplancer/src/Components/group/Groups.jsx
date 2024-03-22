@@ -11,7 +11,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
+const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) => {
   const [credentials, setCredentials] = useState({ email: "" });
   const navigate = useNavigate();
   const { currentUser } = useUser();
@@ -31,20 +31,20 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
     setIsModalOpen(false);
   };
 
-  const ratingUser = async (e,_id) => {
-      e.preventDefault();
-      const response = await fetch("http://localhost:8080/api/user/rate-user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem('auth-token'),
-        },
-        body: JSON.stringify({ rate: rating == 0? 1 : rating, userId: _id }),
-      });
-      const json = await response.json();
-      console.log(json)
-      console.log(rating)
-    }
+  const ratingUser = async (e, _id) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:8080/api/user/rate-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem('auth-token'),
+      },
+      body: JSON.stringify({ rate: rating == 0 ? 1 : rating, userId: _id }),
+    });
+    const json = await response.json();
+    console.log(json)
+    console.log(rating)
+  }
 
   const inviteMember = async () => {
     try {
@@ -107,7 +107,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
-  
+
   return (
     <>
       <div
@@ -147,10 +147,11 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
             borderRadius: "15px",
             paddingLeft: "20px",
             paddingTop: "10px",
+            boxShadow: "0 0 10px 5px",
           }}
         >
-          <p style={{ fontSize: "25px" }}>Name:{projName} </p>
-          <p style={{ fontSize: "25px" }}>Description: {grpDesc}</p>
+          <p style={{ fontSize: "25px",padding:"10px" }}>Name: {projName} </p>
+          <p style={{ fontSize: "25px" ,padding:"10px"}}>Description: {grpDesc}</p>
           <div
             style={{
               display: "flex",
@@ -165,7 +166,7 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
               onClick={handleOpenModal}
 
             >
-              Edit
+              Edit details
             </button>)}
           </div>
         </div>
@@ -174,116 +175,129 @@ const Groups = ({grpName,grpLeader,projName,grpDesc,gMembers,groupId}) => {
         <h1
           style={{
             color: "#ffff",
-            paddingRight: "70vw",
-            textAlign: "center",
+            
+            marginLeft:"48rem",
           }}
         >
           {" "}
           Members
         </h1>
       </div>
-      <div className="container my-4" display="flex" alignItems="center">
-        <div className="row">
-          {gMembers?.map(({ _id, name, email }) => (
-            <div className="col-sm-4" key={_id}>
-              <div
-                className="card"
-                style={{
-                  marginTop: "5%",
-                  flexDirection: "column",
-                  boxShadow: "0 0 10px 5px",
-                  borderRadius: "50px",
-                  display: "flex",
-                  width: "300px",
-                  height: "250px",
-                }}
-              >
-                <div
-                  className="card-body"
-                  style={{ backgroundColor: "white", borderRadius: "20px" }}
-                >
-                  <img
-                    style={{
-                      height: "100px",
-                      width: "200px",
-                      paddingLeft: "100px",
-                      paddingRight: "20px",
-                    }}
-                    // src={member.profileImageUrl}
-                    alt="profile"
-                    className="imaging"
-                  />
-                  <h5 className="card-title">{name}</h5>
-                  <p className="card-text">{email}</p>
-                  {(_id !== currentUser?._id) && (<div style={{ display: "flex", marginRight: "1rem" }}>
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <FontAwesomeIcon
-                        key={star}
-                        icon={faStar}
-                        style={{
-                          color: star <= rating ? "yellow" : "grey",
-                          cursor: "pointer",
-                          marginRight: "5px",
-                        }}
-                        onClick={(e) => {
-                          handleRating(star);
-                          ratingUser(e,_id);
-                        }}
-                      />
-                    ))}
-                    <span style={{ marginLeft: "1rem", color: "white" }}>
-                      Rated: {rating} stars
-                    </span>
-                  </div>)}
-                  {(grpLeader === currentUser?._id && _id !== currentUser?._id) && (<button
-                    type="submit"
-                    className="btn btn-primary"
-                    onClick={() => removeMember(_id)}
-                    style={{ marginTop: "3vh" }}
-                  >
-                    Remove
-                  </button>)}
-                </div>
-              </div>
-            </div>
-          ))}
-          <div class="col-sm-4">
-            {(grpLeader === currentUser?._id) && (<div
-              class="card"
-              style={{
-                marginTop: "5%",
-                flexDirection: "column",
-                boxShadow: "0 0 10px 5px",
-                borderRadius: "20px",
-                display: "flex",
-                width: "300px",
-                height: "250px",
-              }}
+      <div style={{ display: "flex",gap:"0.5rem" }}>
+        
+        <div class="col-sm-4">
+        <h2 style={{fontweight:"bold",color:"white",padding:"0.5rem 2rem 0.5rem 2rem"}}>Add members</h2>
+          {(grpLeader === currentUser?._id) && (<div
+            class="card"
+            style={{
+              marginTop: "5%",
+              flexDirection: "column",
+              boxShadow: "0 0 10px 5px",
+              borderRadius: "20px",
+              display: "flex",
+              width: "300px",
+              height: "250px",
+            }}
+          >
+            
+            <div
+              class="card-body"
+              style={{ backgroundColor: "white", borderRadius: "20px" }}
             >
-              <div
-                class="card-body"
-                style={{ backgroundColor: "white", borderRadius: "20px" }}
-              >
-                <h4 className="text-center my-4">Invite member</h4>
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">
-                    Email address
-                  </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    aria-describedby="emailHelp"
-                    onChange={onchange}
-                    name="email"
-                    required
-                  />
-                </div>
-                <button className="btn btn-primary" onSubmit={inviteMember}>
-                  Send Invite
-                </button>
+              <img src="https://tse4.mm.bing.net/th?id=OIP.JCwjYrZogNHv50VtbileUgHaEK&pid=Api&P=0&h=180" style={{width:"250px",height:"250px",borderRadius:"20px",margin:"10px 5px 10px 5px"}}></img>
+              <h4 className="text-center my-4">Invite a member</h4>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  aria-describedby="emailHelp"
+                  onChange={onchange}
+                  name="email"
+                  required
+                />
               </div>
-            </div>)}
+              <button style={{marginBottom:"1rem",marginLeft:"3.5rem"}}className="btn btn-primary" onSubmit={inviteMember}>
+                Send Invitation
+              </button>
+              
+            </div>
+            
+          </div>)}
+          
+        </div>
+        
+        <div style={{ display: "flex",gap:"5rem",background:"rgba(255, 255, 255, 0.2)",backdropFilter: "blur(5px)",borderRadius:"20px" }}>
+          <div className="container my-4" display="flex" alignItems="center">
+            <div className="row">
+              {gMembers?.map(({ _id, name, email }) => (
+                <div className="col-sm-6" key={_id} style={{padding:"50px"}}>
+                  <div
+                    className="card"
+                    style={{
+                      marginTop: "5%",
+                      flexDirection: "column",
+                      boxShadow: "0 0 10px 5px",
+                      borderRadius: "50px",
+                      display: "flex",
+                      width: "300px",
+                      height: "250px",
+                    }}
+                  >
+                    <div
+                      className="card-body"
+                      style={{ backgroundColor: "white", borderRadius: "20px" }}
+                    >
+                      <img
+                        style={{
+                          height: "100px",
+                          width: "200px",
+                          paddingLeft: "100px",
+                          paddingRight: "20px",
+                        }}
+                        // src={member.profileImageUrl}
+                        alt="profile"
+                        className="imaging"
+                      />
+                      <h5 className="card-title">{name}</h5>
+                      <p className="card-text">{email}</p>
+                      {(_id !== currentUser?._id) && (<div style={{ display: "flex", marginRight: "1rem" }}>
+                        {[1, 2, 3, 4, 5].map((star) => (
+                          <FontAwesomeIcon
+                            key={star}
+                            icon={faStar}
+                            style={{
+                              color: star <= rating ? "yellow" : "grey",
+                              cursor: "pointer",
+                              marginRight: "5px",
+                            }}
+                            onClick={(e) => {
+                              handleRating(star);
+                              ratingUser(e, _id);
+                            }}
+                          />
+                        ))}
+                        <span style={{ marginLeft: "1rem", color: "white" }}>
+                          Rated: {rating} stars
+                        </span>
+                      </div>)}
+                      {(grpLeader === currentUser?._id && _id !== currentUser?._id) && (<button
+                        type="submit"
+                        className="btn btn-primary"
+                        onClick={() => removeMember(_id)}
+                        style={{ marginTop: "3vh" }}
+                      >
+                        Remove
+                      </button>)}
+                    </div>
+                  </div>
+
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
