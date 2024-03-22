@@ -31,7 +31,8 @@ const MessageModel = require("../models/Message");
 const sendMessage = async (req, res) => {
     try {
         const { chatId, message, senderId } = req.body;
-        const existingConversation = await ConversationModel.findById(chatId);
+        const conversationId = mongoose.Types.ObjectId(chatId);
+        const existingConversation = await ConversationModel.findById(conversationId);
         if (!existingConversation) {
             return res.status(400).json({
                 success: false,
@@ -39,7 +40,7 @@ const sendMessage = async (req, res) => {
             });
         }
 
-        const updatedConversation = await ConversationModel.findByIdAndUpdate(chatId, {
+        const updatedConversation = await ConversationModel.findByIdAndUpdate(conversationId, {
             $set: {
                 lastmessage: message,
             }
