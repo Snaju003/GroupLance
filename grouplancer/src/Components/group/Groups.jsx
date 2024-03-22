@@ -197,6 +197,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
               display: "flex",
               width: "300px",
               height: "250px",
+              marginBottom:"35%",
             }}
           >
             
@@ -204,7 +205,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
               class="card-body"
               style={{ backgroundColor: "white", borderRadius: "20px" }}
             >
-              <img src="https://tse4.mm.bing.net/th?id=OIP.JCwjYrZogNHv50VtbileUgHaEK&pid=Api&P=0&h=180" style={{width:"250px",height:"250px",borderRadius:"20px",margin:"10px 5px 10px 5px"}}></img>
+              <img src="https://tse4.mm.bing.net/th?id=OIP.JCwjYrZogNHv50VtbileUgHaEK&pid=Api&P=0&h=180" style={{width:"250px",height:"150px",borderRadius:"20px",margin:"10px 5px 10px 5px"}}></img>
               <h4 className="text-center my-4">Invite a member</h4>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
