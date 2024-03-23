@@ -396,7 +396,7 @@ const removeMember = async (req, res) => {
         }
         await UserModel.findByIdAndUpdate(userId, { $pull: { groups: groupId } });
         await GroupModel.findByIdAndUpdate(groupId, { $inc: { gMemberNumber: -1 }, $pull: { members: userId } });
-        await ConversationModel.findOneAndUpdate({ group: groupId }, { $push: { userIds: userId } });
+        await ConversationModel.findOneAndUpdate({ group: groupId }, { $pull: { userIds: userId } });
         return res.status(200).json({
             success: true,
             message: 'User removed from the group successfully'
