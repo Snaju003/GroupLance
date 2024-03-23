@@ -21,7 +21,7 @@ const Chat = ({ groupName, chatid }) => {
           },
         });
         const data = await response.json();
-        setMessages(data.allMessages);
+        setMessages(data.allMessages.reverse());
       } catch (error) {
         console.log('Error fetching messages:', error);
       }
