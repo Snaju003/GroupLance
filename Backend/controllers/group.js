@@ -4,7 +4,8 @@ const ejs = require('ejs');
 const path = require('path');
 const sendMail = require("../utils/sendmail");
 const TweetModel = require("../models/Tweet");
-const ConversationModel = require("../models/Conversation")
+const ConversationModel = require("../models/Conversation");
+const MessageModel = require("../models/Message");
 
 const createGroup = async (req, res) => {
     try {
@@ -276,6 +277,7 @@ const joinGroup = async (req, res) => {
         }
         await UserModel.findByIdAndUpdate(userId, { $push: { groups: groupId } });
         await GroupModel.findByIdAndUpdate(groupId, { $inc: { gMemberNumber: 1 }, $push: { members: userId } });
+        await ConversationModel.findOneAndUpdate({ group: groupId }, { $push: { userIds: userId } });
         return res.status(200).json({
             success: true,
             message: 'User added to the group successfully'
@@ -394,6 +396,7 @@ const removeMember = async (req, res) => {
         }
         await UserModel.findByIdAndUpdate(userId, { $pull: { groups: groupId } });
         await GroupModel.findByIdAndUpdate(groupId, { $inc: { gMemberNumber: -1 }, $pull: { members: userId } });
+        await ConversationModel.findOneAndUpdate({ group: groupId }, { $pull: { userIds: userId } });
         return res.status(200).json({
             success: true,
             message: 'User removed from the group successfully'
@@ -456,6 +459,10 @@ const deleteGroup = async (req, res) => {
             await UserModel.findByIdAndUpdate(existsGroup.members[i].toString(), { $pull: { groups: groupId } });
         }
         await GroupModel.findByIdAndDelete(groupId);
+        const messages = await ConversationModel.findOneAndDelete({ group: groupId });
+        for (let i = 0; i < messages.length; i++) {
+            await MessageModel.findOneAndDelete({ conversationId: messages._id });
+        }
         const posts = await TweetModel.find({ groupId: groupId });
         for (let i = 0; i < posts.length; i++) {
             await TweetModel.findByIdAndDelete(posts[i]._id);
