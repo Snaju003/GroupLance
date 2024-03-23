@@ -71,7 +71,7 @@ const Chat = ({ groupName, chatid }) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`message ${message.senderId._id !== currentUser._id ? "user-message" : "other-message"}`}
+            className={`message ${message.senderId._id === currentUser._id ? "user-message" : "other-message"}`}
           >
             <strong>{message.senderId.name}:</strong> {message.message}
           </div>
