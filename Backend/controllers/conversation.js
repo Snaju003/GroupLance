@@ -94,7 +94,7 @@ const deleteMessage = async (req, res) => {
 const fetchAllMessages = async (req, res) => {
     try {
         const chatId = req.params.id;
-        const user = req.user;
+        const userId = req.user;
         if (!req.user) {
             return res.status(400).json({
                 message: `Not accessed`
@@ -102,11 +102,10 @@ const fetchAllMessages = async (req, res) => {
         }
 
         const existsChat = await ConversationModel.findOne({
-            _id: chatId,
-            userIds: user.id
+            _id: chatId
         });
 
-        if (!existsChat) {
+        if (!existsChat.userIds.includes(userId)) {
             return res.status(400).json({
                 success: false,
                 message: `No chat exists`
