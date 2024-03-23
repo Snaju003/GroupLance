@@ -35,7 +35,7 @@ const Chat = ({ groupName, chatid }) => {
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (newMessage.trim() === "") return;
-    const updatedMessages = [...messages, { text: newMessage, sender: currentUser.name }];
+    const updatedMessages = [...messages, { message: newMessage, senderId: currentUser }];
     setMessages(updatedMessages);
     
     try {
@@ -69,9 +69,9 @@ const Chat = ({ groupName, chatid }) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`message ${message.sender === currentUser.name ? "user-message" : "other-message"}`}
+            className={`message ${message.senderId.name === currentUser.name ? "user-message" : "other-message"}`}
           >
-            <strong>{message.sender}:</strong> {message.text}
+            <strong>{message.senderId.name}:</strong> {message.message}
           </div>
         ))}
       </Paper>
