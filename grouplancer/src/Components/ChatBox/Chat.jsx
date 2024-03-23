@@ -9,6 +9,29 @@ const Chat = ({ groupName, chatid }) => {
   const [newMessage, setNewMessage] = useState("");
   const { currentUser } = useUser();
 
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const authToken = localStorage.getItem("auth-token");
+        const response = await fetch(`http://localhost:8080/api/conversation/get-all-messages/${chatid}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+        });
+        const data = await response.json();
+        const updatedMessages = [...messages, { text: data.lastmessage, sender: currentUser.name }];
+        console.log("Data ",data)
+        setMessages(updatedMessages); 
+      } catch (error) {
+        console.log('Error fetching messages:', error);
+      }
+    };
+
+    fetchMessages();
+  }, [chatid]); 
+
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (newMessage.trim() === "") return;
