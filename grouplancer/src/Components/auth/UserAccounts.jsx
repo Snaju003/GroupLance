@@ -140,7 +140,7 @@ const UserAccounts = () => {
     <>
       <div style={{ padding: "2rem" }}>
         <Box>
-          <Typography variant="h2" component="div" className="text-center" color="white">
+          <Typography variant="h2" component="div" className="text-center" color="white" style={{marginBottom:"2rem"}}>
             Your Profile
           </Typography>
         </Box>
