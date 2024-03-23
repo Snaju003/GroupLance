@@ -201,21 +201,21 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
       <div style={{ display: "flex",gap:"0.5rem" }}>
         
         <div class="col-sm-4">
-        <h2 style={{fontweight:"bold",color:"white",padding:"0.5rem 2rem 0.5rem 2rem"}}>Add members</h2>
+        
           {(grpLeader === currentUser?._id) && (<div
             class="card"
             style={{
-              marginTop: "5%",
+              marginTop: "1%",
               flexDirection: "column",
               boxShadow: "0 0 10px 5px",
               borderRadius: "20px",
               display: "flex",
               width: "300px",
               height: "250px",
-              marginBottom:"35%",
+              marginBottom:"55%",
             }}
           >
-            
+            <h2 style={{fontweight:"bold",color:"black",padding:"0.5rem 2rem 0.5rem 2rem"}}>Add members</h2>
             <div
               class="card-body"
               style={{ backgroundColor: "white", borderRadius: "20px" }}
