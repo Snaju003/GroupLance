@@ -22,7 +22,7 @@ const Chat = ({ groupName, chatid }) => {
         });
         const data = await response.json();
         // const updatedMessages = [...messages, { text: data.lastmessage, sender: currentUser.name }];
-        console.log("Data ",data)
+        //console.log("Data ",data)
         setMessages(data.allMessages); 
       } catch (error) {
         console.log('Error fetching messages:', error);
@@ -53,7 +53,7 @@ const Chat = ({ groupName, chatid }) => {
         }),
       });
       const json = await response.json();
-      console.log(json);
+      //console.log(json);
       setNewMessage("");
     } catch (error) {
       console.log('Error sending message:', error);
@@ -69,7 +69,7 @@ const Chat = ({ groupName, chatid }) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`message ${message.senderId.name === currentUser.name ? "user-message" : "other-message"}`}
+            className={`message ${message.senderId._id === currentUser._id ? "user-message" : "other-message"}`}
           >
             <strong>{message.senderId.name}:</strong> {message.message}
           </div>
