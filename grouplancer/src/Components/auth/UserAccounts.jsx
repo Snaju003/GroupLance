@@ -101,7 +101,7 @@ const UserAccounts = () => {
           "Content-Type": "application/json",
           "auth-token": localStorage.getItem('auth-token'),
         },
-        body: JSON.stringify({ name: editName, education: educationList, workExp: WorkExp, skills: skillsList }),
+        body: JSON.stringify({ name: editName, education: [...educationList], workExp: WorkExp, skills: [...skillsList] }),
       });
       const json = await response.json();
       console.log(json);
