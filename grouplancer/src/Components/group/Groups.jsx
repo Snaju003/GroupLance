@@ -102,6 +102,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
     });
     const json = await response.json();
     console.log(json)
+    navigate("/")
   }
 
   const onchange = (e) => {
@@ -139,7 +140,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
           <button
             className="btn btn-primary"
             type="submit"
-            onClick={deleteGroup}
+            onClick={()=>removeMember(currentUser._id)}
             style={{
               color: "white",
               padding: "10px",

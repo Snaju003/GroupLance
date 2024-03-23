@@ -5,6 +5,13 @@
     height: 70vh;
     overflow-y: scroll;
   }
+  .chat-container::-webkit-scrollbar{
+    display: none;
+  }
+  .chat-container{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
   .chat-header {
     background-color: #333;
     color: #fff;
