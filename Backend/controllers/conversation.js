@@ -112,7 +112,10 @@ const fetchAllMessages = async (req, res) => {
             });
         }
 
-        const allMessages = await MessageModel.find({ conversationId: chatId });
+        const allMessages = await MessageModel.find({ conversationId: chatId }).populate({
+            path: 'senderId',
+            select: 'name'
+        });
         if (!allMessages) {
             return res.status(400).json({
                 message: `No messages yet`
