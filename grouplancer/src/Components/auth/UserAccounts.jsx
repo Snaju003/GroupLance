@@ -147,7 +147,7 @@ const UserAccounts = () => {
         <Box display="flex-wrap" justifyContent="center" alignItems="center" height="80vh" margin="auto" >
           <Box display="flex" flexDirection="row" gap={2}>
             <Box display="flex" flexDirection="column" gap={2}>
-              <Card sx={{ width: "40vw", height: "30vh", borderRadius: "1rem" }}>
+              <Card sx={{ width: "40vw", height: "30vh", borderRadius: "1rem",marginLeft:"6rem" }}>
                 <CardContent>
                   <Typography variant="h5" component="div" gutterBottom>
                     UserName
@@ -176,7 +176,7 @@ const UserAccounts = () => {
 
                 </Modal>
               </Card>
-              <Card sx={{ width: "40vw", height: "30vh", borderRadius: "1rem" }}>
+              <Card sx={{ width: "40vw", height: "30vh", borderRadius: "1rem" ,marginLeft:"6rem"}}>
                 <CardContent>
                   <Typography variant="h5" component="div" gutterBottom>
                     Personal Ranking

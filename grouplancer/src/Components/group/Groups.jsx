@@ -102,6 +102,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
     });
     const json = await response.json();
     console.log(json)
+    navigate("/")
   }
 
   const onchange = (e) => {
@@ -133,6 +134,21 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
             }}
           >
             Delete Group
+          </button>
+        )}
+        {(grpLeader !== currentUser?._id) && (
+          <button
+            className="btn btn-primary"
+            type="submit"
+            onClick={()=>removeMember(currentUser._id)}
+            style={{
+              color: "white",
+              padding: "10px",
+              marginRight: "1rem",
+              backgroundColor: "#cc0000"
+            }}
+          >
+            Leave Group
           </button>
         )}
       </div>
@@ -186,21 +202,21 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
       <div style={{ display: "flex",gap:"0.5rem" }}>
         
         <div class="col-sm-4">
-        <h2 style={{fontweight:"bold",color:"white",padding:"0.5rem 2rem 0.5rem 2rem"}}>Add members</h2>
+        
           {(grpLeader === currentUser?._id) && (<div
             class="card"
             style={{
-              marginTop: "5%",
+              marginTop: "1%",
               flexDirection: "column",
               boxShadow: "0 0 10px 5px",
               borderRadius: "20px",
               display: "flex",
               width: "300px",
               height: "250px",
-              marginBottom:"35%",
+              marginBottom:"55%",
             }}
           >
-            
+            <h2 style={{fontweight:"bold",color:"black",padding:"0.5rem 2rem 0.5rem 2rem"}}>Add members</h2>
             <div
               class="card-body"
               style={{ backgroundColor: "white", borderRadius: "20px" }}
@@ -301,7 +317,9 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
             </div>
           </div>
         </div>
+        
       </div>
+      
       <Dialog open={isModalOpen} onClose={handleCloseModal} >
         <DialogTitle>{projName}</DialogTitle>
         <DialogContent>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { TextField, Button, Paper } from "@mui/material";
-import "./Chat.css"; 
+import "./Chat.css";
 
 import { useUser } from "../../context/UserContext";
 
@@ -9,12 +9,32 @@ const Chat = ({ groupName, chatid }) => {
   const [newMessage, setNewMessage] = useState("");
   const { currentUser } = useUser();
 
-  const handleSendMessage = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const authToken = localStorage.getItem("auth-token");
+        const response = await fetch(`http://localhost:8080/api/conversation/get-all-messages/${chatid}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+        });
+        const data = await response.json();
+        setMessages(data.allMessages);
+      } catch (error) {
+        console.log('Error fetching messages:', error);
+      }
+    };
+
+    fetchMessages();
+  }, [chatid]);
+
+  const handleSendMessage = async () => {
     if (newMessage.trim() === "") return;
-    const updatedMessages = [...messages, { text: newMessage, sender: currentUser.name }];
+    const updatedMessages = [...messages, { message: newMessage, senderId: currentUser }];
     setMessages(updatedMessages);
-    
+
     try {
       const authToken = localStorage.getItem("auth-token");
       const response = await fetch("http://localhost:8080/api/conversation/send-message", {
@@ -30,10 +50,15 @@ const Chat = ({ groupName, chatid }) => {
         }),
       });
       const json = await response.json();
-      console.log(json);
       setNewMessage("");
     } catch (error) {
       console.log('Error sending message:', error);
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSendMessage();
     }
   };
 
@@ -46,9 +71,9 @@ const Chat = ({ groupName, chatid }) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`message ${message.sender === currentUser.name ? "user-message" : "other-message"}`}
+            className={`message ${message.senderId._id === currentUser._id ? "user-message" : "other-message"}`}
           >
-            <strong>{message.sender}:</strong> {message.text}
+            <strong>{message.senderId.name}:</strong> {message.message}
           </div>
         ))}
       </Paper>
@@ -56,7 +81,10 @@ const Chat = ({ groupName, chatid }) => {
         <TextField
           type="text"
           value={newMessage}
-          onChange={(e) => setNewMessage(e.target.value)}
+          onChange={(e) => {
+            setNewMessage(e.target.value)
+          }}
+          onKeyUp={handleKeyPress}
           placeholder="Type your message..."
           className="input-field"
           style={{ borderRadius: "0px", outline: "none", border: "none" }}

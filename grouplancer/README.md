@@ -230,6 +230,7 @@ pass auth-token
 # Fetch all chats of one conversation <GET>
 /conversation/get-all-messages/:id<conversation_id>
 pass auth-token
+Done
 
 # fetch all conversations belongs to a user <GET>
 /conversation/get-all-conversations
