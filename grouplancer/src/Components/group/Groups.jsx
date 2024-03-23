@@ -135,6 +135,21 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
             Delete Group
           </button>
         )}
+        {(grpLeader !== currentUser?._id) && (
+          <button
+            className="btn btn-primary"
+            type="submit"
+            onClick={deleteGroup}
+            style={{
+              color: "white",
+              padding: "10px",
+              marginRight: "1rem",
+              backgroundColor: "#cc0000"
+            }}
+          >
+            Leave Group
+          </button>
+        )}
       </div>
 
       <div className="container my-4" display="flex" alignItems="center">
@@ -301,7 +316,9 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
             </div>
           </div>
         </div>
+        
       </div>
+      
       <Dialog open={isModalOpen} onClose={handleCloseModal} >
         <DialogTitle>{projName}</DialogTitle>
         <DialogContent>
