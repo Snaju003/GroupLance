@@ -17,7 +17,7 @@
     border: 1px solid #ccc;
     padding: 10px;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     flex-grow: 1;
     scrollbar-width: thin;
     scrollbar-color: transparent transparent; 
