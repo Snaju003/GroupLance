@@ -21,9 +21,9 @@ const Chat = ({ groupName, chatid }) => {
           },
         });
         const data = await response.json();
-        const updatedMessages = [...messages, { text: data.lastmessage, sender: currentUser.name }];
+        // const updatedMessages = [...messages, { text: data.lastmessage, sender: currentUser.name }];
         console.log("Data ",data)
-        setMessages(updatedMessages); 
+        setMessages(data.allMessages); 
       } catch (error) {
         console.log('Error fetching messages:', error);
       }
