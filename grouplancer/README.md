@@ -221,6 +221,7 @@ body:
 {
   chatId, message, senderId
 }
+Done
 
 # Delete Message <DELETE>
 /conversation/delete-message/:id<message_id>
@@ -233,4 +234,4 @@ pass auth-token
 # fetch all conversations belongs to a user <GET>
 /conversation/get-all-conversations
 pass auth-token
-
+Done
