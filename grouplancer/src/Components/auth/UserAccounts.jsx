@@ -41,8 +41,6 @@ const UserAccounts = () => {
   const [compendDate, setcompEndDate] = useState("");
   const [educationList, setEducationList] = useState([]);
   const [editName, setEditName] = useState(userData.Name)
-  const [data, setData] = useState()
-
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -82,7 +80,7 @@ const UserAccounts = () => {
     handleworkClose();
   };
 
-  const [skillsList, setSkillsList] = useState([]);
+  const [skillsList, setSkillsList] = useState([userData.skills]);
   const [newSkill, setNewSkill] = useState("");
   const handleAddSkills = () => {
     if (newSkill !== "") {
@@ -94,18 +92,20 @@ const UserAccounts = () => {
 
   const updateUser = async () => {
     try {
-      console.log("Inside Fetch:", WorkExp)
+      const updSkills = [...userData.skills, ...skillsList];
+      const updEducation = [...userData.education, ...educationList];
+      const updWork = [...userData.workExperience, ...WorkExp];
+      console.log("Inside Fetch:", updWork)
       const response = await fetch(`http://localhost:8080/api/user/update-user`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           "auth-token": localStorage.getItem('auth-token'),
         },
-        body: JSON.stringify({ name: editName, education: [...educationList], workExp: WorkExp, skills: [...skillsList] }),
+        body: JSON.stringify({ name: editName, education: updEducation, workExperience: updWork, skills: updSkills }),
       });
       const json = await response.json();
       console.log(json);
-      setData(json.updatedUser)
       navigate("/userAccount");
     } catch (error) {
       console.error(error);
@@ -231,7 +231,7 @@ const UserAccounts = () => {
                         </Box>
                       </Modal>
                       <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
-                        {skillsList.map((skill, index) => (
+                        {userData.skills && userData.skills.map((skill, index) => (
                           <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
                             <ListItemText primary={skill} />
                           </ListItem>
@@ -299,7 +299,7 @@ const UserAccounts = () => {
                         </Box>
                       </Modal>
                       <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
-                        {educationList.map((edu, index) => (
+                        {userData.education && userData.education.map((edu, index) => (
                           <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
                             <ListItemText primary={edu.institutionName} />
                           </ListItem>
@@ -369,7 +369,7 @@ const UserAccounts = () => {
                         </Box>
                       </Modal>
                       <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
-                        {WorkExp.map((work, index) => (
+                        {userData.workExperience && userData.workExperience.map((work, index) => (
                           <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
                             <ListItemText primary={work.companyname} />
                           </ListItem>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { TextField, Button, Paper } from "@mui/material";
 import "./Chat.css";
 
@@ -8,6 +8,7 @@ const Chat = ({ groupName, chatid }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { currentUser } = useUser();
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -29,6 +30,14 @@ const Chat = ({ groupName, chatid }) => {
 
     fetchMessages();
   }, [chatid]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const handleSendMessage = async () => {
     if (newMessage.trim() === "") return;
@@ -63,6 +72,7 @@ const Chat = ({ groupName, chatid }) => {
   };
 
   return (
+    <>
     <div className="chat-container">
       <h1 className="text-center my-4" style={{ color: "#ffff" }}>
         {groupName}
@@ -76,6 +86,7 @@ const Chat = ({ groupName, chatid }) => {
             <strong>{message.senderId.name}:</strong> {message.message}
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </Paper>
       <div className="input-container" style={{ borderRadius: "0px", outline: "none" }}>
         <TextField
@@ -85,7 +96,7 @@ const Chat = ({ groupName, chatid }) => {
             setNewMessage(e.target.value)
           }}
           onKeyUp={handleKeyPress}
-          placeholder="Type your message..."
+          placeholder="Type your mess age..."
           className="input-field"
           style={{ borderRadius: "0px", outline: "none", border: "none" }}
         />
@@ -94,6 +105,7 @@ const Chat = ({ groupName, chatid }) => {
         </Button>
       </div>
     </div>
+    </>
   );
 };
 
