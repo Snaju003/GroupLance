@@ -79,7 +79,7 @@ const UserAccounts = () => {
     setcompEndDate("");
     handleworkClose();
   };
-  const filteredNames = names.filter(name => userData.skills.includes(name));
+  const filteredNames = names.filter(name => userData.skills(name));
 
   const [skillsList, setSkillsList] = useState(userData.skills);
   const [newSkill, setNewSkill] = useState("");
