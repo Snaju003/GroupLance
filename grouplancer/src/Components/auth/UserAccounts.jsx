@@ -79,7 +79,7 @@ const UserAccounts = () => {
     setcompEndDate("");
     handleworkClose();
   };
-  const filteredNames = names.filter(name => userData.skills(name));
+ 
 
   const [skillsList, setSkillsList] = useState(userData.skills);
   const [newSkill, setNewSkill] = useState("");
@@ -215,7 +215,7 @@ const UserAccounts = () => {
                           <Autocomplete
                             multiple
                             id="tags-outlined"
-                            options={filteredNames.sort()}
+                            options={names.sort()}
                             getOptionLabel={(option) => option}
                             filterSelectedOptions
                             value={skillsList}
