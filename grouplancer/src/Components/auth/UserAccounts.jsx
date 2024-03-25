@@ -218,8 +218,8 @@ const UserAccounts = () => {
                             options={filteredNames.sort()}
                             getOptionLabel={(option) => option}
                             filterSelectedOptions
-                            value={skillsList} 
-                            onChange={(event, value) => setSkillsList(value)} 
+                            value={skillsList}
+                            onChange={(event, value) => setSkillsList(value)}
                             renderInput={(params) => (
                               <TextField {...params} label="Skills" placeholder="Add" />
                             )}
@@ -249,7 +249,7 @@ const UserAccounts = () => {
                   </Typography>
                   <List>
                     <ListItem>
- </Typography>                     <Button variant="contained" onClick={handleeduOpen}>
+                      <Button variant="contained" onClick={handleeduOpen}>
                         Add <AddIcon />
                       </Button>
                       <Modal open={eduopen} onClose={handleeduClose}>
