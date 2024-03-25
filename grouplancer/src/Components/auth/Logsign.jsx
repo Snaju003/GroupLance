@@ -8,7 +8,7 @@ function Logsign() {
     <div style={{ height: "110vh", margin: "0.1rem", padding: "5rem" }}>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={6}>
-          <Paper elevation={3} style={{ padding: '4rem ', width: "40vw", height: "85vh",margin:"0rem 0rem 5rem 3rem",backgroundImage:"linear-gradient(#032174,#2c7da0,#61a5c2,#82eefd)",color:"#151e3d"}}>
+          <Paper elevation={3} style={{ padding: '4rem ', width: "40vw", height: "85vh",margin:"0rem 0rem 5rem 3rem",backgroundImage:"linear-gradient(#032174,#2c7da0,#61a5c2,#82eefd)",color:"#151e3d",boxShadow:"4px 4px 4px 4px #151e3d"}}>
             <img style={{borderRadius:"1rem",width:"30vw",marginLeft:"1rem",height:"40vh"}} src="https://penji.co/wp-content/uploads/2023/11/cover-image-chatgpt-business-ideas-1200x720.jpg" alt="image"/>
             <div style={{marginTop:"1rem"}}>
               <h2 className='text-center'>For Businesses</h2>
@@ -26,7 +26,7 @@ function Logsign() {
           </Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper elevation={3} style={{padding: '4rem ',width: "40vw", height: "85vh",margin:"0rem 0rem 5rem 3rem",backgroundImage:"linear-gradient(#502380,#3e2f84,#795f80,#fff0f5)",color:"#ffff"}}>
+          <Paper elevation={3} style={{padding: '4rem ',width: "40vw", height: "85vh",margin:"0rem 0rem 5rem 3rem",backgroundImage:"linear-gradient(#502380,#3e2f84,#795f80,#fff0f5)",color:"#ffff",boxShadow:"4px 4px 4px 4px #301934"}}>
           <img style={{borderRadius:"1rem",width:"30vw",marginLeft:"1rem",height:"40vh",boxShadow:"4px 4px 4px 4px #795f80"}} src="https://imind.com/wp-content/uploads/2023/01/18.jpg" alt="image"/>
             <div style={{margin:"1rem"}}>
               <h2 className='text-center'>For Normal Users</h2>
