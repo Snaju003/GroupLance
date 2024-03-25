@@ -92,17 +92,17 @@ const UserAccounts = () => {
 
   const updateUser = async () => {
     try {
-      console.log("Inside Fetch:", WorkExp)
       const updSkills = [...userData.skills, ...skillsList];
       const updEducation = [...userData.education, ...educationList];
       const updWork = [...userData.workExperience, ...WorkExp];
+      console.log("Inside Fetch:", updWork)
       const response = await fetch(`http://localhost:8080/api/user/update-user`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           "auth-token": localStorage.getItem('auth-token'),
         },
-        body: JSON.stringify({ name: editName, education: updEducation, workExp: updWork, skills: updSkills }),
+        body: JSON.stringify({ name: editName, education: updEducation, workExperience: updWork, skills: updSkills }),
       });
       const json = await response.json();
       console.log(json);
