@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 function Logsign() {
   const navigate = useNavigate();
   return (
-    <div style={{ height: "100vh", margin: "1rem", padding: "5rem" }}>
+    <div style={{ height: "110vh", margin: "0.1rem", padding: "5rem" }}>
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={6}>
-          <Paper elevation={3} style={{ padding: '4rem ', width: "35vw", height: "50vh",margin:"1rem 0rem 2rem 5rem" }}>
-            
-            <div>
+          <Paper elevation={3} style={{ padding: '4rem ', width: "40vw", height: "85vh",margin:"0rem 0rem 5rem 3rem",backgroundImage:"linear-gradient(#032174,#2c7da0,#61a5c2,#82eefd)",color:"#151e3d",boxShadow:"4px 4px 4px 4px #151e3d"}}>
+            <img style={{borderRadius:"1rem",width:"30vw",marginLeft:"1rem",height:"40vh"}} src="https://penji.co/wp-content/uploads/2023/11/cover-image-chatgpt-business-ideas-1200x720.jpg" alt="image"/>
+            <div style={{marginTop:"1rem"}}>
               <h2 className='text-center'>For Businesses</h2>
             </div>
             <div>
@@ -18,7 +18,7 @@ function Logsign() {
               </h4>
             </div>
             <div className='text-center'>
-              <Button className='button' variant='contained'>
+              <Button style={{width:"10vw",height:"6vh",borderRadius:"2rem",backgroundColor:"#151e3d"}} className='button' variant='contained'>
                 Join Us
               </Button>
             </div>
@@ -26,8 +26,9 @@ function Logsign() {
           </Paper>
         </Grid>
         <Grid item xs={6}>
-          <Paper elevation={3} style={{padding: '4rem ', width: "35vw", height: "50vh",margin:"1rem 0.1rem 2rem 3rem"}}>
-            <div>
+          <Paper elevation={3} style={{padding: '4rem ',width: "40vw", height: "85vh",margin:"0rem 0rem 5rem 3rem",backgroundImage:"linear-gradient(#502380,#3e2f84,#795f80,#fff0f5)",color:"#ffff",boxShadow:"4px 4px 4px 4px #301934"}}>
+          <img style={{borderRadius:"1rem",width:"30vw",marginLeft:"1rem",height:"40vh",boxShadow:"4px 4px 4px 4px #795f80"}} src="https://imind.com/wp-content/uploads/2023/01/18.jpg" alt="image"/>
+            <div style={{margin:"1rem"}}>
               <h2 className='text-center'>For Normal Users</h2>
             </div>
             <div className='text-center'>
@@ -35,7 +36,7 @@ function Logsign() {
                 <h4 className='text-center'>Form groups with small businesses and a group of developers to increse productivity
                 </h4>
               </div>
-              <Button className='button' variant='contained' onClick={() => navigate("/signup")}>
+              <Button style={{width:"10vw",height:"6vh",borderRadius:"2rem",backgroundColor:"#301934"}} className='button' variant='contained' onClick={() => navigate("/signup")}>
                 Join Us
               </Button>
             </div>
