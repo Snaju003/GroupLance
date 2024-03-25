@@ -79,16 +79,14 @@ const UserAccounts = () => {
     setcompEndDate("");
     handleworkClose();
   };
+  const filteredNames = names.filter(name => userData.skills.includes(name));
 
-  const [skillsList, setSkillsList] = useState([userData.skills]);
+  const [skillsList, setSkillsList] = useState(userData.skills);
   const [newSkill, setNewSkill] = useState("");
   const handleAddSkills = () => {
-    const skill = {
-      newSkill
-    }
     if (newSkill !== "") {
-      setSkillsList([...skillsList, skill]);
-      setNewSkill(""); // Clear the input field after adding the skill
+      setSkillsList([...skillsList, newSkill]);
+      setNewSkill("");
     }
     handleSkillClose();
   };
@@ -143,14 +141,14 @@ const UserAccounts = () => {
     <div>
       <div style={{ padding: "2rem" }}>
         <Box>
-          <Typography variant="h2" component="div" className="text-center" color="white" style={{marginBottom:"2rem"}}>
+          <Typography variant="h2" component="div" className="text-center" color="white" style={{ marginBottom: "2rem" }}>
             Your Profile
           </Typography>
         </Box>
         <Box display="flex-wrap" justifyContent="center" alignItems="center" height="80vh" margin="auto" >
           <Box display="flex" flexDirection="row" gap={2}>
             <Box display="flex" flexDirection="column" gap={2}>
-              <Card sx={{ width: "40vw", height: "30vh", borderRadius: "1rem",marginLeft:"6rem" }}>
+              <Card sx={{ width: "40vw", height: "30vh", borderRadius: "1rem", marginLeft: "6rem" }}>
                 <CardContent>
                   <Typography variant="h5" component="div" gutterBottom>
                     UserName
@@ -170,7 +168,7 @@ const UserAccounts = () => {
                 </CardActions>
                 <Modal open={open} onClose={handleClose}>
                   <Box sx={{ ...style, width: 400 }}>
-                    <TextField label="Name" fullWidth onChange={(e) => setEditName(e.target.value)}/>
+                    <TextField label="Name" fullWidth onChange={(e) => setEditName(e.target.value)} />
                     <Button onClick={() => {
                       handleClose();
                       updateUser();
@@ -179,7 +177,7 @@ const UserAccounts = () => {
 
                 </Modal>
               </Card>
-              <Card sx={{ width: "40vw", height: "30vh", borderRadius: "1rem" ,marginLeft:"6rem"}}>
+              <Card sx={{ width: "40vw", height: "30vh", borderRadius: "1rem", marginLeft: "6rem" }}>
                 <CardContent>
                   <Typography variant="h5" component="div" gutterBottom>
                     Personal Ranking
@@ -217,11 +215,11 @@ const UserAccounts = () => {
                           <Autocomplete
                             multiple
                             id="tags-outlined"
-                            options={names.sort()}
+                            options={filteredNames.sort()}
                             getOptionLabel={(option) => option}
                             filterSelectedOptions
-                            value={newSkill}
-                            onChange={(e) => setSkillsList(e.target.value)}
+                            value={skillsList} 
+                            onChange={(event, value) => setSkillsList(value)} 
                             renderInput={(params) => (
                               <TextField {...params} label="Skills" placeholder="Add" />
                             )}
@@ -251,7 +249,7 @@ const UserAccounts = () => {
                   </Typography>
                   <List>
                     <ListItem>
-                      <Button variant="contained" onClick={handleeduOpen}>
+ </Typography>                     <Button variant="contained" onClick={handleeduOpen}>
                         Add <AddIcon />
                       </Button>
                       <Modal open={eduopen} onClose={handleeduClose}>
