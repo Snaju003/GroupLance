@@ -83,8 +83,11 @@ const UserAccounts = () => {
   const [skillsList, setSkillsList] = useState([userData.skills]);
   const [newSkill, setNewSkill] = useState("");
   const handleAddSkills = () => {
+    const skill = {
+      newSkill
+    }
     if (newSkill !== "") {
-      setSkillsList([...skillsList, newSkill]);
+      setSkillsList([...skillsList, skill]);
       setNewSkill(""); // Clear the input field after adding the skill
     }
     handleSkillClose();
@@ -137,7 +140,7 @@ const UserAccounts = () => {
   }, [currentUser, navigate]);
 
   return (
-    <>
+    <div>
       <div style={{ padding: "2rem" }}>
         <Box>
           <Typography variant="h2" component="div" className="text-center" color="white" style={{marginBottom:"2rem"}}>
@@ -217,8 +220,8 @@ const UserAccounts = () => {
                             options={names.sort()}
                             getOptionLabel={(option) => option}
                             filterSelectedOptions
-                            value={skillsList}
-                            onChange={(event, newValue) => setSkillsList(newValue)}
+                            value={newSkill}
+                            onChange={(e) => setSkillsList(e.target.value)}
                             renderInput={(params) => (
                               <TextField {...params} label="Skills" placeholder="Add" />
                             )}
@@ -384,7 +387,7 @@ const UserAccounts = () => {
           </Box>
         </Box>
       </div>
-    </>
+    </div>
   );
 };
 
