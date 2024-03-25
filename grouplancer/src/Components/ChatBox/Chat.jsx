@@ -96,7 +96,7 @@ const Chat = ({ groupName, chatid }) => {
             setNewMessage(e.target.value)
           }}
           onKeyUp={handleKeyPress}
-          placeholder="Type your mess age..."
+          placeholder="Type your message..."
           className="input-field"
           style={{ borderRadius: "0px", outline: "none", border: "none" }}
         />

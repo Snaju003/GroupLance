@@ -41,12 +41,14 @@
   
   .user-message {
     text-align: left;
+    margin-left: 22rem;
     background-color: #a3d2ca;
   }
   
   .other-message {
     text-align: left;
     background-color: #7161d5;
+    color: #eee;
   }
   
   .input-container {
