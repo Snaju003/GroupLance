@@ -40,6 +40,7 @@ const UserAccounts = () => {
   const [compstartDate, setcompStartDate] = useState("");
   const [compendDate, setcompEndDate] = useState("");
   const [educationList, setEducationList] = useState([]);
+  console.log(userData.name)
   const [editName, setEditName] = useState(userData.name)
 
   const handleOpen = () => setOpen(true);
@@ -81,7 +82,7 @@ const UserAccounts = () => {
   };
 
 
-  const [skillsList, setSkillsList] = useState([userData.skills]);
+  const [skillsList, setSkillsList] = useState(userData.skills);
   const [newSkill, setNewSkill] = useState("");
   const handleAddSkills = () => {
     if (newSkill !== "") {
