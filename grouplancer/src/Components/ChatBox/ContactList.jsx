@@ -1,6 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from 'react-router-dom';
+import "./Chat.css";
+
 const ContactList = ({ onGroupClick }) => {
   // Sample contacts
 
@@ -54,13 +56,13 @@ const ContactList = ({ onGroupClick }) => {
       <input
         type="text"
         onChange={handleChange}
-        placeholder="Search group name"
+        placeholder="  Search group name"
         value={searchInput}
-        style={{ height: "50px", width: "320px", borderRadius: "10px" }}
+        style={{ height: "50px", width: "320px", borderRadius: "10px", marginBottom: "1rem" }}
       />
-      <ul className="list-group" style={{ opacity: "0.7", borderRadius: "10px" }}>
+      <ul className="list-group">
         {groupData&&groupData.map((gdata) => (
-          <li key={gdata._id} className="list-group-item" style={{ paddingLeft: "10px" }} onClick={() => onGroupClick(gdata)}>
+          <li key={gdata._id} className="list-group-item" style={{ paddingLeft: "10px", borderRadius: "10px", marginBottom: "1rem" }} onClick={() => onGroupClick(gdata)}>
             <img src="./default-user.jpg" alt="picture" style={{ marginLeft: "10px", marginRight: "20px" }} />
             <strong>{gdata.group.gName}</strong>
             <br />

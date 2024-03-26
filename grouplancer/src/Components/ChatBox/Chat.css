@@ -97,3 +97,12 @@
     background-color: transparent;
   }
   
+  .list-group-item:hover {
+    background-color: #d5dcd5;
+  
+  }
+
+  .list-group-item:active {
+    background-color: #97a898;
+    transform: translateY(4px);
+  }
