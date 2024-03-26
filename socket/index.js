@@ -34,14 +34,14 @@ io.on("connection", (socket) => {
     // socket.on("send:message", (data) => {
     //     const user = getUser(data)
     // });
-    socket.on('join', (room, username) => {
+    socket.on('join', (room, user) => {
         socket.join(room);
         if (!rooms[room]) {
             rooms[room] = [];
         }
-        rooms[room].push({ id: socket.id, username });
-        io.to(room).emit('get:message', `${username} has joined the chat`);
-        io.to(room).emit('room:users', rooms[room].map(user => user.username));
+        rooms[room].push({ id: socket.id, user });
+        io.to(room).emit('get:message', `${user.name} has joined the chat`);
+        io.to(room).emit('room:users', rooms[room].map(user => user.user.name));
         // groups[socket.id] = username;
         // io.emit('get:message', `${username} has joined the chat`);
     });
@@ -58,22 +58,20 @@ io.on("connection", (socket) => {
             console.error(`User with id ${id} not found in room ${roomId}`);
             return;
         }
-        console.log('Message:', msg);
-        io.to(roomId).emit('get:message', `${user.username}: ${msg}`);
+        console.log(user.user.name, msg);
+        io.to(roomId).emit('get:message', { user: user.user, msg });
     });
 
     socket.on('disconnect', () => {
         for (const room in rooms) {
             const index = rooms[room].findIndex(user => user.id === socket.id);
             if (index !== -1) {
-                const username = rooms[room][index].username;
+                const user = rooms[room][index].user;
                 rooms[room].splice(index, 1);
-                io.to(room).emit('get:message', `${username} has left the chat`);
-                io.to(room).emit('room:users', rooms[room].map(user => user.username));
+                io.to(room).emit('get:message', `${user.name} has left the chat`);
+                io.to(room).emit('room:users', rooms[room].map(user => user.user.name));
             }
         }
-        // io.emit('get:message', `${users[socket.id]} has left the chat`);
-        // delete users[socket.id];
     });
 });
 
