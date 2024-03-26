@@ -23,8 +23,14 @@ import EditIcon from "@mui/icons-material/Edit";
 import { names } from "../constant/skills";
 
 const UserAccounts = () => {
-  const { currentUser, logout } = useUser();
-  const [userData, setUserData] = useState({ name: "", email: "" });
+  const { currentUser } = useUser();
+  //console.log(currentUser);
+  const [editName, setEditName] = useState("");
+  useEffect(() => {
+  const name = currentUser?.name;
+  setEditName(name);
+  },[currentUser]);
+  console.log(editName);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [skillopen, setskillOpen] = useState(false);
@@ -40,9 +46,7 @@ const UserAccounts = () => {
   const [compstartDate, setcompStartDate] = useState("");
   const [compendDate, setcompEndDate] = useState("");
   const [educationList, setEducationList] = useState([]);
-  console.log(userData.name)
-  const [editName, setEditName] = useState(userData.name)
-
+  
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleSkillOpen = () => setskillOpen(true);
@@ -81,39 +85,7 @@ const UserAccounts = () => {
     handleworkClose();
   };
 
-
-  const [skillsList, setSkillsList] = useState(userData.skills);
-  const [newSkill, setNewSkill] = useState("");
-  const handleAddSkills = () => {
-    if (newSkill !== "") {
-      setSkillsList([...skillsList, newSkill]);
-      setNewSkill("");
-    }
-    handleSkillClose();
-  };
-
-  const updateUser = async () => {
-    try {
-      const updSkills = [...userData.skills, ...skillsList];
-      const updEducation = [...userData.education, ...educationList];
-      const updWork = [...userData.workExperience, ...WorkExp];
-      console.log("Inside Fetch:", updWork)
-      const response = await fetch(`http://localhost:8080/api/user/update-user`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem('auth-token'),
-        },
-        body: JSON.stringify({ name: editName, education: updEducation, workExperience: updWork, skills: updSkills }),
-      });
-      const json = await response.json();
-      console.log(json);
-      navigate("/userAccount");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+  const [userData, setUserData] = useState({ name: "", email: "" });
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -138,6 +110,37 @@ const UserAccounts = () => {
     fetchUserData();
   }, [currentUser, navigate]);
 
+  
+  const [skillsList, setSkillsList] = useState(userData.skills);
+  const [newSkill, setNewSkill] = useState("");
+  const handleAddSkills = () => {
+    if (newSkill !== "") {
+      setSkillsList([...skillsList, newSkill]);
+      setNewSkill("");
+    }
+    handleSkillClose();
+  };
+  const updateUser = async () => {
+    try {
+      const updSkills = [...userData.skills, ...skillsList];
+      const updEducation = [...userData.education, ...educationList];
+      const updWork = [...userData.workExperience, ...WorkExp];
+      console.log("Inside Fetch:", updWork)
+      const response = await fetch(`http://localhost:8080/api/user/update-user`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('auth-token'),
+        },
+        body: JSON.stringify({ name: editName, education: updEducation, workExperience: updWork, skills: updSkills }),
+      });
+      const json = await response.json();
+      console.log(json);
+      navigate("/userAccount");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div>
       <div style={{ padding: "2rem" }}>
@@ -155,13 +158,13 @@ const UserAccounts = () => {
                     UserName
                   </Typography>
                   <Typography variant="body1" color="text.secondary">
-                    {userData.name}
+                 {currentUser?.name}
                   </Typography>
                   <Typography variant="h5" component="div" gutterBottom>
                     Email
                   </Typography>
                   <Typography variant="body1" color="text.secondary">
-                    {userData.email}
+                    {currentUser?.email}
                   </Typography>
                 </CardContent>
                 <CardActions>
