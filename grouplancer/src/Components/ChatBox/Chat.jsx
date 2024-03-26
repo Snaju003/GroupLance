@@ -4,12 +4,12 @@ import "./Chat.css";
 
 import { useUser } from "../../context/UserContext";
 
-const Chat = ({ groupName, chatid }) => {
+const Chat = ({ groupName, chatid, socket }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { currentUser } = useUser();
   const messagesEndRef = useRef(null);
-
+  // console.log(currentUser);
   useEffect(() => {
     const fetchMessages = async () => {
       try {
@@ -39,6 +39,18 @@ const Chat = ({ groupName, chatid }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  useEffect(() => {
+    socket.current.emit("join", chatid, currentUser.name);
+  }, [chatid, currentUser, socket]);
+
+  useEffect(() => {
+    socket.current.on("get:message", (msg) => {
+      console.log(msg);
+      // TODO: Here Message should be concate
+      // setMessages((prevMessages) => [...prevMessages, msg]);
+    });
+  }, [socket]);
+
   const handleSendMessage = async () => {
     if (newMessage.trim() === "") return;
     const updatedMessages = [...messages, { message: newMessage, senderId: currentUser }];
@@ -59,6 +71,7 @@ const Chat = ({ groupName, chatid }) => {
         }),
       });
       const json = await response.json();
+      socket.current.emit("send:message", chatid, socket.current.id, newMessage);
       setNewMessage("");
     } catch (error) {
       console.log('Error sending message:', error);
@@ -96,7 +109,7 @@ const Chat = ({ groupName, chatid }) => {
             setNewMessage(e.target.value)
           }}
           onKeyUp={handleKeyPress}
-          placeholder="Type your message..."
+          placeholder="Type your mess age..."
           className="input-field"
           style={{ borderRadius: "0px", outline: "none", border: "none" }}
         />
