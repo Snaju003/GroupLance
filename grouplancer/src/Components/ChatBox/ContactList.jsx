@@ -53,13 +53,13 @@ const ContactList = ({ onGroupClick }) => {
       <h3 className="text-center my-4" style={{ color: '#ffff' }}>
         My connections
       </h3>
-      <input
+      {/* <input
         type="text"
         onChange={handleChange}
         placeholder="  Search group name"
         value={searchInput}
         style={{ height: "50px", width: "320px", borderRadius: "10px", marginBottom: "1rem" }}
-      />
+      /> */}
       <ul className="list-group">
         {groupData&&groupData.map((gdata) => (
           <li key={gdata._id} className="list-group-item" style={{ paddingLeft: "10px", borderRadius: "10px", marginBottom: "1rem" }} onClick={() => onGroupClick(gdata)}>
