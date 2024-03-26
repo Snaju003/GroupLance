@@ -92,7 +92,7 @@ const Chat = ({ groupName, chatid, socket }) => {
   return (
     <>
       <div className="chat-container" style={{width: "100%"}}>
-        <div style={{ color: "#ffff", border: "1px solid #ffff", borderRadius: "10px", padding: "1rem", marginBottom: "1rem", fontWeight: "900", fontSize: "20px", width: "99%" }}>
+        <div style={{ color: "#ffff", border: "1px solid #ffff", borderRadius: "10px", padding: "1rem",marginTop: "1rem", marginBottom: "1rem", fontWeight: "900", fontSize: "20px", width: "99%" }}>
           {groupName}
         </div>
         <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent", border: "1px solid #ffff" }}>
@@ -116,7 +116,7 @@ const Chat = ({ groupName, chatid, socket }) => {
             onKeyUp={handleKeyPress}
             placeholder="Type your message..."
             className="input-field"
-            style={{ borderRadius: "20px", outline: "none", border: "none", marginRight: "1rem" }}
+            style={{ borderRadius: "20px", outline: "none", border: "none", marginRight: "1rem", height: "7.5vh" }}
           />
           <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "20px" }}>
             <span>Send</span>
