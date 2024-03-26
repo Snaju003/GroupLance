@@ -212,8 +212,8 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
               borderRadius: "20px",
               display: "flex",
               width: "25vw",
-              height: "25vh",
-              margin:"0rem 2rem 7rem 1rem",
+              height: "20vh",
+              margin:"0rem 2rem 10rem 1rem",
             }}
           >
             <h2 style={{fontweight:"bold",color:"black",padding:"0.5rem 2rem 0.5rem 2rem"}}>Add members</h2>
@@ -244,12 +244,12 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
             </div>
             
           </div>)}
-          {(grpLeader!==currentUser)?
+          {(grpLeader !== currentUser?._id) && (
           <div >
             <img style={{width:"25vw",height:"50vh",margin:"2rem 2rem 0rem 1rem",borderRadius:"2rem 2rem 0rem 0rem"}} src="https://assets-global.website-files.com/5b69a01ba2e409501de055d1/654397e57d1b4f0a5d9c1bc0_Social%20loafing.png" alt="filler"></img>
             <img style={{width:"25vw",height:"50vh",margin:"0rem 2rem 2rem 1rem",borderRadius:"0rem 0rem 2rem 2rem"}} src="https://imind.com/wp-content/uploads/2023/01/18.jpg" alt="filler"></img>
             
-          </div>:<div></div>}
+          </div>)}
           
         </div>
         
