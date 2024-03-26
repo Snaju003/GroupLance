@@ -27,7 +27,7 @@ function Logsign() {
         </Grid>
         <Grid item xs={6}>
           <Paper elevation={3} style={{padding: '4rem ',width: "40vw", height: "85vh",margin:"0rem 0rem 5rem 3rem",backgroundImage:"linear-gradient(#502380,#3e2f84,#795f80,#fff0f5)",color:"#ffff",boxShadow:"4px 4px 4px 4px #301934"}}>
-          <img style={{borderRadius:"1rem",width:"30vw",marginLeft:"1rem",height:"40vh",boxShadow:"4px 4px 4px 4px #795f80"}} src="https://teaching.uic.edu/wp-content/uploads/sites/683/2021/06/GroupWork-copy.png" alt="image"/>
+          <img style={{borderRadius:"1rem",width:"30vw",marginLeft:"1rem",height:"40vh"}} src="https://teaching.uic.edu/wp-content/uploads/sites/683/2021/06/GroupWork-copy.png" alt="image"/>
             <div style={{margin:"1rem"}}>
               <h2 className='text-center'>For Normal Users</h2>
             </div>
