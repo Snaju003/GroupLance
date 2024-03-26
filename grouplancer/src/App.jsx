@@ -34,6 +34,7 @@ import GroupTab from './Components/group/Group_Sidebar';
 import EditGroup from './Components/group/EditGroup';
 import Notification from './Components/notification/Notification';
 import Logsign from './Components/auth/Logsign';
+import { SocketProvider } from './context/SocketContext';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -106,7 +107,11 @@ function App() {
           <Route exact path='/findjob' element={<Jobs />} />
           <Route exact path='/recruit' element={<Recruits />} />
           <Route exact path='/topgroups' element={<TopGroups />} />
-          <Route exact path='/chatbox' element={<ChatBox />} />
+          <Route exact path='/chatbox' element={
+            <SocketProvider>
+              <ChatBox />
+            </SocketProvider>
+          } />
           <Route exact path='/sidebar' element={<Sidebar />} />
           <Route exact path='/userAccount' element={<UserAccounts />} />
           <Route exact path='/groups' element={<Groups />} />
