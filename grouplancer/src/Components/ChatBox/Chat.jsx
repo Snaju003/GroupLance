@@ -4,12 +4,12 @@ import "./Chat.css";
 
 import { useUser } from "../../context/UserContext";
 
-const Chat = ({ groupName, chatid }) => {
+const Chat = ({ groupName, chatid, socket }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { currentUser } = useUser();
   const messagesEndRef = useRef(null);
-
+  // console.log(currentUser);
   useEffect(() => {
     const fetchMessages = async () => {
       try {
@@ -39,6 +39,18 @@ const Chat = ({ groupName, chatid }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  useEffect(() => {
+    socket.current.emit("join", chatid, currentUser.name);
+  }, [chatid, currentUser, socket]);
+
+  useEffect(() => {
+    socket.current.on("get:message", (msg) => {
+      console.log(msg);
+      // TODO: Here Message should be concate
+      // setMessages((prevMessages) => [...prevMessages, msg]);
+    });
+  }, [socket]);
+
   const handleSendMessage = async () => {
     if (newMessage.trim() === "") return;
     const updatedMessages = [...messages, { message: newMessage, senderId: currentUser }];
@@ -59,6 +71,7 @@ const Chat = ({ groupName, chatid }) => {
         }),
       });
       const json = await response.json();
+      socket.current.emit("send:message", chatid, socket.current.id, newMessage);
       setNewMessage("");
     } catch (error) {
       console.log('Error sending message:', error);
@@ -73,38 +86,38 @@ const Chat = ({ groupName, chatid }) => {
 
   return (
     <>
-    <div className="chat-container">
-      <h1 className="text-center my-4" style={{ color: "#ffff" }}>
-        {groupName}
-      </h1>
-      <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent" }}>
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`message ${message.senderId._id === currentUser._id ? "user-message" : "other-message"}`}
-          >
-            <strong>{message.senderId.name}:</strong> {message.message}
-          </div>
-        ))}
-        <div ref={messagesEndRef} />
-      </Paper>
-      <div className="input-container" style={{ borderRadius: "0px", outline: "none" }}>
-        <TextField
-          type="text"
-          value={newMessage}
-          onChange={(e) => {
-            setNewMessage(e.target.value)
-          }}
-          onKeyUp={handleKeyPress}
-          placeholder="Type your mess age..."
-          className="input-field"
-          style={{ borderRadius: "0px", outline: "none", border: "none" }}
-        />
-        <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "none" }}>
-          <span>Send</span>
-        </Button>
+      <div className="chat-container">
+        <h1 className="text-center my-4" style={{ color: "#ffff" }}>
+          {groupName}
+        </h1>
+        <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent" }}>
+          {messages.map((message, index) => (
+            <div
+              key={index}
+              className={`message ${message.senderId._id === currentUser._id ? "user-message" : "other-message"}`}
+              ref={messagesEndRef}
+            >
+              <strong>{message.senderId.name}:</strong> {message.message}
+            </div>
+          ))}
+        </Paper>
+        <div className="input-container" style={{ borderRadius: "0px", outline: "none" }}>
+          <TextField
+            type="text"
+            value={newMessage}
+            onChange={(e) => {
+              setNewMessage(e.target.value)
+            }}
+            onKeyUp={handleKeyPress}
+            placeholder="Type your mess age..."
+            className="input-field"
+            style={{ borderRadius: "0px", outline: "none", border: "none" }}
+          />
+          <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "none" }}>
+            <span>Send</span>
+          </Button>
+        </div>
       </div>
-    </div>
     </>
   );
 };
