@@ -153,7 +153,7 @@ const UserAccounts = () => {
         <Box display="flex-wrap" justifyContent="center" alignItems="center" height="80vh" margin="auto"  >
           <Box display="flex" justifyContent="center" flexDirection="row" gap={0}>
             <Box display="flex" flexDirection="column" gap={2}>
-              <Card sx={{ width: "35vw", height: "60vh", borderRadius: "1rem", marginLeft: "0.1rem" ,backdropFilter:"blur(50px)"}}>
+              <Card sx={{ width: "35vw", height: "70vh", borderRadius: "1rem", marginLeft: "0.1rem" ,backdropFilter:"blur(50px)"}}>
                 <CardContent>
                 <div style={{ backgroundImage:"linear-gradient(#241571,#9867c5,#57a0d3)",borderRadius:"1rem 1rem 1rem 1rem",height:"23vh"}}>
                    <img src="https://cdn-icons-png.flaticon.com/256/4021/4021443.png" style={{ width: "10vw", height: "20vh" ,margin:" 5rem 7rem 0.2rem 11rem",bottom:"5px"}}></img>
