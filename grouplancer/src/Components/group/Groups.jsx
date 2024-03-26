@@ -211,9 +211,9 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
               boxShadow: "0 0 10px 5px",
               borderRadius: "20px",
               display: "flex",
-              width: "300px",
-              height: "250px",
-              marginBottom:"55%",
+              width: "25vw",
+              height: "25vh",
+              margin:"0rem 2rem 7rem 1rem",
             }}
           >
             <h2 style={{fontweight:"bold",color:"black",padding:"0.5rem 2rem 0.5rem 2rem"}}>Add members</h2>
@@ -221,7 +221,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
               class="card-body"
               style={{ backgroundColor: "white", borderRadius: "20px" }}
             >
-              <img src="https://tse4.mm.bing.net/th?id=OIP.JCwjYrZogNHv50VtbileUgHaEK&pid=Api&P=0&h=180" style={{width:"250px",height:"150px",borderRadius:"20px",margin:"10px 5px 10px 5px"}}></img>
+              <img src="https://tse4.mm.bing.net/th?id=OIP.JCwjYrZogNHv50VtbileUgHaEK&pid=Api&P=0&h=180" style={{width:"22vw",height:"150px",borderRadius:"20px",margin:"1px 5px 1px 1px"}}></img>
               <h4 className="text-center my-4">Invite a member</h4>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
@@ -237,13 +237,19 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
                   required
                 />
               </div>
-              <button style={{marginBottom:"1rem",marginLeft:"3.5rem"}}className="btn btn-primary" onSubmit={inviteMember}>
+              <button style={{transform:"translateX(70%)"}}className="btn btn-primary" onSubmit={inviteMember}>
                 Send Invitation
               </button>
               
             </div>
             
           </div>)}
+          {(grpLeader!==currentUser)?
+          <div >
+            <img style={{width:"25vw",height:"50vh",margin:"2rem 2rem 0rem 1rem",borderRadius:"2rem 2rem 0rem 0rem"}} src="https://assets-global.website-files.com/5b69a01ba2e409501de055d1/654397e57d1b4f0a5d9c1bc0_Social%20loafing.png" alt="filler"></img>
+            <img style={{width:"25vw",height:"50vh",margin:"0rem 2rem 2rem 1rem",borderRadius:"0rem 0rem 2rem 2rem"}} src="https://imind.com/wp-content/uploads/2023/01/18.jpg" alt="filler"></img>
+            
+          </div>:<div></div>}
           
         </div>
         

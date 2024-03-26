@@ -86,38 +86,38 @@ const Chat = ({ groupName, chatid, socket }) => {
 
   return (
     <>
-      <div className="chat-container">
-        <h1 className="text-center my-4" style={{ color: "#ffff" }}>
-          {groupName}
-        </h1>
-        <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent" }}>
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`message ${message.senderId._id === currentUser._id ? "user-message" : "other-message"}`}
-              ref={messagesEndRef}
-            >
-              <strong>{message.senderId.name}:</strong> {message.message}
-            </div>
-          ))}
-        </Paper>
-        <div className="input-container" style={{ borderRadius: "0px", outline: "none" }}>
-          <TextField
-            type="text"
-            value={newMessage}
-            onChange={(e) => {
-              setNewMessage(e.target.value)
-            }}
-            onKeyUp={handleKeyPress}
-            placeholder="Type your mess age..."
-            className="input-field"
-            style={{ borderRadius: "0px", outline: "none", border: "none" }}
-          />
-          <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "none" }}>
-            <span>Send</span>
-          </Button>
-        </div>
+    <div className="chat-container">
+      <h1 className="text-center my-4" style={{ color: "#ffff" }}>
+        {groupName}
+      </h1>
+      <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent" }}>
+        {messages.map((message, index) => (
+          <div
+            key={index}
+            className={`message ${message.senderId._id === currentUser._id ? "user-message" : "other-message"}`}
+          >
+            <strong>{message.senderId.name}:</strong> {message.message}
+          </div>
+        ))}
+        <div ref={messagesEndRef} />
+      </Paper>
+      <div className="input-container" style={{ borderRadius: "0px", outline: "none" }}>
+        <TextField
+          type="text"
+          value={newMessage}
+          onChange={(e) => {
+            setNewMessage(e.target.value)
+          }}
+          onKeyUp={handleKeyPress}
+          placeholder="Type your mess age..."
+          className="input-field"
+          style={{ borderRadius: "0px", outline: "none", border: "none" }}
+        />
+        <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "none" }}>
+          <span>Send</span>
+        </Button>
       </div>
+    </div>
     </>
   );
 };
