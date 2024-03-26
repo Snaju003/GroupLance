@@ -94,9 +94,9 @@ const Chat = ({ groupName, chatid, socket }) => {
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`message ${message.senderId._id === currentUser._id ? "user-message" : "other-message"}`}
+            className={`message ${message.senderId?._id === currentUser._id ? "user-message" : "other-message"}`}
           >
-            <strong>{message.senderId.name}:</strong> {message.message}
+            <strong>{message.senderId?.name}:</strong> {message.message}
           </div>
         ))}
         <div ref={messagesEndRef} />
