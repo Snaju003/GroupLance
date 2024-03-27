@@ -20,13 +20,12 @@ app.use(express.urlencoded({ extended: false }));
 //Available Routes
 connectdb();
 
-app.use('/api', fileRouter);
+app.use('/api/file-upload', fileRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/group', groupRouter);
 app.use('/api/user', userRouter);
 app.use('/api/tweet', tweetRouter);
 app.use('/api/conversation', conversationRouter);
-
 app.listen(port, () => {
     console.log(`Server is listening to port ${port}`);
 })
