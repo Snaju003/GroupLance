@@ -179,6 +179,9 @@ const deactivateUser = async (req, res) => {
         const user = await UserModel.findById(userId);
         const joinedGroups = user.groups;
         for (let i = 0; i < joinedGroups.length; i++) {
+            // if (joinedGroups[i]) {
+                
+            // }
             await GroupModel.findByIdAndUpdate(joinedGroups[i], { $inc: { gMemberNumber: -1 }, $pull: { members: userId } });
         }
         await UserModel.findByIdAndDelete(userId);

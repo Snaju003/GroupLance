@@ -12,7 +12,7 @@ const {
     joinRequest,
     addMember,
 } = require('../controllers/group');
-const fetchUser = require('../middleware/fetchUser');
+const fetchUser = require('../middleware/fetchuser');
 
 const groupRouter = express.Router();
 

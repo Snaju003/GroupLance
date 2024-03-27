@@ -112,7 +112,7 @@ Pass data from body
 }
 Done
 
-# Edit group info (In testing...don't fetch it)
+# Edit group info 
 
 URL: localhost:8080/api/group/edit-group-info (PUT Request)
 Pass 'auth-token' in header (Take it from localstorage)
