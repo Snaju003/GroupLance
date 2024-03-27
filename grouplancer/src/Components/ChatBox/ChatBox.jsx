@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import ContactList from './ContactList';
 import Chat from './Chat';
 import ChatHeader from './ChatHeader';
-import { useSocket } from '../../context/SocketContext';
+// import { useSocket } from '../../context/SocketContext';
 const ChatBox = () => {
   const [selectedGroup, setSelectedGroup] = useState(null);
-  const { groupId, setGroupId, socket } = useSocket();
+  // const { groupId, setGroupId, socket } = useSocket();
 
   const handleGroupClick = (group) => {
     setSelectedGroup(group);
@@ -22,7 +22,7 @@ const ChatBox = () => {
           <div style={{ flex: '3' }}>
             {
               selectedGroup ?
-                <Chat groupName={selectedGroup.group.gName} chatid={selectedGroup._id} socket={socket} /> :
+                <Chat groupName={selectedGroup.group.gName} chatid={selectedGroup._id}  /> :
                 <p>Select a group to start chatting.</p>
             }
           </div>

@@ -1,3 +1,4 @@
+const pusherServer = require("../database/pusher");
 const ConversationModel = require("../models/Conversation");
 const MessageModel = require("../models/Message");
 const mongoose = require('mongoose');
@@ -53,6 +54,13 @@ const sendMessage = async (req, res) => {
             conversationId: updatedConversation._id,
             isDeleted: false
         });
+        const populatedMessage = await newMessage.populate({
+            path: 'senderId',
+            select: 'name'
+        });
+        await pusherServer.trigger(updatedConversation?.id, "message:new", populatedMessage);
+        console.log(populatedMessage);
+        // updatedConversation.userIds
 
         return res.status(200).json({
             success: true,

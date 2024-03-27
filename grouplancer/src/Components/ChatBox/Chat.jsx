@@ -3,8 +3,10 @@ import { TextField, Button, Paper } from "@mui/material";
 import "./Chat.css";
 
 import { useUser } from "../../context/UserContext";
+import { pusherClient } from "../../context/Pusher";
+import { find } from 'lodash';
 
-const Chat = ({ groupName, chatid, socket }) => {
+const Chat = ({ groupName, chatid }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { currentUser } = useUser();
@@ -39,26 +41,48 @@ const Chat = ({ groupName, chatid, socket }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  useEffect(() => {
-    socket.current.emit("join", chatid, {
-      name: currentUser.name,
-      _id: currentUser._id
-    });
-  }, [chatid, currentUser, socket]);
+  // useEffect(() => {
+  //   socket.current.emit("join", chatid, {
+  //     name: currentUser.name,
+  //     _id: currentUser._id
+  //   });
+  // }, [chatid, currentUser, socket]);
+
+  // useEffect(() => {
+  //   socket.current.on("get:message", (msg) => {
+  //     console.log(msg);
+  //     // TODO: Here Message should be concate
+  //     // setMessages((prevMessages) => [...prevMessages, msg]);
+  //     setMessages([...messages, { message: msg.msg, senderId: msg.user }]);
+  //   });
+  // }, [socket]);
 
   useEffect(() => {
-    socket.current.on("get:message", (msg) => {
-      console.log(msg);
-      // TODO: Here Message should be concate
-      // setMessages((prevMessages) => [...prevMessages, msg]);
-      setMessages([...messages, { message: msg.msg, senderId: msg.user }]);
-    });
-  }, [socket]);
+    pusherClient.subscribe(chatid);
+    scrollToBottom();
+    const messageHandler = (message) => {
+      setMessages((current) => {
+        if (find(current, { id: message.id })) {
+          return current;
+        }
+        return [...current, message];
+      });
+      scrollToBottom();
+    }
+
+    pusherClient.bind("message:new", messageHandler);
+    return () => {
+      pusherClient.unsubscribe(chatid);
+      pusherClient.unbind("message:new", messageHandler);
+
+    }
+  }, [chatid])
+
 
   const handleSendMessage = async () => {
     if (newMessage.trim() === "") return;
-    const updatedMessages = [...messages, { message: newMessage, senderId: currentUser }];
-    setMessages(updatedMessages);
+    // const updatedMessages = [...messages, { message: newMessage, senderId: currentUser }];
+    // setMessages(updatedMessages);
 
     try {
       const authToken = localStorage.getItem("auth-token");
@@ -74,9 +98,8 @@ const Chat = ({ groupName, chatid, socket }) => {
           senderId: currentUser._id,
         }),
       });
-      const json = await response.json();
-      const userData = {};
-      socket.current.emit("send:message", chatid, socket.current.id, newMessage);
+      // const json = await response.json();
+      // socket.current.emit("send:message", chatid, socket.current.id, newMessage);
       setNewMessage("");
     } catch (error) {
       console.log('Error sending message:', error);

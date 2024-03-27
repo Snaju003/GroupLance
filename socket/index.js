@@ -63,15 +63,15 @@ io.on("connection", (socket) => {
     });
 
     socket.on('disconnect', () => {
-        for (const room in rooms) {
-            const index = rooms[room].findIndex(user => user.id === socket.id);
-            if (index !== -1) {
-                const user = rooms[room][index].user;
-                rooms[room].splice(index, 1);
-                io.to(room).emit('get:message', `${user.name} has left the chat`);
-                io.to(room).emit('room:users', rooms[room].map(user => user.user.name));
-            }
-        }
+        // for (const room in rooms) {
+        //     const index = rooms[room].findIndex(user => user.id === socket.id);
+        //     if (index !== -1) {
+        //         const user = rooms[room][index].user;
+        //         rooms[room].splice(index, 1);
+        //         io.to(room).emit('get:message', `${user.name} has left the chat`);
+        //         io.to(room).emit('room:users', rooms[room].map(user => user.user.name));
+        //     }
+        // }
     });
 });
 
