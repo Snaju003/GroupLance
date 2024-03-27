@@ -8,6 +8,7 @@ const groupRouter = require('./routes/group');
 const userRouter = require('./routes/user');
 const tweetRouter = require('./routes/tweet');
 const conversationRouter = require('./routes/conversation');
+const fileRouter = require('./controllers/file-upload');
 
 
 const port = process.env.PORT;
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 //Available Routes
 connectdb();
 
+app.use('/api', fileRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/group', groupRouter);
 app.use('/api/user', userRouter);
