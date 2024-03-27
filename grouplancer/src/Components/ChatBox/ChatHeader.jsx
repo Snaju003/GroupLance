@@ -5,7 +5,7 @@ const ChatHeader = () => {
     <>
       <header>
       <h1 className="text-center my-4" style={{ color: "#ffff" }}>
-        Chats
+        
       </h1>
       </header>
     </>

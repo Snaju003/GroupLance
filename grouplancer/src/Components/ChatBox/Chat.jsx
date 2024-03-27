@@ -114,11 +114,11 @@ const Chat = ({ groupName, chatid }) => {
 
   return (
     <>
-      <div className="chat-container">
-        <h1 className="text-center my-4" style={{ color: "#ffff" }}>
+      <div className="chat-container" style={{width: "100%"}}>
+        <div style={{ color: "#ffff", border: "1px solid #ffff", borderRadius: "10px", padding: "1rem",marginTop: "1rem", marginBottom: "1rem", fontWeight: "900", fontSize: "20px", width: "99%" }}>
           {groupName}
-        </h1>
-        <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent" }}>
+        </div>
+        <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent", border: "1px solid #ffff" }}>
           {messages.map((message, index) => (
             <div
               key={index}
@@ -129,7 +129,7 @@ const Chat = ({ groupName, chatid }) => {
           ))}
           <div ref={messagesEndRef} />
         </Paper>
-        <div className="input-container" style={{ borderRadius: "0px", outline: "none" }}>
+        <div className="input-container" style={{ margin: "1rem", outline: "none" }}>
           <TextField
             type="text"
             value={newMessage}
@@ -137,11 +137,11 @@ const Chat = ({ groupName, chatid }) => {
               setNewMessage(e.target.value)
             }}
             onKeyUp={handleKeyPress}
-            placeholder="Type your mess age..."
+            placeholder="Type your message..."
             className="input-field"
-            style={{ borderRadius: "0px", outline: "none", border: "none" }}
+            style={{ borderRadius: "20px", outline: "none", border: "none", marginRight: "1rem", height: "7.5vh" }}
           />
-          <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "none" }}>
+          <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "20px" }}>
             <span>Send</span>
           </Button>
         </div>
