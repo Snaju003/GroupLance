@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import About from "./About";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -22,14 +22,14 @@ const Home = (props) => {
     }
   }
 
- 
-    useEffect(()=>{
-      AOS.init({duration: 3000});
-    },[])
-  
+
+  useEffect(() => {
+    AOS.init({ duration: 3000 });
+  }, [])
+
   return (
     <div>
-      <div style={{ display: "flex" ,marginBottom:"0rem"}}>
+      <div style={{ display: "flex", marginBottom: "0rem" }}>
         <div style={{ display: "flex", gap: "2.5rem", marginTop: "0rem", backgroundSize: "cover" }}>
           <div className="frontimage" style={{ marginLeft: "5rem" }}>
             <p
@@ -77,35 +77,36 @@ const Home = (props) => {
         </div>
 
 
-        <div data-aos="zoom-in-down" className="first" style={{ width:"100%" }}>
-          <div style={{ display: "flex", gap: "1rem",justifyContent:"center" }}>
+        <div data-aos="zoom-in-down" className="first" style={{ width: "100%" }}>
+          <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
             <video src="./ezgif-6-71cbf8c057.mp4" autoPlay loop muted style={{ borderRadius: " 5rem 5rem 40rem 40rem", width: "50vw", height: "60vh", margin: "0rem 0rem 0rem 4rem" }} alt="gif"></video>
-            <div style={{ color: "white", margin: "1.5rem 2rem 0rem 1rem", height: "70vh", textAlign: "center" }}>
+            <div data-aos="fade-up" style={{ color: "white", margin: "1.5rem 2rem 0rem 1rem", height: "70vh", textAlign: "center" }}>
               <h1 style={{ fontSize: "3.6rem", fontWeight: "bold" }}>Divide
                 <br />the Tasks
                 <br />and
                 <br />Multiply
                 <br />the Success</h1>
             </div>
-         
-        </div>
-        <div className="second" style={{ width:"100%" }}>
-          <div style={{ display: "flex", gap: "1rem",justifyContent:"center" }}>
 
-            <div style={{ color: "white", margin: "0rem 4rem 0rem 10rem", height: "70vh", textAlign: "center" }}>
-              <h1 style={{ fontSize: "3.6rem", fontWeight: "bold" }}>Together
+          </div>
+          <div className="second" style={{ width: "100%" }}>
+            <div style={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
 
-                <br />We are
-                <br />Stronger
-              </h1>
+              <div style={{ color: "white", margin: "0rem 4rem 0rem 10rem", height: "70vh", textAlign: "center" }}>
+                <h1 style={{ fontSize: "3.6rem", fontWeight: "bold" }}>Together
+
+                  <br />We are
+                  <br />Stronger
+                </h1>
+              </div>
+              <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "100rem 5rem 5rem 100rem", width: "50vw", height: "60vh", margin: "0rem 0rem 0rem 0rem" }} alt="gif"></video>
             </div>
-            <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "100rem 5rem 5rem 100rem", width: "50vw", height: "60vh", margin: "0rem 0rem 0rem 0rem" }} alt="gif"></video>
           </div>
         </div>
-        </div>
-        <div data-aos="zoom-in-down" className="third" style={{ width:"100%" }}>
-          <div style={{ display: "flex", gap: "0.1rem",justifyContent:"center" }}>
-            <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "20px", width: "50vw", height: "50vh"}} alt="gif"></video>
+        <div data-aos="fade-left">
+        <div className="third" style={{ width: "100%" }}>
+          <div style={{ display: "flex", gap: "0.1rem", justifyContent: "center" }}>
+            <video src="./motion2.mp4" autoPlay loop muted style={{ borderRadius: "20px", width: "50vw", height: "50vh" }} alt="gif"></video>
             <div style={{ color: "white", margin: "1rem 6rem 1rem 2rem", height: "70vh", textAlign: "center" }}>
               <h1 style={{ fontSize: "3.6rem", fontWeight: "bold" }}>Collaboration
                 <br />is the
@@ -116,9 +117,9 @@ const Home = (props) => {
           </div>
         </div>
         {!currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
-        <div data-aos="fade-in" style={{  }}>
+        <div  className="subs">
           <h1 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}> Check out our subscription plans </h1>
-          < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover",}}>
+          < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover" }}>
             <div className="subscription" style={{ display: "flex" }} >
               <div className="card-active" style={{ borderRadius: "10px" }}>
                 <div className="space" style={{ display: "flex" }}>
@@ -196,6 +197,7 @@ const Home = (props) => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </div>
 
