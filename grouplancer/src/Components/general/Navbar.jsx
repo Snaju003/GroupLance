@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -9,13 +9,16 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import InputBase from '@mui/material/InputBase';
+import TextField from '@mui/material/TextField';
 import { Link } from "@mui/material";
 import { useUser } from "../../context/UserContext";
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -109,6 +112,9 @@ const NavBar = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     return (
         <AppBar position="static" style={{ backgroundColor: "#253aa1", background: "transparent" }}>
@@ -231,12 +237,12 @@ const NavBar = () => {
 
                     </Box>
                     <Link href="/notify">
-                    <NotificationsIcon style={{color:"white",marginRight:"1rem"}}>
-                           
-                           </NotificationsIcon>
+                        <NotificationsIcon style={{ color: "white", marginRight: "1rem" }}>
+
+                        </NotificationsIcon>
 
                     </Link>
-                   
+
                     <Search style={{ marginRight: "6rem" }}>
                         <SearchIconWrapper>
                             <SearchIcon />
@@ -277,14 +283,26 @@ const NavBar = () => {
                                         <Typography textAlign="center"><Button href="/" style={{ color: "black", textDecoration: "none" }} onClick={handleLogout}>Logout</Button></Typography>
                                     </MenuItem>
                                     <MenuItem onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center"><Button href="/" style={{ color: "black", textDecoration: "none" }} onClick={deactivateUser}>Delete User</Button></Typography>
+                                        <Typography textAlign="center"><Button style={{ color: "black", textDecoration: "none" }} onClick={handleOpen}>Delete User</Button></Typography>
                                     </MenuItem>
-
+                                    <Modal open={open} onClose={handleClose}>
+                                        <Box sx={{ ...style }}>
+                                            <Typography variant="h6" gutterBottom>
+                                                Are you sure you want to delete your account?
+                                            </Typography>
+                                            <Button href="/" variant="contained" color='error' onClick={deactivateUser} style={{ marginRight: '10px' }}>
+                                                Yes, delete
+                                            </Button>
+                                            <Button variant="contained" onClick={handleClose}>
+                                                Cancel
+                                            </Button>
+                                        </Box>
+                                    </Modal>
                                 </Menu>
                             </Box> :
                             <Link href="/logsig">
-                            <Button style={{ borderRadius: "10px", backgroundColor: "white", height: "8vh", width: "20vh", color: "black", marginLeft: "-2rem" }}>Sign Up/Sign In</Button>
-                            </Link>  }
+                                <Button style={{ borderRadius: "10px", backgroundColor: "white", height: "8vh", width: "20vh", color: "black", marginLeft: "-2rem" }}>Sign Up/Sign In</Button>
+                            </Link>}
                 </Toolbar>
             </Container>
         </AppBar>
@@ -292,3 +310,15 @@ const NavBar = () => {
 }
 
 export default NavBar;
+const style = {
+    position: "absolute",
+    gap: 2,
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+};
