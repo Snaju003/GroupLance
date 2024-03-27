@@ -56,7 +56,8 @@ const UserSchema = new Schema({
     },
     groups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'group' }],
     profile_pic: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'image'
     },
     skills: [{ type: String }],
     workExperience: [{ type: WorkExperienceSchema }],
