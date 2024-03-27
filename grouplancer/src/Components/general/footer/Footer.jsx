@@ -14,8 +14,8 @@ const Footer = () => {
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
             <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
             <section id="footer">
-                <footer className="top">
-                    <img src="grouplance-logo.png" alt="logo" />
+                {/* <footer className="top">
+
                     <div className="links">
                         <div>
                             <h2>Platform</h2>
@@ -34,21 +34,30 @@ const Footer = () => {
                             <Link to={`/`}>Partner Program</Link>
                         </div>
                     </div>
-                </footer>
+                </footer> */}
                 <footer className="bottom">
+                {/* <div>
+                    <img src="./grouplan.png" style={{ width: "15vw", height: "15vh", margin:"0rem 2rem 1rem 0rem"}} alt="logo" />
+                </div> */}
                     <div className="legal">
                         <span> © 2024 All rights reserved </span>
                         <Link to={`/`}>License</Link>
-                        <Link to={`/`}>Terms</Link>
+                        <Link to={`/`}>T&C</Link>
                         <Link to={`/`}>Privacy</Link>
+                        <Link to={`/`}>ContactUs</Link>
                     </div>
                     <div className="links">
                         <Link to={`/`} className="fa-brands fa-github" />
                         <Link to={`/`} className="fa-brands fa-linkedin" />
-                        <Link to={`/`} className="fa-brands fa-docker" />
+                        <Link to={`/`} className="fa-brands fa-google" />
+                        <Link to={`/`} className="fa-brands fa-instagram" />
+                        <Link to={`/`} className="fa-brands fa-facebook" />
                     </div>
+
                 </footer>
+                
             </section>
+
         </div>
     );
 }
