@@ -17,6 +17,7 @@ const fetchUser = require('../middleware/fetchUser');
 const groupRouter = express.Router();
 
 groupRouter.post('/create-group', fetchUser, createGroup);
+groupRouter.put('/edit-details', fetchuser);
 groupRouter.put('/join-request', fetchUser, joinRequest);
 groupRouter.post('/invite-members', fetchUser, inviteMember);
 groupRouter.put('/edit-group-info', fetchUser, editGroupInfo);

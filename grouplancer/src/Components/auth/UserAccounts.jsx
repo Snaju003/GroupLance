@@ -27,10 +27,9 @@ const UserAccounts = () => {
   //console.log(currentUser);
   const [editName, setEditName] = useState("");
   useEffect(() => {
-  const name = currentUser?.name;
-  setEditName(name);
-  },[currentUser]);
-  console.log(editName);
+    const name = currentUser?.name;
+    setEditName(name);
+  }, [currentUser]);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [skillopen, setskillOpen] = useState(false);
@@ -46,7 +45,7 @@ const UserAccounts = () => {
   const [compstartDate, setcompStartDate] = useState("");
   const [compendDate, setcompEndDate] = useState("");
   const [educationList, setEducationList] = useState([]);
-  
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleSkillOpen = () => setskillOpen(true);
@@ -110,7 +109,7 @@ const UserAccounts = () => {
     fetchUserData();
   }, [currentUser, navigate]);
 
-  
+
   const [skillsList, setSkillsList] = useState(userData.skills);
   const [newSkill, setNewSkill] = useState("");
   const handleAddSkills = () => {
@@ -120,19 +119,16 @@ const UserAccounts = () => {
     }
     handleSkillClose();
   };
-  const updateUser = async () => {
+
+  const updateUserName = async () => {
     try {
-      const updSkills = [...userData.skills, ...skillsList];
-      const updEducation = [...userData.education, ...educationList];
-      const updWork = [...userData.workExperience, ...WorkExp];
-      console.log("Inside Fetch:", updWork)
       const response = await fetch(`http://localhost:8080/api/user/update-user`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           "auth-token": localStorage.getItem('auth-token'),
         },
-        body: JSON.stringify({ name: editName, education: updEducation, workExperience: updWork, skills: updSkills }),
+        body: JSON.stringify({ name: editName }),
       });
       const json = await response.json();
       console.log(json);
@@ -141,11 +137,70 @@ const UserAccounts = () => {
       console.error(error);
     }
   };
+
+  const updateUserEducation = async () => {
+    try {
+      const updEducation = [...userData.education, ...educationList];
+      console.log("Education:",updEducation)
+      const response = await fetch(`http://localhost:8080/api/user/update-user`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('auth-token'),
+        },
+        body: JSON.stringify({ education: updEducation }),
+      });
+      const json = await response.json();
+      console.log(json);
+      navigate("/userAccount");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateUserSkills = async () => {
+    try {
+      const updSkills = [...userData.skills, ...skillsList];
+      const response = await fetch(`http://localhost:8080/api/user/update-user`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('auth-token'),
+        },
+        body: JSON.stringify({ skills: updSkills }),
+      });
+      const json = await response.json();
+      console.log(json);
+      navigate("/userAccount");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateUserWork = async () => {
+    try {
+      const updWork = [...userData.workExperience, ...WorkExp];
+      const response = await fetch(`http://localhost:8080/api/user/update-user`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('auth-token'),
+        },
+        body: JSON.stringify({ workExperience: updWork }),
+      });
+      const json = await response.json();
+      console.log(json);
+      navigate("/userAccount");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div style={{height:"200vh",marginBottom:"15rem"}}>
+    <div style={{ height: "200vh", marginBottom: "15rem" }}>
       <div style={{ padding: "2rem" }}>
         <Box>
-          <Typography variant="h2" component="div" className="text-center" color="white" style={{ marginBottom: "0.1rem" }}>
+          <Typography variant="h2" component="div" className="text-center" color="white" style={{ marginBottom: "1rem" }}>
             Your Profile
           </Typography>
         </Box>
@@ -153,21 +208,21 @@ const UserAccounts = () => {
         <Box display="flex-wrap" justifyContent="center" alignItems="center" height="80vh" margin="auto"  >
           <Box display="flex" justifyContent="center" flexDirection="row" gap={0}>
             <Box display="flex" flexDirection="column" gap={2}>
-              <Card sx={{ width: "35vw", height: "70vh", borderRadius: "1rem", marginLeft: "0.1rem" ,backdropFilter:"blur(50px)"}}>
+              <Card sx={{ width: "35vw", height: "70vh", borderRadius: "1rem", marginLeft: "0.1rem", backdropFilter: "blur(50px)" }}>
                 <CardContent>
-                <div style={{ backgroundImage:"linear-gradient(#241571,#9867c5,#57a0d3)",borderRadius:"1rem 1rem 1rem 1rem",height:"23vh"}}>
-                   <img src="https://cdn-icons-png.flaticon.com/256/4021/4021443.png" style={{ width: "10vw", height: "20vh" ,margin:" 5rem 7rem 0.2rem 11rem",bottom:"5px"}}></img>
-                </div>
+                  <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem 1rem 1rem 1rem", height: "23vh" }}>
+                    <img src="https://cdn-icons-png.flaticon.com/256/4021/4021443.png" style={{ width: "10vw", height: "20vh", margin: " 5rem 7rem 0.2rem 11rem", bottom: "5px" }}></img>
+                  </div>
                   <Typography variant="h5" component="div" gutterBottom textAlign="center" marginTop="5rem">
                     UserName
                   </Typography>
-                  <Typography variant="body1" color="text.secondary">
-                 {currentUser?.name}
+                  <Typography variant="body1" color="text.secondary" textAlign="center">
+                    {currentUser?.name}
                   </Typography>
                   <Typography variant="h5" component="div" gutterBottom textAlign="center">
                     Email
                   </Typography>
-                  <Typography variant="body1" color="text.secondary">
+                  <Typography variant="body1" color="text.secondary" textAlign="center">
                     {currentUser?.email}
                   </Typography>
                 </CardContent>
@@ -179,37 +234,34 @@ const UserAccounts = () => {
                     <TextField label="Name" fullWidth onChange={(e) => setEditName(e.target.value)} />
                     <Button onClick={() => {
                       handleClose();
-                      updateUser();
+                      updateUserName();
                     }} style={{ margin: "auto" }}>Submit</Button>
                   </Box>
-
                 </Modal>
               </Card>
             </Box>
           </Box>
-          <Box display="flex" flexDirection="column" gap={5} marginTop="2rem" alignItems="center">
-            
-              <Card sx={{ width: "60vw", height: "30vh", borderRadius: "1rem"}}>
-                <CardContent>
-                  <Typography variant="h5" component="div" gutterBottom>
-                    Personal Ranking
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary">
-                    userdata.ranking
-                  </Typography>
-                  <Typography variant="h5" component="div" gutterBottom>
-                    Group Rankings
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary">
-                    Highest Group Rank
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button style={{ margin: "auto" }}>Check All Rankings</Button>
-                </CardActions>
+          <Box display="flex" flexDirection="column" gap={2} marginTop="1rem" alignItems="center">
+            <Card sx={{ width: "60vw", height: "30vh", borderRadius: "1rem" }}>
+              <CardContent>
+                <Typography variant="h5" component="div" gutterBottom>
+                  Personal Ranking
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  userdata.ranking
+                </Typography>
+                <Typography variant="h5" component="div" gutterBottom>
+                  Group Rankings
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  Highest Group Rank
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button style={{ margin: "auto" }}>Check All Rankings</Button>
+              </CardActions>
+            </Card>
 
-              </Card>
-            
             <Box display="flex" flexDirection="column" gap={1}>
 
               <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
@@ -239,7 +291,7 @@ const UserAccounts = () => {
 
                           <Button onClick={() => {
                             handleAddSkills();
-                            updateUser();
+                            updateUserSkills();
                           }} style={{ margin: "auto" }}>Submit</Button>
                         </Box>
                       </Modal>
@@ -307,7 +359,7 @@ const UserAccounts = () => {
                           />
                           <Button onClick={() => {
                             handleAddEducation();
-                            updateUser();
+                            updateUserEducation();
                           }} style={{ marginTop: "1rem" }}>Submit</Button>
                         </Box>
                       </Modal>
@@ -377,7 +429,7 @@ const UserAccounts = () => {
                           />
                           <Button onClick={() => {
                             handleWorkEducation();
-                            updateUser();
+                            updateUserWork();
                           }} style={{ marginTop: "1rem" }}>Submit</Button>
                         </Box>
                       </Modal>

@@ -1,4 +1,8 @@
-export const uploadFile = async (req, res, next) => {
+const express = require("express");
+const fetchUser = require("../middleware/fetchuser");
+const fileRouter = express.Router();
+
+const uploadFile = async (req, res, next) => {
     try {
         if (!req.file) {
             return res.status(404).json({
@@ -23,3 +27,9 @@ export const uploadFile = async (req, res, next) => {
         })
     }
 }
+
+
+fileRouter.post('/upload-file', fetchUser, uploadFile);
+
+
+module.exports = fileRouter;
