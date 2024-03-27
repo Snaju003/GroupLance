@@ -23,7 +23,7 @@ const ChatBox = () => {
             {
               selectedGroup ?
                 <Chat groupName={selectedGroup.group.gName} chatid={selectedGroup._id}  /> :
-                <p>Select a group to start chatting.</p>
+                ""
             }
           </div>
         </div>
