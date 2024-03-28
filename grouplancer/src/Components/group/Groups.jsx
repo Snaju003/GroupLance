@@ -11,7 +11,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) => {
+const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal, domains }) => {
   const [credentials, setCredentials] = useState({ email: "" });
   const navigate = useNavigate();
   const { currentUser } = useUser();
@@ -168,6 +168,8 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
         >
           <p style={{ fontSize: "25px",padding:"10px" }}>Name: {projName} </p>
           <p style={{ fontSize: "25px" ,padding:"10px"}}>Description: {grpDesc}</p>
+          <p style={{ fontSize: "25px" ,padding:"10px"}}>Goal: {goal}</p>
+          <p style={{ fontSize: "25px" ,padding:"10px"}}>Domains: {domains}</p>
           <div
             style={{
               display: "flex",
@@ -191,7 +193,8 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
         <h1
           style={{
             color: "#ffff",
-            
+            marginTop: "2rem",
+            marginBottom: "2rem",
             marginLeft:"48rem",
           }}
         >
@@ -246,7 +249,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId }) =>
           </div>)}
           {(grpLeader !== currentUser?._id) && (
           <div >
-            <img style={{width:"25vw",height:"50vh",margin:"2rem 2rem 0rem 1rem",borderRadius:"2rem 2rem 0rem 0rem"}} src="https://assets-global.website-files.com/5b69a01ba2e409501de055d1/654397e57d1b4f0a5d9c1bc0_Social%20loafing.png" alt="filler"></img>
+            <img style={{width:"25vw",height:"50vh",margin:"0rem 2rem 0rem 1rem",borderRadius:"2rem 2rem 0rem 0rem"}} src="https://assets-global.website-files.com/5b69a01ba2e409501de055d1/654397e57d1b4f0a5d9c1bc0_Social%20loafing.png" alt="filler"></img>
             <img style={{width:"25vw",height:"50vh",margin:"0rem 2rem 2rem 1rem",borderRadius:"0rem 0rem 2rem 2rem"}} src="https://imind.com/wp-content/uploads/2023/01/18.jpg" alt="filler"></img>
             
           </div>)}
