@@ -4,10 +4,12 @@ import TopGroups from "./group/top_groups/Topgroups";
 import TopGroup from "./group/top_groups/TopGroup";
 
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
+import Layout from "./Layout/Layout";
 const Sidebar_ranking = () => {
     
     return (
         <>
+        <Layout>
          <section className="tab">
                 <Container>
                     <Row>
@@ -46,7 +48,7 @@ const Sidebar_ranking = () => {
                         </Col>
                     </Row>
                 </Container>
-            </section>
+            </section></Layout>
         </>
     );
 };

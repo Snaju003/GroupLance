@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ContactList from './ContactList';
 import Chat from './Chat';
 import ChatHeader from './ChatHeader';
+import Layout from '../Layout/Layout';
 // import { useSocket } from '../../context/SocketContext';
 const ChatBox = () => {
   const [selectedGroup, setSelectedGroup] = useState(null);
@@ -13,6 +14,7 @@ const ChatBox = () => {
 
   return (
     <>
+    <Layout>
       <ChatHeader />
       <div className="container" style={{ display: 'flex', flexDirection: 'column' }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-around' }}>
@@ -27,7 +29,7 @@ const ChatBox = () => {
             }
           </div>
         </div>
-      </div>
+      </div></Layout>
     </>
   );
 };

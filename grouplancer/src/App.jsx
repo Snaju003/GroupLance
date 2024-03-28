@@ -91,9 +91,9 @@ function App() {
 
   return (
     <div className='App'>
-      <NavBar />
+  
       <Router>
-        {/* <Header /> */}
+        
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/aboutus' element={<AboutUs bgcolor={bgcolor} />} />
@@ -128,7 +128,7 @@ function App() {
           <Route exact path="/notify" element={<Notification />} />
           <Route exact path="/logsig" element={<Logsign />} />
         </Routes>
-        <Footer />
+  
       </Router>
     </div>
   );

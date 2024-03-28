@@ -8,7 +8,7 @@ const connectdb = async () => {
         console.log('Connected to Database');
     } catch (error) {
         console.log(error);
-        process.exit();
+        setTimeout(connectdb, 5000);
     }
 }
 
