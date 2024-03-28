@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import Groups from "./Groups";
 import Livepost from "../Posts/Livepost";
+import Layout from "../Layout/Layout";
 
 const GroupTab = () => {
     const [groupDetails, setGroupDetails] = useState({});
@@ -70,6 +71,7 @@ const GroupTab = () => {
 
     return (
         <>
+        <Layout>
             <section className="tab">
                 <Container>
                     <Row>
@@ -109,6 +111,7 @@ const GroupTab = () => {
                     </Row>
                 </Container>
             </section>
+            </Layout>
         </>
     );
 };

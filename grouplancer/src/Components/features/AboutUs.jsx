@@ -1,4 +1,5 @@
 import React from "react";
+import Layout from "../Layout/Layout";
 // const responsive ={
 //   @media (min-width: 576px) { }
 
@@ -18,6 +19,7 @@ const AboutUs = (props) => {
   const { bgcolor } = props;
   return (
     <>
+    <Layout>
       <h1 className="text-center my-4" style={{ color: "#ffff", paddingTop: "5rem", fontWeight: "bold" }}>
         Welcome To Grouplancer!!!!
       </h1>
@@ -499,6 +501,7 @@ const AboutUs = (props) => {
       }
         `}
       </style>
+      </Layout>
     </>
   );
 };
