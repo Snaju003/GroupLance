@@ -52,10 +52,29 @@ const CreatePost1 = () => {
             });
             const data = await response.json();
             console.log(data);
-            setFormData({pDesc: "", media: null})
+            setFormData({ pDesc: "", media: null })
             navigate("/")
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    const handleFileUpload = async (e) => {
+        try {
+            e.preventDefault();
+            const authToken = localStorage.getItem('auth-token');
+            const response = await fetch("http://localhost:8080/api/file-upload/user", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": authToken,
+                },
+                body: JSON.stringify({formData})
+            });
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.log(error)
         }
     }
 
@@ -120,10 +139,13 @@ const CreatePost1 = () => {
                                         <Form.Control
                                             type="file"
                                             placeholder="Upload Media"
-                                            onChange={handleChange}
+                                            onChange={(e) => {
+                                                handleChange(e);
+                                                handleFileUpload(e);
+                                            }}
                                             name="media"
                                             accept="image/*, video/*"
-                                            
+
                                         />
                                     </Form.Group>
                                 </Row>
