@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import "./signup.css";
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { Typography } from "@mui/material";
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -141,7 +146,7 @@ const Signup = () => {
   return (
     <>
       <div style={{ height: "90vh" }}>
-        <div className={`container1 ${isActive ? "active" : ""}` } style={{margin:"3rem auto"}}>
+        <div className={`container1 ${isActive ? "active" : ""}`} style={{ margin: "3rem auto" }}>
           <div className="form-container sign-up">
             <form onSubmit={handleSignUpSubmit}>
               <h1>Create Account</h1>
@@ -160,78 +165,63 @@ const Signup = () => {
               <input type="password" placeholder="Confirm Password" onChange={onchange} name="cpassword" />
               <button>{buttonText}</button>
             </form>
-            {showModal && (
-              <div className="modal" style={{ display: "block" }}>
-                <div
-                  className="modal-content"
-                  style={{
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%, -50%)",
-                    width: "60%",
-                    padding: "10px",
-                    position: "fixed",
-                  }}
-                >
-                  <span
-                    onClick={closeModal}
-                    style={{ cursor: "pointer", float: "right", color: "black" }}
-                  >
-                    &times;
-                  </span>
-                  <h2 style={{ color: "black" }}>Enter OTP</h2>
-                  <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <input
-                      style={{ margin: 7 }}
-                      type="text"
-                      className="form-control"
-                      id="otpBox1"
-                      placeholder=""
-                      maxLength="1"
-                      onChange={onOtpChange}
-                      required
-                      name="num1"
-                    />
-                    <input
-                      style={{ margin: 7 }}
-                      type="text"
-                      className="form-control"
-                      id="otpBox2"
-                      placeholder=""
-                      maxLength="1"
-                      onChange={onOtpChange}
-                      required
-                      name="num2"
-                    />
-                    <input
-                      style={{ margin: 7 }}
-                      type="text"
-                      className="form-control"
-                      id="otpBox3"
-                      placeholder=""
-                      maxLength="1"
-                      onChange={onOtpChange}
-                      required
-                      name="num3"
-                    />
-                    <input
-                      style={{ margin: 7 }}
-                      type="text"
-                      className="form-control"
-                      id="otpBox4"
-                      placeholder=""
-                      maxLength="1"
-                      onChange={onOtpChange}
-                      required
-                      name="num4"
-                    />
-                  </div>
-                  <button className="btn btn-primary mt-3" onClick={sendOtp}>
-                    Verify OTP
-                  </button>
+            <Modal
+              open={showModal}
+              onClose={closeModal}
+              aria-labelledby="modal-modal-title"
+              aria-describedby="modal-modal-description"
+            >
+              <Box sx={{ ...style }}>
+                <Typography variant="h6" gutterBottom>
+                  Enter OTP
+                </Typography>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <TextField
+                    style={{ margin: 7 }}
+                    type="text"
+                    id="otpBox1"
+                    placeholder=""
+                    maxLength={1}
+                    onChange={onOtpChange}
+                    required
+                    name="num1"
+                  />
+                  <TextField
+                    style={{ margin: 7 }}
+                    type="text"
+                    id="otpBox2"
+                    placeholder=""
+                    maxLength={1}
+                    onChange={onOtpChange}
+                    required
+                    name="num2"
+                  />
+                  <TextField
+                    style={{ margin: 7 }}
+                    type="text"
+                    id="otpBox3"
+                    placeholder=""
+                    maxLength={1}
+                    onChange={onOtpChange}
+                    required
+                    name="num3"
+                  />
+                  <TextField
+                    style={{ margin: 7 }}
+                    type="text"
+                    id="otpBox4"
+                    placeholder=""
+                    maxLength={1}
+                    onChange={onOtpChange}
+                    required
+                    name="num4"
+                  />
                 </div>
-              </div>
-            )}
+                <Button variant="contained" onClick={sendOtp} style={{ marginTop: '1rem' }}>
+                  Verify OTP
+                </Button>
+              </Box>
+            </Modal>
           </div>
           <div className="form-container sign-in">
             <form onSubmit={handleLoginSubmit}>
@@ -278,36 +268,17 @@ const Signup = () => {
     </>
   );
 };
-
+const style = {
+  position: "absolute",
+  gap: 2,
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 export default Signup;
-{/* <section className="signup">
-        <Container>
-          <Row className="align-items-center">
-            <Col size={12} md={6}>
-              <img src="./signup_img.png" />
-            </Col>
-            <Col size={12} md={6}>
-              <h2 style={{color: "white"}}>Sign Up</h2>
-              <form onSubmit={handleSubmit}>
-                <Col>
-                  <Row size={12} sm={6} className="px-1">
-                    <input type="text" placeholder="Name"/>
-                  </Row>
-                  <Row size={12} sm={6} className="px-1">
-                    <input type="email" placeholder="Email"/>
-                  </Row>
-                  <Row size={12} sm={6} className="px-1">
-                    <input type="password" placeholder="Password"/>
-                  </Row>
-                  <Row size={12} sm={6} className="px-1">
-                    <input type="password" placeholder="Confirm Password"/>
-                  </Row>
-                  <Col size={12} className="px-1">
-                    <button type="submit"><span>{buttonText}</span></button>
-                  </Col>
-                </Col>
-              </form>
-            </Col>
-          </Row>
-        </Container>
-      </section > */}
+

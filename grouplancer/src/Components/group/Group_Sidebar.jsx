@@ -8,6 +8,7 @@ import Livepost from "../Posts/Livepost";
 const GroupTab = () => {
     const [groupDetails, setGroupDetails] = useState({});
     const [members, setMembers] = useState([]);
+    const [domains, setDomains] = useState([]);
     const navigate = useNavigate();
     const { currentUser } = useUser();
     const { id } = useParams();
@@ -33,6 +34,7 @@ const GroupTab = () => {
                 console.log(data.group);
                 setGroupDetails(data.group);
                 setMembers(data.group.members);
+                setDomains(data.group.domains)
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -83,7 +85,7 @@ const GroupTab = () => {
                                 </Nav>
                                 <Tab.Content id="slideInUp">
                                     <Tab.Pane eventKey="first">
-                                        <Groups grpName={groupDetails?.gName} grpLeader={groupDetails?.leader} projName={groupDetails?.projName} grpDesc={groupDetails?.gDesc} gMembers={members} groupId={id} />
+                                        <Groups grpName={groupDetails?.gName} grpLeader={groupDetails?.leader} projName={groupDetails?.projName} grpDesc={groupDetails?.gDesc} goal={groupDetails?.goal} domains={domains} gMembers={members} groupId={id} />
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="second">
                                         <div className="container">
