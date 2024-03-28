@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Signup from "../auth/Signup";
 import AOS from 'aos';
 import "aos/dist/aos.css";
+import Layout from "../Layout/Layout";
 
 
 const Home = (props) => {
@@ -28,6 +29,7 @@ const Home = (props) => {
   }, [])
 
   return (
+    <Layout>
     <div>
       <div style={{ display: "flex", marginBottom: "0rem" }}>
         <div style={{ display: "flex", gap: "2.5rem", marginTop: "0rem", backgroundSize: "cover" }}>
@@ -202,7 +204,7 @@ const Home = (props) => {
       </div>
 
     </div>
-
+    </Layout>
   );
 };
 

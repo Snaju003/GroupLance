@@ -21,6 +21,8 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import { names } from "../constant/skills";
+import NavBar from "../general/Navbar";
+import Footer from "../general/footer/Footer";
 
 const UserAccounts = () => {
   const { currentUser } = useUser();
@@ -141,7 +143,7 @@ const UserAccounts = () => {
   const updateUserEducation = async () => {
     try {
       const updEducation = [...userData.education, ...educationList];
-      console.log("Education:",updEducation)
+      console.log("Education:", updEducation)
       const response = await fetch(`http://localhost:8080/api/user/update-user`, {
         method: "PUT",
         headers: {
@@ -197,63 +199,60 @@ const UserAccounts = () => {
   };
 
   return (
-    <div style={{ height: "200vh", marginBottom: "15rem" }}>
+    <>
+    <NavBar />
+    <div style={{ height: "200vh" }}>
       <div style={{ padding: "2rem" }}>
         <Box>
           <Typography variant="h2" component="div" className="text-center" color="white" style={{ marginBottom: "1rem" }}>
             Your Profile
           </Typography>
         </Box>
-
-        <Box display="flex-wrap" justifyContent="center" alignItems="center" height="80vh" margin="auto"  >
-          <Box display="flex" justifyContent="center" flexDirection="row" gap={0}>
-            <Box display="flex" flexDirection="column" gap={2}>
-              <Card sx={{ width: "35vw", height: "70vh", borderRadius: "1rem", marginLeft: "0.1rem", backdropFilter: "blur(50px)" }}>
-                <CardContent>
-                  <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem 1rem 1rem 1rem", height: "23vh" }}>
-                    <img src="https://cdn-icons-png.flaticon.com/256/4021/4021443.png" style={{ width: "10vw", height: "20vh", margin: " 5rem 7rem 0.2rem 11rem", bottom: "5px" }}></img>
-                  </div>
-                  <Typography variant="h5" component="div" gutterBottom textAlign="center" marginTop="5rem">
-                    UserName
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary" textAlign="center">
-                    {currentUser?.name}
-                  </Typography>
-                  <Typography variant="h5" component="div" gutterBottom textAlign="center">
-                    Email
-                  </Typography>
-                  <Typography variant="body1" color="text.secondary" textAlign="center">
-                    {currentUser?.email}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button onClick={handleOpen} style={{ margin: "auto" }} startIcon={<EditIcon />}>Edit</Button>
-                </CardActions>
-                <Modal open={open} onClose={handleClose}>
-                  <Box sx={{ ...style, width: 400 }}>
-                    <TextField label="Name" fullWidth onChange={(e) => setEditName(e.target.value)} />
-                    <Button onClick={() => {
-                      handleClose();
-                      updateUserName();
-                    }} style={{ margin: "auto" }}>Submit</Button>
-                  </Box>
-                </Modal>
-              </Card>
-            </Box>
-          </Box>
-          <Box display="flex" flexDirection="column" gap={2} marginTop="1rem" alignItems="center">
-            <Card sx={{ width: "60vw", height: "30vh", borderRadius: "1rem" }}>
+        <Box justifyContent="center" alignItems="center" height="80vh" >
+          <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" gap={2} >
+            <Card sx={{ height: "55vh", borderRadius: "1rem", backdropFilter: "blur(50px)" }}>
               <CardContent>
-                <Typography variant="h5" component="div" gutterBottom>
+                <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem", height: "15vh" }}>
+                  <img src="https://cdn-icons-png.flaticon.com/256/4021/4021443.png" style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px" }}></img>
+                </div>
+                <Typography variant="h6" component="div" textAlign="center" marginTop="5rem">
+                  UserName
+                </Typography>
+                <Typography variant="body1" color="text.secondary" textAlign="center">
+                  {currentUser?.name}
+                </Typography>
+                <Typography variant="h6" component="div" textAlign="center">
+                  Email
+                </Typography>
+                <Typography variant="body1" color="text.secondary" textAlign="center">
+                  {currentUser?.email}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button onClick={handleOpen} style={{ margin: "auto" }} startIcon={<EditIcon />}>Edit</Button>
+              </CardActions>
+              <Modal open={open} onClose={handleClose}>
+                <Box sx={{ ...style, width: 400 }}>
+                  <TextField label="Name" fullWidth onChange={(e) => setEditName(e.target.value)} />
+                  <Button onClick={() => {
+                    handleClose();
+                    updateUserName();
+                  }} style={{ margin: "auto" }}>Submit</Button>
+                </Box>
+              </Modal>
+            </Card>
+            <Card sx={{ height: "55vh", borderRadius: "1rem", width: "20vw", paddingTop: "5rem" }}>
+              <CardContent>
+                <Typography variant="h5" textAlign="center" component="div" gutterBottom>
                   Personal Ranking
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant="body1" textAlign="center" color="text.secondary">
                   userdata.ranking
                 </Typography>
-                <Typography variant="h5" component="div" gutterBottom>
+                <Typography variant="h5" textAlign="center" component="div" gutterBottom>
                   Group Rankings
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
+                <Typography variant="body1" textAlign="center" color="text.secondary">
                   Highest Group Rank
                 </Typography>
               </CardContent>
@@ -261,195 +260,194 @@ const UserAccounts = () => {
                 <Button style={{ margin: "auto" }}>Check All Rankings</Button>
               </CardActions>
             </Card>
+          </Box>
+          <Box display="flex" flexDirection="column" gap={2} marginTop="1rem" alignItems="center">
+            <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
+              <CardContent style={{ display: "flex", justifyContent: "space-between" }}>
+                <Typography variant="h5" component="div" gutterBottom style={{ width: "fit-content" }}>
+                  Skills
+                </Typography>
+                <List>
+                  <ListItem>
+                    <Button variant="contained" onClick={handleSkillOpen}>
+                      Add <AddIcon />
+                    </Button>
+                    <Modal open={skillopen} onClose={handleSkillClose}>
+                      <Box sx={{ ...style, width: 400 }}>
+                        <Autocomplete
+                          multiple
+                          id="tags-outlined"
+                          options={names.sort()}
+                          getOptionLabel={(option) => option}
+                          filterSelectedOptions
+                          value={skillsList}
+                          onChange={(event, value) => setSkillsList(value)}
+                          renderInput={(params) => (
+                            <TextField {...params} label="Skills" placeholder="Add" />
+                          )}
+                        />
 
-            <Box display="flex" flexDirection="column" gap={1}>
+                        <Button onClick={() => {
+                          handleAddSkills();
+                          updateUserSkills();
+                        }} style={{ margin: "auto" }}>Submit</Button>
+                      </Box>
+                    </Modal>
+                    <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
+                      {userData.skills && userData.skills.map((skill, index) => (
+                        <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
+                          <ListItemText primary={skill} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </ListItem>
+                </List>
+              </CardContent>
+            </Card>
+            <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
+              <CardContent>
+                <Typography variant="h5" component="div" gutterBottom>
+                  Education
+                </Typography>
+                <List>
+                  <ListItem>
+                    <Button variant="contained" onClick={handleeduOpen}>
+                      Add <AddIcon />
+                    </Button>
+                    <Modal open={eduopen} onClose={handleeduClose}>
+                      <Box sx={{ ...style, width: 400 }}>
+                        <TextField
+                          label="Institution Name"
+                          fullWidth
+                          required
+                          value={institutionName}
+                          onChange={(e) => setInstitutionName(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="Duration"
+                          fullWidth
+                          required
+                          value={duration}
+                          onChange={(e) => setDuration(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="Start Date"
+                          fullWidth
+                          required
+                          type="date"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          value={startDate}
+                          onChange={(e) => setStartDate(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="End Date"
+                          fullWidth
+                          required
+                          type="date"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          value={endDate}
+                          onChange={(e) => setEndDate(e.target.value)}
+                        />
+                        <Button onClick={() => {
+                          handleAddEducation();
+                          updateUserEducation();
+                        }} style={{ marginTop: "1rem" }}>Submit</Button>
+                      </Box>
+                    </Modal>
+                    <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
+                      {userData.education && userData.education.map((edu, index) => (
+                        <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
+                          <ListItemText primary={edu.institutionName} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </ListItem>
+                </List>
+              </CardContent>
+            </Card>
 
-              <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
-                <CardContent style={{ display: "flex", justifyContent: "space-between" }}>
-                  <Typography variant="h5" component="div" gutterBottom style={{ width: "fit-content" }}>
-                    Skills
-                  </Typography>
-                  <List>
-                    <ListItem>
-                      <Button variant="contained" onClick={handleSkillOpen}>
-                        Add <AddIcon />
-                      </Button>
-                      <Modal open={skillopen} onClose={handleSkillClose}>
-                        <Box sx={{ ...style, width: 400 }}>
-                          <Autocomplete
-                            multiple
-                            id="tags-outlined"
-                            options={names.sort()}
-                            getOptionLabel={(option) => option}
-                            filterSelectedOptions
-                            value={skillsList}
-                            onChange={(event, value) => setSkillsList(value)}
-                            renderInput={(params) => (
-                              <TextField {...params} label="Skills" placeholder="Add" />
-                            )}
-                          />
+            <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
+              <CardContent>
+                <Typography variant="h5" component="div" gutterBottom>
+                  Work Experience
+                </Typography>
+                <List>
+                  <ListItem>
 
-                          <Button onClick={() => {
-                            handleAddSkills();
-                            updateUserSkills();
-                          }} style={{ margin: "auto" }}>Submit</Button>
-                        </Box>
-                      </Modal>
-                      <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
-                        {userData.skills && userData.skills.map((skill, index) => (
-                          <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
-                            <ListItemText primary={skill} />
-                          </ListItem>
-                        ))}
-                      </List>
-                    </ListItem>
-                  </List>
-                </CardContent>
-              </Card>
-              <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
-                <CardContent>
-                  <Typography variant="h5" component="div" gutterBottom>
-                    Education
-                  </Typography>
-                  <List>
-                    <ListItem>
-                      <Button variant="contained" onClick={handleeduOpen}>
-                        Add <AddIcon />
-                      </Button>
-                      <Modal open={eduopen} onClose={handleeduClose}>
-                        <Box sx={{ ...style, width: 400 }}>
-                          <TextField
-                            label="Institution Name"
-                            fullWidth
-                            required
-                            value={institutionName}
-                            onChange={(e) => setInstitutionName(e.target.value)}
-                            style={{ marginBottom: "2vh" }}
-                          />
-                          <TextField
-                            label="Duration"
-                            fullWidth
-                            required
-                            value={duration}
-                            onChange={(e) => setDuration(e.target.value)}
-                            style={{ marginBottom: "2vh" }}
-                          />
-                          <TextField
-                            label="Start Date"
-                            fullWidth
-                            required
-                            type="date"
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
-                            style={{ marginBottom: "2vh" }}
-                          />
-                          <TextField
-                            label="End Date"
-                            fullWidth
-                            required
-                            type="date"
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
-                            value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
-                          />
-                          <Button onClick={() => {
-                            handleAddEducation();
-                            updateUserEducation();
-                          }} style={{ marginTop: "1rem" }}>Submit</Button>
-                        </Box>
-                      </Modal>
-                      <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
-                        {userData.education && userData.education.map((edu, index) => (
-                          <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
-                            <ListItemText primary={edu.institutionName} />
-                          </ListItem>
-                        ))}
-                      </List>
-                    </ListItem>
-                  </List>
-                </CardContent>
-              </Card>
-
-              <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
-                <CardContent>
-                  <Typography variant="h5" component="div" gutterBottom>
-                    Work Experience
-                  </Typography>
-                  <List>
-                    <ListItem>
-
-                      <Button variant="contained" onClick={handleworkOpen}>
-                        Add <AddIcon />
-                      </Button>
-                      <Modal open={workopen} onClose={handleworkClose}>
-                        <Box sx={{ ...style, width: 400 }}>
-                          <TextField
-                            label="Company Name"
-                            fullWidth
-                            required
-                            value={companyname}
-                            onChange={(e) => setcompanyname(e.target.value)}
-                            style={{ marginBottom: "2vh" }}
-                          />
-                          <TextField
-                            label="Duration"
-                            fullWidth
-                            required
-                            value={compduration}
-                            onChange={(e) => setcompDuration(e.target.value)}
-                            style={{ marginBottom: "2vh" }}
-                          />
-                          <TextField
-                            label="Start Date"
-                            fullWidth
-                            required
-                            type="date"
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
-                            value={compstartDate}
-                            onChange={(e) => setcompStartDate(e.target.value)}
-                            style={{ marginBottom: "2vh" }}
-                          />
-                          <TextField
-                            label="End Date"
-                            fullWidth
-                            required
-                            type="date"
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
-                            value={compendDate}
-                            onChange={(e) => setcompEndDate(e.target.value)}
-                          />
-                          <Button onClick={() => {
-                            handleWorkEducation();
-                            updateUserWork();
-                          }} style={{ marginTop: "1rem" }}>Submit</Button>
-                        </Box>
-                      </Modal>
-                      <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
-                        {userData.workExperience && userData.workExperience.map((work, index) => (
-                          <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
-                            <ListItemText primary={work.companyname} />
-                          </ListItem>
-                        ))}
-                      </List>
-                    </ListItem>
-                  </List>
-                </CardContent>
-              </Card>
-            </Box>
-
+                    <Button variant="contained" onClick={handleworkOpen}>
+                      Add <AddIcon />
+                    </Button>
+                    <Modal open={workopen} onClose={handleworkClose}>
+                      <Box sx={{ ...style, width: 400 }}>
+                        <TextField
+                          label="Company Name"
+                          fullWidth
+                          required
+                          value={companyname}
+                          onChange={(e) => setcompanyname(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="Duration"
+                          fullWidth
+                          required
+                          value={compduration}
+                          onChange={(e) => setcompDuration(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="Start Date"
+                          fullWidth
+                          required
+                          type="date"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          value={compstartDate}
+                          onChange={(e) => setcompStartDate(e.target.value)}
+                          style={{ marginBottom: "2vh" }}
+                        />
+                        <TextField
+                          label="End Date"
+                          fullWidth
+                          required
+                          type="date"
+                          InputLabelProps={{
+                            shrink: true,
+                          }}
+                          value={compendDate}
+                          onChange={(e) => setcompEndDate(e.target.value)}
+                        />
+                        <Button onClick={() => {
+                          handleWorkEducation();
+                          updateUserWork();
+                        }} style={{ marginTop: "1rem" }}>Submit</Button>
+                      </Box>
+                    </Modal>
+                    <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
+                      {userData.workExperience && userData.workExperience.map((work, index) => (
+                        <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
+                          <ListItemText primary={work.companyname} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </ListItem>
+                </List>
+              </CardContent>
+            </Card>
           </Box>
         </Box>
       </div>
     </div>
+  
+    </>
   );
 };
 
