@@ -9,6 +9,7 @@ import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Layout from '../Layout/Layout';
 import { Col, Row, Container, Form } from "react-bootstrap";
+import "../auth/signupbusiness.css";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -18,15 +19,15 @@ export default function SignUpBuis() {
             <section className="create" >
                 <Container >
                     <Row className="align-items-center" >
-                        <h1 className="text-center my-4" style={{ color: "#ffff", paddingBottom: "2vh" }}>
+                        <h1 className="heading" style={{ color: "#ffff", padding: "2rem 2rem 0rem 10rem" }}>
                             Sign Up
                         </h1>
 
-                        <Col className="form" size={12} md={6} style={{ display: "flex", gap: "150px", marginLeft: "100px" }}>
+                        <Col className="form" size={12} md={6} style={{ display: "flex" }}>
                             <form>
                                 <Col className="column" style={{ width: "31.25vw" }}>
                                     <Row size={12} sm={6} className="px-1">
-                                        <input type="text" placeholder="Company Name" onChange={onchange}
+                                        <input className="entry" type="text" placeholder="Company Name" onChange={onchange}
                                             name="name" required />
                                     </Row>
                                     <Row size={12} sm={6} className="px-1" >
@@ -94,18 +95,16 @@ export default function SignUpBuis() {
                                         <input type="number" placeholder="Phone Number" onChange={onchange}
                                             name="address" required />
                                     </Row>
-                                    <Col size={12} className="px-1" style={{ marginLeft: "160px" }}>
+                                    <Col size={12} className="px-1" style={{ marginLeft:"9rem" }}>
                                         <button className="button-48" style={{ borderRadius: "20px", marginRight: "8rem" }} type="submit"><span>Sign Up</span></button>
                                     </Col>
                                 </Col>
                             </form>
                         </Col>
+                        
                     </Row>
                 </Container>
-                <div className="boximage" style={{ gap: "6rem" }}>
-                    <img src="./creategrp.jpg" alt="group" style={{ borderRadius: "30px 30px 0px 0px", height: "400px", width: "450px" }} />
-                    <img src="./creategrp3.avif" alt="group" style={{ borderRadius: "0px 0px 30px 30px", height: "400px", width: "450px" }} />
-                </div>
+               
             </section>
         </Layout>
     );

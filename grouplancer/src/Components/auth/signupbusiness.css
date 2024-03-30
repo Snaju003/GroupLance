@@ -1,0 +1,16 @@
+.align-items-center{
+    /* background-image:url(https://img.freepik.com/premium-photo/creative-business-concept-with-team-close-up_950002-9604.jpg); */
+    background-image:url(https://img.freepik.com/premium-photo/business-people-working-around-big-light-bulb-dark-blue-background-teamwork-concept_753066-791.jpg);
+    margin:2rem;
+    padding:0rem 4rem 1rem 4rem;
+    display:flex;
+    border-radius:2rem;
+    background-size:cover;
+    background-position:left;
+    background-blend-mode:darken;
+}
+
+.entry{
+    background-color:white;
+
+}
