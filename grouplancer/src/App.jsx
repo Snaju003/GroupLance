@@ -35,6 +35,7 @@ import EditGroup from './Components/group/EditGroup';
 import Notification from './Components/notification/Notification';
 import Logsign from './Components/auth/Logsign';
 import { SocketProvider } from './context/SocketContext';
+import SignUpBuis from './Components/auth/SignUp_Buisness';
 import CreateAccount from './Components/auth/CreateAccount';
 
 function App() {
@@ -128,6 +129,7 @@ function App() {
           <Route exact path="/editgrp" element={<EditGroup />} />
           <Route exact path="/notify" element={<Notification />} />
           <Route exact path="/logsig" element={<Logsign />} />
+          <Route exact path="/signupbuis" element={<SignUpBuis />} />
           <Route exact path="/create" element={<CreateAccount />} />
         </Routes>
   
