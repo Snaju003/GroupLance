@@ -26,6 +26,57 @@ const CreateAccount = () => {
 
   const { currentUser } = useUser();
   const navigate = useNavigate();
+  const [skillopen, setskillOpen] = useState(false);
+  const [eduopen, seteduOpen] = useState(false);
+  const [workopen, setworkOpen] = useState(false);
+  const [WorkExp, setWorkExp] = useState([]);
+  const [institutionName, setInstitutionName] = useState("");
+  const [duration, setDuration] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [companyname, setcompanyname] = useState("");
+  const [compduration, setcompDuration] = useState("");
+  const [compstartDate, setcompStartDate] = useState("");
+  const [compendDate, setcompEndDate] = useState("");
+  const [educationList, setEducationList] = useState([]);
+
+
+  const handleSkillOpen = () => setskillOpen(true);
+  const handleSkillClose = () => setskillOpen(false);
+  const handleeduOpen = () => seteduOpen(true);
+  const handleeduClose = () => seteduOpen(false);
+  const handleworkOpen = () => setworkOpen(true);
+  const handleworkClose = () => setworkOpen(false);
+
+  const handleAddEducation = () => {
+    const newEducation = {
+      institutionName,
+      duration,
+      startDate,
+      endDate
+    };
+    setEducationList([...educationList, newEducation]);
+    setInstitutionName("");
+    setDuration("");
+    setStartDate("");
+    setEndDate("");
+    handleeduClose();
+  };
+  const handleWorkEducation = () => {
+    const newWork = {
+      companyname,
+      compduration,
+      compstartDate,
+      compendDate
+    };
+    setWorkExp([...WorkExp, newWork]);
+    setcompanyname("");
+    setcompDuration("");
+    setcompStartDate("");
+    setcompEndDate("");
+    handleworkClose();
+  };
+
   const [userData, setUserData] = useState({ name: "", email: "" });
   useEffect(() => {
     const fetchUserData = async () => {
@@ -52,68 +103,14 @@ const CreateAccount = () => {
   }, [currentUser, navigate]);
 
 
-  const [workopen, setworkOpen] = useState(false);
-  const handleworkOpen = () => setworkOpen(true);
-  const handleworkClose = () => setworkOpen(false);
-  const [companyname, setcompanyname] = useState("");
-  const [compduration, setcompDuration] = useState("");
-  const [compstartDate, setcompStartDate] = useState("");
-  const [compendDate, setcompEndDate] = useState("");
-  const [WorkExp, setWorkExp] = useState([]);
-  const handleWorkEducation = () => {
-      const newWork = {
-          companyname,
-          compduration,
-          compstartDate,
-          compendDate
-        };
-        setWorkExp([...WorkExp, newWork]);
-        setcompanyname("");
-        setcompDuration("");
-        setcompStartDate("");
-        setcompEndDate("");
-        handleworkClose();
-    };
-    
-    const [eduopen, seteduOpen] = useState(false);
-    const handleeduOpen = () => seteduOpen(true);
-    const handleeduClose = () => seteduOpen(false);
-    const [institutionName, setInstitutionName] = useState("");
-    const [duration, setDuration] = useState("");
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
-    const [educationList, setEducationList] = useState([]);
-  const handleAddEducation = () => {
-    const newEducation = {
-      institutionName,
-      duration,
-      startDate,
-      endDate
-    };
-    setEducationList([...educationList, newEducation]);
-    setInstitutionName("");
-    setDuration("");
-    setStartDate("");
-    setEndDate("");
-    handleeduClose();
-  };
-  const updateUserWork = async () => {
-    try {
-      const updWork = [...userData.workExperience, ...WorkExp];
-      const response = await fetch(`http://localhost:8080/api/user/update-user`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem('auth-token'),
-        },
-        body: JSON.stringify({ workExperience: updWork }),
-      });
-      const json = await response.json();
-      console.log(json);
-      navigate("/userAccount");
-    } catch (error) {
-      console.error(error);
+  const [skillsList, setSkillsList] = useState(userData.skills);
+  const [newSkill, setNewSkill] = useState("");
+  const handleAddSkills = () => {
+    if (newSkill !== "") {
+      setSkillsList([...skillsList, newSkill]);
+      setNewSkill("");
     }
+    handleSkillClose();
   };
 
   const updateUserEducation = async () => {
@@ -136,21 +133,6 @@ const CreateAccount = () => {
     }
   };
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const [skillopen, setskillOpen] = useState(false);
-  const handleSkillOpen = () => setskillOpen(true);
-  const handleSkillClose = () => setskillOpen(false);
-  const [skillsList, setSkillsList] = useState({});
-  const [newSkill, setNewSkill] = useState("");
-  const handleAddSkills = () => {
-    if (newSkill !== "") {
-      setSkillsList([...skillsList, newSkill]);
-      setNewSkill("");
-    }
-    handleSkillClose();
-  };
   const updateUserSkills = async () => {
     try {
       const updSkills = [...userData.skills, ...skillsList];
@@ -161,6 +143,25 @@ const CreateAccount = () => {
           "auth-token": localStorage.getItem('auth-token'),
         },
         body: JSON.stringify({ skills: updSkills }),
+      });
+      const json = await response.json();
+      console.log(json);
+      navigate("/userAccount");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const updateUserWork = async () => {
+    try {
+      const updWork = [...userData.workExperience, ...WorkExp];
+      const response = await fetch(`http://localhost:8080/api/user/update-user`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem('auth-token'),
+        },
+        body: JSON.stringify({ workExperience: updWork }),
       });
       const json = await response.json();
       console.log(json);
@@ -183,7 +184,7 @@ const CreateAccount = () => {
             </h1>
             
             <Col className="form"size={12} md={6} style={{display:"flex",gap:"150px",marginLeft:"140px"}}>
-              <form onSubmit={()=>{navigate("/")}}>
+              <form >
               <Col className="column" style={{width:"31.25vw"}}>
                  
                   <Row size={12} sm={6} className="px-1">
@@ -318,7 +319,7 @@ const CreateAccount = () => {
                       </Box>
                     </Modal>
                   <Col size={12} className="px-1" style={{marginLeft:"160px"}}>
-                    {/* <button className="button-48" style={{borderRadius:"20px",marginRight:"8rem"}} type="submit"><span>Add Details</span></button> */}
+                    <button className="button-48" style={{borderRadius:"20px",marginRight:"8rem"}} type="submit"><span>Add Details</span></button>
                   </Col>
                 </Col>
               </form>
