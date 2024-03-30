@@ -24,6 +24,8 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 function Mypost(props) {
   const theme = useTheme();
@@ -167,7 +169,7 @@ function Mypost(props) {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu}>
-                <Typography><Button style={{ color: "black", textDecoration: "none" }} >Edit</Button></Typography>
+                <Typography><Button style={{ textDecoration: "none" }}  startIcon={<EditIcon />}>Edit</Button></Typography>
                 <Modal
                   open={open}
                   onClose={handleClose}
@@ -215,7 +217,7 @@ function Mypost(props) {
                 </Modal>
               </MenuItem>
               <MenuItem onClick={handleCloseUserMenu}>
-                <Typography><Button style={{ color: "black", textDecoration: "none" }} onClick={deletePost}>Delete</Button></Typography>
+                <Typography><Button style={{ color: "red", textDecoration: "none" }} startIcon={<DeleteIcon />} onClick={deletePost}>Delete</Button></Typography>
               </MenuItem>
             </Menu>
           </div>
