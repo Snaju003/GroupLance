@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import About from "./About";
 import { useUser } from "../../context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import Signup from "../auth/Signup";
 import AOS from 'aos';
 import "aos/dist/aos.css";
+import Layout from "../Layout/Layout";
 
 
 const Home = (props) => {
@@ -28,6 +29,7 @@ const Home = (props) => {
   }, [])
 
   return (
+    <Layout>
     <div>
       <div style={{ display: "flex", marginBottom: "0rem" }}>
         <div style={{ display: "flex", gap: "2.5rem", marginTop: "0rem", backgroundSize: "cover" }}>
@@ -62,9 +64,9 @@ const Home = (props) => {
                 <li>Chat And Connect With Others</li>
               </ul>
             </div>
-            <button type="submit" className="community" onChange={handleClick} style={{ margin: "2rem 0rem 1rem 1rem", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
+           <Link to="/Signup"><button type="submit" className="community" onChange={handleClick} style={{ margin: "2rem 0rem 1rem 1rem", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
               Join the community
-            </button>
+            </button></Link>
           </div>
           <div style={{ display: "flex" }}>
             <video src="./front.mp4" autoPlay loop muted style={{ width: "60vw", height: "90vh", borderRadius: "20rem", marginTop: "0rem", marginRight: "3.8rem" }} alt="gif"></video>
@@ -202,7 +204,7 @@ const Home = (props) => {
       </div>
 
     </div>
-
+    </Layout>
   );
 };
 

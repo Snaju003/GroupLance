@@ -2,10 +2,12 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import CreatePost1 from "./CreatePost1";
 import Myposts from "./Myposts";
 import LivePosts from "./LivePosts";
+import Layout from "../Layout/Layout";
 
 const Postbar = () => {
   return (
     <>
+    <Layout>
       <section className="tab">
         <Container>
           <Row>
@@ -39,6 +41,7 @@ const Postbar = () => {
           </Row>
         </Container>
       </section>
+      </Layout>
     </>
   );
 }

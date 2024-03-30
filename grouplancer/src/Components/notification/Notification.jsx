@@ -1,5 +1,6 @@
 import React from "react";
 import Invite from "./invite";
+import Layout from "../Layout/Layout";
 
 const Notification = () => {
     const title = "hello";
@@ -7,6 +8,7 @@ const Notification = () => {
     const color = "#dfdffb";
     return (
         <>
+        <Layout>
             <h1 className='text-center my-4' style={{ color: '#ffff' }}>Notifications</h1>
             <div className="container">
                 <div className="container row" style={{flexDirection:"column"}}>
@@ -19,6 +21,7 @@ const Notification = () => {
                     
                 </div>
             </div>
+            </Layout>
         </>
     )
 }

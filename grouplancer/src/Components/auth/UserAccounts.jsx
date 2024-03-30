@@ -21,6 +21,8 @@ import {
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
 import { names } from "../constant/skills";
+import NavBar from "../general/Navbar";
+import Footer from "../general/footer/Footer";
 
 const UserAccounts = () => {
   const { currentUser } = useUser();
@@ -197,6 +199,8 @@ const UserAccounts = () => {
   };
 
   return (
+    <>
+    <NavBar />
     <div style={{ height: "200vh" }}>
       <div style={{ padding: "2rem" }}>
         <Box>
@@ -442,6 +446,8 @@ const UserAccounts = () => {
         </Box>
       </div>
     </div>
+  
+    </>
   );
 };
 

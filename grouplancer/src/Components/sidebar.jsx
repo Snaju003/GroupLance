@@ -4,11 +4,13 @@ import JoinedGroups from "./group/joined_groups/JoinedGroups";
 import CreateGroup from "./group/CreateGroup";
 import GroupsInvite from "./group/group_invite/groupsinvite";
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
+import Layout from "./Layout/Layout";
 
 const Sidebar = () => {
 
     return (
         <>
+        <Layout>
             <section className="tab">
                 <Container>
                     <Row>
@@ -48,6 +50,7 @@ const Sidebar = () => {
                     </Row>
                 </Container>
             </section>
+            </Layout>
         </>
     );
 };

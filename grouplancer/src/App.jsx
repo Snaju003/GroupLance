@@ -35,6 +35,8 @@ import EditGroup from './Components/group/EditGroup';
 import Notification from './Components/notification/Notification';
 import Logsign from './Components/auth/Logsign';
 import { SocketProvider } from './context/SocketContext';
+import SignUpBuis from './Components/auth/SignUp_Buisness';
+import CreateAccount from './Components/auth/CreateAccount';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -91,9 +93,9 @@ function App() {
 
   return (
     <div className='App'>
-      <NavBar />
+  
       <Router>
-        {/* <Header /> */}
+        
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/aboutus' element={<AboutUs bgcolor={bgcolor} />} />
@@ -127,8 +129,10 @@ function App() {
           <Route exact path="/editgrp" element={<EditGroup />} />
           <Route exact path="/notify" element={<Notification />} />
           <Route exact path="/logsig" element={<Logsign />} />
+          <Route exact path="/signupbuis" element={<SignUpBuis />} />
+          <Route exact path="/create" element={<CreateAccount />} />
         </Routes>
-        <Footer />
+  
       </Router>
     </div>
   );
