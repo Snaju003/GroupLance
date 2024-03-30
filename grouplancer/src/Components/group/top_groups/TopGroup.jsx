@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 const TopGroup = ({color,title,description,id,canJoin}) => {
     const topGroup = async (e) => {
         e.preventDefault();
@@ -16,9 +18,9 @@ const TopGroup = ({color,title,description,id,canJoin}) => {
     }
     return (
         <>
-            <div className="card" style={{ backgroundColor: color , }}>
-                <div className="card-body" >
-                    <h5 className="card-title">{title}</h5>
+            <div className="card" style={{backgroundImage:"linear-gradient( #6666ff, #1a1aff)", backdropFilter:"blur(50px)",boxShadow:"10px 5px 5px #a6a6a6", border:"4px solid white",borderRadius:"4px" }}>
+                <div className="card-body" style={{color:"#fff"}}>
+                    <h5 style={{fontWeight:"700px"}} className="card-title">{title}</h5>
                     <p className="card-text">{description}</p>
                     <a href="/" className="btn btn-primary" onClick={topGroup}>Join Group</a>
                 </div>
