@@ -4,6 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from "../../context/UserContext";
 import Select from 'react-select';
 
+function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = () => {
+            resolve(fileReader.result)
+        };
+        fileReader.onerror = (error) => {
+            reject(error)
+        }
+    })
+}
+
 const CreatePost1 = () => {
 
     const navigate = useNavigate();
@@ -15,6 +28,28 @@ const CreatePost1 = () => {
         pDesc: "",
         media: null
     });
+
+    const [postImage, setPostImage] = useState("");
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const authToken = localStorage.getItem('auth-token');
+                const response = await fetch("http://localhost:8080/api/file-upload/get-user-picture", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": authToken,
+                    },
+                });
+                const data = await response.json();
+                // console.log(data.existsImage.image);
+                setFormData({ ...formData, media: data.existsImage.image });
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    }, [])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -60,6 +95,13 @@ const CreatePost1 = () => {
     }
 
     const handleFileUpload = async (e) => {
+        const file = e.target.files[0];
+        const base64 = await convertToBase64(file);
+        setPostImage(base64);
+        if (!postImage) {
+            e.target.value = null;
+            return;
+        }
         try {
             e.preventDefault();
             const authToken = localStorage.getItem('auth-token');
@@ -69,7 +111,7 @@ const CreatePost1 = () => {
                     "Content-Type": "application/json",
                     "auth-token": authToken,
                 },
-                body: JSON.stringify({formData})
+                body: JSON.stringify({ file: postImage })
             });
             const data = await response.json();
             console.log(data);
@@ -162,8 +204,8 @@ const CreatePost1 = () => {
                     <Col className="boximage">
                         {formData.media ? (
                             <img
-                                src={URL.createObjectURL(formData.media)}
-                                alt="image"
+                                src={formData.media}
+                                alt="post"
                                 style={{ borderRadius: "30px 30px 30px 30px", height: "50vh", width: "30vw", marginLeft: "15vh" }}
                             />
                         ) : (
