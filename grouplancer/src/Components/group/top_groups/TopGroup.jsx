@@ -22,7 +22,7 @@ const TopGroup = ({color,title,description,id,canJoin}) => {
                 <div className="card-body" style={{color:"#fff"}}>
                     <h5 style={{fontWeight:"700px"}} className="card-title">{title}</h5>
                     <p className="card-text">{description}</p>
-                    <a href="/" className="btn btn-primary" onClick={topGroup}>Join Group</a>
+                    <a href="/" style={{backgroundColor: "#000066"}} className="btn btn-primary" onClick={topGroup}>Join Group</a>
                 </div>
             </div>
         </>
