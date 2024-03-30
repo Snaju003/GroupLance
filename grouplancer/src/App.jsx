@@ -35,6 +35,7 @@ import EditGroup from './Components/group/EditGroup';
 import Notification from './Components/notification/Notification';
 import Logsign from './Components/auth/Logsign';
 import { SocketProvider } from './context/SocketContext';
+import CreateAccount from './Components/auth/CreateAccount';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -127,6 +128,7 @@ function App() {
           <Route exact path="/editgrp" element={<EditGroup />} />
           <Route exact path="/notify" element={<Notification />} />
           <Route exact path="/logsig" element={<Logsign />} />
+          <Route exact path="/create" element={<CreateAccount />} />
         </Routes>
   
       </Router>
