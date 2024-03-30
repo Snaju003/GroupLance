@@ -7,9 +7,10 @@ const ImageSchema = new mongoose.Schema({
         required: true,
     },
     image: {
-        data: Buffer,
-        contentType: String,
-    }
+        type: String
+        // data: Buffer,
+        // contentType: String,
+    },
 }, { timestamps: true });
 
 const ImageModel = mongoose.model('image', ImageSchema);
