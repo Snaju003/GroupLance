@@ -102,6 +102,10 @@ export default function SignUpBuis() {
                         </Col>
                     </Row>
                 </Container>
+                <div className="boximage" style={{ gap: "6rem" }}>
+                    <img src="./creategrp.jpg" alt="group" style={{ borderRadius: "30px 30px 0px 0px", height: "400px", width: "450px" }} />
+                    <img src="./creategrp3.avif" alt="group" style={{ borderRadius: "0px 0px 30px 30px", height: "400px", width: "450px" }} />
+                </div>
             </section>
         </Layout>
     );
