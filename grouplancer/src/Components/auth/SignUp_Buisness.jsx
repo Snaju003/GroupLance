@@ -27,7 +27,7 @@ export default function SignUpBuis() {
                             <form>
                                 <Col className="column" style={{ width: "31.25vw" }}>
                                     <Row size={12} sm={6} className="px-1">
-                                        <input className="entry" type="text" placeholder="Company Name" onChange={onchange}
+                                        <input  type="text" placeholder="Company Name" onChange={onchange}
                                             name="name" required />
                                     </Row>
                                     <Row size={12} sm={6} className="px-1" >
