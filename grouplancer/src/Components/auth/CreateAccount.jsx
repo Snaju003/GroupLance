@@ -1,163 +1,125 @@
-import * as React from "react";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import {
-    FormGroup,
-    FormControl,
-    InputLabel,
-    Input,
-    Button,
-    makeStyles,
-    TextField,
-    styled,
-    Card,
-    CardContent,
-    Autocomplete,
-    Box,
-    Typography,
-    Grid,
-    Slider,
-    Fab,
-    Select,
-    Chip,
-    MenuItem,
-    OutlinedInput,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
-  } from "@mui/material";
-
-
-
-import Signup from "./Signup";
-const steps = [
-  "Add Personal Details",
-  "Select Template",
-  "Finish and Check Up",
-];
+import React, { useEffect, useState } from "react";
+import { useUser } from "../../context/UserContext";
+import { useNavigate } from 'react-router-dom';
+import { Col, Row, Container, Form } from "react-bootstrap";
+import Layout from "../Layout/Layout";
+import { names } from "../constant/skills";
 
 const CreateAccount = () => {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [skipped, setSkipped] = React.useState(new Set());
+  const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: [], groupType: "", whoCanJoin: "", groupMembers: "" });
+  const { currentUser } = useUser();
+  const navigate = useNavigate();
 
-  const isStepOptional = (step) => {
-    return step === 1;
-  };
+  useEffect(() => {
+    // if (!currentUser) {
+    //   navigate('/login');
+    // }
+  }, [currentUser, navigate]);
 
-  const isStepSkipped = (step) => {
-    return skipped.has(step);
-  };
-
-  const handleNext = () => {
-    let newSkipped = skipped;
-    if (isStepSkipped(activeStep)) {
-      newSkipped = new Set(newSkipped.values());
-      newSkipped.delete(activeStep);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const authToken = localStorage.getItem("auth-token");
+      const response = await fetch("http://localhost:8080/api/group/create-group", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken
+        },
+        body: JSON.stringify({
+          leader: currentUser._id,
+          gName: credentials.gName,
+          gDesc: credentials.gDesc,
+          projName: credentials.projName,
+          goal: credentials.goal,
+          domains: credentials.domains,
+          publicGroup: credentials.groupType === "Public",
+          anyoneCanJoin: credentials.whoCanJoin === "Anyone can join"
+        }),
+      });
+      const json = await response.json();
+      console.log(json);
+      setCredentials({});
+      navigate("/");
+    } catch (error) {
+      console.log(error);
     }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
   };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const handleSkip = () => {
-    if (!isStepOptional(activeStep)) {
-      
-      throw new Error("You can't skip a step that isn't optional.");
-    }
-
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped((prevSkipped) => {
-      const newSkipped = new Set(prevSkipped.values());
-      newSkipped.add(activeStep);
-      return newSkipped;
-    });
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
+  const handleChange = (e) => {
+    const { name, options } = e.target;
+    const selectedOptions = Array.from(options)
+      .filter(option => option.selected)
+      .map(option => option.value);
+    setCredentials({ ...credentials, [name]: selectedOptions });
   };
 
   return (
     <>
-      <Card
-        sx={{ maxWidth: "80vw", margin: "10vh auto", borderRadius: "15vh" ,padding:"50px"}}
-      >
-        <CardContent>
-          <Box sx={{ width: "100%" }}>
-            <Stepper activeStep={activeStep}>
-              {steps.map((label, index) => {
-                const stepProps = {};
-                const labelProps = {};
-                if (isStepOptional(index)) {
-                  labelProps.optional = (
-                    <Typography variant="caption"></Typography>
-                  );
-                }
-                if (isStepSkipped(index)) {
-                  stepProps.completed = false;
-                }
-                return (
-                  <Step key={label} {...stepProps}>
-                    <StepLabel {...labelProps}>{label}</StepLabel>
-                  </Step>
-                );
-              })}
-            </Stepper>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography sx={{ mt: 2, mb: 1 }}>
-                  All steps completed - you&apos;re finished
-                </Typography>
-                <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                  <Box sx={{ flex: "1 1 auto" }} />
-                  <Button onClick={handleReset}>Reset</Button>
-                </Box>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                <Typography sx={{ mt: 2, mb: 1 }}>
-                    {
-                activeStep === 0 ? (
-                    <Signup />
-                  ) : activeStep === 1 ? (
-                    <Signup/>
-                  ) : (
-                    "Check Details"
-                  )}
-
-                </Typography>
-                <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                  <Button
-                    color="inherit"
-                    disabled={activeStep === 0}
-                    onClick={handleBack}
-                    sx={{ mr: 1 }}
-                  >
-                    Back
-                  </Button>
-                  <Box sx={{ flex: "1 1 auto" }} />
-                  {isStepOptional(activeStep) && (
-                    <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                      Skip
-                    </Button>
-                  )}
-
-                  <Button onClick={handleNext}>
-                    {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                  </Button>
-                </Box>
-              </React.Fragment>
-            )}
-          </Box>
-        </CardContent>
-      </Card>
+      <Layout>
+        <section className="create">
+          <Container>
+            <Row className="align-items-center">
+              <h1 className="text-center my-4" style={{ color: "#ffff", paddingBottom: "2vh" }}>
+                Create Group
+              </h1>
+              <Col className="form" size={12} md={6} style={{ display: "flex", gap: "150px", marginLeft: "140px" }}>
+                <form onSubmit={handleSubmit}>
+                  <Col className="column" style={{ width: "31.25vw" }}>
+                    <Row size={12} sm={6} className="px-1">
+                      <input type="text" placeholder="work Experience" onChange={e => setCredentials({ ...credentials, projName: e.target.value })} name="projName" required />
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <input type="text" placeholder="Education" onChange={e => setCredentials({ ...credentials, goal: e.target.value })} name="goal" required />
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <Form.Select className="domainForm" onChange={handleChange} name="domains" style={{ maxHeight: '200px', overflowY: "scroll" }} multiple required>
+                        {names.map((name, index) => (
+                          <option style={{ color: "black" }} key={index} value={name}>{name}</option>
+                        ))}
+                      </Form.Select>
+                    </Row>
+                    <Row size={12} sm={6} className="px-1">
+                      <textarea rows="4" placeholder="Group Description" onChange={e => setCredentials({ ...credentials, gDesc: e.target.value })} name="gDesc" required></textarea>
+                    </Row>
+                    <Col size={12} className="px-1" style={{ marginLeft: "160px" }}>
+                      <button className="button-48" style={{ borderRadius: "20px", marginRight: "8rem" }} type="submit"><span>Add Details</span></button>
+                    </Col>
+                  </Col>
+                </form>
+                <div className="boximage" style={{ gap: "6rem" }}>
+                  <img src="./creategrp.jpg" alt="group" style={{ borderRadius: "30px 30px 30px 30px", height: "420px", width: "450px" }} />
+                </div>
+              </Col>
+            </Row>
+          </Container>
+          <style>
+            {`
+             @media (max-width: 991.98px) { 
+               .boximage {
+                 display: none;
+               }
+               .form {
+                 align-items: center;
+               }
+               h1 {
+                 padding-left: 15vw;
+               }
+             }
+             .button-48 {
+               margin-right: 100px;
+             }
+             @media (max-width: 1199.98px) { 
+               .button-48 {
+                 margin-right: 5000vw;
+               }
+             }
+            `}
+          </style>
+        </section>
+      </Layout>
     </>
   );
 };
+
 export default CreateAccount;
