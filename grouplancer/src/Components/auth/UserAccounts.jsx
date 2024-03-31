@@ -439,7 +439,7 @@ const UserAccounts = () => {
                 </List>
               </CardContent>
             </Card>
-            <Button style={{position:"absolute", right:"10rem",top:"110vh"}} variant="contained" onClick={handleSkillOpen}>
+            <Button style={{position:"absolute", right:"10rem",top:"110vh"}} variant="contained" onClick={()=>{navigate('/create')}}>
                       Add <AddIcon />
                     </Button>
           </Box>
