@@ -269,9 +269,6 @@ const UserAccounts = () => {
                 </Typography>
                 <List>
                   <ListItem>
-                    <Button variant="contained" onClick={handleSkillOpen}>
-                      Add <AddIcon />
-                    </Button>
                     <Modal open={skillopen} onClose={handleSkillClose}>
                       <Box sx={{ ...style, width: 400 }}>
                         <Autocomplete
@@ -311,9 +308,9 @@ const UserAccounts = () => {
                 </Typography>
                 <List>
                   <ListItem>
-                    <Button variant="contained" onClick={handleeduOpen}>
+                    {/* <Button variant="contained" onClick={handleeduOpen}>
                       Add <AddIcon />
-                    </Button>
+                    </Button> */}
                     <Modal open={eduopen} onClose={handleeduClose}>
                       <Box sx={{ ...style, width: 400 }}>
                         <TextField
@@ -381,9 +378,9 @@ const UserAccounts = () => {
                 <List>
                   <ListItem>
 
-                    <Button variant="contained" onClick={handleworkOpen}>
+                    {/* <Button variant="contained" onClick={handleworkOpen}>
                       Add <AddIcon />
-                    </Button>
+                    </Button> */}
                     <Modal open={workopen} onClose={handleworkClose}>
                       <Box sx={{ ...style, width: 400 }}>
                         <TextField
@@ -442,6 +439,9 @@ const UserAccounts = () => {
                 </List>
               </CardContent>
             </Card>
+            <Button style={{position:"absolute", right:"10rem",top:"110vh"}} variant="contained" onClick={handleSkillOpen}>
+                      Add <AddIcon />
+                    </Button>
           </Box>
         </Box>
       </div>
