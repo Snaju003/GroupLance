@@ -188,9 +188,9 @@ const CreateAccount = () => {
               <Col className="column" style={{width:"31.25vw"}}>
                  
                   <Row size={12} sm={6} className="px-1">
-                  <button className="button-48" style={{width:"100%",borderRadius:"20px",marginRight:"8rem"}} type="submit" onClick={handleworkOpen}>
+                  <Button className="button-48" style={{width:"100%",borderRadius:"20px",marginRight:"8rem"}} onClick={handleworkOpen}>
                      <span> Add Work Experience <AddIcon /></span>
-                    </button>
+                    </Button>
                   </Row>
                   <Modal open={workopen} onClose={handleworkClose}>
                       <Box sx={{ ...style, width: 400 }}>
@@ -240,9 +240,9 @@ const CreateAccount = () => {
                       </Box>
                     </Modal>
                           <Row size={12} sm={6} className="px-1">
-                          <button className="button-48" style={{width:"100%",borderRadius:"20px",marginRight:"8rem"}} type="submit" onClick={handleeduOpen}>
+                          <Button className="button-48" style={{width:"100%",borderRadius:"20px",marginRight:"8rem"}} onClick={handleeduOpen}>
                      <span> Add Education <AddIcon /></span>
-                    </button>
+                    </Button>
                           </Row>
                   <Modal open={eduopen} onClose={handleeduClose}>
                       <Box sx={{ ...style, width: 400 }}>
@@ -292,9 +292,9 @@ const CreateAccount = () => {
                       </Box>
                     </Modal>
                   <Row size={12} sm={6} className="px-1">
-                  <button className="button-48" style={{width:"100%",borderRadius:"20px",marginRight:"8rem"}} type="submit" onClick={handleSkillOpen}>
+                  <Button className="button-48" style={{width:"100%",borderRadius:"20px",marginRight:"8rem"}} onClick={handleSkillOpen}>
                     <span>  Add Skills <AddIcon /></span>
-                    </button>
+                    </Button>
                     
                   </Row>
                   <Modal open={skillopen} onClose={handleSkillClose}>
