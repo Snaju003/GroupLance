@@ -24,6 +24,20 @@ import { names } from "../constant/skills";
 import NavBar from "../general/Navbar";
 import Footer from "../general/footer/Footer";
 
+const dummyEdu = [
+ {
+  institution: "Dummy University",
+  
+  startDate: "September 2016",
+  endDate: "May 2020",
+  degree: "Bachelor of Science",
+  major: "Computer Science",
+}
+];
+
+// console.log(education);
+
+
 const UserAccounts = () => {
   const { currentUser } = useUser();
   //console.log(currentUser);
@@ -86,7 +100,7 @@ const UserAccounts = () => {
     handleworkClose();
   };
 
-  const [userData, setUserData] = useState({ name: "", email: "" });
+  const [userData, setUserData] = useState({ name: "", email: ""});
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -198,6 +212,8 @@ const UserAccounts = () => {
     }
   };
 
+  
+
   return (
     <>
     <NavBar />
@@ -306,12 +322,13 @@ const UserAccounts = () => {
                 <Typography variant="h5" component="div" gutterBottom>
                   Education
                 </Typography>
+                <Button onClick={handleOpen}>See Details</Button>
                 <List>
                   <ListItem>
                     {/* <Button variant="contained" onClick={handleeduOpen}>
                       Add <AddIcon />
                     </Button> */}
-                    <Modal open={eduopen} onClose={handleeduClose}>
+                    {/* <Modal open={eduopen} onClose={handleeduClose}>
                       <Box sx={{ ...style, width: 400 }}>
                         <TextField
                           label="Institution Name"
@@ -357,14 +374,31 @@ const UserAccounts = () => {
                           updateUserEducation();
                         }} style={{ marginTop: "1rem" }}>Submit</Button>
                       </Box>
-                    </Modal>
-                    <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
-                      {userData.education && userData.education.map((edu, index) => (
-                        <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
-                          <ListItemText primary={edu.institutionName} />
+                    </Modal> */}
+                    <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2" style={{display:"flex", justifyContent:"center"}}>
+            Education
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          {dummyEdu.map((edu, index) => (
+                        <ListItem key={index} style={{display:"flex", flexDirection:"column"}}>
+                          <ListItemText primary={`Institution : ${edu.institution}`} />
+                          <ListItemText primary={`Start Date : ${edu.startDate}`} />
+                          <ListItemText primary={`End Date : ${edu.endDate}`} />
                         </ListItem>
                       ))}
-                    </List>
+          </Typography>
+        
+        </Box>
+      </Modal>
+
+                   
                   </ListItem>
                 </List>
               </CardContent>
