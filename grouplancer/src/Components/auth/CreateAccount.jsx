@@ -188,7 +188,7 @@ const CreateAccount = () => {
               <Col className="column" style={{width:"31.25vw"}}>
                  
                   <Row size={12} sm={6} className="px-1">
-                  <button className="button-48" style={{width:"100%",borderRadius:"20px",marginRight:"8rem"}} type="submit" onClick={handleeduOpen}>
+                  <button className="button-48" style={{width:"100%",borderRadius:"20px",marginRight:"8rem"}} type="submit" onClick={handleworkOpen}>
                      <span> Add Work Experience <AddIcon /></span>
                     </button>
                   </Row>
@@ -318,9 +318,9 @@ const CreateAccount = () => {
                         }} style={{ margin: "auto" }}>Submit</Button>
                       </Box>
                     </Modal>
-                  <Col size={12} className="px-1" style={{marginLeft:"160px"}}>
+                  {/* <Col size={12} className="px-1" style={{marginLeft:"160px"}}>
                     <button className="button-48" style={{borderRadius:"20px",marginRight:"8rem"}} type="submit"><span>Add Details</span></button>
-                  </Col>
+                  </Col> */}
                 </Col>
               </form>
               <div className="boximage" style={{gap:"6rem"}}>
