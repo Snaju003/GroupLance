@@ -169,7 +169,7 @@ function Mypost(props) {
               onClose={handleCloseUserMenu}
             >
               <MenuItem onClick={handleCloseUserMenu}>
-                <Typography><Button style={{ textDecoration: "none" }}  startIcon={<EditIcon />}>Edit</Button></Typography>
+                <Typography><Button style={{ textDecoration: "none" }} onClick={handleOpen} startIcon={<EditIcon />}>Edit</Button></Typography>
                 <Modal
                   open={open}
                   onClose={handleClose}
