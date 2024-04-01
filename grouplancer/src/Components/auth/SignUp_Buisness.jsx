@@ -11,6 +11,7 @@ import Layout from '../Layout/Layout';
 import { Col, Row, Container, Form } from "react-bootstrap";
 
 
+
 // TODO remove, this demo shouldn't need to reset the theme.
 
 export default function SignUpBuis() {
@@ -41,7 +42,7 @@ export default function SignUpBuis() {
                                             name="email" required />
                                     </Row>
                                     <Row size={12} sm={6} className="px-1">
-                                        <input type="text" placeholder="Password" onChange={onchange}
+                                        <input type="password" placeholder="Password" onChange={onchange}
                                             name="password" required />
                                     </Row>
                                     <Row size={12} sm={6} className="px-1">
@@ -102,7 +103,7 @@ export default function SignUpBuis() {
                                             name="address" required />
                                     </Row>
                                     <Col size={12} className="px-1" style={{ marginLeft: "9rem" }}>
-                                        <button className="button-48" style={{ borderRadius: "20px", marginRight: "8rem" }} type="submit"><span>Sign Up</span></button>
+                                      <button className="button-48" style={{ borderRadius: "20px", marginRight: "8rem" }} type="submit"><span>Sign Up</span></button>
                                     </Col>
                                 </Col>
                             </form>

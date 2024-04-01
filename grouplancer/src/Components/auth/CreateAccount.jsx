@@ -5,23 +5,23 @@ import { Col, Row, Container, Form } from "react-bootstrap";
 import Layout from "../Layout/Layout";
 import { names } from "../constant/skills";
 import {
-    Button,
-    Box,
-    Typography,
-    Modal,
-    TextField,
-    Fab,
-    Autocomplete,
-    Card,
-    CardContent,
-    CardActions,
-    CardHeader,
-    IconButton,
-    List,
-    ListItem,
-    ListItemText,
-  } from "@mui/material";
-  import AddIcon from "@mui/icons-material/Add";
+  Button,
+  Box,
+  Typography,
+  Modal,
+  TextField,
+  Fab,
+  Autocomplete,
+  Card,
+  CardContent,
+  CardActions,
+  CardHeader,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 const CreateAccount = () => {
 
   const { currentUser } = useUser();
@@ -62,6 +62,7 @@ const CreateAccount = () => {
     setEndDate("");
     handleeduClose();
   };
+
   const handleWorkEducation = () => {
     const newWork = {
       companyname,
@@ -76,6 +77,18 @@ const CreateAccount = () => {
     setcompEndDate("");
     handleworkClose();
   };
+
+  useEffect(() => {
+    if (educationList.length > 0) {
+      updateUserEducation();
+    }
+  }, [educationList]);
+
+  useEffect(() => {
+    if (WorkExp.length > 0) {
+      updateUserWork();
+    }
+  }, [WorkExp]);
 
   const [userData, setUserData] = useState({ name: "", email: "" });
   useEffect(() => {
@@ -116,7 +129,6 @@ const CreateAccount = () => {
   const updateUserEducation = async () => {
     try {
       const updEducation = [...userData.education, ...educationList];
-      console.log("Education:", updEducation)
       const response = await fetch(`http://localhost:8080/api/user/update-user`, {
         method: "PUT",
         headers: {
@@ -154,14 +166,16 @@ const CreateAccount = () => {
 
   const updateUserWork = async () => {
     try {
+      console.log("Work Exp: ", WorkExp)
       const updWork = [...userData.workExperience, ...WorkExp];
+      console.log("updWork: ",updWork)
       const response = await fetch(`http://localhost:8080/api/user/update-user`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
           "auth-token": localStorage.getItem('auth-token'),
         },
-        body: JSON.stringify({ workExperience: updWork }),
+        body: JSON.stringify({ workExp: updWork }),
       });
       const json = await response.json();
       console.log(json);
@@ -172,27 +186,27 @@ const CreateAccount = () => {
   };
 
 
- 
+
   return (
     <>
-    <Layout>
-      <section className="create" >
-        <Container >
-          <Row className="align-items-center" >
-            <h1 className="text-center my-4" style={{ color: "#ffff", paddingBottom: "2vh" }}>
-              Add Details
-            </h1>
-            
-            <Col className="form"size={12} md={6} style={{display:"flex",gap:"150px",marginLeft:"140px"}}>
-              <form >
-              <Col className="column" style={{width:"31.25vw"}}>
-                 
-                  <Row size={12} sm={6} className="px-1">
-                  <Button className="button-48" style={{width:"100%",borderRadius:"20px",marginRight:"8rem"}} onClick={handleworkOpen}>
-                     <span> Add Work Experience <AddIcon /></span>
-                    </Button>
-                  </Row>
-                  <Modal open={workopen} onClose={handleworkClose}>
+      <Layout>
+        <section className="create" >
+          <Container >
+            <Row className="align-items-center" >
+              <h1 className="text-center my-4" style={{ color: "#ffff", paddingBottom: "2vh" }}>
+                Add Details
+              </h1>
+
+              <Col className="form" size={12} md={6} style={{ display: "flex", gap: "150px", marginLeft: "140px" }}>
+                <form >
+                  <Col className="column" style={{ width: "31.25vw" }}>
+
+                    <Row size={12} sm={6} className="px-1">
+                      <Button className="button-48" style={{ width: "100%", borderRadius: "20px", marginRight: "8rem" }} onClick={handleworkOpen}>
+                        <span> Add Work Experience <AddIcon /></span>
+                      </Button>
+                    </Row>
+                    <Modal open={workopen} onClose={handleworkClose}>
                       <Box sx={{ ...style, width: 400 }}>
                         <TextField
                           label="Company Name"
@@ -233,18 +247,15 @@ const CreateAccount = () => {
                           value={compendDate}
                           onChange={(e) => setcompEndDate(e.target.value)}
                         />
-                        <Button onClick={() => {
-                          handleWorkEducation();
-                          updateUserWork();
-                        }} style={{ marginTop: "1rem" }}>Submit</Button>
+                        <Button onClick={handleWorkEducation} style={{ marginTop: "1rem" }}>Submit</Button>
                       </Box>
                     </Modal>
-                          <Row size={12} sm={6} className="px-1">
-                          <Button className="button-48" style={{width:"100%",borderRadius:"20px",marginRight:"8rem"}} onClick={handleeduOpen}>
-                     <span> Add Education <AddIcon /></span>
-                    </Button>
-                          </Row>
-                  <Modal open={eduopen} onClose={handleeduClose}>
+                    <Row size={12} sm={6} className="px-1">
+                      <Button className="button-48" style={{ width: "100%", borderRadius: "20px", marginRight: "8rem" }} onClick={handleeduOpen}>
+                        <span> Add Education <AddIcon /></span>
+                      </Button>
+                    </Row>
+                    <Modal open={eduopen} onClose={handleeduClose}>
                       <Box sx={{ ...style, width: 400 }}>
                         <TextField
                           label="Institution Name"
@@ -285,19 +296,16 @@ const CreateAccount = () => {
                           value={endDate}
                           onChange={(e) => setEndDate(e.target.value)}
                         />
-                        <Button onClick={() => {
-                          handleAddEducation();
-                          updateUserEducation();
-                        }} style={{ marginTop: "1rem" }}>Submit</Button>
+                        <Button onClick={handleAddEducation} style={{ marginTop: "1rem" }}>Submit</Button>
                       </Box>
                     </Modal>
-                  <Row size={12} sm={6} className="px-1">
-                  <Button className="button-48" style={{width:"100%",borderRadius:"20px",marginRight:"8rem"}} onClick={handleSkillOpen}>
-                    <span>  Add Skills <AddIcon /></span>
-                    </Button>
-                    
-                  </Row>
-                  <Modal open={skillopen} onClose={handleSkillClose}>
+                    <Row size={12} sm={6} className="px-1">
+                      <Button className="button-48" style={{ width: "100%", borderRadius: "20px", marginRight: "8rem" }} onClick={handleSkillOpen}>
+                        <span>  Add Skills <AddIcon /></span>
+                      </Button>
+
+                    </Row>
+                    <Modal open={skillopen} onClose={handleSkillClose}>
                       <Box sx={{ ...style, width: 400 }}>
                         <Autocomplete
                           multiple
@@ -318,20 +326,20 @@ const CreateAccount = () => {
                         }} style={{ margin: "auto" }}>Submit</Button>
                       </Box>
                     </Modal>
-                  {/* <Col size={12} className="px-1" style={{marginLeft:"160px"}}>
+                    {/* <Col size={12} className="px-1" style={{marginLeft:"160px"}}>
                     <button className="button-48" style={{borderRadius:"20px",marginRight:"8rem"}} type="submit"><span>Add Details</span></button>
                   </Col> */}
-                </Col>
-              </form>
-              <div className="boximage" style={{gap:"6rem"}}>
-              <img src="./creategrp.jpg" alt="group" style={{ borderRadius:"30px 30px 30px 30px",height:"420px",width:"450px"}}/>
-              {/* <img src="./creategrp3.avif" alt="group" style={{ borderRadius:"0px 0px 30px 30px",height:"400px",width:"450px"}}/> */}
-              </div>
-            </Col>
-          </Row>
-        </Container>
-        <style>
-        {`
+                  </Col>
+                </form>
+                <div className="boximage" style={{ gap: "6rem" }}>
+                  <img src="./creategrp.jpg" alt="group" style={{ borderRadius: "30px 30px 30px 30px", height: "420px", width: "450px" }} />
+                  {/* <img src="./creategrp3.avif" alt="group" style={{ borderRadius:"0px 0px 30px 30px",height:"400px",width:"450px"}}/> */}
+                </div>
+              </Col>
+            </Row>
+          </Container>
+          <style>
+            {`
      @media (max-width: 575.98px) { 
     
      }
@@ -374,22 +382,22 @@ const CreateAccount = () => {
  
       }
         `}
-      </style>
-      </section >
+          </style>
+        </section >
       </Layout>
     </>
   );
 };
 const style = {
-    position: "absolute",
-    gap: 2,
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
+  position: "absolute",
+  gap: 2,
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 export default CreateAccount;

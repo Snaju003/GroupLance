@@ -167,7 +167,7 @@ const editUSer = async (req, res) => {
         message: `User doesn't exists`,
       });
     }
-
+    console.log('Workexperience: ',existsUser.workExperience);
     const updatedUser = await UserModel.findByIdAndUpdate(userId, {
       $set: {
         name: name,
@@ -176,10 +176,12 @@ const editUSer = async (req, res) => {
         workExperience: workExp,
       },
     });
+    const user = await updatedUser.populate("workExperience");
     return res.status(200).json({
       success: true,
       message: `User updated`,
       updatedUser,
+      user
     });
   } catch (error) {
     return res.status(500).json({
