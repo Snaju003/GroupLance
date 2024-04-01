@@ -229,7 +229,7 @@ const UserAccountsbusiness = () => {
             <Card sx={{ height: "55vh", borderRadius: "1rem", backdropFilter: "blur(50px)" }}>
               <CardContent>
                 <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem", height: "15vh",position:"relative" }}>
-                  <img src="https://cdn-icons-png.flaticon.com/256/4021/4021443.png" style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px" }}></img>
+                  <img src="https://www.pngitem.com/pimgs/m/495-4954003_people-icon-png-green-png-download-leader-clipart.png" style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px" }}></img>
                   <IconButton style={{position:"absolute", top:"11rem",right:"9.5rem"}}>
         <AddAPhotoIcon />
       </IconButton>
