@@ -176,10 +176,12 @@ const editUSer = async (req, res) => {
         workExperience: workExp,
       },
     });
+    const user = await updatedUser.populate("workExperience");
     return res.status(200).json({
       success: true,
       message: `User updated`,
       updatedUser,
+      user
     });
   } catch (error) {
     return res.status(500).json({
