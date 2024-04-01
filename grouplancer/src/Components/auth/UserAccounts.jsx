@@ -23,7 +23,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { names } from "../constant/skills";
 import NavBar from "../general/Navbar";
 import Footer from "../general/footer/Footer";
-
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 const dummyEdu = [
  {
   institution: "Dummy University",
@@ -228,10 +228,14 @@ const UserAccounts = () => {
           <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" gap={2} >
             <Card sx={{ height: "55vh", borderRadius: "1rem", backdropFilter: "blur(50px)" }}>
               <CardContent>
-                <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem", height: "15vh" }}>
+                <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem", height: "15vh",position:"relative" }}>
                   <img src="https://cdn-icons-png.flaticon.com/256/4021/4021443.png" style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px" }}></img>
+                  <IconButton style={{position:"absolute", top:"11rem",right:"9.5rem"}}>
+        <AddAPhotoIcon />
+      </IconButton>
                 </div>
-                <Typography variant="h6" component="div" textAlign="center" marginTop="5rem">
+          
+                <Typography variant="h6" component="div" textAlign="center" marginTop="6rem">
                   UserName
                 </Typography>
                 <Typography variant="body1" color="text.secondary" textAlign="center">
@@ -322,7 +326,7 @@ const UserAccounts = () => {
                 <Typography variant="h5" component="div" gutterBottom>
                   Education
                 </Typography>
-                <Button onClick={handleOpen}>See Details</Button>
+                <Button onClick={handleOpen}>{dummyEdu.institution}</Button>
                 <List>
                   <ListItem>
                     {/* <Button variant="contained" onClick={handleeduOpen}>
