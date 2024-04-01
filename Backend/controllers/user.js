@@ -167,7 +167,7 @@ const editUSer = async (req, res) => {
         message: `User doesn't exists`,
       });
     }
-
+    console.log('Workexperience: ',existsUser.workExperience);
     const updatedUser = await UserModel.findByIdAndUpdate(userId, {
       $set: {
         name: name,
