@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import {
@@ -25,18 +25,29 @@ import NavBar from "../general/Navbar";
 import Footer from "../general/footer/Footer";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 const dummyEdu = [
- {
-  institution: "Dummy University",
-  
-  startDate: "September 2016",
-  endDate: "May 2020",
-  degree: "Bachelor of Science",
-  major: "Computer Science",
-}
+  {
+    institution: "Dummy University",
+
+    startDate: "September 2016",
+    endDate: "May 2020",
+    degree: "Bachelor of Science",
+    major: "Computer Science",
+  }
 ];
 
 // console.log(education);
-
+function convertToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result)
+    };
+    fileReader.onerror = (error) => {
+      reject(error)
+    }
+  })
+}
 
 const UserAccounts = () => {
   const { currentUser } = useUser();
@@ -74,36 +85,9 @@ const UserAccounts = () => {
   const handleEduClose = () => setEduOpen(false);
 
 
-  const handleAddEducation = () => {
-    const newEducation = {
-      institutionName,
-      duration,
-      startDate,
-      endDate
-    };
-    setEducationList([...educationList, newEducation]);
-    setInstitutionName("");
-    setDuration("");
-    setStartDate("");
-    setEndDate("");
-    handleeduClose();
-  };
-  const handleWorkEducation = () => {
-    const newWork = {
-      companyname,
-      compduration,
-      compstartDate,
-      compendDate
-    };
-    setWorkExp([...WorkExp, newWork]);
-    setcompanyname("");
-    setcompDuration("");
-    setcompStartDate("");
-    setcompEndDate("");
-    handleworkClose();
-  };
 
-  const [userData, setUserData] = useState({ name: "", email: ""});
+
+  const [userData, setUserData] = useState({ name: "", email: "" });
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -121,6 +105,7 @@ const UserAccounts = () => {
         const data = await response.json();
         console.log(data)
         setUserData(data.user);
+
       } catch (error) {
         console.error(error);
       }
@@ -131,13 +116,6 @@ const UserAccounts = () => {
 
   const [skillsList, setSkillsList] = useState(userData.skills);
   const [newSkill, setNewSkill] = useState("");
-  const handleAddSkills = () => {
-    if (newSkill !== "") {
-      setSkillsList([...skillsList, newSkill]);
-      setNewSkill("");
-    }
-    handleSkillClose();
-  };
 
   const updateUserName = async () => {
     try {
@@ -157,337 +135,254 @@ const UserAccounts = () => {
     }
   };
 
-  const updateUserEducation = async () => {
+
+  const [formData, setFormData] = useState({
+    media: null
+});
+const [postImage, setPostImage] = useState("");
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    setPostImage(base64);
+    if (!postImage) {
+      e.target.value = null;
+      return;
+    }
     try {
-      const updEducation = [...userData.education, ...educationList];
-      console.log("Education:", updEducation)
-      const response = await fetch(`http://localhost:8080/api/user/update-user`, {
-        method: "PUT",
+      e.preventDefault();
+      const authToken = localStorage.getItem('auth-token');
+      const response = await fetch("http://localhost:8080/api/file-upload/user", {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "auth-token": localStorage.getItem('auth-token'),
+          "auth-token": authToken,
         },
-        body: JSON.stringify({ education: updEducation }),
+        body: JSON.stringify({ file: postImage })
       });
-      const json = await response.json();
-      console.log(json);
-      navigate("/userAccount");
+      const data = await response.json();
+      console.log(data);
     } catch (error) {
-      console.error(error);
+      console.log(error)
+    }
+  }
+  const handleChange = (e) => {
+    if (e.target.name === "media") {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.files[0]
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [e.target.name]: e.target.value
+      });
     }
   };
-
-  const updateUserSkills = async () => {
-    try {
-      const updSkills = [...userData.skills, ...skillsList];
-      const response = await fetch(`http://localhost:8080/api/user/update-user`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem('auth-token'),
-        },
-        body: JSON.stringify({ skills: updSkills }),
-      });
-      const json = await response.json();
-      console.log(json);
-      navigate("/userAccount");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const updateUserWork = async () => {
-    try {
-      const updWork = [...userData.workExperience, ...WorkExp];
-      const response = await fetch(`http://localhost:8080/api/user/update-user`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem('auth-token'),
-        },
-        body: JSON.stringify({ workExperience: updWork }),
-      });
-      const json = await response.json();
-      console.log(json);
-      navigate("/userAccount");
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  
-
+  const inputRef = useRef(null);
   return (
     <>
-    <NavBar />
-    <div style={{ height: "200vh" }}>
-      <div style={{ padding: "2rem" }}>
-        <Box>
-          <Typography variant="h2" component="div" className="text-center" color="white" style={{ marginBottom: "1rem" }}>
-            Your Profile
-          </Typography>
-        </Box>
-        <Box justifyContent="center" alignItems="center" height="80vh" >
-          <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" gap={2} >
-            <Card sx={{ height: "55vh", borderRadius: "1rem", backdropFilter: "blur(50px)" }}>
-              <CardContent>
-                <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem", height: "15vh",position:"relative" }}>
-                  <img src="https://cdn-icons-png.flaticon.com/256/4021/4021443.png" style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px" }}></img>
-                  <IconButton style={{position:"absolute", top:"11rem",right:"9.5rem"}}>
-        <AddAPhotoIcon />
-      </IconButton>
-                </div>
-          
-                <Typography variant="h6" component="div" textAlign="center" marginTop="6rem">
-                  UserName
-                </Typography>
-                <Typography variant="body1" color="text.secondary" textAlign="center">
-                  {currentUser?.name}
-                </Typography>
-                <Typography variant="h6" component="div" textAlign="center">
-                  Email
-                </Typography>
-                <Typography variant="body1" color="text.secondary" textAlign="center">
-                  {currentUser?.email}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button onClick={handleOpen} style={{ margin: "auto" }} startIcon={<EditIcon />}>Edit</Button>
-              </CardActions>
-              <Modal open={open} onClose={handleClose}>
-                <Box sx={{ ...style, width: 400 }}>
-                  <TextField label="Name" fullWidth onChange={(e) => setEditName(e.target.value)} />
-                  <Button onClick={() => {
-                    handleClose();
-                    updateUserName();
-                  }} style={{ margin: "auto" }}>Submit</Button>
-                </Box>
-              </Modal>
-            </Card>
-            <Card sx={{ height: "55vh", borderRadius: "1rem", width: "20vw", paddingTop: "5rem" }}>
-              <CardContent>
-                <Typography variant="h5" textAlign="center" component="div" gutterBottom>
-                  Personal Ranking
-                </Typography>
-                <Typography variant="body1" textAlign="center" color="text.secondary">
-                  userdata.ranking
-                </Typography>
-                <Typography variant="h5" textAlign="center" component="div" gutterBottom>
-                  Group Rankings
-                </Typography>
-                <Typography variant="body1" textAlign="center" color="text.secondary">
-                  Highest Group Rank
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button style={{ margin: "auto" }}>Check All Rankings</Button>
-              </CardActions>
-            </Card>
+      <NavBar />
+      <div style={{ height: "200vh" }}>
+        <div style={{ padding: "2rem" }}>
+          <Box>
+            <Typography variant="h2" component="div" className="text-center" color="white" style={{ marginBottom: "1rem" }}>
+              Your Profile
+            </Typography>
           </Box>
-          <Box display="flex" flexDirection="column" gap={2} marginTop="1rem" alignItems="center">
-            <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
-              <CardContent style={{ display: "flex", justifyContent: "space-between" }}>
-                <Typography variant="h5" component="div" gutterBottom style={{ width: "fit-content" }}>
-                  Skills
-                </Typography>
-                <List>
-                  <ListItem>
-                    <Modal open={skillopen} onClose={handleSkillClose}>
-                      <Box sx={{ ...style, width: 400 }}>
-                        <Autocomplete
-                          multiple
-                          id="tags-outlined"
-                          options={names.sort()}
-                          getOptionLabel={(option) => option}
-                          filterSelectedOptions
-                          value={skillsList}
-                          onChange={(event, value) => setSkillsList(value)}
-                          renderInput={(params) => (
-                            <TextField {...params} label="Skills" placeholder="Add" />
-                          )}
-                        />
+          <Box justifyContent="center" alignItems="center" height="80vh" >
+            <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" gap={2} >
+              <Card sx={{ height: "55vh", borderRadius: "1rem", backdropFilter: "blur(50px)" }}>
+                <CardContent>
+                  <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem", height: "15vh", position: "relative" }}>
+                    <input
+                      type="file"
+                      onChange={(e) => {
+                        handleChange(e); 
+                        handleFileUpload(e); 
+                      }}
+                      name="media"
+                      accept="image/*, video/*"
+                      style={{ display: "none" }}
+                      ref={inputRef} 
+                    />
+                    <img
+                      src={currentUser?.profile_pic ? currentUser?.profile_pic : "https://cdn-icons-png.flaticon.com/256/4021/4021443.png"} 
+                      alt="Profile Picture"
+                    
+                      style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px", cursor: "pointer" }} 
+                    />
+                    <IconButton style={{ position: "absolute", top: "11rem", right: "9.5rem" }}>
+                      <AddAPhotoIcon onClick={() => inputRef.current.click()} />
+                    </IconButton>
+                  </div>
 
-                        <Button onClick={() => {
-                          handleAddSkills();
-                          updateUserSkills();
-                        }} style={{ margin: "auto" }}>Submit</Button>
-                      </Box>
-                    </Modal>
-                    <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
-                      {userData.skills && userData.skills.map((skill, index) => (
-                        <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
-                          <ListItemText primary={skill} />
-                        </ListItem>
-                      ))}
-                    </List>
-                  </ListItem>
-                </List>
-              </CardContent>
-            </Card>
-            <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
-              <CardContent>
-                <Typography variant="h5" component="div" gutterBottom>
-                  Education
-                </Typography>
-                <Button onClick={handleEduOpen}>See Details</Button>
-                <List>
-                  <ListItem>
-                    {/* <Button variant="contained" onClick={handleeduOpen}>
+                  <Typography variant="h6" component="div" textAlign="center" marginTop="6rem">
+                    UserName
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" textAlign="center">
+                    {currentUser?.name}
+                  </Typography>
+                  <Typography variant="h6" component="div" textAlign="center">
+                    Email
+                  </Typography>
+                  <Typography variant="body1" color="text.secondary" textAlign="center">
+                    {currentUser?.email}
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button onClick={handleOpen} style={{ margin: "auto" }} startIcon={<EditIcon />}>Edit</Button>
+                </CardActions>
+                <Modal open={open} onClose={handleClose}>
+                  <Box sx={{ ...style, width: 400 }}>
+                    <TextField label="Name" fullWidth onChange={(e) => setEditName(e.target.value)} />
+                    <Button onClick={() => {
+                      handleClose();
+                      updateUserName();
+                    }} style={{ margin: "auto" }}>Submit</Button>
+                  </Box>
+                </Modal>
+              </Card>
+              <Card sx={{ height: "55vh", borderRadius: "1rem", width: "20vw", paddingTop: "5rem" }}>
+                <CardContent>
+                  <Typography variant="h5" textAlign="center" component="div" gutterBottom>
+                    Personal Ranking
+                  </Typography>
+                  <Typography variant="body1" textAlign="center" color="text.secondary">
+                    userdata.ranking
+                  </Typography>
+                  <Typography variant="h5" textAlign="center" component="div" gutterBottom>
+                    Group Rankings
+                  </Typography>
+                  <Typography variant="body1" textAlign="center" color="text.secondary">
+                    Highest Group Rank
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button style={{ margin: "auto" }}>Check All Rankings</Button>
+                </CardActions>
+              </Card>
+            </Box>
+            <Box display="flex" flexDirection="column" gap={2} marginTop="1rem" alignItems="center">
+              <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
+                <CardContent style={{ display: "flex", justifyContent: "space-between" }}>
+                  <Typography variant="h5" component="div" gutterBottom style={{ width: "fit-content" }}>
+                    Skills
+                  </Typography>
+                  <List>
+                    <ListItem>
+                      <Modal open={skillopen} onClose={handleSkillClose}>
+                        <Box sx={{ ...style, width: 400 }}>
+                          <Autocomplete
+                            multiple
+                            id="tags-outlined"
+                            options={names.sort()}
+                            getOptionLabel={(option) => option}
+                            filterSelectedOptions
+                            value={skillsList}
+                            onChange={(event, value) => setSkillsList(value)}
+                            renderInput={(params) => (
+                              <TextField {...params} label="Skills" placeholder="Add" />
+                            )}
+                          />
+
+                          <Button onClick={() => {
+                            handleAddSkills();
+                            updateUserSkills();
+                          }} style={{ margin: "auto" }}>Submit</Button>
+                        </Box>
+                      </Modal>
+                      <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
+                        {userData.skills && userData.skills.map((skill, index) => (
+                          <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
+                            <ListItemText primary={skill} />
+                          </ListItem>
+                        ))}
+                      </List>
+                    </ListItem>
+                  </List>
+                </CardContent>
+              </Card>
+              <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
+                <CardContent>
+                  <Typography variant="h5" component="div" gutterBottom>
+                    Education
+                  </Typography>
+                  <Button onClick={handleEduOpen}>See Details</Button>
+                  <List>
+                    <ListItem>
+
+                      <Modal
+                        open={eduopen}
+                        onClose={handleEduClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={style}>
+                          <Typography id="modal-modal-title" variant="h6" component="h2" style={{ display: "flex", justifyContent: "center" }}>
+                            Education
+                          </Typography>
+                          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                            {userData && userData.education?.map((edu, index) => (
+                              <ListItem key={index} style={{ display: "flex", flexDirection: "column" }}>
+                                <ListItemText primary={`Institution : ${edu.institutionName}`} />
+                                <ListItemText primary={`Start Date : ${edu.startDate}`} />
+                                <ListItemText primary={`End Date : ${edu.endDate}`} />
+                              </ListItem>
+                            ))}
+                          </Typography>
+
+                        </Box>
+                      </Modal>
+
+
+                    </ListItem>
+                  </List>
+                </CardContent>
+              </Card>
+
+              <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
+                <CardContent>
+                  <Typography variant="h5" component="div" gutterBottom>
+                    Work Experience
+                  </Typography>
+                  <Button onClick={handleworkOpen}>See Details</Button>
+                  <List>
+                    <ListItem>
+
+                      {/* <Button variant="contained" onClick={handleworkOpen}>
                       Add <AddIcon />
                     </Button> */}
-                    {/* <Modal open={eduopen} onClose={handleeduClose}>
-                      <Box sx={{ ...style, width: 400 }}>
-                        <TextField
-                          label="Institution Name"
-                          fullWidth
-                          required
-                          value={institutionName}
-                          onChange={(e) => setInstitutionName(e.target.value)}
-                          style={{ marginBottom: "2vh" }}
-                        />
-                        <TextField
-                          label="Duration"
-                          fullWidth
-                          required
-                          value={duration}
-                          onChange={(e) => setDuration(e.target.value)}
-                          style={{ marginBottom: "2vh" }}
-                        />
-                        <TextField
-                          label="Start Date"
-                          fullWidth
-                          required
-                          type="date"
-                          InputLabelProps={{
-                            shrink: true,
-                          }}
-                          value={startDate}
-                          onChange={(e) => setStartDate(e.target.value)}
-                          style={{ marginBottom: "2vh" }}
-                        />
-                        <TextField
-                          label="End Date"
-                          fullWidth
-                          required
-                          type="date"
-                          InputLabelProps={{
-                            shrink: true,
-                          }}
-                          value={endDate}
-                          onChange={(e) => setEndDate(e.target.value)}
-                        />
-                        <Button onClick={() => {
-                          handleAddEducation();
-                          updateUserEducation();
-                        }} style={{ marginTop: "1rem" }}>Submit</Button>
-                      </Box>
-                    </Modal> */}
-                    <Modal
-        open={eduopen}
-        onClose={handleEduClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2" style={{display:"flex", justifyContent:"center"}}>
-            Education
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          {dummyEdu.map((edu, index) => (
-                        <ListItem key={index} style={{display:"flex", flexDirection:"column"}}>
-                          <ListItemText primary={`Institution : ${edu.institution}`} />
-                          <ListItemText primary={`Start Date : ${edu.startDate}`} />
-                          <ListItemText primary={`End Date : ${edu.endDate}`} />
-                        </ListItem>
-                      ))}
-          </Typography>
-        
-        </Box>
-      </Modal>
+                      <Modal open={workopen} onClose={handleworkClose} aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                      >
+                        <Box sx={style}>
+                          <Typography id="modal-modal-title" variant="h6" component="h2" style={{ display: "flex", justifyContent: "center" }}>
+                            Work Experience
+                          </Typography>
+                          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                            {userData && userData.workExperience?.map((edu, index) => (
+                              <ListItem key={index} style={{ display: "flex", flexDirection: "column" }}>
+                                <ListItemText primary={`Institution : ${edu.institutionName}`} />
+                                <ListItemText primary={`Start Date : ${edu.startDate}`} />
+                                <ListItemText primary={`End Date : ${edu.endDate}`} />
+                              </ListItem>
+                            ))}
+                          </Typography>
 
-                   
-                  </ListItem>
-                </List>
-              </CardContent>
-            </Card>
-
-            <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
-              <CardContent>
-                <Typography variant="h5" component="div" gutterBottom>
-                  Work Experience
-                </Typography>
-                <List>
-                  <ListItem>
-
-                    {/* <Button variant="contained" onClick={handleworkOpen}>
-                      Add <AddIcon />
-                    </Button> */}
-                    <Modal open={workopen} onClose={handleworkClose}>
-                      <Box sx={{ ...style, width: 400 }}>
-                        <TextField
-                          label="Company Name"
-                          fullWidth
-                          required
-                          value={companyname}
-                          onChange={(e) => setcompanyname(e.target.value)}
-                          style={{ marginBottom: "2vh" }}
-                        />
-                        <TextField
-                          label="Duration"
-                          fullWidth
-                          required
-                          value={compduration}
-                          onChange={(e) => setcompDuration(e.target.value)}
-                          style={{ marginBottom: "2vh" }}
-                        />
-                        <TextField
-                          label="Start Date"
-                          fullWidth
-                          required
-                          type="date"
-                          InputLabelProps={{
-                            shrink: true,
-                          }}
-                          value={compstartDate}
-                          onChange={(e) => setcompStartDate(e.target.value)}
-                          style={{ marginBottom: "2vh" }}
-                        />
-                        <TextField
-                          label="End Date"
-                          fullWidth
-                          required
-                          type="date"
-                          InputLabelProps={{
-                            shrink: true,
-                          }}
-                          value={compendDate}
-                          onChange={(e) => setcompEndDate(e.target.value)}
-                        />
-                        <Button onClick={() => {
-                          handleWorkEducation();
-                          updateUserWork();
-                        }} style={{ marginTop: "1rem" }}>Submit</Button>
-                      </Box>
-                    </Modal>
-                    <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
-                      {userData.workExperience && userData.workExperience.map((work, index) => (
-                        <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
-                          <ListItemText primary={work.companyname} />
-                        </ListItem>
-                      ))}
-                    </List>
-                  </ListItem>
-                </List>
-              </CardContent>
-            </Card>
-            <Button style={{position:"absolute", right:"10rem",top:"110vh"}} variant="contained" onClick={()=>{navigate('/create')}}>
-                      Add <AddIcon />
-                    </Button>
+                        </Box>
+                      </Modal>
+                    </ListItem>
+                  </List>
+                </CardContent>
+              </Card>
+              <Button style={{ position: "absolute", right: "10rem", top: "110vh" }} variant="contained" onClick={() => { navigate('/create') }}>
+                Add <AddIcon />
+              </Button>
+            </Box>
           </Box>
-        </Box>
+        </div>
       </div>
-    </div>
-  
+
     </>
   );
 };
