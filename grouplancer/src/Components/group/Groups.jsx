@@ -11,16 +11,20 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal, domains }) => {
+import Rating from '@mui/material/Rating';
+
+const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal, domains, rate }) => {
   const [credentials, setCredentials] = useState({ email: "" });
   const navigate = useNavigate();
   const { currentUser } = useUser();
   const { id } = useParams();
   const [rating, setRating] = useState(0);
+  const [value, setValue] = useState(0);
 
   const handleRating = (starCount) => {
     setRating(starCount);
   };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -33,17 +37,17 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
 
   const ratingUser = async (e, _id) => {
     e.preventDefault();
+    console.log(value)
     const response = await fetch("http://localhost:8080/api/user/rate-user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('auth-token'),
       },
-      body: JSON.stringify({ rate: rating == 0 ? 1 : rating, userId: _id }),
+      body: JSON.stringify({ rate: value == 0 ? 1 : value, userId: _id }),
     });
     const json = await response.json();
     console.log(json)
-    console.log(rating)
   }
 
   const inviteMember = async () => {
@@ -140,7 +144,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
           <button
             className="btn btn-primary"
             type="submit"
-            onClick={()=>removeMember(currentUser._id)}
+            onClick={() => removeMember(currentUser._id)}
             style={{
               color: "white",
               padding: "10px",
@@ -166,10 +170,10 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
             boxShadow: "0 0 10px 5px",
           }}
         >
-          <p style={{ fontSize: "25px",padding:"10px" }}>Name: {projName} </p>
-          <p style={{ fontSize: "25px" ,padding:"10px"}}>Description: {grpDesc}</p>
-          <p style={{ fontSize: "25px" ,padding:"10px"}}>Goal: {goal}</p>
-          <p style={{ fontSize: "25px" ,padding:"10px"}}>Domains: {domains}</p>
+          <p style={{ fontSize: "25px", padding: "10px" }}>Name: {projName} </p>
+          <p style={{ fontSize: "25px", padding: "10px" }}>Description: {grpDesc}</p>
+          <p style={{ fontSize: "25px", padding: "10px" }}>Goal: {goal}</p>
+          <p style={{ fontSize: "25px", padding: "10px" }}>Domains: {domains}</p>
           <div
             style={{
               display: "flex",
@@ -195,17 +199,17 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
             color: "#ffff",
             marginTop: "2rem",
             marginBottom: "2rem",
-            marginLeft:"48rem",
+            marginLeft: "48rem",
           }}
         >
           {" "}
           Members
         </h1>
       </div>
-      <div style={{ display: "flex",gap:"0.5rem" }}>
-        
+      <div style={{ display: "flex", gap: "0.5rem" }}>
+
         <div class="col-sm-4">
-        
+
           {(grpLeader === currentUser?._id) && (<div
             class="card"
             style={{
@@ -216,15 +220,15 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
               display: "flex",
               width: "25vw",
               height: "20vh",
-              margin:"0rem 2rem 10rem 1rem",
+              margin: "0rem 2rem 10rem 1rem",
             }}
           >
-            <h2 style={{fontweight:"bold",color:"black",padding:"0.5rem 2rem 0.5rem 2rem"}}>Add members</h2>
+            <h2 style={{ fontweight: "bold", color: "black", padding: "0.5rem 2rem 0.5rem 2rem" }}>Add members</h2>
             <div
               class="card-body"
               style={{ backgroundColor: "white", borderRadius: "20px" }}
             >
-              <img src="https://tse4.mm.bing.net/th?id=OIP.JCwjYrZogNHv50VtbileUgHaEK&pid=Api&P=0&h=180" style={{width:"22vw",height:"150px",borderRadius:"20px",margin:"1px 5px 1px 1px"}}></img>
+              <img src="https://tse4.mm.bing.net/th?id=OIP.JCwjYrZogNHv50VtbileUgHaEK&pid=Api&P=0&h=180" style={{ width: "22vw", height: "150px", borderRadius: "20px", margin: "1px 5px 1px 1px" }}></img>
               <h4 className="text-center my-4">Invite a member</h4>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
@@ -240,27 +244,27 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
                   required
                 />
               </div>
-              <button style={{transform:"translateX(70%)"}}className="btn btn-primary" onSubmit={inviteMember}>
+              <button style={{ transform: "translateX(70%)" }} className="btn btn-primary" onSubmit={inviteMember}>
                 Send Invitation
               </button>
-              
+
             </div>
-            
+
           </div>)}
           {(grpLeader !== currentUser?._id) && (
-          <div >
-            <img style={{width:"25vw",height:"50vh",margin:"0rem 2rem 0rem 1rem",borderRadius:"2rem 2rem 0rem 0rem"}} src="https://assets-global.website-files.com/5b69a01ba2e409501de055d1/654397e57d1b4f0a5d9c1bc0_Social%20loafing.png" alt="filler"></img>
-            <img style={{width:"25vw",height:"50vh",margin:"0rem 2rem 2rem 1rem",borderRadius:"0rem 0rem 2rem 2rem"}} src="https://imind.com/wp-content/uploads/2023/01/18.jpg" alt="filler"></img>
-            
-          </div>)}
-          
+            <div >
+              <img style={{ width: "25vw", height: "50vh", margin: "0rem 2rem 0rem 1rem", borderRadius: "2rem 2rem 0rem 0rem" }} src="https://assets-global.website-files.com/5b69a01ba2e409501de055d1/654397e57d1b4f0a5d9c1bc0_Social%20loafing.png" alt="filler"></img>
+              <img style={{ width: "25vw", height: "50vh", margin: "0rem 2rem 2rem 1rem", borderRadius: "0rem 0rem 2rem 2rem" }} src="https://imind.com/wp-content/uploads/2023/01/18.jpg" alt="filler"></img>
+
+            </div>)}
+
         </div>
-        
-        <div style={{ display: "flex",gap:"5rem",background:"rgba(255, 255, 255, 0.2)",backdropFilter: "blur(5px)",borderRadius:"20px" }}>
+
+        <div style={{ display: "flex", gap: "5rem", background: "rgba(255, 255, 255, 0.2)", backdropFilter: "blur(5px)", borderRadius: "20px" }}>
           <div className="container my-4" display="flex" alignItems="center">
             <div className="row">
               {gMembers?.map(({ _id, name, email }) => (
-                <div className="col-sm-6" key={_id} style={{padding:"50px"}}>
+                <div className="col-sm-6" key={_id} style={{ padding: "50px" }}>
                   <div
                     className="card"
                     style={{
@@ -291,24 +295,14 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
                       <h5 className="card-title">{name}</h5>
                       <p className="card-text">{email}</p>
                       {(_id !== currentUser?._id) && (<div style={{ display: "flex", marginRight: "1rem" }}>
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <FontAwesomeIcon
-                            key={star}
-                            icon={faStar}
-                            style={{
-                              color: star <= rating ? "yellow" : "grey",
-                              cursor: "pointer",
-                              marginRight: "5px",
-                            }}
-                            onClick={(e) => {
-                              handleRating(star);
-                              ratingUser(e, _id);
-                            }}
-                          />
-                        ))}
-                        <span style={{ marginLeft: "1rem", color: "white" }}>
-                          Rated: {rating} stars
-                        </span>
+                        <Rating
+                          name="simple-controlled"
+                          value={value}
+                          onChange={(e, value) => {
+                            setValue(value);
+                            ratingUser(e,_id);
+                          }}
+                        />
                       </div>)}
                       {(grpLeader === currentUser?._id && _id !== currentUser?._id) && (<button
                         type="submit"
@@ -326,9 +320,9 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
             </div>
           </div>
         </div>
-        
+
       </div>
-      
+
       <Dialog open={isModalOpen} onClose={handleCloseModal} >
         <DialogTitle>{projName}</DialogTitle>
         <DialogContent>

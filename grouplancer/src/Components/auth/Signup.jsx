@@ -133,7 +133,7 @@ const Signup = () => {
     // if (json.authtoken) {
     localStorage.setItem('auth-token', json.authToken);
     localStorage.setItem("refresh-token", json.refreshToken);
-    navigate('/userAccount');
+    navigate('/create');
     // setCredentials({ email: '', password: '' });
     // }
     // else {
