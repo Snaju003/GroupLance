@@ -23,6 +23,20 @@ import EditIcon from "@mui/icons-material/Edit";
 import { names } from "../constant/skills";
 import NavBar from "../general/Navbar";
 import Footer from "../general/footer/Footer";
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+const dummyEdu = [
+ {
+  institution: "Dummy University",
+  
+  startDate: "September 2016",
+  endDate: "May 2020",
+  degree: "Bachelor of Science",
+  major: "Computer Science",
+}
+];
+
+// console.log(education);
+
 
 const UserAccounts = () => {
   const { currentUser } = useUser();
@@ -35,7 +49,7 @@ const UserAccounts = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [skillopen, setskillOpen] = useState(false);
-  const [eduopen, seteduOpen] = useState(false);
+  const [eduopen, setEduOpen] = useState(false);
   const [workopen, setworkOpen] = useState(false);
   const [WorkExp, setWorkExp] = useState([]);
   const [institutionName, setInstitutionName] = useState("");
@@ -52,10 +66,13 @@ const UserAccounts = () => {
   const handleClose = () => setOpen(false);
   const handleSkillOpen = () => setskillOpen(true);
   const handleSkillClose = () => setskillOpen(false);
-  const handleeduOpen = () => seteduOpen(true);
-  const handleeduClose = () => seteduOpen(false);
+  const handleeduOpen = () => setEduOpen(true);
+  const handleeduClose = () => setEduOpen(false);
   const handleworkOpen = () => setworkOpen(true);
   const handleworkClose = () => setworkOpen(false);
+  const handleEduOpen = () => setEduOpen(true);
+  const handleEduClose = () => setEduOpen(false);
+
 
   const handleAddEducation = () => {
     const newEducation = {
@@ -86,7 +103,7 @@ const UserAccounts = () => {
     handleworkClose();
   };
 
-  const [userData, setUserData] = useState({ name: "", email: "" });
+  const [userData, setUserData] = useState({ name: "", email: ""});
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -198,6 +215,8 @@ const UserAccounts = () => {
     }
   };
 
+  
+
   return (
     <>
     <NavBar />
@@ -212,10 +231,14 @@ const UserAccounts = () => {
           <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" gap={2} >
             <Card sx={{ height: "55vh", borderRadius: "1rem", backdropFilter: "blur(50px)" }}>
               <CardContent>
-                <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem", height: "15vh" }}>
+                <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem", height: "15vh",position:"relative" }}>
                   <img src="https://cdn-icons-png.flaticon.com/256/4021/4021443.png" style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px" }}></img>
+                  <IconButton style={{position:"absolute", top:"11rem",right:"9.5rem"}}>
+        <AddAPhotoIcon />
+      </IconButton>
                 </div>
-                <Typography variant="h6" component="div" textAlign="center" marginTop="5rem">
+          
+                <Typography variant="h6" component="div" textAlign="center" marginTop="6rem">
                   UserName
                 </Typography>
                 <Typography variant="body1" color="text.secondary" textAlign="center">
@@ -306,12 +329,13 @@ const UserAccounts = () => {
                 <Typography variant="h5" component="div" gutterBottom>
                   Education
                 </Typography>
+                <Button onClick={handleEduOpen}>See Details</Button>
                 <List>
                   <ListItem>
                     {/* <Button variant="contained" onClick={handleeduOpen}>
                       Add <AddIcon />
                     </Button> */}
-                    <Modal open={eduopen} onClose={handleeduClose}>
+                    {/* <Modal open={eduopen} onClose={handleeduClose}>
                       <Box sx={{ ...style, width: 400 }}>
                         <TextField
                           label="Institution Name"
@@ -357,14 +381,31 @@ const UserAccounts = () => {
                           updateUserEducation();
                         }} style={{ marginTop: "1rem" }}>Submit</Button>
                       </Box>
-                    </Modal>
-                    <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
-                      {userData.education && userData.education.map((edu, index) => (
-                        <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
-                          <ListItemText primary={edu.institutionName} />
+                    </Modal> */}
+                    <Modal
+        open={eduopen}
+        onClose={handleEduClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2" style={{display:"flex", justifyContent:"center"}}>
+            Education
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          {dummyEdu.map((edu, index) => (
+                        <ListItem key={index} style={{display:"flex", flexDirection:"column"}}>
+                          <ListItemText primary={`Institution : ${edu.institution}`} />
+                          <ListItemText primary={`Start Date : ${edu.startDate}`} />
+                          <ListItemText primary={`End Date : ${edu.endDate}`} />
                         </ListItem>
                       ))}
-                    </List>
+          </Typography>
+        
+        </Box>
+      </Modal>
+
+                   
                   </ListItem>
                 </List>
               </CardContent>
