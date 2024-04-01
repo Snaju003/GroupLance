@@ -62,16 +62,7 @@ const UserAccounts = () => {
   const [skillopen, setskillOpen] = useState(false);
   const [eduopen, setEduOpen] = useState(false);
   const [workopen, setworkOpen] = useState(false);
-  const [WorkExp, setWorkExp] = useState([]);
-  const [institutionName, setInstitutionName] = useState("");
-  const [duration, setDuration] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [companyname, setcompanyname] = useState("");
-  const [compduration, setcompDuration] = useState("");
-  const [compstartDate, setcompStartDate] = useState("");
-  const [compendDate, setcompEndDate] = useState("");
-  const [educationList, setEducationList] = useState([]);
+
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -83,8 +74,6 @@ const UserAccounts = () => {
   const handleworkClose = () => setworkOpen(false);
   const handleEduOpen = () => setEduOpen(true);
   const handleEduClose = () => setEduOpen(false);
-
-
 
 
   const [userData, setUserData] = useState({ name: "", email: "" });
@@ -178,6 +167,26 @@ const [postImage, setPostImage] = useState("");
       });
     }
   };
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const authToken = localStorage.getItem('auth-token');
+            const response = await fetch("http://localhost:8080/api/file-upload/get-user-picture", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": authToken,
+                },
+            });
+            const data = await response.json();
+            // console.log(data.existsImage.image);
+            setFormData({ ...formData, media: data.existsImage.image });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    fetchData();
+}, []);
   const inputRef = useRef(null);
   return (
     <>
@@ -206,13 +215,12 @@ const [postImage, setPostImage] = useState("");
                       ref={inputRef} 
                     />
                     <img
-                      src={currentUser?.profile_pic ? currentUser?.profile_pic : "https://cdn-icons-png.flaticon.com/256/4021/4021443.png"} 
+                      src={formData.media ? formData.media : "https://cdn-icons-png.flaticon.com/256/4021/4021443.png"} 
                       alt="Profile Picture"
-                    
                       style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px", cursor: "pointer" }} 
                     />
-                    <IconButton style={{ position: "absolute", top: "11rem", right: "9.5rem" }}>
-                      <AddAPhotoIcon onClick={() => inputRef.current.click()} />
+                    <IconButton onClick={() => inputRef.current.click()} style={{ position: "absolute", top: "11rem", right: "9.5rem" }}>
+                      <AddAPhotoIcon  />
                     </IconButton>
                   </div>
 
