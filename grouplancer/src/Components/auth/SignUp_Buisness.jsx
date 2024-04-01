@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Layout from '../Layout/Layout';
 import { Col, Row, Container, Form } from "react-bootstrap";
-import "../auth/signupbusiness.css";
+
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
@@ -18,7 +18,13 @@ export default function SignUpBuis() {
         <Layout>
             <section className="create" >
                 <Container >
-                    <Row className="align-items-center" >
+                    <Row className="align-items-center" style={{
+                        backgroundImage: "url(https://img.freepik.com/premium-photo/business-people-working-around-big-light-bulb-dark-blue-background-teamwork-concept_753066-791.jpg)", margin: "2rem", padding: " 0rem 4rem 1rem 4rem",
+                        display: "flex",
+                        borderRadius: "2rem",
+                        backgroundSize: "cover",
+                        backgroundPosition: "left",
+                    }}>
                         <h1 className="heading" style={{ color: "#ffff", padding: "2rem 2rem 0rem 10rem" }}>
                             Sign Up
                         </h1>
@@ -27,7 +33,7 @@ export default function SignUpBuis() {
                             <form>
                                 <Col className="column" style={{ width: "31.25vw" }}>
                                     <Row size={12} sm={6} className="px-1">
-                                        <input  type="text" placeholder="Company Name" onChange={onchange}
+                                        <input type="text" placeholder="Company Name" onChange={onchange}
                                             name="name" required />
                                     </Row>
                                     <Row size={12} sm={6} className="px-1" >
@@ -95,16 +101,16 @@ export default function SignUpBuis() {
                                         <input type="number" placeholder="Phone Number" onChange={onchange}
                                             name="address" required />
                                     </Row>
-                                    <Col size={12} className="px-1" style={{ marginLeft:"9rem" }}>
+                                    <Col size={12} className="px-1" style={{ marginLeft: "9rem" }}>
                                         <button className="button-48" style={{ borderRadius: "20px", marginRight: "8rem" }} type="submit"><span>Sign Up</span></button>
                                     </Col>
                                 </Col>
                             </form>
                         </Col>
-                        
+
                     </Row>
                 </Container>
-               
+
             </section>
         </Layout>
     );
