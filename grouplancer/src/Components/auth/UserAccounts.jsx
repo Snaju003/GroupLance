@@ -294,8 +294,7 @@ const [postImage, setPostImage] = useState("");
                           />
 
                           <Button onClick={() => {
-                            handleAddSkills();
-                            updateUserSkills();
+                           
                           }} style={{ margin: "auto" }}>Submit</Button>
                         </Box>
                       </Modal>
