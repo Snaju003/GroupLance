@@ -23,6 +23,20 @@ import EditIcon from "@mui/icons-material/Edit";
 import { names } from "../constant/skills";
 import NavBar from "../general/Navbar";
 import Footer from "../general/footer/Footer";
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+const dummyEdu = [
+ {
+  institution: "Dummy University",
+  
+  startDate: "September 2016",
+  endDate: "May 2020",
+  degree: "Bachelor of Science",
+  major: "Computer Science",
+}
+];
+
+// console.log(education);
+
 
 const UserAccounts = () => {
   const { currentUser } = useUser();
@@ -86,7 +100,7 @@ const UserAccounts = () => {
     handleworkClose();
   };
 
-  const [userData, setUserData] = useState({ name: "", email: "" });
+  const [userData, setUserData] = useState({ name: "", email: ""});
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -198,6 +212,8 @@ const UserAccounts = () => {
     }
   };
 
+  
+
   return (
     <>
     <NavBar />
@@ -212,10 +228,14 @@ const UserAccounts = () => {
           <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" gap={2} >
             <Card sx={{ height: "55vh", borderRadius: "1rem", backdropFilter: "blur(50px)" }}>
               <CardContent>
-                <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem", height: "15vh" }}>
+                <div style={{ backgroundImage: "linear-gradient(#241571,#9867c5,#57a0d3)", borderRadius: "1rem", height: "15vh",position:"relative" }}>
                   <img src="https://cdn-icons-png.flaticon.com/256/4021/4021443.png" style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px" }}></img>
+                  <IconButton style={{position:"absolute", top:"11rem",right:"9.5rem"}}>
+        <AddAPhotoIcon />
+      </IconButton>
                 </div>
-                <Typography variant="h6" component="div" textAlign="center" marginTop="5rem">
+          
+                <Typography variant="h6" component="div" textAlign="center" marginTop="6rem">
                   UserName
                 </Typography>
                 <Typography variant="body1" color="text.secondary" textAlign="center">
@@ -269,9 +289,6 @@ const UserAccounts = () => {
                 </Typography>
                 <List>
                   <ListItem>
-                    <Button variant="contained" onClick={handleSkillOpen}>
-                      Add <AddIcon />
-                    </Button>
                     <Modal open={skillopen} onClose={handleSkillClose}>
                       <Box sx={{ ...style, width: 400 }}>
                         <Autocomplete
@@ -309,12 +326,13 @@ const UserAccounts = () => {
                 <Typography variant="h5" component="div" gutterBottom>
                   Education
                 </Typography>
+                <Button onClick={handleOpen}>{dummyEdu.institution}</Button>
                 <List>
                   <ListItem>
-                    <Button variant="contained" onClick={handleeduOpen}>
+                    {/* <Button variant="contained" onClick={handleeduOpen}>
                       Add <AddIcon />
-                    </Button>
-                    <Modal open={eduopen} onClose={handleeduClose}>
+                    </Button> */}
+                    {/* <Modal open={eduopen} onClose={handleeduClose}>
                       <Box sx={{ ...style, width: 400 }}>
                         <TextField
                           label="Institution Name"
@@ -360,14 +378,31 @@ const UserAccounts = () => {
                           updateUserEducation();
                         }} style={{ marginTop: "1rem" }}>Submit</Button>
                       </Box>
-                    </Modal>
-                    <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
-                      {userData.education && userData.education.map((edu, index) => (
-                        <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
-                          <ListItemText primary={edu.institutionName} />
+                    </Modal> */}
+                    <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2" style={{display:"flex", justifyContent:"center"}}>
+            Education
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          {dummyEdu.map((edu, index) => (
+                        <ListItem key={index} style={{display:"flex", flexDirection:"column"}}>
+                          <ListItemText primary={`Institution : ${edu.institution}`} />
+                          <ListItemText primary={`Start Date : ${edu.startDate}`} />
+                          <ListItemText primary={`End Date : ${edu.endDate}`} />
                         </ListItem>
                       ))}
-                    </List>
+          </Typography>
+        
+        </Box>
+      </Modal>
+
+                   
                   </ListItem>
                 </List>
               </CardContent>
@@ -381,9 +416,9 @@ const UserAccounts = () => {
                 <List>
                   <ListItem>
 
-                    <Button variant="contained" onClick={handleworkOpen}>
+                    {/* <Button variant="contained" onClick={handleworkOpen}>
                       Add <AddIcon />
-                    </Button>
+                    </Button> */}
                     <Modal open={workopen} onClose={handleworkClose}>
                       <Box sx={{ ...style, width: 400 }}>
                         <TextField
@@ -442,6 +477,9 @@ const UserAccounts = () => {
                 </List>
               </CardContent>
             </Card>
+            <Button style={{position:"absolute", right:"10rem",top:"110vh"}} variant="contained" onClick={()=>{navigate('/create')}}>
+                      Add <AddIcon />
+                    </Button>
           </Box>
         </Box>
       </div>
