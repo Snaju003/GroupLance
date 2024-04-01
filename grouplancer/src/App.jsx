@@ -8,6 +8,7 @@ import Footer from './Components/general/footer/Footer';
 import Login from './Components/auth/Login';
 import Signup from './Components/auth/Signup';
 import UserAccounts from './Components/auth/UserAccounts';
+import UserAccountbusiness from './Components/auth/UserAccountbusiness';
 import Home from './Components/features/Home';
 import AboutUs from './Components/features/AboutUs';
 import Groups from './Components/group/Groups';
@@ -116,6 +117,7 @@ function App() {
           } />
           <Route exact path='/sidebar' element={<Sidebar />} />
           <Route exact path='/userAccount' element={<UserAccounts />} />
+          <Route exact path='/userAccountbusiness' element={<UserAccountbusiness />} />
           <Route exact path='/groups' element={<Groups />} />
           <Route exact path='/sidebar_ranking' element={<Sidebar_ranking />} />
           <Route exact path='/liveside' element={<LiveSide />} />
