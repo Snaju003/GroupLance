@@ -49,7 +49,7 @@ const UserAccounts = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [skillopen, setskillOpen] = useState(false);
-  const [eduopen, seteduOpen] = useState(false);
+  const [eduopen, setEduOpen] = useState(false);
   const [workopen, setworkOpen] = useState(false);
   const [WorkExp, setWorkExp] = useState([]);
   const [institutionName, setInstitutionName] = useState("");
@@ -66,10 +66,13 @@ const UserAccounts = () => {
   const handleClose = () => setOpen(false);
   const handleSkillOpen = () => setskillOpen(true);
   const handleSkillClose = () => setskillOpen(false);
-  const handleeduOpen = () => seteduOpen(true);
-  const handleeduClose = () => seteduOpen(false);
+  const handleeduOpen = () => setEduOpen(true);
+  const handleeduClose = () => setEduOpen(false);
   const handleworkOpen = () => setworkOpen(true);
   const handleworkClose = () => setworkOpen(false);
+  const handleEduOpen = () => setEduOpen(true);
+  const handleEduClose = () => setEduOpen(false);
+
 
   const handleAddEducation = () => {
     const newEducation = {
@@ -326,7 +329,7 @@ const UserAccounts = () => {
                 <Typography variant="h5" component="div" gutterBottom>
                   Education
                 </Typography>
-                <Button onClick={handleOpen}>{dummyEdu.institution}</Button>
+                <Button onClick={handleEduOpen}>See Details</Button>
                 <List>
                   <ListItem>
                     {/* <Button variant="contained" onClick={handleeduOpen}>
@@ -380,8 +383,8 @@ const UserAccounts = () => {
                       </Box>
                     </Modal> */}
                     <Modal
-        open={open}
-        onClose={handleClose}
+        open={eduopen}
+        onClose={handleEduClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
