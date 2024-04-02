@@ -159,7 +159,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
         style={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",padding:"2rem"
+          alignItems: "center", padding: "2rem"
         }}
       >
         <h1 className="text-center my-4" style={{ color: "#ffff", margin: "auto" }}>
@@ -178,7 +178,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
               padding: "1rem 2rem 1rem 2rem",
             }}
           >
-           <span> Delete Group</span>
+            <span> Delete Group</span>
           </button>
         )}
         {(grpLeader !== currentUser?._id) && (
@@ -207,7 +207,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
             textAlign: "justify",
             borderRadius: "15px",
             paddingLeft: "20px",
-            paddingTop: "10px",paddingBottom:"1rem",
+            paddingTop: "10px", paddingBottom: "1rem",
             boxShadow: "0 0 10px 5px",
           }}
         >
@@ -217,7 +217,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
           <p style={{ fontSize: "25px", padding: "10px" }}>Domains: {domains}</p>
           <div
             style={{
-              display: "flex", gap: "0rem",
+              display: "flex",
               justifyContent: "center",
               alignItems: "center",
             }}
@@ -225,20 +225,19 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
             {(grpLeader === currentUser?._id) && (<button
               type="submit"
               className="button-48"
-              style={{ marginBottom: "3vh", display: "block",margin:"1rem"}}
+              style={{ marginBottom: "3vh", display: "block", margin: "1rem" }}
               onClick={handleOpenModal}
 
             >
-             <span> Edit details</span>
+              <span> Edit details</span>
             </button>)}
 
+            {(grpLeader === currentUser?._id) && (
+              <Button variant="primary" className="button-48" onClick={handleShow} style={{ display: "block", color: "white", padding: "1rem 2rem 1rem 2rem", backgroundColor: "#151e3d", borderRadius: "1.5rem" }}>
+                <span>Create Task</span>
+              </Button>
+            )}
           </div>
-
-          {(grpLeader === currentUser?._id) && (
-            <Button variant="primary" className="button-48" onClick={handleShow} style={{ display: "block", margin: "0 auto", color: "white", padding: "1rem 2rem 1rem 2rem", backgroundColor: "#151e3d", borderRadius: "1.5rem" }}>
-              <span>Create Task</span>
-            </Button>
-          )}
 
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
