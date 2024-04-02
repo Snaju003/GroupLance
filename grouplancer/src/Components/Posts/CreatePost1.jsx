@@ -3,6 +3,7 @@ import { Container, Row, Col, Form } from "react-bootstrap";
 import { useNavigate } from 'react-router-dom';
 import { useUser } from "../../context/UserContext";
 import Select from 'react-select';
+import toast from "react-hot-toast";
 
 function convertToBase64(file) {
     return new Promise((resolve, reject) => {
@@ -87,10 +88,12 @@ const CreatePost1 = () => {
             });
             const data = await response.json();
             console.log(data);
+            toast.success("Post Created Successfully !")
             setFormData({ pDesc: "", media: null })
             navigate("/")
         } catch (error) {
             console.log(error);
+            toast.error("Failed to create post !")
         }
     }
 
