@@ -6,6 +6,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 import EditGroup from "./EditGroup";
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import ListGroup from 'react-bootstrap/ListGroup';
 import {
   Dialog,
   DialogTitle,
@@ -158,7 +159,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
         style={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: "center",padding:"2rem"
         }}
       >
         <h1 className="text-center my-4" style={{ color: "#ffff", margin: "auto" }}>
@@ -166,17 +167,18 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
         </h1>
         {(grpLeader === currentUser?._id) && (
           <button
-            className="btn btn-primary"
+            className="button-48"
             type="submit"
             onClick={deleteGroup}
             style={{
               color: "white",
               padding: "10px",
               marginRight: "1rem",
-              backgroundColor: "#cc0000"
+              backgroundColor: "#cc0000",
+              padding: "1rem 2rem 1rem 2rem",
             }}
           >
-            Delete Group
+           <span> Delete Group</span>
           </button>
         )}
         {(grpLeader !== currentUser?._id) && (
@@ -205,7 +207,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
             textAlign: "justify",
             borderRadius: "15px",
             paddingLeft: "20px",
-            paddingTop: "10px",
+            paddingTop: "10px",paddingBottom:"1rem",
             boxShadow: "0 0 10px 5px",
           }}
         >
@@ -215,63 +217,67 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
           <p style={{ fontSize: "25px", padding: "10px" }}>Domains: {domains}</p>
           <div
             style={{
-              display: "flex",
+              display: "flex", gap: "0rem",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
             {(grpLeader === currentUser?._id) && (<button
               type="submit"
-              className="btn btn-primary"
-              style={{ marginBottom: "3vh" }}
+              className="button-48"
+              style={{ marginBottom: "3vh", display: "block",margin:"1rem"}}
               onClick={handleOpenModal}
 
             >
-              Edit details
+             <span> Edit details</span>
             </button>)}
+
           </div>
+
+          {(grpLeader === currentUser?._id) && (
+            <Button variant="primary" className="button-48" onClick={handleShow} style={{ display: "block", margin: "0 auto", color: "white", padding: "1rem 2rem 1rem 2rem", backgroundColor: "#151e3d", borderRadius: "1.5rem" }}>
+              <span>Create Task</span>
+            </Button>
+          )}
+
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Enter Task Details </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form >
+                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                  <Form.Label>Task Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Task Name"
+                    autoFocus
+                    required
+                    onChange={(e) => setProject({ ...project, projectname: e.target.value })}
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlTextarea1"
+                >
+                  <Form.Label>Task Description</Form.Label>
+                  <Form.Control as="textarea" rows={3} required onChange={(e) => setProject({ ...project, projectdesc: e.target.value })} />
+                </Form.Group>
+              </Form>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button type="submit" variant="primary" onClick={addProjectFunction}>
+                Create
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
         </div>
       </div>
-      {(grpLeader === currentUser?.id) && (
-        <Button variant="primary" className="button-48" onClick={handleShow} style={{ display: "block", margin: "0 auto", color: "white", padding: "0.5rem 2rem 0.5rem 2rem", backgroundColor: "#151e3d", borderRadius: "2rem" }}>
-          <span>Create Task</span>
-        </Button>
-      )}
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Enter Task Details </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form >
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Task Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Task Name"
-                autoFocus
-                required
-                onChange={(e) => setProject({ ...project, projectname: e.target.value })}
-              />
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Task Description</Form.Label>
-              <Form.Control as="textarea" rows={3} required onChange={(e) => setProject({ ...project, projectdesc: e.target.value })} />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button type="submit" variant="primary" onClick={addProjectFunction}>
-            Create
-          </Button>
-        </Modal.Footer>
-      </Modal>
 
       <div style={{ alignItems: "center" }}>
         <h1
@@ -334,10 +340,22 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
 
           </div>)}
           {(grpLeader !== currentUser?._id) && (
-            <div >
-              <img style={{ width: "25vw", height: "50vh", margin: "0rem 2rem 0rem 1rem", borderRadius: "2rem 2rem 0rem 0rem" }} src="https://assets-global.website-files.com/5b69a01ba2e409501de055d1/654397e57d1b4f0a5d9c1bc0_Social%20loafing.png" alt="filler"></img>
-              <img style={{ width: "25vw", height: "50vh", margin: "0rem 2rem 2rem 1rem", borderRadius: "0rem 0rem 2rem 2rem" }} src="https://imind.com/wp-content/uploads/2023/01/18.jpg" alt="filler"></img>
+            <div style={{ backgroundColor: "white", borderRadius: "1rem", padding: "1rem" }}>
+              {/* 
+              <img style={{ width: "25vw", height: "50vh", margin: "0rem 2rem 2rem 1rem", borderRadius: "0rem 0rem 2rem 2rem" }} src="https://imind.com/wp-content/uploads/2023/01/18.jpg" alt="filler"></img> */}
 
+              <img style={{ width: "25vw", height: "50vh", margin: "0rem 2rem 0rem 1rem", borderRadius: "2rem 2rem 0rem 0rem" }} src="https://assets-global.website-files.com/5b69a01ba2e409501de055d1/654397e57d1b4f0a5d9c1bc0_Social%20loafing.png" alt="filler"></img>
+              <h3 style={{ alignItems: "center" }}>Assigned Duties</h3>
+              <ListGroup as="ul">
+                <ListGroup.Item as="li" active>
+                  Current Duty
+                </ListGroup.Item>
+                <ListGroup.Item as="li">Upcoming task 1</ListGroup.Item>
+                <ListGroup.Item as="li">
+                  Upcoming task 2
+                </ListGroup.Item>
+                <ListGroup.Item as="li">Upcoming Task 3</ListGroup.Item>
+              </ListGroup>
             </div>)}
 
         </div>
@@ -386,6 +404,10 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
                           }}
                         />
                       </div>)}
+                      {/* {(grpLeader === currentUser?._id && _id !== currentUser?._id) && (
+                        <div style={{ margin: "0.5rem" }}>  <label>Assign a duty</label>
+                          <input style={{ borderRadius: "1rem", padding: "0.5rem" }} placeholder="complete task1"></input></div>
+                      )} */}
                       {(grpLeader === currentUser?._id && _id !== currentUser?._id) && (<button
                         type="submit"
                         className="btn btn-primary"
