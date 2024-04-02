@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import EditGroup from "./EditGroup";
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 import {
   Dialog,
   DialogTitle,
@@ -113,6 +115,11 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       <div
@@ -193,6 +200,44 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
           </div>
         </div>
       </div>
+
+      <Button variant="primary" className="button-48" onClick={handleShow} style={{display:"block",margin:"0 auto",color:"white",padding:"0.5rem 2rem 0.5rem 2rem",backgroundColor:"#151e3d",borderRadius:"2rem"}}>
+       <span>Create Project</span> 
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Enter Project Details </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Project Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Project Name"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Project Description</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Create
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <div style={{ alignItems: "center" }}>
         <h1
           style={{
@@ -206,6 +251,8 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
           Members
         </h1>
       </div>
+
+      
       <div style={{ display: "flex", gap: "0.5rem" }}>
 
         <div class="col-sm-4">
@@ -300,7 +347,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
                           value={value}
                           onChange={(e, value) => {
                             setValue(value);
-                            ratingUser(e,_id);
+                            ratingUser(e, _id);
                           }}
                         />
                       </div>)}
