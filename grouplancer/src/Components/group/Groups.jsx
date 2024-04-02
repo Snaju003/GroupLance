@@ -234,20 +234,20 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
       </div>
 
       <Button variant="primary" className="button-48" onClick={handleShow} style={{ display: "block", margin: "0 auto", color: "white", padding: "0.5rem 2rem 0.5rem 2rem", backgroundColor: "#151e3d", borderRadius: "2rem" }}>
-        <span>Create Project</span>
+        <span>Create Task</span>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Enter Project Details </Modal.Title>
+          <Modal.Title>Enter Task Details </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Project Name</Form.Label>
+              <Form.Label>Task Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Project Name"
+                placeholder="Task Name"
                 autoFocus
                 required
                 onChange={(e) => setProject({ ...project, projectname: e.target.value })}
@@ -257,7 +257,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
               className="mb-3"
               controlId="exampleForm.ControlTextarea1"
             >
-              <Form.Label>Project Description</Form.Label>
+              <Form.Label>Task Description</Form.Label>
               <Form.Control as="textarea" rows={3} required onChange={(e) => setProject({ ...project, projectdesc: e.target.value })} />
             </Form.Group>
           </Form>

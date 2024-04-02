@@ -83,7 +83,7 @@ const GroupTab = () => {
                                         <Nav.Link eventKey="first">Group Details</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="third">Projects</Nav.Link>
+                                        <Nav.Link eventKey="third">Tasks</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
                                         <Nav.Link eventKey="second">Posts</Nav.Link>

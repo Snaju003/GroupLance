@@ -58,7 +58,7 @@ function Projects({ groupId }) {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Open</Button>
+            <Button size="small">Open Task</Button>
           </CardActions>
         </Card>
       ))}
