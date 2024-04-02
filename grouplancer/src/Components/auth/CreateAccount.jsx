@@ -22,6 +22,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import toast from "react-hot-toast";
 const CreateAccount = () => {
 
   const { currentUser } = useUser();
@@ -139,9 +140,11 @@ const CreateAccount = () => {
       });
       const json = await response.json();
       console.log(json);
+      toast.success("Education Updated Successfully !")
       navigate("/userAccount");
     } catch (error) {
       console.error(error);
+      toast.error("Falied to Update !")
     }
   };
 
@@ -158,9 +161,11 @@ const CreateAccount = () => {
       });
       const json = await response.json();
       console.log(json);
+      toast.success("Skills Added Succesfully !");
       navigate("/userAccount");
     } catch (error) {
       console.error(error);
+      toast.error("Failed to Add Skills")
     }
   };
 
@@ -179,9 +184,11 @@ const CreateAccount = () => {
       });
       const json = await response.json();
       console.log(json);
+      toast.success("Work Experience Added Successfully !")
       navigate("/userAccount");
     } catch (error) {
       console.error(error);
+      toast.error("Failed to add work experience")
     }
   };
 
