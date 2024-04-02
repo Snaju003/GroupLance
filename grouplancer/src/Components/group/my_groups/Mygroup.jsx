@@ -8,7 +8,8 @@ const MyGroup = ({ color, data }) => {
                 <div className="card-body">
                     <h5 className="card-title">{data.gName}</h5>
                     <p className="card-text">{data.projName}</p>
-                    <Link to={`/groupTab/${data._id}`} className="btn btn-primary">View Group</Link>
+                    
+                    <Link to={`/groupTab/${data._id}`}><button className='button-48'style={{textDecoration :"none", color: "white", fontWeight: "700"}}>View Group</button></Link>
                 </div>
             </div>
             
