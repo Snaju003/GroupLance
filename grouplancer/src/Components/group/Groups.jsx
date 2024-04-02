@@ -167,17 +167,18 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
         </h1>
         {(grpLeader === currentUser?._id) && (
           <button
-            className="btn btn-primary"
+            className="button-48"
             type="submit"
             onClick={deleteGroup}
             style={{
               color: "white",
               padding: "10px",
               marginRight: "1rem",
-              backgroundColor: "#cc0000"
+              backgroundColor: "#cc0000",
+              padding: "1rem 2rem 1rem 2rem",
             }}
           >
-            Delete Group
+           <span> Delete Group</span>
           </button>
         )}
         {(grpLeader !== currentUser?._id) && (
