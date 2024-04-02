@@ -109,7 +109,7 @@ const GroupTab = () => {
                                         </div>
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="third">
-                                                <Project groupId={id}/>
+                                                <Project groupId={id} gMembers={members}/>
                                     </Tab.Pane>
                                 </Tab.Content>
                             </Tab.Container>
