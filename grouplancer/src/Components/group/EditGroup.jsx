@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
+import toast from "react-hot-toast";
 
 const EditGroup = () => {
   const [groupName, setGroupName] = useState('');
@@ -50,6 +51,7 @@ const EditGroup = () => {
         };
         fetchData();
     }, [currentUser, navigate, id]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -71,9 +73,11 @@ const EditGroup = () => {
       });
       const json = await response.json();
       console.log(json);
+      toast.success("Succesfully Edited")
       console.log('Group info updated successfully');
     } catch (error) {
       console.error( error);
+      toast.error("Failed to edit")
     }
   };
 
