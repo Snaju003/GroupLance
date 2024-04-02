@@ -43,12 +43,6 @@ function Projects({ groupId }) {
     <>
       {getAllProject.map((project) => (
         <Card key={project.id} sx={{ maxWidth: 345 }}>
-          {/* <CardMedia
-            component="img"
-            alt="Project Image"
-            height="140"
-            image={project.imageUrl} 
-          /> */}
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {project.projectname}
