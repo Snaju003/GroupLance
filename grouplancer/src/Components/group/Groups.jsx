@@ -142,17 +142,15 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
     if (project.projectname === "" || project.projectdesc === "") {
       return toast.error("all fields are required")
     }
-   
     try {
       const projectRef = collection(fireDB, 'projects');
       await addDoc(projectRef, project)
       toast.success("Project Added successfully");
-
+      handleClose( );
     } catch (error) {
       console.log(error);
       toast.error("Add project failed");
     }
-
   }
   return (
     <>
