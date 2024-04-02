@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -24,6 +24,30 @@ const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const { currentUser, logout } = useUser();
+    const navigate = useNavigate();
+    const [image, setImage] = useState();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const authToken = localStorage.getItem('auth-token');
+                const response = await fetch("http://localhost:8080/api/file-upload/get-user-picture", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": authToken,
+                    },
+                });
+                const data = await response.json();
+                // console.log(data.existsImage.image);
+                setImage(data.existsImage.image);
+                console.log(data)
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    }, []);
 
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -257,7 +281,12 @@ const NavBar = () => {
                             <Box sx={{ flexGrow: 0, marginLeft: "2rem" }}>
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <img alt='default-user' src="./default-user.jpg" style={{ height: "10vh", width: "10vh" }} />
+                                        {/* <img alt='default-user' src="./default-user.jpg" style={{ height: "10vh", width: "10vh" }} /> */}
+                                        <img
+                                            src={image ? image : "./default-user.jpg"}
+                                            alt="default-user"
+                                            style={{ height: "10vh", width: "10vh", cursor: "pointer" }}
+                                        />
                                     </IconButton>
                                 </Tooltip>
                                 <Menu

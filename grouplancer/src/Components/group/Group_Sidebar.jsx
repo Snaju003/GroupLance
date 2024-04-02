@@ -5,6 +5,7 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import Groups from "./Groups";
 import Livepost from "../Posts/Livepost";
 import Layout from "../Layout/Layout";
+import Project from "../group/Projects";
 
 const GroupTab = () => {
     const [groupDetails, setGroupDetails] = useState({});
@@ -82,6 +83,9 @@ const GroupTab = () => {
                                         <Nav.Link eventKey="first">Group Details</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
+                                        <Nav.Link eventKey="third">Projects</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
                                         <Nav.Link eventKey="second">Posts</Nav.Link>
                                     </Nav.Item>
                                 </Nav>
@@ -103,6 +107,9 @@ const GroupTab = () => {
                                                 }
                                             </div>
                                         </div>
+                                    </Tab.Pane>
+                                    <Tab.Pane eventKey="third">
+                                                <Project/>
                                     </Tab.Pane>
                                 </Tab.Content>
                             </Tab.Container>
