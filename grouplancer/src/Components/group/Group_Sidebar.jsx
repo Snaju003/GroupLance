@@ -33,7 +33,7 @@ const GroupTab = () => {
                     }
                 );
                 const data = await response.json();
-                console.log(data.group);
+                //console.log(data.group);
                 setGroupDetails(data.group);
                 setMembers(data.group.members);
                 setDomains(data.group.domains)
@@ -83,7 +83,7 @@ const GroupTab = () => {
                                         <Nav.Link eventKey="first">Group Details</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link eventKey="third">Projects</Nav.Link>
+                                        <Nav.Link eventKey="third">Tasks</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
                                         <Nav.Link eventKey="second">Posts</Nav.Link>
@@ -109,7 +109,7 @@ const GroupTab = () => {
                                         </div>
                                     </Tab.Pane>
                                     <Tab.Pane eventKey="third">
-                                                <Project/>
+                                                <Project groupId={id}/>
                                     </Tab.Pane>
                                 </Tab.Content>
                             </Tab.Container>
