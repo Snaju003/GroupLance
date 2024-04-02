@@ -14,6 +14,9 @@ import {
   Button,
 } from "@mui/material";
 import Rating from '@mui/material/Rating';
+import { Timestamp, addDoc, collection } from "firebase/firestore";
+import { fireDB } from "../../firebase/FirebaseConfig";
+import toast from "react-hot-toast";
 
 const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal, domains, rate }) => {
   const [credentials, setCredentials] = useState({ email: "" });
@@ -119,7 +122,38 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [project, setProject] = useState({
+    projectname: "",
+    projectdesc: "",
+    groupid: groupId,
+    Leader: grpLeader,
+    time: Timestamp.now(),
+    date: new Date().toLocaleString(
+      "en-US",
+      {
+        month: "short",
+        day: "2-digit",
+        year: "numeric",
+      }
+    )
+  });
 
+  const addProjectFunction = async () => {
+    if (project.projectname === "" || project.projectdesc === "") {
+      return toast.error("all fields are required")
+    }
+   
+    try {
+      const projectRef = collection(fireDB, 'projects');
+      await addDoc(projectRef, project)
+      toast.success("Project Added successfully");
+
+    } catch (error) {
+      console.log(error);
+      toast.error("Add project failed");
+    }
+
+  }
   return (
     <>
       <div
@@ -201,8 +235,8 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
         </div>
       </div>
 
-      <Button variant="primary" className="button-48" onClick={handleShow} style={{display:"block",margin:"0 auto",color:"white",padding:"0.5rem 2rem 0.5rem 2rem",backgroundColor:"#151e3d",borderRadius:"2rem"}}>
-       <span>Create Project</span> 
+      <Button variant="primary" className="button-48" onClick={handleShow} style={{ display: "block", margin: "0 auto", color: "white", padding: "0.5rem 2rem 0.5rem 2rem", backgroundColor: "#151e3d", borderRadius: "2rem" }}>
+        <span>Create Project</span>
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -210,13 +244,15 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
           <Modal.Title>Enter Project Details </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Project Name</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Project Name"
                 autoFocus
+                required
+                onChange={(e) => setProject({ ...project, projectname: e.target.value })}
               />
             </Form.Group>
             <Form.Group
@@ -224,7 +260,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
               controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Project Description</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Control as="textarea" rows={3} required onChange={(e) => setProject({ ...project, projectdesc: e.target.value })} />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -232,7 +268,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button type="submit" variant="primary" onClick={addProjectFunction}>
             Create
           </Button>
         </Modal.Footer>
@@ -252,7 +288,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
         </h1>
       </div>
 
-      
+
       <div style={{ display: "flex", gap: "0.5rem" }}>
 
         <div class="col-sm-4">

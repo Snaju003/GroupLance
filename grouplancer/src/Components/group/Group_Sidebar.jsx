@@ -33,7 +33,7 @@ const GroupTab = () => {
                     }
                 );
                 const data = await response.json();
-                console.log(data.group);
+                //console.log(data.group);
                 setGroupDetails(data.group);
                 setMembers(data.group.members);
                 setDomains(data.group.domains)
