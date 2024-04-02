@@ -146,7 +146,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
       const projectRef = collection(fireDB, 'projects');
       await addDoc(projectRef, project)
       toast.success("Project Added successfully");
-      handleClose( );
+      handleClose();
     } catch (error) {
       console.log(error);
       toast.error("Add project failed");
@@ -187,8 +187,8 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
             style={{
               color: "white",
               marginRight: "1rem",
-              backgroundColor: "#cc0000",borderRadius:"1.2rem",
-              padding:"1rem 2rem 1rem 2rem",
+              backgroundColor: "#cc0000", borderRadius: "1.2rem",
+              padding: "1rem 2rem 1rem 2rem",
             }}
           >
             <span>Leave Group</span>
@@ -232,10 +232,11 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
           </div>
         </div>
       </div>
-
-      <Button variant="primary" className="button-48" onClick={handleShow} style={{ display: "block", margin: "0 auto", color: "white", padding: "0.5rem 2rem 0.5rem 2rem", backgroundColor: "#151e3d", borderRadius: "2rem" }}>
-        <span>Create Task</span>
-      </Button>
+      {(grpLeader === currentUser?.id) && (
+        <Button variant="primary" className="button-48" onClick={handleShow} style={{ display: "block", margin: "0 auto", color: "white", padding: "0.5rem 2rem 0.5rem 2rem", backgroundColor: "#151e3d", borderRadius: "2rem" }}>
+          <span>Create Task</span>
+        </Button>
+      )}
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
