@@ -149,17 +149,17 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
         )}
         {(grpLeader !== currentUser?._id) && (
           <button
-            className="btn btn-primary"
+            className="button-48"
             type="submit"
             onClick={() => removeMember(currentUser._id)}
             style={{
               color: "white",
-              padding: "10px",
               marginRight: "1rem",
-              backgroundColor: "#cc0000"
+              backgroundColor: "#cc0000",borderRadius:"1.2rem",
+              padding:"1rem 2rem 1rem 2rem",
             }}
           >
-            Leave Group
+            <span>Leave Group</span>
           </button>
         )}
       </div>
