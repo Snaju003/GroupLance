@@ -1,32 +1,69 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { fireDB } from '../../firebase/FirebaseConfig';
+import toast from 'react-hot-toast';
 
-function Projects() {
+function Projects({ groupId }) {
+  const [getAllProject, setGetAllProject] = useState([]);
+
+
+  useEffect(() => {
+    const getAllProjectFunction = async () => {
+      try {
+        const q = query(
+          collection(fireDB, "projects"),
+          orderBy("time"),
+        );
+        const data = onSnapshot(q, (QuerySnapshot) => {
+          let projectArray = [];
+          QuerySnapshot.forEach((doc) => {
+            projectArray.push({ ...doc.data(), id: doc.id });
+          });
+         // setGetAllProject(projectArray);
+          console.log(projectArray);
+         const filteredProjects = projectArray.filter(
+          (project) => project.groupid === groupId
+        );
+        setGetAllProject(filteredProjects);
+        });
+        return () => data;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAllProjectFunction();
+  }, [groupId]);
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Project Name
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Project Description
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">About</Button>
-      </CardActions>
-    </Card>
+    <>
+      {getAllProject.map((project) => (
+        <Card key={project.id} sx={{ maxWidth: 345 }}>
+          {/* <CardMedia
+            component="img"
+            alt="Project Image"
+            height="140"
+            image={project.imageUrl} 
+          /> */}
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {project.projectname}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {project.projectdesc}
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small">Open</Button>
+          </CardActions>
+        </Card>
+      ))}
+    </>
   );
-};
+}
+
 export default Projects;
