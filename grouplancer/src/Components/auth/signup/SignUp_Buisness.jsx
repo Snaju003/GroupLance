@@ -7,7 +7,7 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Layout from '../Layout/Layout';
+import Layout from '../../Layout/Layout';
 import { Col, Row, Container, Form } from "react-bootstrap";
 
 

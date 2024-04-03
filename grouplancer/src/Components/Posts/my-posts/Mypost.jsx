@@ -9,7 +9,7 @@ import {
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Post from "./Post";
+import Post from "../Post";
 import { Typography, IconButton, Box } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import Button from "@mui/material/Button";

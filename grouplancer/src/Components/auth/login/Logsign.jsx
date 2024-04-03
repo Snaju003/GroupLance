@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Paper, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Layout from "../Layout/Layout";
+import Layout from "../../Layout/Layout";
 
 function Logsign() {
   const navigate = useNavigate();

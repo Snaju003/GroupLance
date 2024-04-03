@@ -9,14 +9,14 @@ import {
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Post from "./Post";
+import Post from "../Post";
 import { Typography, IconButton, Box } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import Button from "@mui/material/Button";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
-import { useUser } from "../../context/UserContext";
+import { useUser } from "../../../context/UserContext";
 
 function Livepost(props) {
   const theme = useTheme();

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useUser } from "../../context/UserContext";
+import { useUser } from "../../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -20,9 +20,9 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
-import { names } from "../constant/skills";
-import NavBar from "../general/Navbar";
-import Footer from "../general/footer/Footer";
+import { names } from "../../constant/skills";
+import NavBar from "../../general/Navbar";
+import Footer from "../../general/footer/Footer";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 const dummyEdu = [
   {
