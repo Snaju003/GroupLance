@@ -39,6 +39,7 @@ import { SocketProvider } from './context/SocketContext';
 import SignUpBuis from './Components/auth/SignUp_Buisness';
 import CreateAccount from './Components/auth/CreateAccount';
 import { Toaster } from 'react-hot-toast';
+import VideoCall from './Components/VideoCall';
 
 function App() {
   const bgcolor = "#0f054c";
@@ -134,6 +135,7 @@ function App() {
           <Route exact path="/logsig" element={<Logsign />} />
           <Route exact path="/signupbuis" element={<SignUpBuis />} />
           <Route exact path="/create" element={<CreateAccount />} />
+          <Route exact path="/videoCall" element={<VideoCall />} />
         </Routes>
           <Toaster/>
       </Router>
