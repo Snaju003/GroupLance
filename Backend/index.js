@@ -9,6 +9,7 @@ const userRouter = require('./routes/user');
 const tweetRouter = require('./routes/tweet');
 const conversationRouter = require('./routes/conversation');
 const fileRouter = require('./controllers/file-upload');
+// const { createToken } = require("./controllers/livekit");
 
 
 const port = process.env.PORT;
@@ -20,12 +21,16 @@ app.use(express.urlencoded({ extended: false }));
 //Available Routes
 connectdb();
 
-app.use('/api/file-upload', fileRouter);
+// app.use('/api/file', fileRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/group', groupRouter);
 app.use('/api/user', userRouter);
 app.use('/api/tweet', tweetRouter);
 app.use('/api/conversation', conversationRouter);
+// app.get('/getToken', async (req, res) => {
+    // res.status(200).json(await createToken());
+// });
+
 app.listen(port, () => {
     console.log(`Server is listening to port ${port}`);
 })

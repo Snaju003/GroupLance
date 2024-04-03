@@ -33,7 +33,7 @@ const uploadProfilePic = async (req, res) => {
 
     } catch (error) {
         console.log(`${error.message}`);
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: 'Internal Server Error'
         })
@@ -66,7 +66,7 @@ const uploadPostImage = async (req, res) => {
         });
     } catch (error) {
         console.log(`${error.message}`);
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: 'Internal Server Error'
         })
@@ -87,7 +87,7 @@ const getUserProfilePic = async (req, res) => {
 
     } catch (error) {
         console.log(`${error.message}`);
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: 'Internal Server Error'
         })
