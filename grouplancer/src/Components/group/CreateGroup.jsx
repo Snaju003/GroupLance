@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "../../context/UserContext";
 import { useNavigate } from 'react-router-dom';
 import { Col, Row, Container, Form } from "react-bootstrap";
+import toast from "react-hot-toast";
 
 const CreateGroup = () => {
   const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: "", groupType: "", whoCanJoin: "", groupMembers: "" });
@@ -27,16 +28,20 @@ const CreateGroup = () => {
       });
       const json = await response.json();
       console.log(json);
+      toast.success("Group Created Successfully !");
       setCredentials({});
       navigate("/")
     } catch (error) {
       console.log(error);
+      toast.error("Failed to Create Group");
     }
   }
 
   const onchange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
+
+ 
   return (
     <>
       <section className="create" >

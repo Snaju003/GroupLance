@@ -5,6 +5,7 @@ import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import Groups from "./Groups";
 import Livepost from "../Posts/Livepost";
 import Layout from "../Layout/Layout";
+import Project from "../group/Projects";
 
 const GroupTab = () => {
     const [groupDetails, setGroupDetails] = useState({});
@@ -32,7 +33,7 @@ const GroupTab = () => {
                     }
                 );
                 const data = await response.json();
-                console.log(data.group);
+                //console.log(data.group);
                 setGroupDetails(data.group);
                 setMembers(data.group.members);
                 setDomains(data.group.domains)
@@ -82,6 +83,9 @@ const GroupTab = () => {
                                         <Nav.Link eventKey="first">Group Details</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
+                                        <Nav.Link eventKey="third">Tasks</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
                                         <Nav.Link eventKey="second">Posts</Nav.Link>
                                     </Nav.Item>
                                 </Nav>
@@ -103,6 +107,9 @@ const GroupTab = () => {
                                                 }
                                             </div>
                                         </div>
+                                    </Tab.Pane>
+                                    <Tab.Pane eventKey="third">
+                                                <Project groupId={id} gMembers={members}/>
                                     </Tab.Pane>
                                 </Tab.Content>
                             </Tab.Container>
