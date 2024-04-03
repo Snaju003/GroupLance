@@ -19,7 +19,8 @@ const TweetSchema = new Schema({
         require: true
     },
     file: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'image'
     },
     rating:
         [

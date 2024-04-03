@@ -127,8 +127,8 @@ const UserAccounts = () => {
 
   const [formData, setFormData] = useState({
     media: null
-});
-const [postImage, setPostImage] = useState("");
+  });
+  const [postImage, setPostImage] = useState("");
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertToBase64(file);
@@ -150,6 +150,7 @@ const [postImage, setPostImage] = useState("");
       });
       const data = await response.json();
       console.log(data);
+      setFormData({ media: base64 });
     } catch (error) {
       console.log(error)
     }
@@ -169,24 +170,24 @@ const [postImage, setPostImage] = useState("");
   };
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const authToken = localStorage.getItem('auth-token');
-            const response = await fetch("http://localhost:8080/api/file-upload/get-user-picture", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "auth-token": authToken,
-                },
-            });
-            const data = await response.json();
-            // console.log(data.existsImage.image);
-            setFormData({ ...formData, media: data.existsImage.image });
-        } catch (error) {
-            console.log(error);
-        }
+      try {
+        const authToken = localStorage.getItem('auth-token');
+        const response = await fetch("http://localhost:8080/api/file-upload/get-user-picture", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": authToken,
+          },
+        });
+        const data = await response.json();
+        // console.log(data.existsImage.image);
+        setFormData({ ...formData, media: data.existsImage.image });
+      } catch (error) {
+        console.log(error);
+      }
     }
     fetchData();
-}, []);
+  }, []);
   const inputRef = useRef(null);
   return (
     <>
@@ -206,21 +207,21 @@ const [postImage, setPostImage] = useState("");
                     <input
                       type="file"
                       onChange={(e) => {
-                        handleChange(e); 
-                        handleFileUpload(e); 
+                        handleChange(e);
+                        handleFileUpload(e);
                       }}
                       name="media"
                       accept="image/*, video/*"
                       style={{ display: "none" }}
-                      ref={inputRef} 
+                      ref={inputRef}
                     />
                     <img
-                      src={formData.media ? formData.media : "https://cdn-icons-png.flaticon.com/256/4021/4021443.png"} 
+                      src={formData.media ? formData.media : "https://cdn-icons-png.flaticon.com/256/4021/4021443.png"}
                       alt="Profile Picture"
-                      style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px", cursor: "pointer" }} 
+                      style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px", cursor: "pointer" }}
                     />
                     <IconButton onClick={() => inputRef.current.click()} style={{ position: "absolute", top: "11rem", right: "9.5rem" }}>
-                      <AddAPhotoIcon  />
+                      <AddAPhotoIcon />
                     </IconButton>
                   </div>
 
@@ -294,7 +295,7 @@ const [postImage, setPostImage] = useState("");
                           />
 
                           <Button onClick={() => {
-                           
+
                           }} style={{ margin: "auto" }}>Submit</Button>
                         </Box>
                       </Modal>
