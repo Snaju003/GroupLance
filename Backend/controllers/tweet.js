@@ -6,6 +6,7 @@ const createTweet = async (req, res) => {
         const {
             groupId,
             content,
+            file,
         } = req.body;
 
         const userId = req.user;
@@ -40,7 +41,7 @@ const createTweet = async (req, res) => {
             userId,
             groupId,
             content,
-            // file: imageUrl,
+            file: file,
         });
 
         const updateGroup = await GroupModel.findByIdAndUpdate(groupId, {
@@ -151,10 +152,13 @@ const getAllTweetsBasedOnGroup = async (req, res) => {
                 message: 'Group not found'
             });
         }
-        const tweets = await TweetModel.find({ groupId: groupId }).populate({
-            path: 'groupId',
-            select: 'gName'
-        });
+        const tweets = await TweetModel.find({ groupId: groupId })
+            .populate({
+                path: 'groupId',
+                select: 'gName'
+            })
+            .populate('file')
+            .sort({ createdAt: -1 });
         return res.status(200).json({
             success: true,
             message: 'All Groups fetched',
@@ -177,6 +181,7 @@ const getPosts = async (req, res) => {
                 path: 'groupId',
                 select: 'gName',
             })
+            .populate('file')
             .sort({ createdAt: -1 });
         console.log(posts)
         return res.status(200).json({

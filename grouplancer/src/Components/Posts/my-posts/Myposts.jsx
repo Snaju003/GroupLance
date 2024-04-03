@@ -7,7 +7,7 @@ import {
   DialogActions,
   Button,
 } from "@mui/material";
-import Post from "./Post";
+import Post from "../Post";
 
 function Myposts() {
   const groupImage = "/creategrp.jpg";
