@@ -1,7 +1,7 @@
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
-import CreatePost1 from "./CreatePost1";
-import Myposts from "./Myposts";
-import LivePosts from "./LivePosts";
+import CreatePost1 from "./create-post/CreatePost1";
+import Myposts from "./my-posts/Myposts";
+import LivePosts from "./my-posts/LivePosts";
 import Layout from "../Layout/Layout";
 
 const Postbar = () => {

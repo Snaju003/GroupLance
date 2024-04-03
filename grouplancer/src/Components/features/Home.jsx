@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import About from "./About";
 import { useUser } from "../../context/UserContext";
 import { useNavigate,Link } from "react-router-dom";
-import Signup from "../auth/Signup";
+import Signup from "../auth/signup/Signup";
 import AOS from 'aos';
 import "aos/dist/aos.css";
 import Layout from "../Layout/Layout";

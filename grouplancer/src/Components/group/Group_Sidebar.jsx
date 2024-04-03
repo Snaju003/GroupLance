@@ -3,7 +3,7 @@ import { useUser } from "../../context/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import Groups from "./Groups";
-import Livepost from "../Posts/Livepost";
+import Livepost from "../Posts/my-posts/Livepost";
 import Layout from "../Layout/Layout";
 import Project from "../group/Projects";
 
