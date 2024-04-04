@@ -62,6 +62,7 @@ const UserAccounts = () => {
   const [skillopen, setskillOpen] = useState(false);
   const [eduopen, setEduOpen] = useState(false);
   const [workopen, setworkOpen] = useState(false);
+  const [skillModal, setSkillModal] = useState(false)
 
 
   const handleOpen = () => setOpen(true);
@@ -74,7 +75,8 @@ const UserAccounts = () => {
   const handleworkClose = () => setworkOpen(false);
   const handleEduOpen = () => setEduOpen(true);
   const handleEduClose = () => setEduOpen(false);
-
+  const handleSkillModal = () => setSkillModal(true);
+  const handleSkillModalClose = () => setSkillModal(false)
 
   const [userData, setUserData] = useState({ name: "", email: "" });
   useEffect(() => {
@@ -273,13 +275,12 @@ const UserAccounts = () => {
             </Box>
             <Box display="flex" flexDirection="column" gap={2} marginTop="1rem" alignItems="center">
               <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
-                <CardContent style={{ display: "flex", justifyContent: "space-between" }}>
-                  <Typography variant="h5" component="div" gutterBottom style={{ width: "fit-content" }}>
+                <CardContent style={{ display: "flex", justifyContent: "space-between",flexDirection:"column",alignItems:"flex-start" }}>
+                <Typography variant="h5" component="div" gutterBottom>
                     Skills
                   </Typography>
-                  <List>
-                    <ListItem>
-                      <Modal open={skillopen} onClose={handleSkillClose}>
+                 
+                      {/* <Modal open={skillopen} onClose={handleSkillClose}>
                         <Box sx={{ ...style, width: 400 }}>
                           <Autocomplete
                             multiple
@@ -298,16 +299,38 @@ const UserAccounts = () => {
 
                           }} style={{ margin: "auto" }}>Submit</Button>
                         </Box>
-                      </Modal>
-                      <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
+                      </Modal> */}
+                      {/* <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
+                        {userData.skills && userData.skills.map((skill, index) => (
+                          <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
+                            <ListItemText primary={skill} />
+                          </ListItem>
+                        ))}
+                      </List> */}
+                      <Button onClick={handleSkillModal}>See Details</Button>
+                         <Modal
+        open={skillModal}
+        onClose={handleSkillModalClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Skills
+          </Typography>
+           <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
                         {userData.skills && userData.skills.map((skill, index) => (
                           <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
                             <ListItemText primary={skill} />
                           </ListItem>
                         ))}
                       </List>
-                    </ListItem>
-                  </List>
+          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography> */}
+        </Box>
+      </Modal>
+                  
                 </CardContent>
               </Card>
               <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
