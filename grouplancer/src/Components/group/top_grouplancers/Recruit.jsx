@@ -2,7 +2,38 @@ import React from 'react'
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 
-const Recruit = ({ name, email, rate, profilePic, color }) => {
+const Recruit = ({ id, name, email, rate, profilePic, color }) => {
+
+    // const inviteMember = async () => {
+    //     try {
+    //         const authToken = localStorage.getItem("auth-token");
+    //         const response = await fetch(
+    //             `http://localhost:8080/api/group/invite-members`,
+    //             {
+    //                 method: "POST",
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                     "auth-token": authToken,
+    //                 },
+    //                 body: JSON.stringify({
+    //                     invitedUserMail: email,
+    //                     invitationLink: "http://localhost:3000/sidebar",
+    //                     group: {
+    //                         id: id,
+    //                         name: grpName,
+    //                         desc: grpDesc,
+    //                     },
+    //                     inviterName: currentUser,
+    //                 }),
+    //             }
+    //         );
+    //         const data = await response.json();
+    //         console.log(data)
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
+
     return (
         <>
             <div className="card" style={{ backgroundColor: color, width: "80vw" }}>
