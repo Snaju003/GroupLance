@@ -59,7 +59,7 @@ const GroupTab = () => {
                     }
                 );
                 const data = await response.json();
-                console.log(data.tweets)
+               // console.log(data.tweets)
                 setPosts(data.tweets)
             } catch (error) {
                 console.error(error);

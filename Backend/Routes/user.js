@@ -7,6 +7,7 @@ const {
   myPosts,
   rateUser,
   editUSer,
+  getAllUsers,
 } = require("../controllers/user");
 const fetchUser = require("../middleware/fetchuser");
 
@@ -19,5 +20,6 @@ userRouter.get("/owned-groups", fetchUser, ownedGroup);
 userRouter.get("/get-all-posts", fetchUser, myPosts);
 userRouter.post("/rate-user", fetchUser, rateUser);
 userRouter.put("/update-user", fetchUser, editUSer);
+userRouter.get("/get-all-users", fetchUser, getAllUsers);
 
 module.exports = userRouter;
