@@ -125,7 +125,7 @@ const Home = (props) => {
             <div className="subscription" style={{ display: "flex" }} >
               <div className="card-active" style={{ borderRadius: "10px" }}>
                 <div className="space" style={{ display: "flex" }}>
-                  <img className="payment" src="./free.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
+                  <img className="payment" src="https://i.postimg.cc/2yVLyxhF/free.webp" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
                   <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center", alignItems: "center", padding: "10px" }}>
                     <span className="text">Subscribe</span>
                   </button>
@@ -152,7 +152,7 @@ const Home = (props) => {
             <div className="subscription" >
               <div className="card-active" style={{ borderRadius: "10px" }}>
                 <div className="space" style={{ display: "flex" }}>
-                  <img className="payment" src="./prem.avif" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
+                  <img className="payment" src="https://i.postimg.cc/hjFDWW0B/deluxe-gold-label-vector-2274967.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
                   <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center", alignItems: "center", padding: "10px" }}>
                     <span className="text">Subscribe</span>
                   </button>
@@ -176,7 +176,7 @@ const Home = (props) => {
             <div className="subscription">
               <div className="card-active" style={{ borderRadius: "10px" }}>
                 <div className="space" style={{ display: "flex" }}>
-                  <img className="payment" src="./deluxe2.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
+                  <img className="payment" src="https://i.postimg.cc/x10g5XDr/deluxe2.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
                   <button type="button" className="button-48" style={{ color: "white", width: "140px", height: "40px", borderRadius: "20px", marginTop: "30px", marginLeft: "180px", justifyContent: "center", alignItems: "center", padding: "10px" }}>
                     <span className="text">Subscribe</span>
                   </button>
