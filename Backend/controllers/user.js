@@ -167,7 +167,7 @@ const editUSer = async (req, res) => {
         message: `User doesn't exists`,
       });
     }
-    console.log('Workexperience: ',existsUser.workExperience);
+    console.log('Workexperience: ', existsUser.workExperience);
     const updatedUser = await UserModel.findByIdAndUpdate(userId, {
       $set: {
         name: name,
@@ -191,6 +191,24 @@ const editUSer = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await UserModel
+      .find({})
+      .select("-password -groups -workExperience -education")
+      .sort({ createdAt: -1 });
+      return res.status(200).json({
+        message: `Users fetched`,
+        users
+      });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: `Internal serer error`,
+    });
+  }
+}
+
 module.exports = {
   getUser,
   getJoinedGroups,
@@ -199,4 +217,5 @@ module.exports = {
   myPosts,
   rateUser,
   editUSer,
+  getAllUsers,
 };

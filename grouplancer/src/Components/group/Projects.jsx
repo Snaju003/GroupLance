@@ -6,19 +6,22 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import { Box, ListItem, ListItemText } from '@mui/material';
 import Typography from '@mui/material/Typography';
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import { collection, doc, onSnapshot, orderBy, query, setDoc } from 'firebase/firestore';
 import { fireDB } from '../../firebase/FirebaseConfig';
 import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import AddIcon from '@mui/icons-material/Add';
 import toast from 'react-hot-toast';
+import { useUser } from '../../context/UserContext';
+import { Timestamp, addDoc } from "firebase/firestore";
+
 
 function Projects({ groupId, gMembers }) {
   const [getAllProject, setGetAllProject] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const { currentUser } = useUser();
   useEffect(() => {
     const getAllProjectFunction = async () => {
       try {
@@ -45,6 +48,36 @@ function Projects({ groupId, gMembers }) {
     };
     getAllProjectFunction();
   }, [groupId]);
+
+
+ 
+  const assignFunction = async (id,_id,taskname,taskdesc,project) => {
+    const proj = {
+      projectname: taskname,
+      projectdesc: taskdesc,
+      groupid: groupId,
+      Leader: currentUser?._id,
+      assigned: _id,
+      time: Timestamp.now(),
+      date: new Date().toLocaleString(
+        "en-US",
+        {
+          month: "short",
+          day: "2-digit",
+          year: "numeric",
+        }
+      )
+    };
+    try {
+      
+      await setDoc(doc(fireDB, 'projects', id), proj);
+      toast.success("Task Assigned successfully");
+    } catch (error) {
+      console.log(error);
+      toast.error("Task Assign failed");
+    }
+  }
+ 
   return (
     <>
 
@@ -70,7 +103,7 @@ function Projects({ groupId, gMembers }) {
                 aria-describedby="modal-modal-description"
               >
                 <Box>
-                  <Typography id="modal-modal-title" variant="h6" component="h2" style={{ display: "flex", justifyContent: "center", margin: "1rem" }}>
+                  <Typography id="modal-modal-title" variant="h4" component="h2" style={{ display: "flex", justifyContent: "center", margin: "1rem" }}>
                     Tasks
                   </Typography>
                   <Typography id="modal-modal-description" sx={{ mt: 2 }}>
@@ -82,9 +115,10 @@ function Projects({ groupId, gMembers }) {
                       {gMembers?.map(({ _id, name, email }) => (
                         <ListItem>
                           <ListItemText primary={name} />
-                          <Button variant="outlined" startIcon={<AddIcon />}>
+                          {project?.assigned === _id ? <Button variant="outlined" disabled>Task Assigned</Button> : <Button onClick={() => assignFunction(project.id, _id, project.projectname,project.projectdesc,project)} variant="outlined" startIcon={<AddIcon />}>
                             Add Task
-                          </Button>
+                          </Button>}
+
                         </ListItem>
                       ))}
                     </ListItem>

@@ -128,6 +128,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
     projectdesc: "",
     groupid: groupId,
     Leader: currentUser?._id,
+    assigned: "",
     time: Timestamp.now(),
     date: new Date().toLocaleString(
       "en-US",
