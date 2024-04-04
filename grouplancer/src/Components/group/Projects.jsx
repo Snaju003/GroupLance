@@ -16,7 +16,7 @@ import { useUser } from '../../context/UserContext';
 import { Timestamp, addDoc } from "firebase/firestore";
 
 
-function Projects({ groupId, gMembers }) {
+function Projects({ groupId, gMembers, gLeader }) {
   const [getAllProject, setGetAllProject] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -50,8 +50,8 @@ function Projects({ groupId, gMembers }) {
   }, [groupId]);
 
 
- 
-  const assignFunction = async (id,_id,taskname,taskdesc,project) => {
+
+  const assignFunction = async (id, _id, taskname, taskdesc, project) => {
     const proj = {
       projectname: taskname,
       projectdesc: taskdesc,
@@ -69,7 +69,7 @@ function Projects({ groupId, gMembers }) {
       )
     };
     try {
-      
+
       await setDoc(doc(fireDB, 'projects', id), proj);
       toast.success("Task Assigned successfully");
     } catch (error) {
@@ -77,7 +77,7 @@ function Projects({ groupId, gMembers }) {
       toast.error("Task Assign failed");
     }
   }
- 
+
   return (
     <>
 
@@ -93,9 +93,17 @@ function Projects({ groupId, gMembers }) {
                   {project.projectdesc}
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button size="small" onClick={handleShow}>Open Task</Button>
-              </CardActions>
+              {
+                gLeader === currentUser?._id ?
+                  <CardActions>
+                    <Button size="small" onClick={handleShow}>Open Task</Button>
+                  </CardActions> :
+                  (project.assigned === currentUser?._id ?
+                    <CardActions>
+                      <Button size="small" disabled>Task Assigned</Button>
+                    </CardActions>
+                    : null)
+              }
               <Modal
                 show={show}
                 onHide={handleClose}
@@ -111,17 +119,19 @@ function Projects({ groupId, gMembers }) {
                       <ListItemText style={{fontSize:"500px",color:"red"}} primary={project.projectname} />
                       <ListItemText primary={project.projectdesc} />
                     </ListItem>
+
                     <ListItem style={{ display: "flex", flexDirection: "column" }}>
                       {gMembers?.map(({ _id, name, email }) => (
                         <ListItem>
                           <ListItemText primary={name} />
-                          {project?.assigned === _id ? <Button variant="outlined" disabled>Task Assigned</Button> : <Button onClick={() => assignFunction(project.id, _id, project.projectname,project.projectdesc,project)} variant="outlined" startIcon={<AddIcon />}>
+                          {project?.assigned === _id ? <Button variant="outlined" disabled>Task Assigned</Button> : <Button onClick={() => assignFunction(project.id, _id, project.projectname, project.projectdesc, project)} variant="outlined" startIcon={<AddIcon />}>
                             Add Task
                           </Button>}
 
                         </ListItem>
                       ))}
                     </ListItem>
+
                   </Typography>
                 </Box>
               </Modal>
