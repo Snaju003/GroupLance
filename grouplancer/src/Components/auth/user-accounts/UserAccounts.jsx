@@ -96,7 +96,6 @@ const UserAccounts = () => {
         const data = await response.json();
         console.log(data)
         setUserData(data.user);
-
       } catch (error) {
         console.error(error);
       }
@@ -218,7 +217,7 @@ const UserAccounts = () => {
                       ref={inputRef}
                     />
                     <img
-                      src={formData.media ? formData.media : "https://cdn-icons-png.flaticon.com/256/4021/4021443.png"}
+                      src={userData.profile_pic ? userData.profile_pic : "https://cdn-icons-png.flaticon.com/256/4021/4021443.png"}
                       alt="Profile Picture"
                       style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px", cursor: "pointer" }}
                     />
