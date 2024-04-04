@@ -5,7 +5,10 @@ const UserModel = require("../models/User");
 const getUserAccount = async (req, res) => {
   try {
     const userId = req.user;
-    const user = await UserModel.findById(userId);
+    const user = await UserModel.findById(userId).populate({
+      path: "profile_pic",
+      select: "image"
+    });
     if (!user) {
       return res.status(400).json({
         success: false,
@@ -25,7 +28,10 @@ const getUserAccount = async (req, res) => {
 const getUser = async (req, res) => {
   try {
     const userId = req.params.id;
-    const user = await UserModel.findById(userId).select("-password");
+    const user = await UserModel.findById(userId).select("-password").populate({
+      path: "profile_pic",
+      select: "image"
+    });
     return res.status(200).json({ success: true, message: "User found", user });
   } catch (error) {
     console.log("Some error occured", error);
@@ -196,11 +202,15 @@ const getAllUsers = async (req, res) => {
     const users = await UserModel
       .find({})
       .select("-password -groups -workExperience -education")
+      .populate({
+        path: "profile_pic",
+        select: "image"
+      })
       .sort({ createdAt: -1 });
-      return res.status(200).json({
-        message: `Users fetched`,
-        users
-      });
+    return res.status(200).json({
+      message: `Users fetched`,
+      users
+    });
   } catch (error) {
     return res.status(500).json({
       success: false,
