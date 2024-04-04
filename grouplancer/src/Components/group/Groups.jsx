@@ -15,9 +15,10 @@ import {
   Button,
 } from "@mui/material";
 import Rating from '@mui/material/Rating';
-import { Timestamp, addDoc, collection } from "firebase/firestore";
+import { Timestamp, addDoc, collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import toast from "react-hot-toast";
+import { get } from "lodash";
 
 const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal, domains, rate }) => {
   const [credentials, setCredentials] = useState({ email: "" });
@@ -154,6 +155,33 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
       toast.error("Add project failed");
     }
   }
+  const [getAllProject, setGetAllProject] = useState([]);
+  useEffect(() => {
+    const getAllProjectFunction = async () => {
+      try {
+        const q = query(
+          collection(fireDB, "projects"),
+          orderBy("time"),
+        );
+        const data = onSnapshot(q, (QuerySnapshot) => {
+          let projectArray = [];
+          QuerySnapshot.forEach((doc) => {
+            projectArray.push({ ...doc.data(), id: doc.id });
+          });
+          // setGetAllProject(projectArray);
+          console.log(projectArray);
+          const filteredProjects = projectArray.filter(
+            (project) => project.groupid === groupId
+          );
+          setGetAllProject(filteredProjects);
+        });
+        return () => data;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAllProjectFunction();
+  }, [groupId]);
   return (
     <>
       <div
@@ -346,16 +374,18 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
 
               <img style={{ width: "25vw", height: "50vh", margin: "0rem 2rem 0rem 1rem", borderRadius: "2rem 2rem 0rem 0rem" }} src="https://assets-global.website-files.com/5b69a01ba2e409501de055d1/654397e57d1b4f0a5d9c1bc0_Social%20loafing.png" alt="filler"></img>
               <h3 style={{ alignItems: "center" }}>Assigned Duties</h3>
-              <ListGroup as="ul">
+                <ListGroup as="ul">
                 <ListGroup.Item as="li" active>
                   Current Duty
                 </ListGroup.Item>
-                <ListGroup.Item as="li">Upcoming task 1</ListGroup.Item>
-                <ListGroup.Item as="li">
-                  Upcoming task 2
-                </ListGroup.Item>
-                <ListGroup.Item as="li">Upcoming Task 3</ListGroup.Item>
+              {getAllProject.map((project) => (
+                <>
+                {project.assigned===currentUser._id?<ListGroup.Item as="li">{project.projectname}</ListGroup.Item>:null}
+                
+                </>
+              ))}
               </ListGroup>
+              
             </div>)}
 
         </div>
