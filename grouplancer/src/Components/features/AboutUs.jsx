@@ -63,7 +63,7 @@ const AboutUs = (props) => {
           </div>
         </div>
         <div style={{ justifyItems: "center", display: "flex", gap: "3rem", marginTop: "3rem", marginBottom: "3rem" }}>
-          <img src="./aboutUs.jpg" style={{ width: "40rem", height: "40rem", borderRadius: "20px", marginLeft: "1rem", marginTop: "6rem" }} alt="image" />
+          <img src="https://i.postimg.cc/mgPCbZV0/aboutUs.jpg" style={{ width: "40rem", height: "40rem", borderRadius: "20px", marginLeft: "1rem", marginTop: "6rem" }} alt="image" />
           <div style={{ padding: "20px 40px 20px 20px", height: "50rem", marginBottom: "8rem" }}> <p
             style={{
               color: "black",
@@ -405,21 +405,21 @@ const AboutUs = (props) => {
             </div>*/}
         <div style={{ display: "flex", gap: "100px", margin: "80px 90px 50px 90px" }}>
           <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
-            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./aboutUs.jpg" alt="Card image cap" />
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="https://i.postimg.cc/mgPCbZV0/aboutUs.jpg" alt="Card image cap" />
             <div class="card-body">
               <h5 class="card-title">Dibakar Banerjee</h5>
               <a href="#" class="btn btn-primary">Follow me</a>
             </div>
           </div>
           <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
-            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./creategrp.jpg" alt="Card image cap" />
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="https://i.postimg.cc/8zSTtt9s/creategrp.jpg" alt="Card image cap" />
             <div class="card-body">
               <h5 class="card-title">Subhadeep Dhar</h5>
               <a href="#" class="btn btn-primary">Follow me</a>
             </div>
           </div>
           <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
-            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./creategrp.jpg" alt="Card image cap" />
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="https://i.postimg.cc/8zSTtt9s/creategrp.jpg" alt="Card image cap" />
             <div class="card-body">
               <h5 class="card-title">Pratyush Pal</h5>
               <a href="#" class="btn btn-primary">Follow me</a>
@@ -428,21 +428,21 @@ const AboutUs = (props) => {
         </div>
         <div style={{ display: "flex", gap: "100px", margin: "40px 90px 40px 90px" }}>
           <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
-            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./aboutUs.jpg" alt="Card image cap" />
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="https://i.postimg.cc/mgPCbZV0/aboutUs.jpg" alt="Card image cap" />
             <div class="card-body">
               <h5 class="card-title">Soumyaraj Sarkar</h5>
               <a href="#" class="btn btn-primary">Follow me</a>
             </div>
           </div>
           <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
-            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./creategrp.jpg" alt="Card image cap" />
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="https://i.postimg.cc/8zSTtt9s/creategrp.jpg" alt="Card image cap" />
             <div class="card-body">
               <h5 class="card-title">Romit Guha</h5>
               <a href="#" class="btn btn-primary">Follow me</a>
             </div>
           </div>
           <div class="card" style={{ width: "18rem",borderRadius:"20px" }}>
-            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="./creategrp.jpg" alt="Card image cap" />
+            <img class="card-img-top" style={{ width: "18rem", marginLeft: "0px", marginRight: "0px", height: "20rem", borderRadius: "20px", padding: "10px" }} src="https://i.postimg.cc/8zSTtt9s/creategrp.jpg" alt="Card image cap" />
             <div class="card-body">
               <h5 class="card-title">Shreedatri Saha</h5>
               <a href="#" class="btn btn-primary">Follow me</a>
