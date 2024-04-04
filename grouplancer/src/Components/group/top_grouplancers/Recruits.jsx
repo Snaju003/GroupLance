@@ -37,7 +37,7 @@ const Recruits = () => {
                     {users && users.map(({ name, email, rate, profile_pic }) => {
                         return (
                             <div class="col-md-3 mb-3">
-                                <Recruit name={name} email={email} rate={rate} profilePic={profile_pic} color={color} />
+                                <Recruit name={name} email={email} rate={rate} profilePic={profile_pic?.image} color={color} />
                             </div>
                         )
                     })}
