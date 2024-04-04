@@ -70,7 +70,7 @@ function Projects({ groupId, gMembers }) {
                 aria-describedby="modal-modal-description"
               >
                 <Box>
-                  <Typography id="modal-modal-title" variant="h6" component="h2" style={{ display: "flex", justifyContent: "center", margin: "1rem" }}>
+                  <Typography id="modal-modal-title" variant="h4" component="h2" style={{ display: "flex", justifyContent: "center", margin: "1rem" }}>
                     Tasks
                   </Typography>
                   <Typography id="modal-modal-description" sx={{ mt: 2 }}>
