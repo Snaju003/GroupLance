@@ -106,9 +106,9 @@ function Projects({ groupId, gMembers }) {
                   <Typography id="modal-modal-title" variant="h4" component="h2" style={{ display: "flex", justifyContent: "center", margin: "1rem" }}>
                     Tasks
                   </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                  <Typography id="modal-modal-description"  sx={{ mt: 2 }} >
                     <ListItem style={{ display: "flex", flexDirection: "column" }}>
-                      <ListItemText primary={project.projectname} />
+                      <ListItemText style={{fontSize:"500px",color:"red"}} primary={project.projectname} />
                       <ListItemText primary={project.projectdesc} />
                     </ListItem>
                     <ListItem style={{ display: "flex", flexDirection: "column" }}>
