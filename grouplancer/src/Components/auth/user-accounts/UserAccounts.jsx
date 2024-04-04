@@ -174,7 +174,7 @@ const UserAccounts = () => {
     const fetchData = async () => {
       try {
         const authToken = localStorage.getItem('auth-token');
-        const response = await fetch("http://localhost:8080/api/file-upload/get-user-picture", {
+        const response = await fetch("http://localhost:8080/api/file/upload-user-pic", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
