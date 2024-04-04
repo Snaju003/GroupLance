@@ -116,7 +116,7 @@ function Projects({ groupId, gMembers, gLeader }) {
                   </Typography>
                   <Typography id="modal-modal-description"  sx={{ mt: 2 }} >
                     <ListItem style={{ display: "flex", flexDirection: "column" }}>
-                      <ListItemText style={{fontSize:"500px",color:"red"}} primary={project.projectname} />
+                      <ListItemText style={{fontSize:"500px"}} primary={project.projectname} />
                       <ListItemText primary={project.projectdesc} />
                     </ListItem>
 
