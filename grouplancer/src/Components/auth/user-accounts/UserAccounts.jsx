@@ -96,7 +96,6 @@ const UserAccounts = () => {
         const data = await response.json();
         console.log(data)
         setUserData(data.user);
-
       } catch (error) {
         console.error(error);
       }
@@ -142,7 +141,7 @@ const UserAccounts = () => {
     try {
       e.preventDefault();
       const authToken = localStorage.getItem('auth-token');
-      const response = await fetch("http://localhost:8080/api/file-upload/user", {
+      const response = await fetch("http://localhost:8080/api/file/upload-user-pic", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -174,7 +173,7 @@ const UserAccounts = () => {
     const fetchData = async () => {
       try {
         const authToken = localStorage.getItem('auth-token');
-        const response = await fetch("http://localhost:8080/api/file/upload-user-pic", {
+        const response = await fetch("http://localhost:8080/api/file/get-user-pic", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -218,7 +217,7 @@ const UserAccounts = () => {
                       ref={inputRef}
                     />
                     <img
-                      src={formData.media ? formData.media : "https://cdn-icons-png.flaticon.com/256/4021/4021443.png"}
+                      src={userData.profile_pic?.image ? userData.profile_pic?.image : "https://cdn-icons-png.flaticon.com/256/4021/4021443.png"}
                       alt="Profile Picture"
                       style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px", cursor: "pointer" }}
                     />
