@@ -1,4 +1,5 @@
 const { AccessToken } = require("livekit-server-sdk");
+require("dotenv").config();
 
 const createToken = async () => {
     const roomName = 'quickstart-room';
