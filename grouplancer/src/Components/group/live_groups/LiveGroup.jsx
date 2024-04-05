@@ -1,34 +1,79 @@
 import React from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin,gDesc }) => {
+  const liveGroup = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:8080/api/group/join-group", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem('auth-token'),
+      },
+      body: JSON.stringify({ groupId: id }),
+    });
+    const json = await response.json();
+    console.log(json)
+  }
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
 
-const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin }) => {
-    const liveGroup = async (e) => {
-        e.preventDefault();
-        const response = await fetch("http://localhost:8080/api/group/join-group", {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": localStorage.getItem('auth-token'),
-            },
-            body: JSON.stringify({ groupId: id }),
-        });
-        const json = await response.json();
-        console.log(json)
-    }
-    return (
-        <>
+    setOpen(true);
 
-            <div className="card" style={{ backgroundImage: "linear-gradient(#3048c3,#0492c2)", height: '26vh',boxShadow:"2px 2px 1px 1px #ffff",border:"solid 5px white",borderRadius:"2rem",display:"flex",flexDirection:"row",gap:"2rem" }}>
-            
-                <div className="card-body" style={{color:"white",fontWeight:"bold"}}>
-                    <h5 className="card-title">{title}</h5>
-                    <p className="card-text">{projName}</p>
-                    <p className="card-text">{mainGoal}</p>
-                    <a href="/" className="button-48" style={{ height: "2.5rem",width:"10rem", padding: "15px",margin:"0 auto",display:"block" ,color:"white",fontWeight:"bold"}} onClick={liveGroup}><span>Join Group</span></a>
-                </div>
-               
-            </div>
-        </>
-    )
+  };
+  const handleClose = () => setOpen(false);
+  return (
+    <>
+
+      <div onClick={handleOpen} className="card" style={{ backgroundImage: "linear-gradient(#3048c3,#0492c2)", height: '26vh', boxShadow: "2px 2px 1px 1px #ffff", border: "solid 5px white", borderRadius: "2rem", display: "flex", flexDirection: "row", gap: "2rem" }}>
+
+        <div className="card-body" style={{ color: "white", fontWeight: "bold" }}>
+          <h5 className="card-title">{title}</h5>
+          <p className="card-text">{projName}</p>
+          <p className="card-text">{mainGoal}</p>
+          <a href="/" className="button-48" style={{ height: "2.5rem", width: "10rem", padding: "15px", margin: "0 auto", display: "block", color: "white", fontWeight: "bold" }} onClick={liveGroup}><span>Join Group</span></a>
+        </div>
+      </div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+
+        >
+          <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              {title}
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              {mainGoal}
+            </Typography>
+             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              {projName}
+            </Typography>
+             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              {gDesc}
+            </Typography>
+            <Button variant="contained" onClick={handleClose}>
+              Close
+            </Button>
+          </Box>
+        
+        </Modal>
+    </>
+  )
 }
-
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 export default LiveGroup

@@ -3,6 +3,7 @@ import LiveGroup from "./LiveGroup";
 import { useUser } from "../../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
+
 const LiveGroups = () => {
   const color = "#dfdffb";
   const [liveGroupData, setLiveGroupData] = useState([]);
@@ -38,6 +39,10 @@ const LiveGroups = () => {
     }
   //}
   , [currentUser, navigate]);
+  
+  
+ 
+
   return (
     <>
       {/* <h1 className="text-center my-4" style={{ color: "#ffff" }}>
@@ -49,7 +54,7 @@ const LiveGroups = () => {
       <div className="container">
         <div className="container column">
           {liveGroupData.map(
-            ({ _id, gName, goal, projName, anyoneCanJoin }) => {
+            ({ _id, gName, goal, projName, anyoneCanJoin,gDesc }) => {
               return (
                 <div className="col-md-3 mb-3" key={_id} style={{width:"90%"}}>
                   <LiveGroup
@@ -60,13 +65,17 @@ const LiveGroups = () => {
                     mainGoal={goal}
                     canJoin={anyoneCanJoin}
                     color={color}
+                    gDesc={gDesc}
                   />
+
                 </div>
               );
             }
           )}
         </div>
       </div>
+    
+      
     </>
   );
 };

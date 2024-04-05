@@ -134,7 +134,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
     projectname: "",
     projectdesc: "",
     groupid: groupId,
-    Leader: currentUser._id,
+    Leader: grpLeader,
     assigned: "",
     time: Timestamp.now(),
     date: new Date().toLocaleString(
@@ -189,18 +189,6 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
     getAllProjectFunction();
   }, [groupId]);
 
-  const style = {
-    position: "absolute",
-    gap: 2,
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
 
   return (
     <>
@@ -214,7 +202,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
         <h1 className="text-center my-4" style={{ color: "#ffff", margin: "auto" }}>
           {grpName}
         </h1>
-        {(grpLeader === currentUser?._id) && (
+        {(grpLeader === currentUser?._id) && (<>
           <button
             className="button-48"
             type="submit"
@@ -229,9 +217,8 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
           >
             <span> Delete Group</span>
           </button>
-        )}
-        <Modal open={open} onClose={handleCloseDel}>
-          <Box sx={{ ...style }}>
+        <Modal show={open} onClose={handleCloseDel}>
+          <Box marginTop="40vh" sx={{ ...style }}>
             <Typography variant="h6" gutterBottom>
               Are you sure you want to delete your group?
             </Typography>
@@ -243,6 +230,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
             </Button>
           </Box>
         </Modal>
+        </> )}
         {(grpLeader !== currentUser?._id) && (
           <button
             className="button-48"
@@ -501,6 +489,18 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
       </Dialog>
     </>
   );
+};
+const style = {
+  position: "absolute",
+  gap: 2,
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "4px solid #000",
+  boxShadow: 24,
+  p: 4,
 };
 
 export default Groups;
