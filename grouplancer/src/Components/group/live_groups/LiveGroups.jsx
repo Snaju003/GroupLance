@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import LiveGroup from "./LiveGroup";
 import { useUser } from "../../../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+
 
 const LiveGroups = () => {
   const color = "#dfdffb";
@@ -42,24 +39,9 @@ const LiveGroups = () => {
     }
   //}
   , [currentUser, navigate]);
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setTimeout(()=>{
-      setOpen(true);
-    },1000);
-  };
-  const handleClose = () => setOpen(false);
+  
+  
+ 
 
   return (
     <>
@@ -70,9 +52,9 @@ const LiveGroups = () => {
         Live Groups
       </h1>
       <div className="container">
-        <div className="container column" onMouseEnter={handleOpen}>
+        <div className="container column">
           {liveGroupData.map(
-            ({ _id, gName, goal, projName, anyoneCanJoin }) => {
+            ({ _id, gName, goal, projName, anyoneCanJoin,gDesc }) => {
               return (
                 <div className="col-md-3 mb-3" key={_id} style={{width:"90%"}}>
                   <LiveGroup
@@ -83,6 +65,7 @@ const LiveGroups = () => {
                     mainGoal={goal}
                     canJoin={anyoneCanJoin}
                     color={color}
+                    gDesc={gDesc}
                   />
 
                 </div>
@@ -91,27 +74,7 @@ const LiveGroups = () => {
           )}
         </div>
       </div>
-      {liveGroupData.map(
-            ({ _id, gName, goal, projName, anyoneCanJoin }) => {
-              return (
-                <Modal 
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-              >
-                <Box sx={style}>
-                  <Typography id="modal-modal-title" variant="h6" component="h2">
-                  {gName}
-                  </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    
-                  </Typography>
-                </Box>
-              </Modal>
-              );
-            }
-          )}
+    
       
     </>
   );
