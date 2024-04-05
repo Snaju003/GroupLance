@@ -18,6 +18,8 @@ import Rating from '@mui/material/Rating';
 import { Timestamp, addDoc, collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { fireDB } from "../../firebase/FirebaseConfig";
 import toast from "react-hot-toast";
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import { get } from "lodash";
 
 const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal, domains, rate }) => {
@@ -121,14 +123,18 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
   };
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleCloseDel = () => setOpen(false);
+
   const [project, setProject] = useState({
     projectname: "",
     projectdesc: "",
     groupid: groupId,
-    Leader: currentUser._id,
+    Leader: grpLeader,
     assigned: "",
     time: Timestamp.now(),
     date: new Date().toLocaleString(
@@ -182,6 +188,8 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
     };
     getAllProjectFunction();
   }, [groupId]);
+
+
   return (
     <>
       <div
@@ -194,11 +202,10 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
         <h1 className="text-center my-4" style={{ color: "#ffff", margin: "auto" }}>
           {grpName}
         </h1>
-        {(grpLeader === currentUser?._id) && (
+        {(grpLeader === currentUser?._id) && (<>
           <button
             className="button-48"
             type="submit"
-            onClick={deleteGroup}
             style={{
               color: "white",
               padding: "10px",
@@ -206,10 +213,24 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
               backgroundColor: "#cc0000",
               padding: "1rem 2rem 1rem 2rem",
             }}
+            onClick={handleOpen}
           >
             <span> Delete Group</span>
           </button>
-        )}
+        <Modal show={open} onClose={handleCloseDel}>
+          <Box marginTop="40vh" sx={{ ...style }}>
+            <Typography variant="h6" gutterBottom>
+              Are you sure you want to delete your group?
+            </Typography>
+            <Button href="/" variant="contained" color='error' onClick={deleteGroup} style={{ marginRight: '10px' }}>
+              Yes, delete
+            </Button>
+            <Button variant="contained" onClick={handleCloseDel}>
+              Cancel
+            </Button>
+          </Box>
+        </Modal>
+        </> )}
         {(grpLeader !== currentUser?._id) && (
           <button
             className="button-48"
@@ -374,18 +395,18 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
 
               <img style={{ width: "25vw", height: "50vh", margin: "0rem 2rem 0rem 1rem", borderRadius: "2rem 2rem 0rem 0rem" }} src="https://assets-global.website-files.com/5b69a01ba2e409501de055d1/654397e57d1b4f0a5d9c1bc0_Social%20loafing.png" alt="filler"></img>
               <h3 style={{ alignItems: "center" }}>Assigned Duties</h3>
-                <ListGroup as="ul">
+              <ListGroup as="ul">
                 <ListGroup.Item as="li" active>
                   Current Duty
                 </ListGroup.Item>
-              {getAllProject.map((project) => (
-                <>
-                {project.assigned===currentUser._id?<ListGroup.Item as="li">{project.projectname}</ListGroup.Item>:null}
-                
-                </>
-              ))}
+                {getAllProject.map((project) => (
+                  <>
+                    {project.assigned === currentUser._id ? <ListGroup.Item as="li">{project.projectname}</ListGroup.Item> : null}
+
+                  </>
+                ))}
               </ListGroup>
-              
+
             </div>)}
 
         </div>
@@ -468,6 +489,18 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
       </Dialog>
     </>
   );
+};
+const style = {
+  position: "absolute",
+  gap: 2,
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "4px solid #000",
+  boxShadow: 24,
+  p: 4,
 };
 
 export default Groups;
