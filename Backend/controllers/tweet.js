@@ -151,8 +151,11 @@ const getAllTweetsBasedOnGroup = async (req, res) => {
                 path: 'groupId',
                 select: 'gName'
             })
-            .populate({ path: 'file', select: 'image' })
+            // .populate({ path: 'file', select: 'image' })
+            .populate("file")
             .sort({ createdAt: -1 });
+
+        console.log('My Tweets:',tweets);
         return res.status(200).json({
             success: true,
             message: 'All Groups fetched',
@@ -175,7 +178,8 @@ const getPosts = async (req, res) => {
                 path: 'groupId',
                 select: 'gName',
             })
-            .populate({ path: 'file', select: 'image' })
+            // .populate({ path: 'file', select: 'image' })
+            .populate("file")
             .sort({ createdAt: -1 });
         console.log(posts)
         return res.status(200).json({
