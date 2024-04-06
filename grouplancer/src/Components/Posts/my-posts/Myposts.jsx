@@ -52,7 +52,7 @@ function Myposts() {
           {
             posts && posts.map(({ groupId, content,_id }) => {
               return (
-                <div class="col-md-3 mb-3" style={{ width: "100%", height: "100%" }} >
+                <div key={_id} class="col-md-3 mb-3" style={{ width: "100%", height: "100%" }} >
                   <Mypost groupName={groupId.gName} groupId={groupId._id} tweetId={_id} postdesc={content} groupImage={groupImage} color={color} />
                 </div>
               )

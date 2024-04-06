@@ -19,11 +19,11 @@ function convertToBase64(file) {
 }
 
 const CreatePost1 = () => {
-
     const navigate = useNavigate();
     const [myGroups, setMyGroups] = useState([]);
     const { currentUser } = useUser();
     const [selGroup, setSelGroup] = useState();
+    const [img, setImg] = useState(null)
 
     const [formData, setFormData] = useState({
         pDesc: "",
@@ -31,26 +31,6 @@ const CreatePost1 = () => {
     });
 
     const [postImage, setPostImage] = useState("");
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const authToken = localStorage.getItem('auth-token');
-                const response = await fetch("http://localhost:8080/api/file-upload/get-user-picture", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "auth-token": authToken,
-                    },
-                });
-                const data = await response.json();
-                // console.log(data.existsImage.image);
-                setFormData({ ...formData, media: data.existsImage.image });
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchData();
-    }, [])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -77,14 +57,14 @@ const CreatePost1 = () => {
         try {
             e.preventDefault();
             const authToken = localStorage.getItem('auth-token');
-            console.log(selGroup)
+            console.log(img)
             const response = await fetch("http://localhost:8080/api/tweet/create-post", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     "auth-token": authToken,
                 },
-                body: JSON.stringify({ groupId: selGroup, content: formData.pDesc })
+                body: JSON.stringify({ groupId: selGroup, content: formData.pDesc, file: img })
             });
             const data = await response.json();
             console.log(data);
@@ -108,7 +88,7 @@ const CreatePost1 = () => {
         try {
             e.preventDefault();
             const authToken = localStorage.getItem('auth-token');
-            const response = await fetch("http://localhost:8080/api/file-upload/user", {
+            const response = await fetch("http://localhost:8080/api/file/upload-post-img", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -117,7 +97,13 @@ const CreatePost1 = () => {
                 body: JSON.stringify({ file: postImage })
             });
             const data = await response.json();
-            console.log(data);
+            console.log(data.image._id);
+            setImg(data.image._id);
+            setFormData(prevState => ({
+                ...prevState,
+                media: base64
+            }));
+            console.log("Img: ", img);
         } catch (error) {
             console.log(error)
         }

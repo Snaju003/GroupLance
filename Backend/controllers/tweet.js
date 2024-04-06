@@ -23,12 +23,6 @@ const createTweet = async (req, res) => {
             });
         }
 
-        // let imageUrl=null;
-        // const url = 'http://localhost:8000';
-        // if (!req.file) {
-        //     imageUrl = `${url}/file/${req.file.filename}`;
-        // }
-
         const existsGroup = await GroupModel.findById(groupId);
         if (!existsGroup) {
             return res.status(400).json({
@@ -157,7 +151,7 @@ const getAllTweetsBasedOnGroup = async (req, res) => {
                 path: 'groupId',
                 select: 'gName'
             })
-            .populate('file')
+            .populate({ path: 'file', select: 'image' })
             .sort({ createdAt: -1 });
         return res.status(200).json({
             success: true,
@@ -181,7 +175,7 @@ const getPosts = async (req, res) => {
                 path: 'groupId',
                 select: 'gName',
             })
-            .populate('file')
+            .populate({ path: 'file', select: 'image' })
             .sort({ createdAt: -1 });
         console.log(posts)
         return res.status(200).json({
