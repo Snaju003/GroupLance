@@ -82,29 +82,32 @@ const CreatePost1 = () => {
         const base64 = await convertToBase64(file);
         setPostImage(base64);
         if (!postImage) {
-          e.target.value = null;
-          return;
+            e.target.value = null;
+            return;
         }
         try {
-          e.preventDefault();
-          const authToken = localStorage.getItem('auth-token');
-          const response = await fetch("http://localhost:8080/api/file/upload-post-img", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "auth-token": authToken,
-            },
-            body: JSON.stringify({ file: postImage })
-          });
-          const data = await response.json();
-          console.log(data.image._id);
-          setImg(data.image._id);
-          setFormData({ media: base64 });
-          console.log("Img: ",img);
+            e.preventDefault();
+            const authToken = localStorage.getItem('auth-token');
+            const response = await fetch("http://localhost:8080/api/file/upload-post-img", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": authToken,
+                },
+                body: JSON.stringify({ file: postImage })
+            });
+            const data = await response.json();
+            console.log(data.image._id);
+            setImg(data.image._id);
+            setFormData(prevState => ({
+                ...prevState,
+                media: base64
+            }));
+            console.log("Img: ", img);
         } catch (error) {
-          console.log(error)
+            console.log(error)
         }
-      }
+    }
 
     const handleChange = (e) => {
         if (e.target.name === "media") {
