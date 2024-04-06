@@ -20,7 +20,7 @@ import { useUser } from "../../../context/UserContext";
 
 function Livepost(props) {
   const theme = useTheme();
-  const { color, groupName, groupImage, postdesc, groupId, tweetId } = props;
+  const { color, groupName, groupImage, postdesc, groupId, tweetId, image } = props;
   const [rating, setRating] = useState(0);
   const { currentUser } = useUser();
 
@@ -67,7 +67,7 @@ function Livepost(props) {
               height: "50%",
               borderRadius: "0",
             }}
-            image={groupImage}
+            image={image? image: groupImage}
             alt="Group Image"
           />
         )}
