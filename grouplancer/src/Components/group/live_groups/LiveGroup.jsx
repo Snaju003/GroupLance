@@ -32,7 +32,7 @@ const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin,gDesc }) => {
         <div className="card-body" style={{ color: "white", fontWeight: "bold" }}>
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{projName}</p>
-          <p className="card-text">{mainGoal}</p>
+          <p className="card-text">{mainGoal.slice(0,30)}...</p>
           <a href="/" className="button-48" style={{ height: "2.5rem", width: "10rem", padding: "15px", margin: "0 auto", display: "block", color: "white", fontWeight: "bold" }} onClick={liveGroup}><span>Join Group</span></a>
         </div>
       </div>
@@ -43,20 +43,21 @@ const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin,gDesc }) => {
           aria-describedby="modal-modal-description"
 
         >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Box sx={style} style={{backgroundImage: "linear-gradient(#3048c3,#0492c2)", color:"white", borderRadius:"2rem",border:"2px solid white"}}>
+            <Typography id="modal-modal-title" variant="h4" component="h2">
               {title}
             </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {mainGoal}
+            <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+             <span style={{textDecoration:"underline"}}>Project Name</span>:  {projName}
             </Typography>
-             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {projName}
+            <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+             <span  style={{textDecoration:"underline"}}>Goal</span> : {mainGoal}
             </Typography>
-             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              {gDesc}
+            
+             <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+              <span style={{textDecoration:"underline"}}>Group Description</span> :{gDesc}
             </Typography>
-            <Button variant="contained" onClick={handleClose}>
+            <Button variant="contained" onClick={handleClose} style={{marginTop:"2rem", backgroundColor:"#05023b"}}>
               Close
             </Button>
           </Box>
