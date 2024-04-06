@@ -134,7 +134,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
     projectname: "",
     projectdesc: "",
     groupid: groupId,
-    Leader: grpLeader,
+    Leader: currentUser._id,
     assigned: "",
     time: Timestamp.now(),
     date: new Date().toLocaleString(
@@ -151,6 +151,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
     if (project.projectname === "" || project.projectdesc === "") {
       return toast.error("all fields are required")
     }
+    //console.log(project);
     try {
       const projectRef = collection(fireDB, 'projects');
       await addDoc(projectRef, project)
