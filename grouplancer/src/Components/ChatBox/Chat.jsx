@@ -29,7 +29,6 @@ const Chat = ({ groupName, chatid }) => {
         console.log('Error fetching messages:', error);
       }
     };
-
     fetchMessages();
   }, [chatid]);
 
