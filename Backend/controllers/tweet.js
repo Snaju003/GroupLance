@@ -23,12 +23,6 @@ const createTweet = async (req, res) => {
             });
         }
 
-        // let imageUrl=null;
-        // const url = 'http://localhost:8000';
-        // if (!req.file) {
-        //     imageUrl = `${url}/file/${req.file.filename}`;
-        // }
-
         const existsGroup = await GroupModel.findById(groupId);
         if (!existsGroup) {
             return res.status(400).json({
