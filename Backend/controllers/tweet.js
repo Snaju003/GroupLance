@@ -1,5 +1,6 @@
 const TweetModel = require("../models/Tweet");
 const GroupModel = require("../models/Group");
+const ImageModel = require("../models/Image");
 
 const createTweet = async (req, res) => {
     try {
@@ -40,6 +41,12 @@ const createTweet = async (req, res) => {
 
         const updateGroup = await GroupModel.findByIdAndUpdate(groupId, {
             $push: { tweets: newTweet._id }
+        });
+
+        await ImageModel.findByIdAndUpdate(file, {
+            $set: {
+                post: newTweet._id
+            }
         });
 
         return res.status(200).json({
@@ -155,7 +162,7 @@ const getAllTweetsBasedOnGroup = async (req, res) => {
             .populate("file")
             .sort({ createdAt: -1 });
 
-        console.log('My Tweets:',tweets);
+        console.log('My Tweets:', tweets);
         return res.status(200).json({
             success: true,
             message: 'All Groups fetched',

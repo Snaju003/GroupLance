@@ -13,7 +13,6 @@ import Modal from '@mui/material/Modal';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import InputBase from '@mui/material/InputBase';
-import TextField from '@mui/material/TextField';
 import { Link } from "@mui/material";
 import { useUser } from "../../context/UserContext";
 import SearchIcon from '@mui/icons-material/Search';
@@ -256,9 +255,12 @@ const NavBar = () => {
                         >
                             <Link href="/postbar" style={{ color: "white", textDecoration: "none" }}>Posts</Link>
                         </Button>
-
-
-
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            <Link href="/videoCall" style={{ color: "white", textDecoration: "none" }}>VideoCall</Link>
+                        </Button>
                     </Box>
                     <Link href="/notify">
                         <NotificationsIcon style={{ color: "white", marginRight: "1rem" }}>

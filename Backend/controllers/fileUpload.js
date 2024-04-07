@@ -43,22 +43,23 @@ const uploadProfilePic = async (req, res) => {
 const uploadPostImage = async (req, res) => {
     try {
 
-        const { file, groupId } = req.body;
+        const { file, tweetId } = req.body;
         const userId = req.user;
-        const existsImage = await ImageModel.findOne({ user: userId });
+        // const existsImage = await ImageModel.findOne({ post: tweetId });
         let image;
-        if (existsImage) {
-            image = await ImageModel.findByIdAndUpdate(existsImage?._id, {
-                $set: {
-                    image: file.file
-                }
-            });
-        } else {
-            image = await ImageModel.create({
-                user: userId,
-                image: file.file
-            });
-        }
+        // if (existsImage) {
+        //     image = await ImageModel.findByIdAndUpdate(existsImage?._id, {
+        //         $set: {
+        //             image: file.file
+        //         }
+        //     });
+        // } else {
+        image = await ImageModel.create({
+            image: file.file
+        });
+        // }
+
+        console.log('Image', image);
         return res.status(201).json({
             success: true,
             message: 'file uploaded successfully',
