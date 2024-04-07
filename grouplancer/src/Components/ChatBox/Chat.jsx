@@ -1,16 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import { TextField, Button, Paper } from "@mui/material";
 import "./Chat.css";
-
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import { pusherClient } from "../../context/Pusher";
 import { find } from 'lodash';
 
-const Chat = ({ groupName, chatid }) => {
+const Chat = ({ groupName, chatid, groupId }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const { currentUser } = useUser();
   const messagesEndRef = useRef(null);
+  const navigate = useNavigate();
   // console.log(currentUser);
   useEffect(() => {
     const fetchMessages = async () => {
@@ -111,10 +112,22 @@ const Chat = ({ groupName, chatid }) => {
     }
   };
 
+  const goToVideoCall = () => {
+    console.log(groupId, currentUser.name)
+    const name = currentUser.name
+    try {
+      sessionStorage.setItem("grpId", groupId);
+      sessionStorage.setItem("userId", name);
+    } catch (error) {
+      console.error("Error storing data in sessionStorage:", error);
+    }
+    navigate("/videoCall")
+  }
+
   return (
     <>
-      <div className="chat-container" style={{width: "100%"}}>
-        <div style={{ color: "#ffff", border: "1px solid #ffff", borderRadius: "10px", padding: "1rem",marginTop: "1rem", marginBottom: "1rem", fontWeight: "900", fontSize: "20px", width: "99%" }}>
+      <div className="chat-container" style={{ width: "100%" }}>
+        <div style={{ color: "#ffff", border: "1px solid #ffff", borderRadius: "10px", padding: "1rem", marginTop: "1rem", marginBottom: "1rem", fontWeight: "900", fontSize: "20px", width: "99%" }}>
           {groupName}
         </div>
         <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent", border: "1px solid #ffff" }}>
@@ -142,6 +155,9 @@ const Chat = ({ groupName, chatid }) => {
           />
           <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "20px" }}>
             <span>Send</span>
+          </Button>
+          <Button onClick={goToVideoCall} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "20px" }}>
+            <span>Video</span>
           </Button>
         </div>
       </div>
