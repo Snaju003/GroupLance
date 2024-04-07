@@ -1,4 +1,4 @@
-const { AccessToken } = require("livekit-server-sdk");
+const { AccessToken } = import("livekit-server-sdk");// Read this doc -> https://nodejs.org/api/crypto.html
 require("dotenv").config();
 
 const createToken = async () => {

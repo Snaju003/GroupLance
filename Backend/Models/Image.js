@@ -4,7 +4,12 @@ const ImageSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
-        required: true,
+        default: null,
+    },
+    post: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'tweet',
+        default: null,
     },
     image: {
         type: String
