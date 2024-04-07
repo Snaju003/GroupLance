@@ -27,8 +27,13 @@ app.use('/api/group', groupRouter);
 app.use('/api/user', userRouter);
 app.use('/api/tweet', tweetRouter);
 app.use('/api/conversation', conversationRouter);
-app.get('/getToken', async (req, res) => {
-    res.status(200).json(await createToken());
+app.post('/api/livekit/getToken', async (req, res) => {
+    const { roomId, username } = req.body;
+    const token = await createToken(roomId, username);
+    // console.log(token);
+    return res.status(200).json({
+        token
+    });
 });
 
 app.listen(port, () => {
