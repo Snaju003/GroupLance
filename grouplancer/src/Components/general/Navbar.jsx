@@ -255,12 +255,6 @@ const NavBar = () => {
                         >
                             <Link href="/postbar" style={{ color: "white", textDecoration: "none" }}>Posts</Link>
                         </Button>
-                        <Button
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
-                        >
-                            <Link href="/videoCall" style={{ color: "white", textDecoration: "none" }}>VideoCall</Link>
-                        </Button>
                     </Box>
                     <Link href="/notify">
                         <NotificationsIcon style={{ color: "white", marginRight: "1rem" }}>
