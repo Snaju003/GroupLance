@@ -32,7 +32,7 @@ const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin,gDesc }) => {
         <div className="card-body" style={{ color: "white", fontWeight: "bold" }}>
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{projName}</p>
-          <p className="card-text">{mainGoal.slice(0,30)}...</p>
+          <p className="card-text">{mainGoal.slice(0,50)}...</p>
           <a href="/" className="button-48" style={{ height: "2.5rem", width: "10rem", padding: "15px", margin: "0 auto", display: "block", color: "white", fontWeight: "bold" }} onClick={liveGroup}><span>Join Group</span></a>
         </div>
       </div>
@@ -43,7 +43,7 @@ const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin,gDesc }) => {
           aria-describedby="modal-modal-description"
 
         >
-          <Box sx={style} style={{backgroundImage: "linear-gradient(#3048c3,#0492c2)", color:"white", borderRadius:"2rem",border:"2px solid white"}}>
+          <Box sx={style} style={{ }}>
             <Typography id="modal-modal-title" variant="h4" component="h2">
               {title}
             </Typography>
@@ -55,7 +55,7 @@ const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin,gDesc }) => {
             </Typography>
             
              <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
-              <span style={{textDecoration:"underline"}}>Group Description</span> :{gDesc}
+              <span style={{textDecoration:"underline"}}>Group Description</span> : {gDesc}
             </Typography>
             <Button variant="contained" onClick={handleClose} style={{marginTop:"2rem", backgroundColor:"#05023b"}}>
               Close
@@ -67,12 +67,17 @@ const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin,gDesc }) => {
   )
 }
 const style = {
+  overflowWrap: "break-word",
   position: 'absolute',
+  color:"white",
+   borderRadius:"2rem",
+  border:"2px solid white",
   top: '50%',
   left: '50%',
+   minWidth:'800px',
   transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
+  width: "400px",
+  backgroundImage: "linear-gradient(#3048c3,#0492c2)",
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
