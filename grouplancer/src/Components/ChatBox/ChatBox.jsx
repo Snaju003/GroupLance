@@ -24,7 +24,7 @@ const ChatBox = () => {
           <div style={{ flex: '3' }}>
             {
               selectedGroup ?
-                <Chat groupName={selectedGroup.group.gName} chatid={selectedGroup._id}  /> :
+                <Chat groupName={selectedGroup.group.gName} chatid={selectedGroup._id} groupId={selectedGroup.group._id} /> :
                 ""
             }
           </div>

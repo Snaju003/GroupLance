@@ -14,9 +14,10 @@ import { useNavigate } from 'react-router-dom';
 const LIVEKIT_URL = "wss://grouplancer-tiuvd8fz.livekit.cloud";
 
 const VideoCall = () => {
-    // Pratyush ekta nigga
     const [token, setToken] = useState("");
     const navigate = useNavigate();
+    const groupId = sessionStorage.getItem('grpId');
+    const user = sessionStorage.getItem('userId')
     useEffect(() => {
         (async () => {
             try {
@@ -28,7 +29,7 @@ const VideoCall = () => {
                         "Content-Type": "application/json",
                         "auth-token": authToken,
                     },
-                    body: JSON.stringify({ roomId: "abcd", username: "Subhadeep" })
+                    body: JSON.stringify({ roomId: groupId, username: user })
                 });
                 const data = await response.json();
                 console.log(data);
@@ -38,7 +39,6 @@ const VideoCall = () => {
             }
         })();
     }, [])
-
 
     if (token === "") {
         return (

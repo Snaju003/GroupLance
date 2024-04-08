@@ -34,14 +34,14 @@ const TopGroup = ({color,title,description,id,canJoin}) => {
 
     return (
         <>
-            <div className="card" style={{backgroundImage:"linear-gradient( #6666ff, #1a1aff)", backdropFilter:"blur(50px)",boxShadow:"10px 5px 5px #a6a6a6", border:"4px solid white",borderRadius:"4px" }}>
+        
+        <div className="card" style={{backgroundImage:"linear-gradient( #6666ff, #82caff)",borderRadius:"10px",padding:"1.5rem",boxShadow:"2px 2px 2px 2px black"}}>
                 <div className="card-body" style={{color:"#fff"}}>
-                    <h5 style={{fontWeight:"700px"}} className="card-title">{title}</h5>
-                    <p className="card-text">{description}</p>
-                    <a href="/" style={{backgroundColor: "#000066"}} className="btn btn-primary" onClick={canJoin? topGroup: pvtGroup}>Join Group</a>
+                    <h5 style={{fontWeight:"bold",textAlign:"center"}} className="card-title">{title}</h5>
+                    <p className="card-text" style={{textAlign:"center"}}>{description}</p>
+                    <a href="/" style={{backgroundColor: "#000066",display:"block",margin:"0 auto",width:"10vw"}} className="btn btn-primary" onClick={canJoin? topGroup: pvtGroup}>Join Group</a>
                 </div>
             </div>
-           
         </>
     )
 }
