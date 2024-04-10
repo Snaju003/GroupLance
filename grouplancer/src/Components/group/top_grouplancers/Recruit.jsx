@@ -35,6 +35,8 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
   const [myGroups, setMyGroups] = useState([]);
   const navigate = useNavigate()
   const { currentUser } = useUser();
+  
+  
   // const inviteMember = async () => {
   //     try {
   //         const authToken = localStorage.getItem("auth-token");
@@ -50,8 +52,8 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
   //                     invitedUserMail: email,
   //                     invitationLink: "http://localhost:3000/sidebar",
   //                     group: {
-  //                         id: id,
-  //                         name: grpName,
+  //                         id: groupId,
+  //                         name: selectedGroup,
   //                         desc: grpDesc,
   //                     },
   //                     inviterName: currentUser,
@@ -74,11 +76,11 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
   const [checked, setChecked] = React.useState([1]);
 
   const [selectedGroup, setSelectedGroup] = useState(null);
+  const [groupId, setGroupId] = useState("")
 
   const handleToggle = (groupName) => () => {
     setSelectedGroup(groupName === selectedGroup ? null : groupName);
   };
-
   const style = {
     overflowWrap: "break-word",
     position: 'absolute',
@@ -112,6 +114,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
         const data = await response.json();
         console.log(data.ownedGroups);
         setMyGroups(data.ownedGroups);
+        
       } catch (error) {
         console.log(error);
       }
@@ -150,9 +153,26 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
             <Button onClick={handleOpen} style={{ backgroundColor: "#000066", color: "white", width: "10vw", height: "5vh", display: "block", margin: "0 auto" }} variant="contained" endIcon={<SendIcon />} >
               Invite
             </Button>
-            <Button style={{ backgroundColor: "#000066", color: "white", width: "10vw", height: "5vh", display: "block", margin: "0 auto" }} variant="contained" endIcon={<SendIcon />}>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{ backgroundColor: "#000066", color: "white", width: "10vw", height: "5vh", display: "block", margin: "0 auto" }}>
               View Profile
-            </Button>
+            </button>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Profile Information</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                  
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </Card.Body>
         </div>
 
@@ -165,9 +185,15 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
     >
       <Box sx={style}>
         <List dense sx={{ width: '100%', maxWidth: 360 }}>
+        {Object.keys(myGroups).length ? 
+         <Typography id="modal-modal-title" variant="h4" component="h2" style={{display:"flex", justifyContent:"center"}}>
+         Invite
+       </Typography>:
         <Typography id="modal-modal-title" variant="h4" component="h2" style={{display:"flex", justifyContent:"center"}}>
-      Invite
-    </Typography>
+        You don't have any group
+      </Typography>
+        }
+       
           {myGroups &&
             myGroups.map(({ gName }) => {
               const labelId = `checkbox-list-secondary-label-${gName}`;
@@ -195,15 +221,65 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
               );
             })}
         </List>
-        <Button
+        {Object.keys(myGroups).length ?  <Button
           variant="contained"
           onClick={handleClose}
           style={{ marginTop: '2rem', backgroundColor: '#05023b', color: '#ffff' }}
         >
           Invite
-        </Button>
+        </Button>:
+        null
+
+        }
+       
       </Box>
     </Modal>
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <List dense sx={{ width: '100%', maxWidth: 360 }}>
+            <Typography id="modal-modal-title" variant="h4" component="h2" style={{ display: "flex", justifyContent: "center" }}>
+              Invite
+            </Typography>
+            {myGroups &&
+              myGroups.map(({ gName, _id }) => {
+                const labelId = `checkbox-list-secondary-label-${gName}`;
+                setGroupId(_id)
+                return (
+                  <ListItem
+                    key={gName}
+                    secondaryAction={
+                      <Checkbox
+                        edge="end"
+                        onChange={handleToggle(gName)}
+                        checked={gName === selectedGroup}
+                        inputProps={{ 'aria-labelledby': labelId }}
+                        style={{ color: '#000' }}
+                      />
+                    }
+                    disablePadding
+                  >
+                    <ListItemButton>
+                      <Typography variant="body1" style={{ fontSize: '1.2rem', marginTop: "1rem" }}>
+                        {gName}
+                      </Typography>
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
+          </List>
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            style={{ marginTop: '2rem', backgroundColor: '#05023b', color: '#ffff' }}
+          >
+            Invite
+          </Button>
+        </Box>
+      </Modal>
     </>
   )
 }
