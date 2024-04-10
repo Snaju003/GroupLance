@@ -184,9 +184,15 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
     >
       <Box sx={style}>
         <List dense sx={{ width: '100%', maxWidth: 360 }}>
+        {Object.keys(myGroups).length ? 
+         <Typography id="modal-modal-title" variant="h4" component="h2" style={{display:"flex", justifyContent:"center"}}>
+         Invite
+       </Typography>:
         <Typography id="modal-modal-title" variant="h4" component="h2" style={{display:"flex", justifyContent:"center"}}>
-      Invite
-    </Typography>
+        You don't have any group
+      </Typography>
+        }
+       
           {myGroups &&
             myGroups.map(({ gName }) => {
               const labelId = `checkbox-list-secondary-label-${gName}`;
@@ -214,13 +220,17 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
               );
             })}
         </List>
-        <Button
+        {Object.keys(myGroups).length ?  <Button
           variant="contained"
           onClick={handleClose}
           style={{ marginTop: '2rem', backgroundColor: '#05023b', color: '#ffff' }}
         >
           Invite
-        </Button>
+        </Button>:
+        null
+
+        }
+       
       </Box>
     </Modal>
     </>
