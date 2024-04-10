@@ -74,7 +74,7 @@ const ownedGroup = async (req, res) => {
   try {
     const userId = req.user;
     const ownedGroups = await GroupModel.find({ leader: userId }).select(
-      "-domains -members -goal -anyoneCanJoin -gDesc"
+      "-domains -members -goal -anyoneCanJoin"
     );
     if (!ownedGroups) {
       return res.status(400).json({
