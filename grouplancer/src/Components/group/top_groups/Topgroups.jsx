@@ -27,7 +27,8 @@ const TopGroups = () => {
                     );
                     const data = await response.json();
                     // const filteredGroups = data.groups.filter(group => group.leader !== currentUser._id);
-                    // //console.log(filteredGroups)
+                    // console.log(filteredGroups)
+                    console.log(data.groups)
                     setTopGroupData(data.groups);
                 } catch (error) {
                     console.error(error);
@@ -42,10 +43,10 @@ const TopGroups = () => {
             <div className="container">
                 <div className="container row">
                     {
-                        topGroupData.map(({ _id, gName, gDesc, anyoneCanJoin }) => {
+                        topGroupData.map(({ _id, gName, gDesc, anyoneCanJoin, projName, goal }) => {
                             return (
                                 <div className="col-md-3 mb-3" key={_id}>
-                                    <TopGroup id={_id} title={gName} description={gDesc} canJoin={anyoneCanJoin} color={color} />
+                                    <TopGroup id={_id} title={gName} description={gDesc} canJoin={anyoneCanJoin} color={color} proj={projName} goal={goal} />
                                 </div>
                             )
                         }
