@@ -35,6 +35,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
   const [myGroups, setMyGroups] = useState([]);
   const navigate = useNavigate()
   const { currentUser } = useUser();
+  
   // const inviteMember = async () => {
   //     try {
   //         const authToken = localStorage.getItem("auth-token");
@@ -112,6 +113,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
         const data = await response.json();
         console.log(data.ownedGroups);
         setMyGroups(data.ownedGroups);
+        
       } catch (error) {
         console.log(error);
       }
@@ -165,14 +167,19 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
     >
       <Box sx={style}>
         <List dense sx={{ width: '100%', maxWidth: 360 }}>
-        <Typography id="modal-modal-title" variant="h4" component="h2" style={{display:"flex", justifyContent:"center"}}>
+          {Object.keys(myGroups).length? <Typography id="modal-modal-title" variant="h4" component="h2" style={{display:"flex", justifyContent:"center"}}>
       Invite
-    </Typography>
-          {myGroups &&
+    </Typography> :  <Typography id="modal-modal-title" variant="h4" component="h2" style={{display:"flex", justifyContent:"center"}}>
+      You don't have any group
+    </Typography> 
+    }
+       
+         {myGroups &&
             myGroups.map(({ gName }) => {
               const labelId = `checkbox-list-secondary-label-${gName}`;
 
               return (
+               
                 <ListItem
                   key={gName}
                   secondaryAction={
@@ -195,13 +202,16 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
               );
             })}
         </List>
-        <Button
+       {Object.keys(myGroups).length ? <Button
           variant="contained"
           onClick={handleClose}
           style={{ marginTop: '2rem', backgroundColor: '#05023b', color: '#ffff' }}
         >
           Invite
-        </Button>
+        </Button>:null}
+       
+      
+        
       </Box>
     </Modal>
     </>
