@@ -2,6 +2,7 @@ import React from 'react'
 
 
 
+
 const TopGroup = ({color,title,description,id,canJoin}) => {
     const topGroup = async (e) => {
         e.preventDefault();
@@ -40,9 +41,7 @@ const TopGroup = ({color,title,description,id,canJoin}) => {
                     <p className="card-text" style={{textAlign:"center"}}>{description}</p>
                     <a href="/" style={{backgroundColor: "#000066",display:"block",margin:"0 auto",width:"10vw"}} className="btn btn-primary" onClick={canJoin? topGroup: pvtGroup}>Join Group</a>
                 </div>
-        </div>
-        
-            
+            </div>
         </>
     )
 }

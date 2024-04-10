@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import Recruit from "./Recruit";
 import { useUser } from "../../../context/UserContext";
 
+
 const Recruits = () => {
     const title = "hello";
     const description = "world";
     const color = "#dfdffb";
     const { currentUser } = useUser();
     const [users, setUsers] = useState()
+   
 
     useEffect(() => {
         const getAllGrouplancers = async () => {
@@ -21,23 +23,24 @@ const Recruits = () => {
                 });
                 const json = await response.json();
                 setUsers(json.users)
-                console.log(users)
+                console.log(json)
             } catch (error) {
                 console.error(error);
             }
         };
         getAllGrouplancers();
     }, [currentUser])
+   
 
     return (
         <>
             <h1 className='text-center my-4' style={{ color: '#ffff' }}>Top Grouplancers</h1>
             <div className="container">
                 <div className="container row" style={{ flexDirection: "column" }}>
-                    {users && users.map(({ _id, name, email, rate, profile_pic }) => {
+                    {users && users.map(({ _id, name, email, rate, profile_pic, groups }) => {
                         return (
                             <div class="col-md-3 mb-3">
-                                <Recruit id={_id} name={name} email={email} rate={rate} profilePic={profile_pic?.image} color={color} />
+                                <Recruit id={_id} name={name} email={email} rate={rate} profilePic={profile_pic?.image} color={color} groups={groups} />
                             </div>
                         )
                     })}

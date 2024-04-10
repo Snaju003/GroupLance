@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import { pusherClient } from "../../context/Pusher";
 import { find } from 'lodash';
+import VideoChatIcon from '@mui/icons-material/VideoChat';
 
 const Chat = ({ groupName, chatid, groupId }) => {
   const [messages, setMessages] = useState([]);
@@ -141,7 +142,7 @@ const Chat = ({ groupName, chatid, groupId }) => {
           ))}
           <div ref={messagesEndRef} />
         </Paper>
-        <div className="input-container" style={{ margin: "1rem", outline: "none" }}>
+        <div className="input-container" style={{ outline: "none" }}>
           <TextField
             type="text"
             value={newMessage}
@@ -151,13 +152,13 @@ const Chat = ({ groupName, chatid, groupId }) => {
             onKeyUp={handleKeyPress}
             placeholder="Type your message..."
             className="input-field"
-            style={{ borderRadius: "20px", outline: "none", border: "none", marginRight: "1rem", height: "7.5vh" }}
+            style={{ borderRadius: "20px", outline: "none", border: "none", marginRight: "0.5rem", height: "7.5vh" }}
           />
-          <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "20px" }}>
+          <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "20px", marginRight: "0.5rem" }}>
             <span>Send</span>
           </Button>
           <Button onClick={goToVideoCall} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "20px" }}>
-            <span>Video</span>
+            <VideoChatIcon />
           </Button>
         </div>
       </div>
