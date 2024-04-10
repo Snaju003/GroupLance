@@ -36,6 +36,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
   const navigate = useNavigate()
   const { currentUser } = useUser();
   
+  
   // const inviteMember = async () => {
   //     try {
   //         const authToken = localStorage.getItem("auth-token");
@@ -51,8 +52,8 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
   //                     invitedUserMail: email,
   //                     invitationLink: "http://localhost:3000/sidebar",
   //                     group: {
-  //                         id: id,
-  //                         name: grpName,
+  //                         id: groupId,
+  //                         name: selectedGroup,
   //                         desc: grpDesc,
   //                     },
   //                     inviterName: currentUser,
@@ -75,11 +76,11 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
   const [checked, setChecked] = React.useState([1]);
 
   const [selectedGroup, setSelectedGroup] = useState(null);
+  const [groupId, setGroupId] = useState("")
 
   const handleToggle = (groupName) => () => {
     setSelectedGroup(groupName === selectedGroup ? null : groupName);
   };
-
   const style = {
     overflowWrap: "break-word",
     position: 'absolute',
@@ -233,6 +234,52 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
        
       </Box>
     </Modal>
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <List dense sx={{ width: '100%', maxWidth: 360 }}>
+            <Typography id="modal-modal-title" variant="h4" component="h2" style={{ display: "flex", justifyContent: "center" }}>
+              Invite
+            </Typography>
+            {myGroups &&
+              myGroups.map(({ gName, _id }) => {
+                const labelId = `checkbox-list-secondary-label-${gName}`;
+                setGroupId(_id)
+                return (
+                  <ListItem
+                    key={gName}
+                    secondaryAction={
+                      <Checkbox
+                        edge="end"
+                        onChange={handleToggle(gName)}
+                        checked={gName === selectedGroup}
+                        inputProps={{ 'aria-labelledby': labelId }}
+                        style={{ color: '#000' }}
+                      />
+                    }
+                    disablePadding
+                  >
+                    <ListItemButton>
+                      <Typography variant="body1" style={{ fontSize: '1.2rem', marginTop: "1rem" }}>
+                        {gName}
+                      </Typography>
+                    </ListItemButton>
+                  </ListItem>
+                );
+              })}
+          </List>
+          <Button
+            variant="contained"
+            onClick={handleClose}
+            style={{ marginTop: '2rem', backgroundColor: '#05023b', color: '#ffff' }}
+          >
+            Invite
+          </Button>
+        </Box>
+      </Modal>
     </>
   )
 }

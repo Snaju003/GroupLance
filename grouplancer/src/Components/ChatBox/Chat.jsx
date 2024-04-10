@@ -6,6 +6,8 @@ import { useUser } from "../../context/UserContext";
 import { pusherClient } from "../../context/Pusher";
 import { find } from 'lodash';
 import VideoChatIcon from '@mui/icons-material/VideoChat';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Chat = ({ groupName, chatid, groupId }) => {
   const [messages, setMessages] = useState([]);
@@ -13,7 +15,8 @@ const Chat = ({ groupName, chatid, groupId }) => {
   const { currentUser } = useUser();
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
-  // console.log(currentUser);
+  const [hovered, setHovered] = useState(false);
+  
   useEffect(() => {
     const fetchMessages = async () => {
       try {
@@ -128,17 +131,26 @@ const Chat = ({ groupName, chatid, groupId }) => {
   return (
     <>
       <div className="chat-container" style={{ width: "100%" }}>
-        <div style={{ color: "#ffff", border: "1px solid #ffff", borderRadius: "10px", padding: "1rem", marginTop: "1rem", marginBottom: "1rem", fontWeight: "900", fontSize: "20px", width: "99%" }}>
-          {groupName}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", color: "#ffff", border: "1px solid #ffff", borderRadius: "10px", padding: "1rem", marginTop: "1rem", marginBottom: "1rem", fontWeight: "900", fontSize: "20px", width: "99%" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            {groupName}
+          </div>
+          <Button onClick={goToVideoCall} variant="contained" style={{ height: "7vh", lineHeight: "0em", borderRadius: "20px" }}>
+            <VideoChatIcon />
+          </Button>
         </div>
+
         <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent", border: "1px solid #ffff" }}>
           {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`message ${message.senderId?._id === currentUser._id ? "user-message" : "other-message"}`}
-            >
-              <strong>{message.senderId?.name}:</strong> {message.message}
-            </div>
+              <div
+                key={index}
+                className={`message ${message.senderId?._id === currentUser._id ? "user-message" : "other-message"}`}
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
+              >
+                <strong>{message.senderId?.name}:</strong> {message.message}
+                {(currentUser._id === message.senderId?._id) ? (hovered && <KeyboardArrowDownIcon />) : ""}
+              </div>
           ))}
           <div ref={messagesEndRef} />
         </Paper>
@@ -157,9 +169,7 @@ const Chat = ({ groupName, chatid, groupId }) => {
           <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "20px", marginRight: "0.5rem" }}>
             <span>Send</span>
           </Button>
-          <Button onClick={goToVideoCall} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "20px" }}>
-            <VideoChatIcon />
-          </Button>
+
         </div>
       </div>
     </>
