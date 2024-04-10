@@ -30,9 +30,6 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
   const [rating, setRating] = useState(0);
   const [value, setValue] = useState(0);
 
-  const handleRating = (starCount) => {
-    setRating(starCount);
-  };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -43,17 +40,26 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+  const [ratings, setRatings] = useState({});
 
-  const ratingUser = async (e, _id) => {
+
+  const handleRating = (userId, ratingValue) => {
+    setRatings(prevRatings => ({
+      ...prevRatings,
+      [userId]: ratingValue
+    }));
+  };
+  const ratingUser = async (e,val, _id) => {
     e.preventDefault();
-    console.log(value)
+    const ratingValue = ratings[_id] || 0; 
+    console.log(val)
     const response = await fetch("http://localhost:8080/api/user/rate-user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('auth-token'),
       },
-      body: JSON.stringify({ rate: value == 0 ? 1 : value, userId: _id }),
+      body: JSON.stringify({ rate: val == 0 ? 1 : val, userId: _id }),
     });
     const json = await response.json();
     console.log(json)
@@ -134,7 +140,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
     projectname: "",
     projectdesc: "",
     groupid: groupId,
-    Leader: currentUser._id,
+    Leader: currentUser?._id,
     assigned: "",
     time: Timestamp.now(),
     date: new Date().toLocaleString(
@@ -189,6 +195,8 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
     };
     getAllProjectFunction();
   }, [groupId]);
+
+  
 
 
   return (
@@ -448,11 +456,11 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
                       <p className="card-text">{email}</p>
                       {(_id !== currentUser?._id) && (<div style={{ display: "flex", marginRight: "1rem" }}>
                         <Rating
-                          name="simple-controlled"
-                          value={value}
+                          name={`rating-${_id}`} // Unique name for each Rating component
+                          value={ratings[_id] || 0} 
                           onChange={(e, value) => {
-                            setValue(value);
-                            ratingUser(e, _id);
+                            handleRating(_id, value);
+                            ratingUser(e,value, _id);
                           }}
                         />
                       </div>)}
