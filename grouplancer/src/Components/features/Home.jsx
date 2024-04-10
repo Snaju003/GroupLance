@@ -45,6 +45,7 @@ const Home = (props) => {
               }}
             >
               Find and Connect with like-minded individuals and create or join groups effortlessly, online.
+              
             </p>
             <div
               style={{
