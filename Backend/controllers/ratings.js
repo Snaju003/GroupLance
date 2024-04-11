@@ -3,12 +3,16 @@ const RatingModel = require("../models/Rating");
 const createRating = async (req, res) => {
     try {
         const { ratedUser, rating } = req.body;
-        const ratedBy = req.user.id; // Assuming you have middleware to get the authenticated user's ID
+        const ratedBy = req.user; // Assuming you have middleware to get the authenticated user's ID
 
         const existingRating = await RatingModel.findOne({ ratedBy, ratedUser });
 
         if (existingRating) {
-            return res.status(400).json({ error: 'You have already rated this user' });
+            await RatingModel.findByIdAndUpdate(existingRating._id, {
+                $set: {
+                    rating: rating
+                }
+            });
         }
 
         const newRating = await RatingModel.create({ ratedBy, ratedUser, rating });
