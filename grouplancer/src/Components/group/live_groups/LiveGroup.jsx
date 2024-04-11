@@ -29,7 +29,7 @@ const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin, gDesc }) => 
   return (
     <>
 
-      <div onClick={handleOpen} className="card" style={{ backgroundImage: "radial-gradient(beige,#0492c2)", height: 'fit-content', borderRadius: "1rem", display: "flex", gap: "2rem" }}>
+      <div onClick={handleOpen} className="card" style={{ backgroundImage: "radial-gradient(beige,#0492c2)", height: 'fit-content',boxShadow:"2px 2px 2px 2px #151e3d", borderRadius: "1rem", display: "flex", gap: "2rem" }}>
 
         <div className="card-body" style={{ color: "white", fontWeight: "bold",padding:"2rem" }}>
          
