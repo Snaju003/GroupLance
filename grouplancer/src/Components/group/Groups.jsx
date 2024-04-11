@@ -84,7 +84,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
               name: grpName,
               desc: grpDesc,
             },
-            inviterName: currentUser,
+            inviterName: currentUser.name,
           }),
         }
       );
