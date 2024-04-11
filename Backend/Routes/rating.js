@@ -1,7 +1,7 @@
 const express = require('express');
 const ratingRouter = express.Router();
 const fetchUser = require('../middleware/fetchuser');
-const { createRating, getRatingsForUser } = require('../controllers/ratingController');
+const { createRating, getRatingsForUser } = require('../controllers/ratings');
 
 // Create a new rating
 ratingRouter.post('/ratings', fetchUser, createRating);
