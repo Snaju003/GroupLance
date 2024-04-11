@@ -9,6 +9,7 @@ import VideoChatIcon from '@mui/icons-material/VideoChat';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Dropdown from 'react-bootstrap/Dropdown';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 const Chat = ({ groupName, chatid, groupId }) => {
   const [messages, setMessages] = useState([]);
@@ -30,6 +31,7 @@ const Chat = ({ groupName, chatid, groupId }) => {
           },
         });
         const data = await response.json();
+        console.log(data)
         setMessages(data.allMessages);
       } catch (error) {
         console.log('Error fetching messages:', error);
@@ -45,6 +47,10 @@ const Chat = ({ groupName, chatid, groupId }) => {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const handleCopy = (message) => {
+    navigator.clipboard.writeText(message)
+  }
 
   // useEffect(() => {
   //   socket.current.emit("join", chatid, {
@@ -111,6 +117,24 @@ const Chat = ({ groupName, chatid, groupId }) => {
     }
   };
 
+  const handleDeleteMessage = async (id) => {
+    console.log("deleting")
+    try {
+      console.log("Fetch API")
+      const authToken = localStorage.getItem("auth-token");
+      const response = await fetch(`http://localhost:8080/api/conversation/delete-message/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": authToken,
+        },
+      });
+      console.log("Deleted")
+    } catch (error) {
+      console.log('Error sending message:', error);
+    }
+  }
+
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       handleSendMessage();
@@ -142,15 +166,15 @@ const Chat = ({ groupName, chatid, groupId }) => {
         </div>
 
         <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent", border: "1px solid #ffff" }}>
-          {messages.map((message, index) => (
-            <div
+          {messages.map((message, index, _id) => (
+            !message.isDeleted? <div
               style={{ display: "flex", position: "relative" }}
               key={index}
               className={`message ${message.senderId?._id === currentUser._id ? "user-message" : "other-message"}`}
               onMouseEnter={() => setHovered(index)}
               onMouseLeave={() => setHovered(null)}
             >
-              <strong>{message.senderId?.name}:</strong> {message.message}
+              <strong>{message.senderId?.name}: </strong> {" "} {message.message}
               {hovered === index && currentUser._id === message.senderId?._id && (
                 <Dropdown
                   style={{
@@ -171,13 +195,23 @@ const Chat = ({ groupName, chatid, groupId }) => {
                   />
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Copy</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
+                    <Dropdown.Item onClick={() => {
+                      handleCopy(message.message)
+                    }}><Button style={{color: "blue"}} startIcon={<ContentCopyIcon />}>Copy</Button></Dropdown.Item>
+                    <Dropdown.Item onClick={() => {
+                      handleDeleteMessage(message._id)
+                    }}><Button style={{color: "red"}} startIcon={<DeleteIcon />}>Delete</Button></Dropdown.Item>
                     {/* <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
                   </Dropdown.Menu>
                 </Dropdown>
               )}
-            </div>
+            </div> : <div
+              style={{ display: "flex", position: "relative" }}
+              key={index}
+              className={`message ${message.senderId?._id === currentUser._id ? "user-message" : "other-message"}`}
+            >
+              <strong>{message.senderId?.name}: </strong> This message was deleted
+              </div>
           ))}
 
 
@@ -198,7 +232,6 @@ const Chat = ({ groupName, chatid, groupId }) => {
           <Button onClick={handleSendMessage} variant="contained" style={{ height: "7.5vh", lineHeight: "0em", borderRadius: "20px", marginRight: "0.5rem" }}>
             <span>Send</span>
           </Button>
-
         </div>
       </div>
     </>
