@@ -35,9 +35,8 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
   const [myGroups, setMyGroups] = useState([]);
   const navigate = useNavigate()
   const { currentUser } = useUser();
-  const grpDesc = ""
 
-  const inviteMember = async (id) => {
+  const inviteMember = async (id, gDesc) => {
       try {
           const authToken = localStorage.getItem("auth-token");
           const response = await fetch(
@@ -54,7 +53,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
                       group: {
                           id: id,
                           name: selectedGroup,
-                          desc: grpDesc,
+                          desc: gDesc,
                       },
                       inviterName: currentUser.name,
                   }),
@@ -190,7 +189,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
               Invite
             </Typography>
             {myGroups &&
-              myGroups.map(({ gName, _id }) => {
+              myGroups.map(({ gName, _id, gDesc }) => {
                 const labelId = `checkbox-list-secondary-label-${gName}`
                 return (
                   <>
@@ -218,7 +217,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
                       variant="contained"
                       onClick={() => {
                         handleClose();
-                        inviteMember(_id)
+                        inviteMember(_id, gDesc)
                       }}
                       style={{ marginTop: '2rem', backgroundColor: '#05023b', color: '#ffff' }}
                     >
