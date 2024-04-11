@@ -65,6 +65,35 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
     console.log(json)
   }
 
+  const ratingValue = async (e,val, _id) => {
+    e.preventDefault();
+    const ratingValue = ratings[_id] || 0; 
+    console.log(val)
+    const response = await fetch("http://localhost:8080/api/rate/ratings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem('auth-token'),
+      },
+      body: JSON.stringify({ rating: val == 0 ? 1 : val, ratedUser: _id }),
+    });
+    const json = await response.json();
+    console.log(json)
+  }
+
+  const getRatedUser = async (e, _id) => {
+    e.preventDefault();
+    const response = await fetch(`http://localhost:8080/api/rate/ratings/${_id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem('auth-token'),
+      },
+    });
+    const json = await response.json();
+    console.log(json)
+  }
+
   const inviteMember = async () => {
     try {
       const authToken = localStorage.getItem("auth-token");
@@ -461,6 +490,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
                           onChange={(e, value) => {
                             handleRating(_id, value);
                             ratingUser(e,value, _id);
+                            ratingValue(e,value, _id);
                           }}
                         />
                       </div>)}
