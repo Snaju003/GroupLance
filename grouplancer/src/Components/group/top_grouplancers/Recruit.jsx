@@ -35,37 +35,36 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
   const [myGroups, setMyGroups] = useState([]);
   const navigate = useNavigate()
   const { currentUser } = useUser();
-  
-  
-  // const inviteMember = async () => {
-  //     try {
-  //         const authToken = localStorage.getItem("auth-token");
-  //         const response = await fetch(
-  //             `http://localhost:8080/api/group/invite-members`,
-  //             {
-  //                 method: "POST",
-  //                 headers: {
-  //                     "Content-Type": "application/json",
-  //                     "auth-token": authToken,
-  //                 },
-  //                 body: JSON.stringify({
-  //                     invitedUserMail: email,
-  //                     invitationLink: "http://localhost:3000/sidebar",
-  //                     group: {
-  //                         id: groupId,
-  //                         name: selectedGroup,
-  //                         desc: grpDesc,
-  //                     },
-  //                     inviterName: currentUser,
-  //                 }),
-  //             }
-  //         );
-  //         const data = await response.json();
-  //         console.log(data)
-  //     } catch (error) {
-  //         console.error(error);
-  //     }
-  // };
+
+  const inviteMember = async (id, gDesc) => {
+      try {
+          const authToken = localStorage.getItem("auth-token");
+          const response = await fetch(
+              "http://localhost:8080/api/group/invite-members",
+              {
+                  method: "POST",
+                  headers: {
+                      "Content-Type": "application/json",
+                      "auth-token": authToken,
+                  },
+                  body: JSON.stringify({
+                      invitedUserMail: email,
+                      invitationLink: "http://localhost:3000/sidebar",
+                      group: {
+                          id: id,
+                          name: selectedGroup,
+                          desc: gDesc,
+                      },
+                      inviterName: currentUser.name,
+                  }),
+              }
+          );
+          const data = await response.json();
+          console.log(data)
+      } catch (error) {
+          console.error(error);
+      }
+  };
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -81,6 +80,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
   const handleToggle = (groupName) => () => {
     setSelectedGroup(groupName === selectedGroup ? null : groupName);
   };
+
   const style = {
     overflowWrap: "break-word",
     position: 'absolute',
@@ -114,7 +114,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
         const data = await response.json();
         console.log(data.ownedGroups);
         setMyGroups(data.ownedGroups);
-        
+
       } catch (error) {
         console.log(error);
       }
@@ -164,7 +164,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                  
+
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -178,62 +178,6 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
 
       </Card>
       <Modal
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
-      <Box sx={style}>
-        <List dense sx={{ width: '100%', maxWidth: 360 }}>
-        {Object.keys(myGroups).length ? 
-         <Typography id="modal-modal-title" variant="h4" component="h2" style={{display:"flex", justifyContent:"center"}}>
-         Invite
-       </Typography>:
-        <Typography id="modal-modal-title" variant="h4" component="h2" style={{display:"flex", justifyContent:"center"}}>
-        You don't have any group
-      </Typography>
-        }
-       
-          {myGroups &&
-            myGroups.map(({ gName }) => {
-              const labelId = `checkbox-list-secondary-label-${gName}`;
-
-              return (
-                <ListItem
-                  key={gName}
-                  secondaryAction={
-                    <Checkbox
-                      edge="end"
-                      onChange={handleToggle(gName)}
-                      checked={gName === selectedGroup}
-                      inputProps={{ 'aria-labelledby': labelId }}
-                      style={{ color: '#000' }}
-                    />
-                  }
-                  disablePadding
-                >
-                  <ListItemButton>
-                  <Typography variant="body1" style={{ fontSize: '1.2rem',marginTop:"1rem" }}>
-                      {gName}
-                    </Typography>
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
-        </List>
-        {Object.keys(myGroups).length ?  <Button
-          variant="contained"
-          onClick={handleClose}
-          style={{ marginTop: '2rem', backgroundColor: '#05023b', color: '#ffff' }}
-        >
-          Invite
-        </Button>:
-        null
-
-        }
-       
-      </Box>
-    </Modal>
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -245,39 +189,44 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
               Invite
             </Typography>
             {myGroups &&
-              myGroups.map(({ gName, _id }) => {
-                const labelId = `checkbox-list-secondary-label-${gName}`;
-                setGroupId(_id)
+              myGroups.map(({ gName, _id, gDesc }) => {
+                const labelId = `checkbox-list-secondary-label-${gName}`
                 return (
-                  <ListItem
-                    key={gName}
-                    secondaryAction={
-                      <Checkbox
-                        edge="end"
-                        onChange={handleToggle(gName)}
-                        checked={gName === selectedGroup}
-                        inputProps={{ 'aria-labelledby': labelId }}
-                        style={{ color: '#000' }}
-                      />
-                    }
-                    disablePadding
-                  >
-                    <ListItemButton>
-                      <Typography variant="body1" style={{ fontSize: '1.2rem', marginTop: "1rem" }}>
-                        {gName}
-                      </Typography>
-                    </ListItemButton>
-                  </ListItem>
+                  <>
+
+                    <ListItem
+                      key={gName}
+                      secondaryAction={
+                        <Checkbox
+                          edge="end"
+                          onChange={handleToggle(gName)}
+                          checked={gName === selectedGroup}
+                          inputProps={{ 'aria-labelledby': labelId }}
+                          style={{ color: '#000' }}
+                        />
+                      }
+                      disablePadding
+                    >
+                      <ListItemButton>
+                        <Typography variant="body1" style={{ fontSize: '1.2rem', marginTop: "1rem" }}>
+                          {gName}
+                        </Typography>
+                      </ListItemButton>
+                    </ListItem>
+                    <Button
+                      variant="contained"
+                      onClick={() => {
+                        handleClose();
+                        inviteMember(_id, gDesc)
+                      }}
+                      style={{ marginTop: '2rem', backgroundColor: '#05023b', color: '#ffff' }}
+                    >
+                      Invite
+                    </Button>
+                  </>
                 );
               })}
           </List>
-          <Button
-            variant="contained"
-            onClick={handleClose}
-            style={{ marginTop: '2rem', backgroundColor: '#05023b', color: '#ffff' }}
-          >
-            Invite
-          </Button>
         </Box>
       </Modal>
     </>
