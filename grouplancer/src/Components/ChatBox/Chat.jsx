@@ -8,6 +8,7 @@ import { find } from 'lodash';
 import VideoChatIcon from '@mui/icons-material/VideoChat';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const Chat = ({ groupName, chatid, groupId }) => {
   const [messages, setMessages] = useState([]);
@@ -16,7 +17,7 @@ const Chat = ({ groupName, chatid, groupId }) => {
   const messagesEndRef = useRef(null);
   const navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
-  
+
   useEffect(() => {
     const fetchMessages = async () => {
       try {
@@ -142,16 +143,44 @@ const Chat = ({ groupName, chatid, groupId }) => {
 
         <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent", border: "1px solid #ffff" }}>
           {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`message ${message.senderId?._id === currentUser._id ? "user-message" : "other-message"}`}
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-              >
-                <strong>{message.senderId?.name}:</strong> {message.message}
-                {(currentUser._id === message.senderId?._id) ? (hovered && <KeyboardArrowDownIcon />) : ""}
-              </div>
+            <div
+              style={{ display: "flex", position: "relative" }}
+              key={index}
+              className={`message ${message.senderId?._id === currentUser._id ? "user-message" : "other-message"}`}
+              onMouseEnter={() => setHovered(index)}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <strong>{message.senderId?.name}:</strong> {message.message}
+              {hovered === index && currentUser._id === message.senderId?._id && (
+                <Dropdown
+                  style={{
+                    position: "absolute",
+                    top: "0%",
+                    right: 0,
+                    zIndex: 1
+                  }}
+                >
+                  <Dropdown.Toggle
+                    split
+                    variant="success"
+                    id={`dropdown-split-basic-${index}`}
+                    style={{
+                      background: "none",
+                      border: "none"
+                    }}
+                  />
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Copy</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Delete</Dropdown.Item>
+                    {/* <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
+                  </Dropdown.Menu>
+                </Dropdown>
+              )}
+            </div>
           ))}
+
+
           <div ref={messagesEndRef} />
         </Paper>
         <div className="input-container" style={{ outline: "none" }}>

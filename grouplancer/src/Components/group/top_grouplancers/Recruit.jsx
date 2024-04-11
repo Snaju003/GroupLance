@@ -26,8 +26,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/UserContext";
-
-
+import StarIcon from '@mui/icons-material/Star';
 
 const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
   // console.log(groups)
@@ -71,9 +70,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
 
 
   const handleClose = () => setOpen(false);
-
   const [checked, setChecked] = React.useState([1]);
-
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [groupId, setGroupId] = useState("")
 
@@ -146,8 +143,8 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
         <div>
 
           <ListGroup className="list-group-flush" style={{ borderRadius: "0.5rem", boxShadow: "5px 2px 3px 2px #59788e" }}>
-            <ListGroup.Item>NAME:  {name}</ListGroup.Item>
-            <ListGroup.Item>EMAIL: {email}</ListGroup.Item>
+            <ListGroup.Item>Name:  {name}</ListGroup.Item>
+            <ListGroup.Item>Rate: {rate} <StarIcon style={{color: "#ffde38"}} /></ListGroup.Item>
           </ListGroup>
           <Card.Body style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
             <Button onClick={handleOpen} style={{ backgroundColor: "#000066", color: "white", width: "10vw", height: "5vh", display: "block", margin: "0 auto" }} variant="contained" endIcon={<SendIcon />} >
