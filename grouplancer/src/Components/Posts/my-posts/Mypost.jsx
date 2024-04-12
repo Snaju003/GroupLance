@@ -29,7 +29,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 function Mypost(props) {
   const theme = useTheme();
-  const { color, groupName, groupImage, postdesc, groupId, tweetId } = props;
+  const { color, groupName, groupImage, postdesc, groupId, tweetId, image } = props;
   const [rating, setRating] = useState(0);
   const navigate = useNavigate()
   const [editText, setEditText] = useState("")
@@ -122,7 +122,7 @@ function Mypost(props) {
               height: "50%",
               borderRadius: "0",
             }}
-            image={groupImage}
+            image={image? image: groupImage}
             alt="Group Image"
           />
         )}
