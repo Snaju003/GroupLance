@@ -37,10 +37,10 @@ const Recruits = () => {
             <h1 className='text-center my-4' style={{ color: '#ffff' }}>Top Grouplancers</h1>
             <div className="container">
                 <div className="container row" style={{ flexDirection: "column" }}>
-                    {users && users.map(({ _id, name, email, rate, profile_pic, groups }) => {
+                    {users && users.map(({ _id, name, email, rate, profile_pic, groups, skills }) => {
                         return (
                             <div class="col-md-3 mb-3">
-                                <Recruit id={_id} name={name} email={email} rate={rate} profilePic={profile_pic?.image} color={color} groups={groups} />
+                                <Recruit id={_id} name={name} email={email} rate={rate} profilePic={profile_pic?.image} color={color} groups={groups} skills={skills}/>
                             </div>
                         )
                     })}

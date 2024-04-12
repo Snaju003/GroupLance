@@ -28,7 +28,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/UserContext";
 import StarIcon from '@mui/icons-material/Star';
 
-const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
+const Recruit = ({ id, name, email, rate, profilePic, color, groups,skills }) => {
   // console.log(groups)
   const theme = useTheme();
   const [myGroups, setMyGroups] = useState([]);
@@ -175,14 +175,27 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
               
             </Typography>
             <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
-             <span style={{textDecoration:"underline"}}>Name:</span>:  {name}
+             <span>Name:</span> {name}
             </Typography>
             <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
-             <span style={{textDecoration:"underline"}}>Email:</span> {email}
+             <span>Email:</span> {email}
             </Typography>
-            {/* <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
-             <span  style={{textDecoration:"underline"}}>Goal</span> : {goal}
-            </Typography>
+            <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+                <span>Skills:</span> 
+               </Typography>
+               
+            {skills.length? skills.map((skill)=>{
+              return(
+                <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+                {skill}
+               </Typography>
+              )
+             
+            }):  
+            <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+            No skills
+           </Typography>}
+            {/* 
             
              <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
               <span style={{textDecoration:"underline"}}>Group Description</span> : {description}
@@ -264,7 +277,7 @@ const style = {
   left: '50%',
   // minWidth: '800px',
   transform: 'translate(-50%, -50%)',
-  width: "300px",
+  width: "500px",
   backgroundImage: "linear-gradient(#3048c3,#0492c2)",
   border: '2px solid #000',
   boxShadow: 24,
