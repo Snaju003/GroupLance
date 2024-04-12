@@ -18,7 +18,6 @@ const Notification = () => {
                     <div class="col-md-3 mb-3">
                         <Invite title={title} description={description} color={color} />
                     </div>
-                    
                 </div>
             </div>
             </Layout>

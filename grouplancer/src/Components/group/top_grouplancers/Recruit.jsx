@@ -48,7 +48,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
                   },
                   body: JSON.stringify({
                       invitedUserMail: email,
-                      invitationLink: "http://localhost:3000/sidebar",
+                      invitationLink: "http://localhost:3000/notify",
                       group: {
                           id: id,
                           name: selectedGroup,
