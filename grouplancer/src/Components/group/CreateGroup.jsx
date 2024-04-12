@@ -3,7 +3,7 @@ import { useUser } from "../../context/UserContext";
 import { useNavigate } from 'react-router-dom';
 import { Col, Row, Container, Form } from "react-bootstrap";
 import toast from "react-hot-toast";
-
+import { names } from "../constant/skills";
 const CreateGroup = () => {
   const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: "", groupType: "", whoCanJoin: "", groupMembers: "" });
   const { currentUser } = useUser();
@@ -100,29 +100,10 @@ const CreateGroup = () => {
                       required></textarea>
                   </Row>
                   <Row size={12} sm={6} className="px-1">
-                    <Form.Select className="domainForm" onChange={onchange}
-                      name="domains" style={{ maxHeight: '200px', overflowY: "scroll" }} required>
-                      <option selected>Choose Required Skills...</option>
-                      <option value="App Development" style={{ color: "black" }}>App Development</option>
-                      <option value="CyberSecurity" style={{ color: "black" }}>CyberSecurity</option>
-                      <option value="IOT" style={{ color: "black" }}>IOT</option>
-                      <option value="Programming and Development" style={{ color: "black" }}>Programming and Development</option>
-                      <option value="Data science and analytics" style={{ color: "black" }}>Data science and analytics</option>
-                      <option value="Mobile Development" style={{ color: "black" }}>Mobile Development</option>
-                      <option value="Frontend Development" style={{ color: "black" }}>Frontend Development</option>
-                      <option value="Backend Development" style={{ color: "black" }}>Backend Development</option>
-                      <option value="Cloud Computing" style={{ color: "black" }}>Cloud Computing</option>
-                      <option value="Game Development" style={{ color: "black" }}>Game Development</option>
-                      <option value="Blockchain and Cryptocurrency" style={{ color: "black" }}>Blockchain and Cryptocurrency</option>
-                      <option value="Artificial Intelligence" style={{ color: "black" }}>Artificial Intelligence</option>
-                      <option value="Networking" style={{ color: "black" }}>Networking</option>
-                      <option value="Operating System" style={{ color: "black" }}>Operating System</option>
-                      <option value="Virtual Reality and Augmented Reality" style={{ color: "black" }}>Virtual Reality and Augmented Reality</option>
-                      <option value="Software Testing" style={{ color: "black" }}>Software Testing</option>
-                      <option value="Web Servers" style={{ color: "black" }}>Web Servers</option>
-                      <option value="Databases" style={{ color: "black" }}>Databases</option>
-                      <option value="Tech Entrepreneurship" style={{ color: "black" }}>Tech Entrepreneurship</option>
-                      <option value="DevOps" style={{ color: "black" }}>DevOps</option>
+                  <Form.Select onChange={onchange} className="domainForm" name="domains" style={{ maxHeight: '200px', overflowY: "scroll" }} required>
+                      {names.map((skill, index) => (
+                        <option key={index} value={skill} style={{ color: "black" }}>{skill}</option>
+                      ))}
                     </Form.Select>
                   </Row>
                   <Row size={12} sm={6} className="px-1">
