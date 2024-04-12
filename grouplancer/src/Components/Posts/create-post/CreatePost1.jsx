@@ -100,7 +100,8 @@ const CreatePost1 = () => {
                 body: JSON.stringify({ file: base64 })
             });
             const data = await response.json();
-            console.log(data.image._id);
+            console.log(data);
+           // console.log(data.image._id);
             setImg(data.image._id);
        
             setFormData(prevState => ({
