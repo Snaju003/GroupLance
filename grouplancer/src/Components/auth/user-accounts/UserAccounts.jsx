@@ -127,7 +127,7 @@ const UserAccounts = () => {
     try {
       const base64 = await convertToBase64(file);
       setPostImage(base64);
-     
+
       e.preventDefault();
       const authToken = localStorage.getItem('auth-token');
       const response = await fetch("http://localhost:8080/api/file/upload-user-pic", {
@@ -264,12 +264,12 @@ const UserAccounts = () => {
             </Box>
             <Box display="flex" flexDirection="column" gap={2} marginTop="1rem" alignItems="center">
               <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
-                <CardContent style={{ display: "flex", justifyContent: "space-between",flexDirection:"column",alignItems:"flex-start" }}>
-                <Typography variant="h5" component="div" gutterBottom>
+                <CardContent style={{ display: "flex", justifyContent: "space-between", flexDirection: "column", alignItems: "flex-start" }}>
+                  <Typography variant="h5" component="div" gutterBottom>
                     Skills
                   </Typography>
-                 
-                      {/* <Modal open={skillopen} onClose={handleSkillClose}>
+
+                  {/* <Modal open={skillopen} onClose={handleSkillClose}>
                         <Box sx={{ ...style, width: 400 }}>
                           <Autocomplete
                             multiple
@@ -289,37 +289,37 @@ const UserAccounts = () => {
                           }} style={{ margin: "auto" }}>Submit</Button>
                         </Box>
                       </Modal> */}
-                      {/* <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
+                  {/* <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
                         {userData.skills && userData.skills.map((skill, index) => (
                           <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
                             <ListItemText primary={skill} />
                           </ListItem>
                         ))}
                       </List> */}
-                      <Button onClick={handleSkillModal}>See Details</Button>
-                         <Modal
-        open={skillModal}
-        onClose={handleSkillModalClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Skills
-          </Typography>
-           <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
+                  <Button onClick={handleSkillModal}>See Details</Button>
+                  <Modal
+                    open={skillModal}
+                    onClose={handleSkillModalClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Skills
+                      </Typography>
+                      <List style={{ marginLeft: "2rem", display: "flex", flexWrap: "wrap", flexDirection: "row" }}>
                         {userData.skills && userData.skills.map((skill, index) => (
                           <ListItem key={index} style={{ backgroundColor: "#dedad9", border: "2px solid white", borderRadius: "1rem", backdropFilter: "blur(10px)", display: "block", width: "fit-content" }}>
                             <ListItemText primary={skill} />
                           </ListItem>
                         ))}
                       </List>
-          {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                      {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Typography> */}
-        </Box>
-      </Modal>
-                  
+                    </Box>
+                  </Modal>
+
                 </CardContent>
               </Card>
               <Card sx={{ width: "60vw", borderRadius: "1rem" }}>
@@ -395,12 +395,15 @@ const UserAccounts = () => {
                   </List>
                 </CardContent>
               </Card>
-              <Button style={{ position: "absolute", right: "10rem", top: "110vh" }} variant="contained" onClick={() => { navigate('/create') }}>
-                Add <AddIcon />
-              </Button>
+              <Box>
+                <Button variant="contained" onClick={() => { navigate('/create') }}>
+                  Add features<AddIcon />
+                </Button>
+              </Box>
             </Box>
           </Box>
         </div>
+
       </div>
 
     </>

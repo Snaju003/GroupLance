@@ -28,12 +28,16 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/UserContext";
 import StarIcon from '@mui/icons-material/Star';
 
-const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
+const Recruit = ({ id, name, email, rate, profilePic, color, groups,skills }) => {
   // console.log(groups)
   const theme = useTheme();
   const [myGroups, setMyGroups] = useState([]);
   const navigate = useNavigate()
   const { currentUser } = useUser();
+  const [profileopen, setprofileOpen] = useState(false)
+
+  const handleProfileClose = () => setprofileOpen(false)
+  const handleProfileOpen = () => setprofileOpen(true)
 
   const inviteMember = async (id, gDesc) => {
       try {
@@ -48,7 +52,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
                   },
                   body: JSON.stringify({
                       invitedUserMail: email,
-                      invitationLink: "http://localhost:3000/sidebar",
+                      invitationLink: "http://localhost:3000/notify",
                       group: {
                           id: id,
                           name: selectedGroup,
@@ -78,22 +82,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
     setSelectedGroup(groupName === selectedGroup ? null : groupName);
   };
 
-  const style = {
-    overflowWrap: "break-word",
-    position: 'absolute',
-    color: "white",
-    borderRadius: "1rem",
-    border: "2px solid white",
-    top: '50%',
-    left: '50%',
-    // minWidth: '800px',
-    transform: 'translate(-50%, -50%)',
-    width: "300px",
-    backgroundImage: "linear-gradient(#3048c3,#0492c2)",
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
+
   useEffect(() => {
     // if (currentUser)
     //     navigate("/login")
@@ -150,30 +139,73 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
             <Button onClick={handleOpen} style={{ backgroundColor: "#000066", color: "white", width: "10vw", height: "5vh", display: "block", margin: "0 auto" }} variant="contained" endIcon={<SendIcon />} >
               Invite
             </Button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{ backgroundColor: "#000066", color: "white", width: "10vw", height: "5vh", display: "block", margin: "0 auto" }}>
+            <button type="button" class="btn btn-primary" onClick={handleProfileOpen}  style={{ backgroundColor: "#000066", color: "white", width: "10vw", height: "5vh", display: "block", margin: "0 auto" }}>
               View Profile
             </button>
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+           
+          </Card.Body>
+        </div>
+
+      </Card>
+      {/* <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2" aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Profile Information</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Profile Information:</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <div class="modal-body">
-
-                  </div>
+               
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary">Understood</button>
                   </div>
                 </div>
               </div>
-            </div>
-          </Card.Body>
-        </div>
+            </div> */}
 
-      </Card>
+<Modal
+          open={profileopen}
+          onClose={handleProfileClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+
+        >
+          <Box sx={style} style={{ }}>
+            <Typography id="modal-modal-title" variant="h4" component="h2">
+              
+            </Typography>
+            <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+             <span>Name:</span> {name}
+            </Typography>
+            <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+             <span>Email:</span> {email}
+            </Typography>
+            <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+                <span>Skills:</span> 
+               </Typography>
+               
+            {skills.length? skills.map((skill)=>{
+              return(
+                <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+                {skill}
+               </Typography>
+              )
+             
+            }):  
+            <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+            No skills
+           </Typography>}
+            {/* 
+            
+             <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+              <span style={{textDecoration:"underline"}}>Group Description</span> : {description}
+            </Typography> */}
+            <Button variant="contained" onClick={handleProfileClose} style={{marginTop:"2rem", backgroundColor:"#05023b", color:"white"}}>
+              Close
+            </Button>
+          </Box>
+        
+        </Modal>
       <Modal
         open={open}
         onClose={handleClose}
@@ -235,5 +267,20 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups }) => {
     </>
   )
 }
-
+const style = {
+  overflowWrap: "break-word",
+  position: 'absolute',
+  color: "white",
+  borderRadius: "1rem",
+  border: "2px solid white",
+  top: '50%',
+  left: '50%',
+  // minWidth: '800px',
+  transform: 'translate(-50%, -50%)',
+  width: "500px",
+  backgroundImage: "linear-gradient(#3048c3,#0492c2)",
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 export default Recruit
