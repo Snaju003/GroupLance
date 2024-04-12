@@ -29,3 +29,26 @@ const rejectInvite = async (req, res) => {
         });
     }
 }
+
+const getAllInvites = async (req, res) => {
+    try {
+        const userId = req.user;
+        if (!userId) {
+            return res.status(400).json({ message: 'Id needed' });
+        }
+
+        const invites = await InviteModel.find({ invitedUser: userId });
+        return res.status(200).json({ message: `Fetched all invites`, invites });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            success: false,
+            message: `Internal server error`
+        });
+    }
+}
+
+module.exports = {
+    rejectInvite,
+    getAllInvites,
+}
