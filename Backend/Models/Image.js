@@ -12,7 +12,8 @@ const ImageSchema = new mongoose.Schema({
         default: null,
     },
     image: {
-        type: String
+        type: String,
+        required: true
     },
 }, { timestamps: true });
 
