@@ -46,9 +46,9 @@ const uploadPostImage = async (req, res) => {
         const { file, tweetId } = req.body;
         const userId = req.user;
         let image;
-        console.log('Request File:',file);
+        console.log('Request File:', file);
         image = await ImageModel.create({
-            image: file.file
+            image: file
         });
 
         console.log('Image', image);
