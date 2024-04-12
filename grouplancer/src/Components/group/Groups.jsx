@@ -107,7 +107,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
           },
           body: JSON.stringify({
             invitedUserMail: credentials.email,
-            invitationLink: "http://localhost:3000/sidebar",
+            invitationLink: "http://localhost:3000/notify",
             group: {
               id: id,
               name: grpName,
