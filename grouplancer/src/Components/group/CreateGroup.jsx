@@ -29,6 +29,7 @@ const CreateGroup = () => {
       const json = await response.json();
       console.log(json);
       toast.success("Group Created Successfully !");
+    
       setCredentials({});
       navigate("/")
     } catch (error) {

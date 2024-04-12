@@ -25,7 +25,6 @@ import Sidebar from './Components/sidebar';
 import Sidebar_ranking from './Components/sidebar_ranking';
 import LiveSide from './Components/liveside';
 import Post from './Components/Posts/Post';
-import CreatePost from './Components/Posts/create-post/CreatePost';
 import Postbar from './Components/Posts/PostBar';
 import CreatePost1 from './Components/Posts/create-post/CreatePost1';
 import Livepost from './Components/Posts/my-posts/Livepost';
@@ -96,9 +95,9 @@ function App() {
 
   return (
     <div className='App'>
-  
+
       <Router>
-        
+
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/aboutus' element={<AboutUs bgcolor={bgcolor} />} />
@@ -124,7 +123,7 @@ function App() {
           <Route exact path='/sidebar_ranking' element={<Sidebar_ranking />} />
           <Route exact path='/liveside' element={<LiveSide />} />
           <Route exact path="/posts" element={<Post />} />
-          <Route exact path="/createposts" element={<CreatePost />} />
+
           <Route exact path="/createposts1" element={<CreatePost1 />} />
           <Route exact path="/postbar" element={<Postbar />} />
           <Route exact path="/liveposts" element={<LivePosts />} />
@@ -137,7 +136,7 @@ function App() {
           <Route exact path="/create" element={<CreateAccount />} />
           <Route exact path="/videoCall" element={<VideoCall />} />
         </Routes>
-          <Toaster/>
+        <Toaster />
       </Router>
     </div>
   );
