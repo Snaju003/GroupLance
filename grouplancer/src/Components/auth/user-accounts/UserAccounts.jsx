@@ -24,16 +24,7 @@ import { names } from "../../constant/skills";
 import NavBar from "../../general/Navbar";
 import Footer from "../../general/footer/Footer";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-const dummyEdu = [
-  {
-    institution: "Dummy University",
-
-    startDate: "September 2016",
-    endDate: "May 2020",
-    degree: "Bachelor of Science",
-    major: "Computer Science",
-  }
-];
+import toast from "react-hot-toast";
 
 // console.log(education);
 function convertToBase64(file) {
@@ -119,6 +110,7 @@ const UserAccounts = () => {
       });
       const json = await response.json();
       console.log(json);
+      toast.success("Name Updated Successfully");
       navigate("/userAccount");
     } catch (error) {
       console.error(error);
@@ -132,13 +124,10 @@ const UserAccounts = () => {
   const [postImage, setPostImage] = useState("");
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    setPostImage(base64);
-    if (!postImage) {
-      e.target.value = null;
-      return;
-    }
     try {
+      const base64 = await convertToBase64(file);
+      setPostImage(base64);
+     
       e.preventDefault();
       const authToken = localStorage.getItem('auth-token');
       const response = await fetch("http://localhost:8080/api/file/upload-user-pic", {
@@ -147,11 +136,12 @@ const UserAccounts = () => {
           "Content-Type": "application/json",
           "auth-token": authToken,
         },
-        body: JSON.stringify({ file: postImage })
+        body: JSON.stringify({ file: base64 })
       });
       const data = await response.json();
       console.log(data);
       setFormData({ media: base64 });
+      toast.success("Profile Picture Updated Successfully");
     } catch (error) {
       console.log(error)
     }
