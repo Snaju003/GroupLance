@@ -491,6 +491,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
                             handleRating(_id, value);
                             ratingUser(e,value, _id);
                             ratingValue(e,value, _id);
+                            getRatedUser(e, _id);
                           }}
                         />
                       </div>)}
