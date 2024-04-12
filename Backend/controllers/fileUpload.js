@@ -45,19 +45,11 @@ const uploadPostImage = async (req, res) => {
 
         const { file, tweetId } = req.body;
         const userId = req.user;
-        // const existsImage = await ImageModel.findOne({ post: tweetId });
         let image;
-        // if (existsImage) {
-        //     image = await ImageModel.findByIdAndUpdate(existsImage?._id, {
-        //         $set: {
-        //             image: file.file
-        //         }
-        //     });
-        // } else {
+        console.log('Request File:',file);
         image = await ImageModel.create({
             image: file.file
         });
-        // }
 
         console.log('Image', image);
         return res.status(201).json({
