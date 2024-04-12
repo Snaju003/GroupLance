@@ -41,7 +41,7 @@ const CreateGroup = () => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
 
- 
+
   return (
     <>
       <section className="create" >
@@ -50,10 +50,10 @@ const CreateGroup = () => {
             <h1 className="text-center my-4" style={{ color: "#ffff", paddingBottom: "2vh" }}>
               Create Group
             </h1>
-            
-            <Col className="form"size={12} md={6} style={{display:"flex",gap:"150px",marginLeft:"100px"}}>
+
+            <Col className="form" size={12} md={6} style={{ display: "flex", gap: "150px", marginLeft: "100px" }}>
               <form onSubmit={handleSubmit} >
-              <Col className="column" style={{width:"31.25vw"}}>
+                <Col className="column" style={{ width: "31.25vw" }}>
                   <Row size={12} sm={6} className="px-1" >
                     <input type="text" placeholder="Group Name" onChange={onchange}
                       name="gName" required />
@@ -99,6 +99,32 @@ const CreateGroup = () => {
                       required></textarea>
                   </Row>
                   <Row size={12} sm={6} className="px-1">
+                    <Form.Select className="domainForm" onChange={onchange}
+                      name="domains" style={{ maxHeight: '200px', overflowY: "scroll" }} required>
+                      <option selected>Choose Required Skills...</option>
+                      <option value="App Development" style={{ color: "black" }}>App Development</option>
+                      <option value="CyberSecurity" style={{ color: "black" }}>CyberSecurity</option>
+                      <option value="IOT" style={{ color: "black" }}>IOT</option>
+                      <option value="Programming and Development" style={{ color: "black" }}>Programming and Development</option>
+                      <option value="Data science and analytics" style={{ color: "black" }}>Data science and analytics</option>
+                      <option value="Mobile Development" style={{ color: "black" }}>Mobile Development</option>
+                      <option value="Frontend Development" style={{ color: "black" }}>Frontend Development</option>
+                      <option value="Backend Development" style={{ color: "black" }}>Backend Development</option>
+                      <option value="Cloud Computing" style={{ color: "black" }}>Cloud Computing</option>
+                      <option value="Game Development" style={{ color: "black" }}>Game Development</option>
+                      <option value="Blockchain and Cryptocurrency" style={{ color: "black" }}>Blockchain and Cryptocurrency</option>
+                      <option value="Artificial Intelligence" style={{ color: "black" }}>Artificial Intelligence</option>
+                      <option value="Networking" style={{ color: "black" }}>Networking</option>
+                      <option value="Operating System" style={{ color: "black" }}>Operating System</option>
+                      <option value="Virtual Reality and Augmented Reality" style={{ color: "black" }}>Virtual Reality and Augmented Reality</option>
+                      <option value="Software Testing" style={{ color: "black" }}>Software Testing</option>
+                      <option value="Web Servers" style={{ color: "black" }}>Web Servers</option>
+                      <option value="Databases" style={{ color: "black" }}>Databases</option>
+                      <option value="Tech Entrepreneurship" style={{ color: "black" }}>Tech Entrepreneurship</option>
+                      <option value="DevOps" style={{ color: "black" }}>DevOps</option>
+                    </Form.Select>
+                  </Row>
+                  <Row size={12} sm={6} className="px-1">
                     <Form.Select className="domainForm" onChange={onchange} name="groupType" required>
                       <option style={{ color: "black" }}>Group Type</option>
                       <option value="Public" style={{ color: "black" }}>Public</option>
@@ -112,20 +138,20 @@ const CreateGroup = () => {
                       <option value="Join with invite" style={{ color: "black" }}>Join with invite</option>
                     </Form.Select>
                   </Row>
-                  <Col size={12} className="px-1" style={{marginLeft:"160px"}}>
-                    <button className="button-48" style={{borderRadius:"20px",marginRight:"8rem"}} type="submit"><span>Create Group</span></button>
+                  <Col size={12} className="px-1" style={{ marginLeft: "160px" }}>
+                    <button className="button-48" style={{ borderRadius: "20px", marginRight: "8rem" }} type="submit"><span>Create Group</span></button>
                   </Col>
                 </Col>
               </form>
-              <div className="boximage" style={{gap:"6rem"}}>
-              <img src="https://i.postimg.cc/8zSTtt9s/creategrp.jpg" alt="group" style={{ borderRadius:"30px 30px 0px 0px",height:"400px",width:"450px"}}/>
-              <img src="https://img.freepik.com/free-vector/business-team-brainstorm-idea-lightbulb-from-jigsaw-working-team-collaboration-enterprise-cooperation-colleagues-mutual-assistance-concept-pinkish-coral-bluevector-isolated-illustration_335657-1651.jpg" alt="group" style={{ borderRadius:"0px 0px 30px 30px",height:"400px",width:"450px"}}/>
+              <div className="boximage" style={{ gap: "6rem" }}>
+                <img src="https://i.postimg.cc/8zSTtt9s/creategrp.jpg" alt="group" style={{ borderRadius: "30px 30px 0px 0px", height: "400px", width: "450px" }} />
+                <img src="https://img.freepik.com/free-vector/business-team-brainstorm-idea-lightbulb-from-jigsaw-working-team-collaboration-enterprise-cooperation-colleagues-mutual-assistance-concept-pinkish-coral-bluevector-isolated-illustration_335657-1651.jpg" alt="group" style={{ borderRadius: "0px 0px 30px 30px", height: "400px", width: "450px" }} />
               </div>
             </Col>
           </Row>
         </Container>
         <style>
-        {`
+          {`
      @media (max-width: 575.98px) { 
     
      }
@@ -168,7 +194,7 @@ const CreateGroup = () => {
  
       }
         `}
-      </style>
+        </style>
       </section >
     </>
   );
