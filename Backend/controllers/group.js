@@ -6,7 +6,7 @@ const sendMail = require("../utils/sendmail");
 const TweetModel = require("../models/Tweet");
 const ConversationModel = require("../models/Conversation");
 const MessageModel = require("../models/Message");
-const { default: InviteModel } = require("../models/Invite");
+const InviteModel = require("../models/Invite");
 
 const createGroup = async (req, res) => {
     try {
