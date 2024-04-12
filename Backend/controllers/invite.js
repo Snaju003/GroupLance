@@ -37,7 +37,7 @@ const getAllInvites = async (req, res) => {
             return res.status(400).json({ message: 'Id needed' });
         }
 
-        const invites = await InviteModel.find({ invitedUser: userId });
+        const invites = await InviteModel.find({ invitedUser: userId }).populate("group", "gName gDesc");
         return res.status(200).json({ message: `Fetched all invites`, invites });
     } catch (error) {
         console.log(error);
