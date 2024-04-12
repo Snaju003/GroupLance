@@ -28,9 +28,13 @@ const createRating = async (req, res) => {
 const getRatingsForUser = async (req, res) => {
     try {
         const userId = req.params.userId;
-        const ratings = await RatingModel.find({ ratedUser: userId }).populate('ratedBy', 'name _id'); // Assuming User model has 'name' field
-
-        return res.status(200).json(ratings);
+        const currentUserId = req.user;
+        const ratings = await RatingModel.findOne({ ratedUser: userId, ratedBy: currentUserId });
+        if (ratings) {
+            return res.status(200).json({ rated: true, rating: ratings.rating });
+        } else {
+            return res.status(400).json({ rated: false });
+        }
     } catch (err) {
         console.error(err);
         return res.status(500).json({ error: 'Server error' });
