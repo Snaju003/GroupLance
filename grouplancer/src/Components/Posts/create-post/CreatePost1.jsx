@@ -23,7 +23,8 @@ const CreatePost1 = () => {
     const [myGroups, setMyGroups] = useState([]);
     const { currentUser } = useUser();
     const [selGroup, setSelGroup] = useState();
-    const [img, setImg] = useState(null)
+    const [img, setImg] = useState(null);
+  
 
     const [formData, setFormData] = useState({
         pDesc: "",
@@ -49,12 +50,14 @@ const CreatePost1 = () => {
                 console.log(error);
             }
         }
+        
         fetchData();
     }
         , [currentUser, navigate])
 
     const handlePost = async (e) => {
         try {
+            
             e.preventDefault();
             const authToken = localStorage.getItem('auth-token');
             console.log(img)
@@ -79,13 +82,13 @@ const CreatePost1 = () => {
 
     const handleFileUpload = async (e) => {
         const file = e.target.files[0];
-        const base64 = await convertToBase64(file);
-        setPostImage(base64);
-        if (!postImage) {
-            e.target.value = null;
-            return;
-        }
         try {
+            const base64 = await convertToBase64(file);
+            setPostImage(base64);
+            // if (!postImage) {
+            //     e.target.value = null;
+            //     return;
+            // }
             e.preventDefault();
             const authToken = localStorage.getItem('auth-token');
             const response = await fetch("http://localhost:8080/api/file/upload-post-img", {
@@ -94,16 +97,17 @@ const CreatePost1 = () => {
                     "Content-Type": "application/json",
                     "auth-token": authToken,
                 },
-                body: JSON.stringify({ file: postImage })
+                body: JSON.stringify({ file: base64 })
             });
             const data = await response.json();
             console.log(data.image._id);
             setImg(data.image._id);
+       
             setFormData(prevState => ({
                 ...prevState,
                 media: base64
             }));
-            console.log("Img: ", img);
+           // console.log("Img: ", img);
         } catch (error) {
             console.log(error)
         }
@@ -123,7 +127,7 @@ const CreatePost1 = () => {
         }
     };
 
-
+    
     const handleGroupChange = (e) => {
         setSelGroup(e.value);
     }
@@ -193,6 +197,7 @@ const CreatePost1 = () => {
                     <Col className="boximage">
                         {formData.media ? (
                             <img
+                          
                                 src={formData.media}
                                 alt="post"
                                 style={{ borderRadius: "30px 30px 30px 30px", height: "50vh", width: "30vw", marginLeft: "15vh" }}
