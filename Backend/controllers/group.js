@@ -6,6 +6,7 @@ const sendMail = require("../utils/sendmail");
 const TweetModel = require("../models/Tweet");
 const ConversationModel = require("../models/Conversation");
 const MessageModel = require("../models/Message");
+const { default: InviteModel } = require("../models/Invite");
 
 const createGroup = async (req, res) => {
     try {
@@ -186,7 +187,7 @@ const inviteMember = async (req, res) => {
                 message: 'No User found with this email Id'
             });
         }
-        const existGroup = await GroupModel.findById(group.id);
+        const existGroup = await GroupModel.findById(group.id).populate("leader", "_id");
         if (!existGroup) {
             return res.status(400).json({
                 success: false,
@@ -205,6 +206,11 @@ const inviteMember = async (req, res) => {
                 message: 'User already in group'
             });
         }
+        await InviteModel.create({
+            invitedUser: existUser._id,
+            invitedBy: existGroup.leader._id,
+            group: existGroup._id
+        });
         const data = {
             user: {
                 hostName: inviterName,
@@ -249,7 +255,7 @@ const joinGroup = async (req, res) => {
                 message: 'Please provide required fields'
             });
         }
-        const existGroup = await GroupModel.findById(groupId);
+        const existGroup = await GroupModel.findById(groupId).populate("leader", "_id");
         if (!existGroup) {
             return res.status(400).json({
                 success: false,
@@ -278,6 +284,7 @@ const joinGroup = async (req, res) => {
         await UserModel.findByIdAndUpdate(userId, { $push: { groups: groupId } });
         await GroupModel.findByIdAndUpdate(groupId, { $inc: { gMemberNumber: 1 }, $push: { members: userId } });
         await ConversationModel.findOneAndUpdate({ group: groupId }, { $push: { userIds: userId } });
+        await InviteModel.findOneAndDelete({ group: groupId, invitedUser: existUser._id, invitedBy: existGroup.leader._id });
         return res.status(200).json({
             success: true,
             message: 'User added to the group successfully'
