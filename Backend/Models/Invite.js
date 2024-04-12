@@ -19,4 +19,4 @@ const InviteSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 const InviteModel = mongoose.model('invite', InviteSchema);
-export default InviteModel;
+module.exports = InviteModel;

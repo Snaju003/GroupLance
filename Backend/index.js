@@ -11,6 +11,7 @@ const conversationRouter = require('./routes/conversation');
 const fileRouter = require('./routes/file');
 const { createToken } = require('./controllers/livekit');
 const ratingRouter = require('./routes/rating');
+const inviteRouter = require('./routes/invite');
 
 
 const port = process.env.PORT;
@@ -29,6 +30,7 @@ app.use('/api/user', userRouter);
 app.use('/api/tweet', tweetRouter);
 app.use('/api/conversation', conversationRouter);
 app.use('/api/rate', ratingRouter);
+app.use('/api/invite',inviteRouter);
 app.post('/api/livekit/getToken', async (req, res) => {
     const { roomId, username } = req.body;
     const token = await createToken(roomId, username);
