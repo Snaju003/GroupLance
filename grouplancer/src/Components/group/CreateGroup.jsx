@@ -13,7 +13,7 @@ const CreateGroup = () => {
     //   navigate('/login');
     // }
   }, [currentUser, navigate])
-
+  names.sort();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
