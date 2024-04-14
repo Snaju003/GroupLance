@@ -1,0 +1,23 @@
+export const Domains = [
+    "General",
+    "App Development",
+    "CyberSecurity",
+    "IOT",
+    "Programming and Development",
+    "Data science and analytics",
+    "Mobile Development",
+    "Frontend Development",
+    "Backend Development",
+    "Cloud Computing",
+    "Game Development",
+    "Blockchain and Cryptocurrency",
+    "Artificial Intelligence",
+    "Networking",
+    "Operating System",
+    "Virtual Reality and Augmented Reality",
+    "Software Testing",
+    "Web Servers",
+    "Databases",
+    "Tech Entrepreneurship",
+    "DevOps"
+  ]

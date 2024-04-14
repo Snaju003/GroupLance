@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { Col, Row, Container, Form } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { names } from "../constant/skills";
+import { Domains } from "./Domains/Domains";
+
+
 const CreateGroup = () => {
   const [credentials, setCredentials] = useState({ leader: "", gName: "", gDesc: "", projName: "", goal: "", domains: "", groupType: "", whoCanJoin: "", groupMembers: "" });
   const { currentUser } = useUser();
@@ -70,7 +73,11 @@ const CreateGroup = () => {
                   <Row size={12} sm={6} className="px-1">
                     <Form.Select className="domainForm" onChange={onchange}
                       name="domains" style={{ maxHeight: '200px', overflowY: "scroll" }} required>
-                      <option style={{ color: "black" }}>Select Your Domain</option>
+                        <option style={{ color: "black" }}>Select Your Domain</option>
+                        {Domains.map((Domain)=>(
+                           <option value={Domain} style={{ color: "black" }}>{Domain}</option>
+                        ))}
+                      {/* <option style={{ color: "black" }}>Select Your Domain</option>
                       <option value="General" style={{ color: "black" }}>General</option>
                       <option value="App Development" style={{ color: "black" }}>App Development</option>
                       <option value="CyberSecurity" style={{ color: "black" }}>CyberSecurity</option>
@@ -91,7 +98,7 @@ const CreateGroup = () => {
                       <option value="Web Servers" style={{ color: "black" }}>Web Servers</option>
                       <option value="Databases" style={{ color: "black" }}>Databases</option>
                       <option value="Tech Entrepreneurship" style={{ color: "black" }}>Tech Entrepreneurship</option>
-                      <option value="DevOps" style={{ color: "black" }}>DevOps</option>
+                      <option value="DevOps" style={{ color: "black" }}>DevOps</option> */}
                     </Form.Select>
                   </Row>
                   <Row size={12} sm={6} className="px-1">
@@ -99,13 +106,7 @@ const CreateGroup = () => {
                       name="gDesc"
                       required></textarea>
                   </Row>
-                  <Row size={12} sm={6} className="px-1">
-                  <Form.Select onChange={onchange} className="domainForm" name="domains" style={{ maxHeight: '200px', overflowY: "scroll" }} required>
-                      {names.map((skill, index) => (
-                        <option key={index} value={skill} style={{ color: "black" }}>{skill}</option>
-                      ))}
-                    </Form.Select>
-                  </Row>
+                  
                   <Row size={12} sm={6} className="px-1">
                     <Form.Select className="domainForm" onChange={onchange} name="groupType" required>
                       <option style={{ color: "black" }}>Group Type</option>
