@@ -27,6 +27,7 @@ import Avatar from '@mui/material/Avatar';
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/UserContext";
 import StarIcon from '@mui/icons-material/Star';
+import toast from "react-hot-toast";
 
 const Recruit = ({ id, name, email, rate, profilePic, color, groups,skills }) => {
   // console.log(groups)
@@ -35,6 +36,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups,skills }) =>
   const navigate = useNavigate()
   const { currentUser } = useUser();
   const [profileopen, setprofileOpen] = useState(false)
+  
 
   const handleProfileClose = () => setprofileOpen(false)
   const handleProfileOpen = () => setprofileOpen(true)
@@ -63,9 +65,12 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups,skills }) =>
               }
           );
           const data = await response.json();
+        
           console.log(data)
+          toast.success("Invitation Sent")
       } catch (error) {
           console.error(error);
+          toast.error("Error !")
       }
   };
 
@@ -136,9 +141,11 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups,skills }) =>
             <ListGroup.Item>Rate: {rate} <StarIcon style={{color: "#ffde38"}} /></ListGroup.Item>
           </ListGroup>
           <Card.Body style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
-            <Button onClick={handleOpen} style={{ backgroundColor: "#000066", color: "white", width: "10vw", height: "5vh", display: "block", margin: "0 auto" }} variant="contained" endIcon={<SendIcon />} >
+            {currentUser._id !==id? 
+             <Button onClick={handleOpen} style={{ backgroundColor: "#000066", color: "white", width: "10vw", height: "5vh", display: "block", margin: "0 auto" }} variant="contained" endIcon={<SendIcon />} >
               Invite
-            </Button>
+            </Button> : null}
+          
             <button type="button" class="btn btn-primary" onClick={handleProfileOpen}  style={{ backgroundColor: "#000066", color: "white", width: "10vw", height: "5vh", display: "block", margin: "0 auto" }}>
               View Profile
             </button>
