@@ -16,7 +16,7 @@ const Sidebar = () => {
                     <Row>
                         <Col size={12}>
                             <Tab.Container id="tabs-group" defaultActiveKey="first">
-                                <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
+                                <Nav fill variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                                     <Nav.Item>
                                         <Nav.Link eventKey="first">My Groups</Nav.Link>
                                     </Nav.Item>
@@ -26,9 +26,9 @@ const Sidebar = () => {
                                     <Nav.Item>
                                         <Nav.Link eventKey="third">Create Group</Nav.Link>
                                     </Nav.Item>
-                                    <Nav.Item>
+                                    {/* <Nav.Item>
                                         <Nav.Link eventKey="fourth">Group Invite</Nav.Link>
-                                    </Nav.Item>
+                                    </Nav.Item> */}
                                 </Nav>
                                 <Tab.Content id="slideInUp">
                                     <Tab.Pane eventKey="first">
@@ -40,9 +40,9 @@ const Sidebar = () => {
                                     <Tab.Pane eventKey="third">
                                         <CreateGroup />
                                     </Tab.Pane>
-                                    <Tab.Pane eventKey="fourth">
+                                    {/* <Tab.Pane eventKey="fourth">
                                         <GroupsInvite />
-                                    </Tab.Pane>
+                                    </Tab.Pane> */}
                                 </Tab.Content>
                             </Tab.Container>
 
