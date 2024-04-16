@@ -161,7 +161,7 @@ const Home = (props) => {
 
                       <h4 style={{ color: "white", padding: "10px 40px 40px 40px", position: "sticky", lineHeight: "1em" }}> FREE</h4>
                       <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
-                        <li style={{ listStyle: "inherit" }}>Ad free</li>
+                        
                         <li>Create only one group</li>
                         <li>Create group with maximum 6 members</li>
 
