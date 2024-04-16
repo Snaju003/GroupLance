@@ -22,7 +22,8 @@ const Recruits = () => {
                     },
                 });
                 const json = await response.json();
-                setUsers(json.users)
+                const sortedUsers = json.users.sort((a, b) => b.rate - a.rate);
+                setUsers(sortedUsers)
                 console.log(json)
             } catch (error) {
                 console.error(error);
