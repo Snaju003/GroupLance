@@ -57,12 +57,16 @@ const UserSchema = new Schema({
     groups: [{ type: mongoose.Schema.Types.ObjectId, ref: 'group' }],
     profile_pic: {
         type: mongoose.Schema.Types.ObjectId,
-        ref:'image'
+        ref: 'image'
     },
     skills: [{ type: String }],
     workExperience: [{ type: WorkExperienceSchema }],
     education: [{ type: EducationSchema }],
     rate: { type: Number },
+    subscription: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'subscription'
+    },
 }, { timestamps: true });
 
 // Sign Access Token

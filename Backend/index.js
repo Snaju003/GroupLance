@@ -12,11 +12,17 @@ const fileRouter = require('./routes/file');
 const { createToken } = require('./controllers/livekit');
 const ratingRouter = require('./routes/rating');
 const inviteRouter = require('./routes/invite');
+const subscriptionRouter = require('./routes/subscription');
+const bodyParser = require('body-parser');
+const { razorWebhook } = require('./webhook/razorpay');
 
 
 const port = process.env.PORT;
 
-app.use(cors({ origin: ['http://localhost:3000'] }));
+app.use(bodyParser.json());
+app.use(cors(
+    // { origin: ['http://localhost:3000'] }
+));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: false }));
 
@@ -30,7 +36,8 @@ app.use('/api/user', userRouter);
 app.use('/api/tweet', tweetRouter);
 app.use('/api/conversation', conversationRouter);
 app.use('/api/rate', ratingRouter);
-app.use('/api/invite',inviteRouter);
+app.use('/api/invite', inviteRouter);
+app.use('/api/subscription', subscriptionRouter);
 app.post('/api/livekit/getToken', async (req, res) => {
     const { roomId, username } = req.body;
     const token = await createToken(roomId, username);
@@ -39,6 +46,7 @@ app.post('/api/livekit/getToken', async (req, res) => {
         token
     });
 });
+app.post("/api/webhook/razor", razorWebhook);
 
 app.listen(port, () => {
     console.log(`Server is listening to port ${port}`);
