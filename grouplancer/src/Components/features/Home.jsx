@@ -126,7 +126,7 @@ const Home = (props) => {
                     <br />Stronger
                   </h1>
                 </div>
-                <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "100rem 5rem 5rem 100rem", width: "50vw", height: "60vh", margin: "0rem 0rem 0rem 0rem" }} alt="gif"></video>
+                <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "200rem 5rem 5rem 200rem", width: "35vw", height: "60vh", margin: "0rem 0rem 0rem 0rem" }} alt="gif"></video>
               </div>
             </div>
           </div>
@@ -159,11 +159,11 @@ const Home = (props) => {
                     <h6 style={{ opacity: "0.7", margin: "30px 40px 10px 30px", color: "white" }}>Try grouplancing for free</h6>
                     <div className="card-content">
 
-                      <h4 style={{ color: "white", padding: "10px 40px 40px 40px", position: "sticky", lineHeight: "1em" }}> NO SUBSCRIPTION </h4>
+                      <h4 style={{ color: "white", padding: "10px 40px 40px 40px", position: "sticky", lineHeight: "1em" }}> FREE</h4>
                       <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
-                        <li style={{ listStyle: "inherit" }}>Ad free</li>
+                        
                         <li>Create only one group</li>
-                        <li>Create group of only specified size</li>
+                        <li>Create group with maximum 6 members</li>
 
                       </ul>
 
@@ -191,7 +191,7 @@ const Home = (props) => {
                       <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
                         <li style={{ listStyle: "inherit" }}>Ad free</li>
                         <li>Create multiple groups</li>
-                        <li>Create groups of any size</li>
+                        <li>Create groups with 8 members</li>
 
                       </ul>
 
@@ -219,7 +219,7 @@ const Home = (props) => {
                       <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
                         <li style={{ listStyle: "inherit" }}>Ad free</li>
                         <li>Create multiple groups</li>
-                        <li>Create groups of any size</li>
+                        <li>Create groups of 10 members</li>
                         <li>Invite top users to your group</li>
                         <li>Send requests to top users</li>
                       </ul>
