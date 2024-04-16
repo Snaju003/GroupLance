@@ -159,8 +159,8 @@ const Home = (props) => {
                     <h6 style={{ opacity: "0.7", margin: "30px 40px 10px 30px", color: "white" }}>Try grouplancing for free</h6>
                     <div className="card-content">
 
-                      <h4 style={{ color: "white", padding: "10px 40px 40px 40px", position: "sticky", lineHeight: "1em" }}> FREE</h4>
-                      <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
+                      <h4 style={{ color: "white",  lineHeight: "1em",textAlign:"center" }}>FREE</h4>
+                      <ul style={{ marginBottom: "30px", marginTop: "20px", marginLeft: "20px", color: "white", position: "sticky" }} >
                         
                         <li>Create only one group</li>
                         <li>Create group with maximum 6 members</li>
@@ -187,8 +187,8 @@ const Home = (props) => {
                     <h6 style={{ opacity: "0.7", margin: "30px 30px 10px 30px", color: "white" }}>Enjoy premium features just at Rs.800 </h6>
                     <div className="card-content">
 
-                      <h4 style={{ color: "white", padding: "10px 30px 30px 30px", position: "sticky", lineHeight: "1em" }}>PREMIUM SUBSCRIPTION </h4>
-                      <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
+                      <h4 style={{ color: "white",textAlign:"center", lineHeight: "1em" }}>PREMIUM SUBSCRIPTION </h4>
+                      <ul style={{ marginBottom: "30px", marginTop: "20px", marginLeft: "20px", color: "white", position: "sticky" }} >
                         <li style={{ listStyle: "inherit" }}>Ad free</li>
                         <li>Create multiple groups</li>
                         <li>Create groups with 8 members</li>
@@ -215,8 +215,8 @@ const Home = (props) => {
                     <h6 style={{ opacity: "0.7", margin: "30px 40px 10px 30px", color: "white" }}>Enjoy deluxe features just at Rs.1500 </h6>
                     <div className="card-content">
 
-                      <h4 style={{ color: "white", padding: "10px 40px 40px 40px", position: "sticky", lineHeight: "1em" }}>DELUXE SUBSCRIPTION </h4>
-                      <ul style={{ marginBottom: "30px", marginTop: "10px", marginLeft: "20px", color: "white", position: "sticky" }} >
+                      <h4 style={{ color: "white",textAlign:"center", lineHeight: "1em" }}>DELUXE SUBSCRIPTION </h4>
+                      <ul style={{ marginBottom: "30px", marginTop: "20px", marginLeft: "20px", color: "white", position: "sticky" }} >
                         <li style={{ listStyle: "inherit" }}>Ad free</li>
                         <li>Create multiple groups</li>
                         <li>Create groups of 10 members</li>
