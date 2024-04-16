@@ -1,4 +1,4 @@
-{
+export const domainSkills = {
     "General": [
       "Adobe Creative Suite (Adobe Photoshop, Illustrator, InDesign, etc.)",
       "Typography",
