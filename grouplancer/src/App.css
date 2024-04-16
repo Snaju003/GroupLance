@@ -40,7 +40,7 @@ body {
   background-color: #fff;
   border-radius: 14px;
   border-style: none;
-  box-shadow: 7px 7px 7px rgba(240, 232, 232, 0.6);
+  /* box-shadow: 7px 7px 7px rgba(240, 232, 232, 0.6); */
     /*rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0; */
   box-sizing: border-box;
   color: #000000;
@@ -69,6 +69,7 @@ body {
 .community:hover {
   background: #F6F9FE;
   color: #174ea6;
+  box-shadow: 7px 7px 7px rgba(240, 232, 232, 0.6);
  
   /* transition: all 0.5s ease-in-out; */
   /* transition: ease-out 0.5s; */
