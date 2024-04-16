@@ -89,8 +89,8 @@ const Home = (props) => {
                   <li>Chat And Connect With Others</li>
                 </ul>
               </div>
-              <Link to="/Signup"><button type="submit" className="community" onChange={handleClick} style={{ margin: "2rem 0rem 1rem 1rem", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
-                Join the community
+              <Link to="/LiveGroups"><button type="submit" className="community" onChange={handleClick} style={{ margin: "2rem 0rem 1rem 1rem", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
+                Explore Groups
               </button></Link>
             </div>
             <div style={{ display: "flex" }}>
