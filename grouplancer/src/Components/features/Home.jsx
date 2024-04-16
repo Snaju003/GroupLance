@@ -184,7 +184,7 @@ const Home = (props) => {
                       </button>
 
                     </div>
-                    <h6 style={{ opacity: "0.7", margin: "30px 30px 10px 30px", color: "white" }}>Enjoy premium features just at Rs.49 </h6>
+                    <h6 style={{ opacity: "0.7", margin: "30px 30px 10px 30px", color: "white" }}>Enjoy premium features just at Rs.800 </h6>
                     <div className="card-content">
 
                       <h4 style={{ color: "white", padding: "10px 30px 30px 30px", position: "sticky", lineHeight: "1em" }}>PREMIUM SUBSCRIPTION </h4>
@@ -212,7 +212,7 @@ const Home = (props) => {
                       </button>
 
                     </div>
-                    <h6 style={{ opacity: "0.7", margin: "30px 40px 10px 30px", color: "white" }}>Enjoy deluxe features just at Rs.99 </h6>
+                    <h6 style={{ opacity: "0.7", margin: "30px 40px 10px 30px", color: "white" }}>Enjoy deluxe features just at Rs.1500 </h6>
                     <div className="card-content">
 
                       <h4 style={{ color: "white", padding: "10px 40px 40px 40px", position: "sticky", lineHeight: "1em" }}>DELUXE SUBSCRIPTION </h4>
