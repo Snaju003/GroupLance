@@ -126,7 +126,7 @@ const Home = (props) => {
                     <br />Stronger
                   </h1>
                 </div>
-                <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "100rem 5rem 5rem 100rem", width: "50vw", height: "60vh", margin: "0rem 0rem 0rem 0rem" }} alt="gif"></video>
+                <video src="./motion.mp4" autoPlay loop muted style={{ borderRadius: "200rem 5rem 5rem 200rem", width: "35vw", height: "60vh", margin: "0rem 0rem 0rem 0rem" }} alt="gif"></video>
               </div>
             </div>
           </div>
