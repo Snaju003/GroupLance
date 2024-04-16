@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import toast from "react-hot-toast";
+
 const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin, gDesc }) => {
   const liveGroup = async (e) => {
     e.preventDefault();
@@ -17,6 +19,7 @@ const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin, gDesc }) => 
     });
     const json = await response.json();
     console.log(json)
+    toast.success("Group Joined !")
   }
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {

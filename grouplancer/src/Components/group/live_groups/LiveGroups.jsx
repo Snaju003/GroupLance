@@ -37,7 +37,6 @@ const LiveGroups = () => {
           const skillsB = domainSkills[domainB];
           const matchingSkillsA = countMatchingSkills(skillsA, currentUser.skills);
           const matchingSkillsB = countMatchingSkills(skillsB, currentUser.skills);
-
           return matchingSkillsB - matchingSkillsA;
         });
         console.log(sortedGroups);
