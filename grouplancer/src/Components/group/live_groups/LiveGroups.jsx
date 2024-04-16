@@ -41,7 +41,7 @@ const LiveGroups = () => {
           return matchingSkillsB - matchingSkillsA;
         });
         console.log(sortedGroups);
-        setLiveGroupData(filteredGroups);
+        setLiveGroupData(sortedGroups);
       } catch (error) {
         console.error(error);
       }
