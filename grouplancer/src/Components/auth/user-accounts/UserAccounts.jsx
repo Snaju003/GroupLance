@@ -25,6 +25,7 @@ import NavBar from "../../general/Navbar";
 import Footer from "../../general/footer/Footer";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import toast from "react-hot-toast";
+import StarIcon from '@mui/icons-material/Star';
 
 // console.log(education);
 function convertToBase64(file) {
@@ -42,7 +43,7 @@ function convertToBase64(file) {
 
 const UserAccounts = () => {
   const { currentUser } = useUser();
-  //console.log(currentUser);
+  // console.log(currentUser);
   const [editName, setEditName] = useState("");
   useEffect(() => {
     const name = currentUser?.name;
@@ -248,7 +249,7 @@ const UserAccounts = () => {
                     Personal Ranking
                   </Typography>
                   <Typography variant="body1" textAlign="center" color="text.secondary">
-                    userdata.ranking
+                    {currentUser?.rate} <StarIcon style={{color: "#ffde38"}} />
                   </Typography>
                   <Typography variant="h5" textAlign="center" component="div" gutterBottom>
                     Group Rankings
