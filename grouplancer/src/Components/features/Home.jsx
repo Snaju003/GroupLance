@@ -187,7 +187,7 @@ const Home = (props) => {
 
                       <h4 style={{ color: "white",textAlign:"center", lineHeight: "1em" }}>MONTHLY SUBSCRIPTION </h4>
                       <ul style={{ marginBottom: "30px", marginTop: "20px", marginLeft: "20px", color: "white", position: "sticky" }} >
-                        <li style={{ listStyle: "inherit" }}>Ad free</li>
+                        {/* <li style={{ listStyle: "inherit" }}>Ad free</li> */}
                         <li>Create multiple groups</li>
                         <li>Join multiple groups</li>
                         <li>Create groups with 10 members</li>
@@ -216,7 +216,7 @@ const Home = (props) => {
 
                       <h4 style={{ color: "white",textAlign:"center", lineHeight: "1em" }}>YEARLY SUBSCRIPTION </h4>
                       <ul style={{ marginBottom: "30px", marginTop: "20px", marginLeft: "20px", color: "white", position: "sticky" }} >
-                        <li style={{ listStyle: "inherit" }}>Ad free</li>
+                        {/* <li style={{ listStyle: "inherit" }}>Ad free</li> */}
                         <li>Create multiple groups</li>
                         <li>Create groups having unlimited members</li>
                         <li>Invite top users to your group</li>
