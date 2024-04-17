@@ -17,13 +17,11 @@ import { Link } from "@mui/material";
 import { useUser } from "../../context/UserContext";
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const { currentUser, logout } = useUser();
-    const navigate = useNavigate();
     const [image, setImage] = useState();
 
     useEffect(() => {

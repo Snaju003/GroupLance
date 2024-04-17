@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import MyGroups from "./group/my_groups/Mygroups";
 import JoinedGroups from "./group/joined_groups/JoinedGroups";
 import CreateGroup from "./group/CreateGroup";
-import GroupsInvite from "./group/group_invite/groupsinvite";
 import { Container, Row, Col, Tab, Nav } from "react-bootstrap";
 import Layout from "./Layout/Layout";
 

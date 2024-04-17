@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import MyGroup from './Mygroup';
 import { useUser } from "../../../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
 
 const MyGroups = () => {
     const color = "#dfdffb";
