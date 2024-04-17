@@ -249,7 +249,7 @@ const UserAccounts = () => {
                     Personal Ranking
                   </Typography>
                   <Typography variant="body1" textAlign="center" color="text.secondary">
-                    {currentUser?.rate} <StarIcon style={{color: "#ffde38"}} />
+                    {currentUser?.rate}{currentUser?.rate != null ? <StarIcon style={{ color: "#ffde38" }} /> : <p>Not Rated</p>}
                   </Typography>
                   <Typography variant="h5" textAlign="center" component="div" gutterBottom>
                     Group Rankings
