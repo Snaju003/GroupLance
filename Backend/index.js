@@ -21,7 +21,7 @@ const port = process.env.PORT;
 
 app.use(bodyParser.json());
 app.use(cors(
-    // { origin: ['http://localhost:3000'] }
+    { origin: "*" }
 ));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: false }));
