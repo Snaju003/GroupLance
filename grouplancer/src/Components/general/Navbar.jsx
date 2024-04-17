@@ -179,11 +179,11 @@ const NavBar = () => {
                                     <Link href="/" style={{ color: "black", textDecoration: "none" }}>Home</Link>
                                 </Typography>
                             </MenuItem>
-                            <MenuItem onClick={handleCloseNavMenu}>
+                            {currentUser? <MenuItem onClick={handleCloseNavMenu}>
                                 <Typography textAlign="center">
                                     <Link to="/sidebar" style={{ color: "black", textDecoration: "none" }}>Groups</Link>
                                 </Typography>
-                            </MenuItem>
+                            </MenuItem> : null}
                             <MenuItem onClick={handleCloseNavMenu}>
                                 <Typography textAlign="center">
                                     <Link href="/liveside" style={{ color: "black", textDecoration: "none" }}>Categories</Link>
@@ -194,11 +194,11 @@ const NavBar = () => {
                                     <Link href="/sidebar_ranking" style={{ color: "black", textDecoration: "none" }}>Rankings</Link>
                                 </Typography>
                             </MenuItem>
-                            <MenuItem onClick={handleCloseNavMenu}>
+                            {currentUser? <MenuItem onClick={handleCloseNavMenu}>
                                 <Typography textAlign="center">
                                     <Link href="/chatbox" style={{ color: "black", textDecoration: "none" }}>ChatBox</Link>
                                 </Typography>
-                            </MenuItem>
+                            </MenuItem> : null}
                             <MenuItem onClick={handleCloseNavMenu}>
                                 <Typography textAlign="center">
                                     <Link href="/aboutus" style={{ color: "black", textDecoration: "none" }}>About Us</Link>
@@ -219,12 +219,12 @@ const NavBar = () => {
                         >
                             <Link href="/" style={{ color: "white", textDecoration: "none" }}>Home</Link>
                         </Button>
-                        <Button
+                        {currentUser? <Button
                             onClick={handleCloseNavMenu}
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         >
                             <Link href="/sidebar" style={{ color: "white", textDecoration: "none" }}>Groups</Link>
-                        </Button>
+                        </Button> : null}
                         <Button
                             onClick={handleCloseNavMenu}
                             sx={{ my: 2, color: 'white', display: 'block' }}
@@ -237,12 +237,12 @@ const NavBar = () => {
                         >
                             <Link href="/sidebar_ranking" style={{ color: "white", textDecoration: "none" }}>Rankings</Link>
                         </Button>
-                        <Button
+                        {currentUser? <Button
                             onClick={handleCloseNavMenu}
                             sx={{ my: 2, color: 'white', display: 'block' }}
                         >
                             <Link href="/chatbox" style={{ color: "white", textDecoration: "none" }}>ChatBox</Link>
-                        </Button>
+                        </Button> : null}
                         <Button
                             onClick={handleCloseNavMenu}
                             sx={{ my: 2, color: 'white', display: 'block' }}
@@ -256,12 +256,10 @@ const NavBar = () => {
                             <Link href="/postbar" style={{ color: "white", textDecoration: "none" }}>Posts</Link>
                         </Button>
                     </Box>
-                    <Link href="/notify">
+                    {currentUser? <Link href="/notify">
                         <NotificationsIcon style={{ color: "white", marginRight: "1rem" }}>
-
                         </NotificationsIcon>
-
-                    </Link>
+                    </Link> : null}
 
                     <Search style={{ marginRight: "6rem" }}>
                         <SearchIconWrapper>
