@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import toast from "react-hot-toast";
 
-const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin, gDesc }) => {
+const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin, gDesc,domain }) => {
   const liveGroup = async (e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:8080/api/group/join-group", {
@@ -64,6 +64,9 @@ const LiveGroup = ({ color, title, mainGoal, id, projName, canJoin, gDesc }) => 
 
           <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
             <span style={{ textDecoration: "underline" }}>Group Description</span> : {gDesc}
+          </Typography>
+          <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+            <span style={{ textDecoration: "underline" }}>Domain</span> : {domain}
           </Typography>
           <Button variant="contained" onClick={handleClose} style={{ marginTop: "2rem", backgroundColor: "#05023b" }}>
             Close

@@ -66,7 +66,7 @@ const LiveGroups = () => {
       <div className="container">
         <div className="container column">
           {liveGroupData.map(
-            ({ _id, gName, goal, projName, anyoneCanJoin, gDesc }) => {
+            ({ _id, gName, goal, projName, anyoneCanJoin, gDesc,domains }) => {
               return (
                 <div className="col-md-3 mb-3" key={_id} style={{ width: "90%" }}>
                   <LiveGroup
@@ -78,6 +78,7 @@ const LiveGroups = () => {
                     canJoin={anyoneCanJoin}
                     color={color}
                     gDesc={gDesc}
+                    domain={domains[0]}
                   />
 
                 </div>
