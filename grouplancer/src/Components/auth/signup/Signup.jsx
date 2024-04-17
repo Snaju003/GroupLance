@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { Typography } from "@mui/material";
+import Layout from "../../Layout/Layout";
 
 const Signup = () => {
   const [credentials, setCredentials] = useState({
@@ -145,126 +146,128 @@ const Signup = () => {
 
   return (
     <>
-      <div style={{ height: "90vh" }}>
-        <div className={`container1 ${isActive ? "active" : ""}`} style={{ margin: "3rem auto" }}>
-          <div className="form-container sign-up">
-            <form onSubmit={handleSignUpSubmit}>
-              <h1>Create Account</h1>
-              <div className="social-icons">
-                <a href="#" className="icon">
-                  <i className="fa-brands fa-google-plus-g"></i>
-                </a>
-                <a href="#" className="icon">
-                  <i className="fa-brands fa-github"></i>
-                </a>
-              </div>
-              <span>or use your email for registration</span>
-              <input type="text" placeholder="Name" onChange={onchange} name="username" />
-              <input type="email" placeholder="Email" onChange={onchange} name="email" />
-              <input type="password" placeholder="Password" onChange={onchange} name="password" />
-              <input type="password" placeholder="Confirm Password" onChange={onchange} name="cpassword" />
-              <button>{buttonText}</button>
-            </form>
-            <Modal
-              open={showModal}
-              onClose={closeModal}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={{ ...style }}>
-                <Typography variant="h6" gutterBottom>
-                  Enter OTP
-                </Typography>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                  <TextField
-                    style={{ margin: 7 }}
-                    type="text"
-                    id="otpBox1"
-                    placeholder=""
-                    maxLength={1}
-                    onChange={onOtpChange}
-                    required
-                    name="num1"
-                  />
-                  <TextField
-                    style={{ margin: 7 }}
-                    type="text"
-                    id="otpBox2"
-                    placeholder=""
-                    maxLength={1}
-                    onChange={onOtpChange}
-                    required
-                    name="num2"
-                  />
-                  <TextField
-                    style={{ margin: 7 }}
-                    type="text"
-                    id="otpBox3"
-                    placeholder=""
-                    maxLength={1}
-                    onChange={onOtpChange}
-                    required
-                    name="num3"
-                  />
-                  <TextField
-                    style={{ margin: 7 }}
-                    type="text"
-                    id="otpBox4"
-                    placeholder=""
-                    maxLength={1}
-                    onChange={onOtpChange}
-                    required
-                    name="num4"
-                  />
+      <Layout>
+        <div style={{ height: "90vh" }}>
+          <div className={`container1 ${isActive ? "active" : ""}`} style={{ margin: "3rem auto" }}>
+            <div className="form-container sign-up">
+              <form onSubmit={handleSignUpSubmit}>
+                <h1>Create Account</h1>
+                <div className="social-icons">
+                  <a href="#" className="icon">
+                    <i className="fa-brands fa-google-plus-g"></i>
+                  </a>
+                  <a href="#" className="icon">
+                    <i className="fa-brands fa-github"></i>
+                  </a>
                 </div>
-                <Button variant="contained" onClick={sendOtp} style={{ marginTop: '1rem' }}>
-                  Verify OTP
-                </Button>
-              </Box>
-            </Modal>
-          </div>
-          <div className="form-container sign-in">
-            <form onSubmit={handleLoginSubmit}>
-              <h1>Sign In</h1>
-              <div className="social-icons">
-                <a href="#" className="icon">
-                  <i className="fa-brands fa-google-plus-g"></i>
-                </a>
-                <a href="#" className="icon">
-                  <i className="fa-brands fa-github"></i>
-                </a>
-              </div>
-              <span>or use your email password</span>
-              <input type="email" placeholder="Email" onChange={onchange} name="email" />
-              <input type="password" placeholder="Password" onChange={onchange} name="password" />
-              <a href="#">Forget Your Password?</a>
-              <button>Sign In</button>
-            </form>
-          </div>
-          <div className="toggle-container">
-            <div className="toggle" >
-              <div className="toggle-panel toggle-left">
-                <h1>Welcome Back!</h1>
-                <p>Enter your personal details to use all site features</p>
-                <button className="hidden" id="login" onClick={handleLoginClick} >
-                  Sign In
-                </button>
-              </div>
-              <div className="toggle-panel toggle-right">
-                <h1>Welcome, Friend!</h1>
-                <p>Enter your personal details to use all site features</p>
-                <button
-                  className="hidden"
-                  id="register"
-                  onClick={handleRegisterClick}
-                >
-                  Sign Up
-                </button>
+                <span>or use your email for registration</span>
+                <input type="text" placeholder="Name" onChange={onchange} name="username" />
+                <input type="email" placeholder="Email" onChange={onchange} name="email" />
+                <input type="password" placeholder="Password" onChange={onchange} name="password" />
+                <input type="password" placeholder="Confirm Password" onChange={onchange} name="cpassword" />
+                <button>{buttonText}</button>
+              </form>
+              <Modal
+                open={showModal}
+                onClose={closeModal}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+              >
+                <Box sx={{ ...style }}>
+                  <Typography variant="h6" gutterBottom>
+                    Enter OTP
+                  </Typography>
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <TextField
+                      style={{ margin: 7 }}
+                      type="text"
+                      id="otpBox1"
+                      placeholder=""
+                      maxLength={1}
+                      onChange={onOtpChange}
+                      required
+                      name="num1"
+                    />
+                    <TextField
+                      style={{ margin: 7 }}
+                      type="text"
+                      id="otpBox2"
+                      placeholder=""
+                      maxLength={1}
+                      onChange={onOtpChange}
+                      required
+                      name="num2"
+                    />
+                    <TextField
+                      style={{ margin: 7 }}
+                      type="text"
+                      id="otpBox3"
+                      placeholder=""
+                      maxLength={1}
+                      onChange={onOtpChange}
+                      required
+                      name="num3"
+                    />
+                    <TextField
+                      style={{ margin: 7 }}
+                      type="text"
+                      id="otpBox4"
+                      placeholder=""
+                      maxLength={1}
+                      onChange={onOtpChange}
+                      required
+                      name="num4"
+                    />
+                  </div>
+                  <Button variant="contained" onClick={sendOtp} style={{ marginTop: '1rem' }}>
+                    Verify OTP
+                  </Button>
+                </Box>
+              </Modal>
+            </div>
+            <div className="form-container sign-in">
+              <form onSubmit={handleLoginSubmit}>
+                <h1>Sign In</h1>
+                <div className="social-icons">
+                  <a href="#" className="icon">
+                    <i className="fa-brands fa-google-plus-g"></i>
+                  </a>
+                  <a href="#" className="icon">
+                    <i className="fa-brands fa-github"></i>
+                  </a>
+                </div>
+                <span>or use your email password</span>
+                <input type="email" placeholder="Email" onChange={onchange} name="email" />
+                <input type="password" placeholder="Password" onChange={onchange} name="password" />
+                <a href="#">Forget Your Password?</a>
+                <button>Sign In</button>
+              </form>
+            </div>
+            <div className="toggle-container">
+              <div className="toggle" >
+                <div className="toggle-panel toggle-left">
+                  <h1>Welcome Back!</h1>
+                  <p>Enter your personal details to use all site features</p>
+                  <button className="hidden" id="login" onClick={handleLoginClick} >
+                    Sign In
+                  </button>
+                </div>
+                <div className="toggle-panel toggle-right">
+                  <h1>Welcome, Friend!</h1>
+                  <p>Enter your personal details to use all site features</p>
+                  <button
+                    className="hidden"
+                    id="register"
+                    onClick={handleRegisterClick}
+                  >
+                    Sign Up
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Layout>
     </>
   );
 };
