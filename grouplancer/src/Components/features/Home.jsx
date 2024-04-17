@@ -143,7 +143,6 @@ const Home = (props) => {
                 </div>
               </div>
             </div>
-            {!currentUser ? <div id="connect" style={{}}><Signup /></div> : null}
             <div className="subs">
               <h1 style={{ textAlign: "center", fontWeight: "bold", color: "white" }}> Check out our subscription plans </h1>
               < div className="sub" style={{ display: "flex", justifyContent: "center", backgroundSize: "cover" }}>
