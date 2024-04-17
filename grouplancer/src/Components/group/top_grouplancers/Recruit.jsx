@@ -139,7 +139,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups, skills }) =
 
           <ListGroup className="list-group-flush" style={{ borderRadius: "0.5rem", boxShadow: "5px 2px 3px 2px #59788e" }}>
             <ListGroup.Item>Name:  {name}</ListGroup.Item>
-            <ListGroup.Item>Rate: {rate} {rate != null ? <StarIcon style={{ color: "#ffde38" }} /> : <p>Not Rated</p>}</ListGroup.Item>
+            <ListGroup.Item style={{display:"flex"}}>Rate: {rate} {rate != null ? <StarIcon style={{ color: "#ffde38" }} /> : <p> Not Rated</p>}</ListGroup.Item>
           </ListGroup>
           <Card.Body style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>
             {currentUser._id !== id ?
