@@ -22,7 +22,6 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups,skills }) =>
   const navigate = useNavigate()
   const { currentUser } = useUser();
   const [profileopen, setprofileOpen] = useState(false)
-  
 
   const handleProfileClose = () => setprofileOpen(false)
   const handleProfileOpen = () => setprofileOpen(true)
@@ -177,7 +176,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups,skills }) =>
                
             {skills.length? skills.map((skill)=>{
               return(
-                <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }}>
+                <Typography id="modal-modal-description" variant="h6" sx={{ mt: 2 }} style={{backgroundColor:"#1F456C", padding:"1rem", borderRadius:"1rem"}}>
                 {skill}
                </Typography>
               )

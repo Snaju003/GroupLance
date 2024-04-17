@@ -39,7 +39,7 @@ const TopGroups = () => {
     }, [currentUser, navigate])
     return (
         <>
-            <h1 className='text-center my-4' style={{ color: '#ffff' }}>Top Groups</h1>
+            {/* <h1 className='text-center my-4' style={{ color: '#ffff' }}>Top Groups</h1> */}
             <div className="container">
                 <div className="container row">
                     {
@@ -50,7 +50,6 @@ const TopGroups = () => {
                                 </div>
                             )
                         }
-
                         )
                     }
                 </div>
