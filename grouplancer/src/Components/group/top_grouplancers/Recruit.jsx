@@ -1,18 +1,8 @@
 import { useEffect, useState } from "react";
-
-// import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-// import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
@@ -20,10 +10,7 @@ import Modal from '@mui/material/Modal';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Checkbox from '@mui/material/Checkbox';
-import Avatar from '@mui/material/Avatar';
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../../context/UserContext";
 import StarIcon from '@mui/icons-material/Star';
@@ -31,7 +18,6 @@ import toast from "react-hot-toast";
 
 const Recruit = ({ id, name, email, rate, profilePic, color, groups, skills }) => {
   // console.log(groups)
-  const theme = useTheme();
   const [myGroups, setMyGroups] = useState([]);
   const navigate = useNavigate()
   const { currentUser } = useUser();
@@ -80,9 +66,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups, skills }) =
 
 
   const handleClose = () => setOpen(false);
-  const [checked, setChecked] = React.useState([1]);
   const [selectedGroup, setSelectedGroup] = useState(null);
-  const [groupId, setGroupId] = useState("")
 
   const handleToggle = (groupName) => () => {
     setSelectedGroup(groupName === selectedGroup ? null : groupName);
@@ -278,7 +262,6 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: "500px",
   backgroundImage: "linear-gradient(#3048c3,#0492c2)",
-  border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };

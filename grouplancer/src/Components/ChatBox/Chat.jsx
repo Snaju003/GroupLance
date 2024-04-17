@@ -82,9 +82,11 @@ const Chat = ({ groupName, chatid, groupId }) => {
     }
 
     pusherClient.bind("message:new", messageHandler);
+    pusherClient.bind("message:delete", messageHandler);
     return () => {
       pusherClient.unsubscribe(chatid);
       pusherClient.unbind("message:new", messageHandler);
+      pusherClient.unbind("message:delete", messageHandler);
 
     }
   }, [chatid])
@@ -128,6 +130,9 @@ const Chat = ({ groupName, chatid, groupId }) => {
           "Content-Type": "application/json",
           "auth-token": authToken,
         },
+        body: JSON.stringify({
+          chatId: chatid,
+        }),
       });
       console.log("Deleted")
     } catch (error) {
@@ -167,7 +172,7 @@ const Chat = ({ groupName, chatid, groupId }) => {
 
         <Paper elevation={3} className="message-container" style={{ borderRadius: "20px", background: "transparent", border: "1px solid #ffff" }}>
           {messages.map((message, index, _id) => (
-            !message.isDeleted? <div
+            !message.isDeleted ? <div
               style={{ display: "flex", position: "relative" }}
               key={index}
               className={`message ${message.senderId?._id === currentUser._id ? "user-message" : "other-message"}`}
@@ -197,10 +202,10 @@ const Chat = ({ groupName, chatid, groupId }) => {
                   <Dropdown.Menu>
                     <Dropdown.Item onClick={() => {
                       handleCopy(message.message)
-                    }}><Button style={{color: "blue"}} startIcon={<ContentCopyIcon />}>Copy</Button></Dropdown.Item>
+                    }}><Button style={{ color: "blue" }} startIcon={<ContentCopyIcon />}>Copy</Button></Dropdown.Item>
                     <Dropdown.Item onClick={() => {
                       handleDeleteMessage(message._id)
-                    }}><Button style={{color: "red"}} startIcon={<DeleteIcon />}>Delete</Button></Dropdown.Item>
+                    }}><Button style={{ color: "red" }} startIcon={<DeleteIcon />}>Delete</Button></Dropdown.Item>
                     {/* <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
                   </Dropdown.Menu>
                 </Dropdown>
@@ -211,7 +216,7 @@ const Chat = ({ groupName, chatid, groupId }) => {
               className={`message ${message.senderId?._id === currentUser._id ? "user-message" : "other-message"}`}
             >
               <strong>{message.senderId?.name}: </strong> This message was deleted
-              </div>
+            </div>
           ))}
 
 

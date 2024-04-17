@@ -4,8 +4,6 @@ import Layout from "../Layout/Layout";
 import { useUser } from "../../context/UserContext";
 
 const Notification = () => {
-    const title = "hello";
-    const description = "world";
     const color = "#dfdffb";
     const [invite, setInvite] = useState([]);
     const { currentUser } = useUser()
@@ -58,7 +56,7 @@ const Notification = () => {
                                     <div className="col-md-3 mb-3">
                                         <Invite id={group._id} title={group.gName} description={group.gDesc} color={color} />
                                     </div>
-                                );
+                                ); 
                             }
                         })}
                     </div>

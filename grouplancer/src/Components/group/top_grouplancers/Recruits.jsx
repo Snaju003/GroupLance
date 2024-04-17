@@ -4,8 +4,6 @@ import { useUser } from "../../../context/UserContext";
 
 
 const Recruits = () => {
-    const title = "hello";
-    const description = "world";
     const color = "#dfdffb";
     const { currentUser } = useUser();
     const [users, setUsers] = useState()

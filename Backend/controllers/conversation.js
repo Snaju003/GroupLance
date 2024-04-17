@@ -84,7 +84,9 @@ const deleteMessage = async (req, res) => {
             $set: {
                 isDeleted: true
             }
-        });
+        }, { new: true });
+        await pusherServer.trigger(chatId, "message:delete", updatedMessage);
+        console.log(updatedMessage);
 
         return res.status(200).json({
             success: true,

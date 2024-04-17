@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import About from "./About";
 import { useUser } from "../../context/UserContext";
 import { useNavigate, Link } from "react-router-dom";
-import Signup from "../auth/signup/Signup";
 import AOS from 'aos';
 import "aos/dist/aos.css";
 import Layout from "../Layout/Layout";
@@ -49,7 +48,6 @@ const Home = (props) => {
 
   useEffect(() => {
     AOS.init({ duration: 3000 });
-    console.log(currentUser);
   }, [])
 
   return (
@@ -163,7 +161,7 @@ const Home = (props) => {
                         
                         <li>Create two groups with a maximum of 6 members</li>
                         <li>Join multiple groups</li>
-                        <li>Create group with maximum 6 members</li>
+                        
 
                       </ul>
 
@@ -189,10 +187,12 @@ const Home = (props) => {
 
                       <h4 style={{ color: "white",textAlign:"center", lineHeight: "1em" }}>MONTHLY SUBSCRIPTION </h4>
                       <ul style={{ marginBottom: "30px", marginTop: "20px", marginLeft: "20px", color: "white", position: "sticky" }} >
-                        <li style={{ listStyle: "inherit" }}>Ad free</li>
+                        {/* <li style={{ listStyle: "inherit" }}>Ad free</li> */}
                         <li>Create multiple groups</li>
                         <li>Join multiple groups</li>
                         <li>Create groups with 10 members</li>
+                        <li>Invite top users to your group</li>
+                        <li>Join top groups </li>
 
                       </ul>
 
@@ -203,7 +203,7 @@ const Home = (props) => {
                 <div className="subscription">
                   <div className="card-active" style={{ borderRadius: "10px" }}>
                     <div className="space" style={{ display: "flex" }}>
-                      <img className="payment" src="https://i.postimg.cc/hjFDWW0B/deluxe-gold-label-vector-2274967.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
+                      <img className="payment" src="https://i.postimg.cc/x10g5XDr/deluxe2.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
                       <button
                         onClick={() => onSubscribe("deluxe")}
                         type="button"
@@ -218,8 +218,9 @@ const Home = (props) => {
 
                       <h4 style={{ color: "white",textAlign:"center", lineHeight: "1em" }}>YEARLY SUBSCRIPTION </h4>
                       <ul style={{ marginBottom: "30px", marginTop: "20px", marginLeft: "20px", color: "white", position: "sticky" }} >
-                        <li style={{ listStyle: "inherit" }}>Ad free</li>
+                        {/* <li style={{ listStyle: "inherit" }}>Ad free</li> */}
                         <li>Create multiple groups</li>
+                        <li>Join multiple groups</li>
                         <li>Create groups having unlimited members</li>
                         <li>Invite top users to your group</li>
                         <li>Join top groups </li>
