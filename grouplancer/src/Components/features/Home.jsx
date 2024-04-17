@@ -89,7 +89,7 @@ const Home = (props) => {
                   <li>Chat And Connect With Others</li>
                 </ul>
               </div>
-              <Link to="/LiveGroups"><button type="submit" className="community" onChange={handleClick} style={{ margin: "2rem 0rem 1rem 1rem", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
+              <Link to="/Liveside"><button type="submit" className="community" onChange={handleClick} style={{ margin: "2rem 0rem 1rem 1rem", borderRadius: "20px", fontWeight: "750", width: "400px" }}>
                 Explore Groups
               </button></Link>
             </div>
@@ -161,7 +161,8 @@ const Home = (props) => {
                       <h4 style={{ color: "white",  lineHeight: "1em",textAlign:"center" }}>FREE</h4>
                       <ul style={{ marginBottom: "30px", marginTop: "20px", marginLeft: "20px", color: "white", position: "sticky" }} >
                         
-                        <li>Create only one group</li>
+                        <li>Create two groups with a maximum of 6 members</li>
+                        <li>Join multiple groups</li>
                         <li>Create group with maximum 6 members</li>
 
                       </ul>
@@ -183,14 +184,15 @@ const Home = (props) => {
                       </button>
 
                     </div>
-                    <h6 style={{ opacity: "0.7", margin: "30px 30px 10px 30px", color: "white" }}>Enjoy premium features just at Rs.800 </h6>
+                    <h6 style={{ opacity: "0.7", margin: "30px 30px 10px 30px", color: "white" }}>Enjoy premium features just at Rs.49 per month </h6>
                     <div className="card-content">
 
-                      <h4 style={{ color: "white",textAlign:"center", lineHeight: "1em" }}>PREMIUM SUBSCRIPTION </h4>
+                      <h4 style={{ color: "white",textAlign:"center", lineHeight: "1em" }}>MONTHLY SUBSCRIPTION </h4>
                       <ul style={{ marginBottom: "30px", marginTop: "20px", marginLeft: "20px", color: "white", position: "sticky" }} >
                         <li style={{ listStyle: "inherit" }}>Ad free</li>
                         <li>Create multiple groups</li>
-                        <li>Create groups with 8 members</li>
+                        <li>Join multiple groups</li>
+                        <li>Create groups with 10 members</li>
 
                       </ul>
 
@@ -211,16 +213,16 @@ const Home = (props) => {
                       </button>
 
                     </div>
-                    <h6 style={{ opacity: "0.7", margin: "30px 40px 10px 30px", color: "white" }}>Enjoy deluxe features just at Rs.1500 </h6>
+                    <h6 style={{ opacity: "0.7", margin: "30px 40px 10px 30px", color: "white" }}>Enjoy deluxe features just at Rs.399 per annum </h6>
                     <div className="card-content">
 
-                      <h4 style={{ color: "white",textAlign:"center", lineHeight: "1em" }}>DELUXE SUBSCRIPTION </h4>
+                      <h4 style={{ color: "white",textAlign:"center", lineHeight: "1em" }}>YEARLY SUBSCRIPTION </h4>
                       <ul style={{ marginBottom: "30px", marginTop: "20px", marginLeft: "20px", color: "white", position: "sticky" }} >
                         <li style={{ listStyle: "inherit" }}>Ad free</li>
                         <li>Create multiple groups</li>
-                        <li>Create groups of 10 members</li>
+                        <li>Create groups having unlimited members</li>
                         <li>Invite top users to your group</li>
-                        <li>Send requests to top users</li>
+                        <li>Join top groups </li>
                       </ul>
 
                     </div>
