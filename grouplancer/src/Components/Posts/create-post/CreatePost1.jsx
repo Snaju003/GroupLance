@@ -142,9 +142,9 @@ const CreatePost1 = () => {
         <section className="create">
             <Container>
                 <Row className="align-items-center">
-                    <h1 className="text-center my-4" style={{ color: "#ffff", paddingBottom: "2vh" }}>
+                    {/* <h1 className="text-center my-4" style={{ color: "#ffff", paddingBottom: "2vh" }}>
                         Create Post
-                    </h1>
+                    </h1> */}
                     <h3 style={{ color: "white" }}>Select Group:</h3>
 
                     <Select

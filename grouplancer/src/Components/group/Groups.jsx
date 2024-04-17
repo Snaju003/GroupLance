@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../context/UserContext";
 import { useNavigate, useParams } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
 import EditGroup from "./EditGroup";
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -20,15 +18,12 @@ import { fireDB } from "../../firebase/FirebaseConfig";
 import toast from "react-hot-toast";
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { get } from "lodash";
 
 const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal, domains, rate }) => {
   const [credentials, setCredentials] = useState({ email: "" });
   const navigate = useNavigate();
   const { currentUser } = useUser();
   const { id } = useParams();
-  const [rating, setRating] = useState(0);
-  const [value, setValue] = useState(0);
 
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -51,7 +46,6 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
   };
   const ratingUser = async (e,val, _id) => {
     e.preventDefault();
-    const ratingValue = ratings[_id] || 0; 
     console.log(val)
     const response = await fetch("http://localhost:8080/api/user/rate-user", {
       method: "POST",
@@ -59,7 +53,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('auth-token'),
       },
-      body: JSON.stringify({ rate: val == 0 ? 1 : val, userId: _id }),
+      body: JSON.stringify({ rate: val === 0 ? 1 : val, userId: _id }),
     });
     const json = await response.json();
     console.log(json)
@@ -67,7 +61,6 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
 
   const ratingValue = async (e,val, _id) => {
     e.preventDefault();
-    const ratingValue = ratings[_id] || 0; 
     console.log(val)
     const response = await fetch("http://localhost:8080/api/rate/ratings", {
       method: "POST",
@@ -75,7 +68,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem('auth-token'),
       },
-      body: JSON.stringify({ rating: val == 0 ? 1 : val, ratedUser: _id }),
+      body: JSON.stringify({ rating: val === 0 ? 1 : val, ratedUser: _id }),
     });
     const json = await response.json();
     console.log(json)
@@ -230,6 +223,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
 
   return (
     <>
+    
       <div
         style={{
           display: "flex",
@@ -249,7 +243,6 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
               padding: "10px",
               marginRight: "1rem",
               backgroundColor: "#cc0000",
-              padding: "1rem 2rem 1rem 2rem",
             }}
             onClick={handleOpen}
           >
@@ -403,7 +396,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
               class="card-body"
               style={{ backgroundColor: "white", borderRadius: "20px" }}
             >
-              <img src="https://tse4.mm.bing.net/th?id=OIP.JCwjYrZogNHv50VtbileUgHaEK&pid=Api&P=0&h=180" style={{ width: "22vw", height: "150px", borderRadius: "20px", margin: "1px 5px 1px 1px" }}></img>
+              <img src="https://tse4.mm.bing.net/th?id=OIP.JCwjYrZogNHv50VtbileUgHaEK&pid=Api&P=0&h=180" alt="logo" style={{ width: "22vw", height: "150px", borderRadius: "20px", margin: "1px 5px 1px 1px" }}></img>
               <h4 className="text-center my-4">Invite a member</h4>
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">

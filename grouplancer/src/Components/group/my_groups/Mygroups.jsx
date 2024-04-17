@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import MyGroup from './Mygroup';
 import { useUser } from "../../../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom';
 
 const MyGroups = () => {
     const color = "#dfdffb";
@@ -14,32 +13,41 @@ const MyGroups = () => {
         // if (currentUser)
         //     navigate("/login")
         // else {
-            const fetchData = async () => {
-                try {
-                    const authToken = localStorage.getItem('auth-token');
-                    const response = await fetch("http://localhost:8080/api/user/owned-groups", {
-                        method: "GET",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "auth-token": authToken,
-                        },
-                    });
-                    const data = await response.json();
-                    console.log(data.ownedGroups);
-                    setMyGroups(data.ownedGroups);
-                } catch (error) {
-                    console.log(error);
-                }
+        const fetchData = async () => {
+            try {
+                const authToken = localStorage.getItem('auth-token');
+                const response = await fetch("http://localhost:8080/api/user/owned-groups", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "auth-token": authToken,
+                    },
+                });
+                const data = await response.json();
+                console.log(data.ownedGroups);
+                setMyGroups(data.ownedGroups);
+            } catch (error) {
+                console.log(error);
             }
-            fetchData();
         }
-    //}
-    , [currentUser,navigate])
+        fetchData();
+    }
+        //}
+        , [currentUser, navigate])
 
+    if (!myGroups) {
+        return (
+            <div>
+                <h1>Loading...</h1>
+            </div>
+        )
+    }
 
     return (
         <>
-            <h1 className='text-center my-4' style={{ color: '#ffff' }}>My Groups</h1>
+            {
+                !myGroups && <h1>No groups available</h1>
+            } {/* <h1 className='text-center my-4' style={{ color: '#ffff' }}>My Groups</h1> */}
             <div className="container">
                 <div className="container row">
                     {
