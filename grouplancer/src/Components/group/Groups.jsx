@@ -463,7 +463,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
                       className="card-body"
                       style={{ backgroundColor: "white", borderRadius: "20px" }}
                     >
-                      <img
+                      {/* <img
                         style={{
                           height: "100px",
                           width: "200px",
@@ -473,9 +473,9 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
                         // src={member.profileImageUrl}
                         alt="profile"
                         className="imaging"
-                      />
-                      <h5 className="card-title">{name}</h5>
-                      <p className="card-text">{email}</p>
+                      /> */}
+                      <h5 className="card-title">Name: {name}</h5>
+                      <p className="card-text">Email: {email}</p>
                       {(_id !== currentUser?._id) && (<div style={{ display: "flex", marginRight: "1rem" }}>
                         <Rating
                           name={`rating-${_id}`} // Unique name for each Rating component

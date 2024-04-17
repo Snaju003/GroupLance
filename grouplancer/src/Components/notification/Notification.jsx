@@ -56,7 +56,7 @@ const Notification = () => {
                                     <div className="col-md-3 mb-3">
                                         <Invite id={group._id} title={group.gName} description={group.gDesc} color={color} />
                                     </div>
-                                );
+                                ); 
                             }
                         })}
                     </div>
