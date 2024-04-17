@@ -28,7 +28,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups, skills }) =
   const handleProfileClose = () => setprofileOpen(false)
   const handleProfileOpen = () => setprofileOpen(true)
 
-  const inviteMember = async (id, gDesc) => {
+  const inviteMember = async (id, gDesc,gName) => {
     try {
       const authToken = localStorage.getItem("auth-token");
       const response = await fetch(
@@ -44,7 +44,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups, skills }) =
             invitationLink: "http://localhost:3000/notify",
             group: {
               id: id,
-              name: selectedGroup,
+              name: gName,
               desc: gDesc,
             },
             inviterName: currentUser.name,
@@ -234,7 +234,7 @@ const Recruit = ({ id, name, email, rate, profilePic, color, groups, skills }) =
                         variant="contained"
                         onClick={() => {
                           handleClose();
-                          inviteMember(_id, gDesc)
+                          inviteMember(_id, gDesc,gName)
                         }}
                         style={{ marginTop: '2rem', backgroundColor: '#05023b', color: '#ffff' }}
                       >
