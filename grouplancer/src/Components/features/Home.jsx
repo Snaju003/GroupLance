@@ -163,7 +163,7 @@ const Home = (props) => {
                         
                         <li>Create two groups with a maximum of 6 members</li>
                         <li>Join multiple groups</li>
-                        <li>Create group with maximum 6 members</li>
+                        
 
                       </ul>
 
@@ -203,7 +203,7 @@ const Home = (props) => {
                 <div className="subscription">
                   <div className="card-active" style={{ borderRadius: "10px" }}>
                     <div className="space" style={{ display: "flex" }}>
-                      <img className="payment" src="https://i.postimg.cc/hjFDWW0B/deluxe-gold-label-vector-2274967.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
+                      <img className="payment" src="https://i.postimg.cc/x10g5XDr/deluxe2.jpg" alt="icon" style={{ transform: "translateX(150%)", marginTop: "20px", width: "100px", height: "100px", boxShadow: " 5px black" }} />
                       <button
                         onClick={() => onSubscribe("deluxe")}
                         type="button"
