@@ -230,6 +230,7 @@ const Groups = ({ grpName, grpLeader, projName, grpDesc, gMembers, groupId, goal
 
   return (
     <>
+    
       <div
         style={{
           display: "flex",
