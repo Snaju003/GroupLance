@@ -4,8 +4,6 @@ import { useUser } from "../../../context/UserContext";
 
 
 const Recruits = () => {
-    const title = "hello";
-    const description = "world";
     const color = "#dfdffb";
     const { currentUser } = useUser();
     const [users, setUsers] = useState()
@@ -35,7 +33,7 @@ const Recruits = () => {
 
     return (
         <>
-            <h1 className='text-center my-4' style={{ color: '#ffff' }}>Top Grouplancers</h1>
+            {/* <h1 className='text-center my-4' style={{ color: '#ffff' }}>Top Grouplancers</h1> */}
             <div className="container">
                 <div className="container row" style={{ flexDirection: "column" }}>
                     {users && users.map(({ _id, name, email, rate, profile_pic, groups, skills }) => {

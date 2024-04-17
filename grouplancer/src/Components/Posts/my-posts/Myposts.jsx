@@ -41,12 +41,12 @@ function Myposts() {
 
   return (
     <>
-      <h1
+      {/* <h1
         className="text-center my-4"
         style={{ color: "#ffff", fontWeight: "bold" }}
       >
         My Posts
-      </h1>
+      </h1> */}
       <div className="container">
         <div className="container row" style={{ flexDirection: "column-reverse", display: "flex", }}>
           {

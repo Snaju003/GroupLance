@@ -34,7 +34,7 @@ function Liveposts() {
 
   return (
     <>
-      <h1 className='text-center my-4' style={{ color: '#ffff', fontWeight: "bold" }}>Live Posts</h1>
+      {/* <h1 className='text-center my-4' style={{ color: '#ffff', fontWeight: "bold" }}>Live Posts</h1> */}
       <div className="container">
         <div className="container row" style={{ flexDirection: "column" , display:"flex",}}>
         {

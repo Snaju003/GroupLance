@@ -4,8 +4,6 @@ import Layout from "../Layout/Layout";
 import { useUser } from "../../context/UserContext";
 
 const Notification = () => {
-    const title = "hello";
-    const description = "world";
     const color = "#dfdffb";
     const [invite, setInvite] = useState([]);
     const { currentUser } = useUser()
