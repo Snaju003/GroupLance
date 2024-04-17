@@ -7,12 +7,9 @@ import {
   Typography,
   Modal,
   TextField,
-  Fab,
-  Autocomplete,
   Card,
   CardContent,
   CardActions,
-  CardHeader,
   IconButton,
   List,
   ListItem,
@@ -20,9 +17,7 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
-import { names } from "../../constant/skills";
 import NavBar from "../../general/Navbar";
-import Footer from "../../general/footer/Footer";
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import toast from "react-hot-toast";
 import StarIcon from '@mui/icons-material/Star';
@@ -51,7 +46,6 @@ const UserAccounts = () => {
   }, [currentUser]);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [skillopen, setskillOpen] = useState(false);
   const [eduopen, setEduOpen] = useState(false);
   const [workopen, setworkOpen] = useState(false);
   const [skillModal, setSkillModal] = useState(false)
@@ -59,10 +53,6 @@ const UserAccounts = () => {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const handleSkillOpen = () => setskillOpen(true);
-  const handleSkillClose = () => setskillOpen(false);
-  const handleeduOpen = () => setEduOpen(true);
-  const handleeduClose = () => setEduOpen(false);
   const handleworkOpen = () => setworkOpen(true);
   const handleworkClose = () => setworkOpen(false);
   const handleEduOpen = () => setEduOpen(true);
@@ -96,9 +86,6 @@ const UserAccounts = () => {
   }, [currentUser, navigate]);
 
 
-  const [skillsList, setSkillsList] = useState(userData.skills);
-  const [newSkill, setNewSkill] = useState("");
-
   const updateUserName = async () => {
     try {
       const response = await fetch(`http://localhost:8080/api/user/update-user`, {
@@ -122,12 +109,10 @@ const UserAccounts = () => {
   const [formData, setFormData] = useState({
     media: null
   });
-  const [postImage, setPostImage] = useState("");
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     try {
       const base64 = await convertToBase64(file);
-      setPostImage(base64);
 
       e.preventDefault();
       const authToken = localStorage.getItem('auth-token');
@@ -209,7 +194,7 @@ const UserAccounts = () => {
                     />
                     <img
                       src={userData.profile_pic?.image ? userData.profile_pic?.image : "https://cdn-icons-png.flaticon.com/256/4021/4021443.png"}
-                      alt="Profile Picture"
+                      alt="Profile"
                       style={{ width: "8vw", height: "18vh", margin: " 3rem 7rem 0.2rem 7rem", bottom: "5px", cursor: "pointer" }}
                     />
                     <IconButton onClick={() => inputRef.current.click()} style={{ position: "absolute", top: "11rem", right: "9.5rem" }}>
