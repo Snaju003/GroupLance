@@ -192,7 +192,7 @@ const Home = (props) => {
                         <li style={{ listStyle: "inherit" }}>Ad free</li>
                         <li>Create multiple groups</li>
                         <li>Join multiple groups</li>
-                        <li>Create groups with 8 members</li>
+                        <li>Create groups with 10 members</li>
 
                       </ul>
 
@@ -220,7 +220,7 @@ const Home = (props) => {
                       <ul style={{ marginBottom: "30px", marginTop: "20px", marginLeft: "20px", color: "white", position: "sticky" }} >
                         <li style={{ listStyle: "inherit" }}>Ad free</li>
                         <li>Create multiple groups</li>
-                        <li>Create groups of 10 members</li>
+                        <li>Create groups having unlimited members</li>
                         <li>Invite top users to your group</li>
                         <li>Join top groups </li>
                       </ul>
